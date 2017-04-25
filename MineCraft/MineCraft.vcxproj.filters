@@ -50,5 +50,6 @@
     <Text Include="ReadMe.txt">
       <Filter>99. etc</Filter>
     </Text>
+    <Text Include="notice.txt" />
   </ItemGroup>
 </Project>
