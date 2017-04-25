@@ -4,9 +4,6 @@
     <Filter Include="99. etc">
       <UniqueIdentifier>{5a731b7a-3c8c-4e80-8e45-13d177f3b9f5}</UniqueIdentifier>
     </Filter>
-    <Filter Include="01. cSceneManager">
-      <UniqueIdentifier>{62c85e6e-a098-441d-85b3-f634890f1c73}</UniqueIdentifier>
-    </Filter>
     <Filter Include="00. cMainGame">
       <UniqueIdentifier>{1f674494-6e30-4c29-b32d-a789fa56b45b}</UniqueIdentifier>
     </Filter>
@@ -25,9 +22,6 @@
     <Filter Include="98. Utility\03. cCubeNode">
       <UniqueIdentifier>{d863226d-f428-495a-9830-b8e4680e01a5}</UniqueIdentifier>
     </Filter>
-    <Filter Include="01. cSceneManager\01. cPlayScene">
-      <UniqueIdentifier>{c44df880-0e6d-4dd8-88c4-dbd7b5225292}</UniqueIdentifier>
-    </Filter>
     <Filter Include="10. cCharacter\01. cCubeMan">
       <UniqueIdentifier>{9a3675fe-ea72-44fe-8748-06db2fc69232}</UniqueIdentifier>
     </Filter>
@@ -43,6 +37,15 @@
     <Filter Include="98. Utility\06. cPyramid">
       <UniqueIdentifier>{d723f3e3-4550-47e0-a440-4922054ac273}</UniqueIdentifier>
     </Filter>
+    <Filter Include="02. cSceneManager">
+      <UniqueIdentifier>{62c85e6e-a098-441d-85b3-f634890f1c73}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02. cSceneManager\01. cPlayScene">
+      <UniqueIdentifier>{c44df880-0e6d-4dd8-88c4-dbd7b5225292}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01. cDeviceManager">
+      <UniqueIdentifier>{258b150c-d007-4b3d-ade0-dfd0c9a9b1d0}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MineCraft.h" />
@@ -54,7 +57,7 @@
     </ClInclude>
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="cPlayScene.h">
-      <Filter>01. cSceneManager\01. cPlayScene</Filter>
+      <Filter>02. cSceneManager\01. cPlayScene</Filter>
     </ClInclude>
     <ClInclude Include="cMainGame.h">
       <Filter>00. cMainGame</Filter>
@@ -101,13 +104,16 @@
     <ClInclude Include="cPyramid.h">
       <Filter>98. Utility\06. cPyramid</Filter>
     </ClInclude>
+    <ClInclude Include="cDeviceManager.h">
+      <Filter>01. cDeviceManager</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
       <Filter>99. etc</Filter>
     </ClCompile>
     <ClCompile Include="cPlayScene.cpp">
-      <Filter>01. cSceneManager\01. cPlayScene</Filter>
+      <Filter>02. cSceneManager\01. cPlayScene</Filter>
     </ClCompile>
     <ClCompile Include="cMainGame.cpp">
       <Filter>00. cMainGame</Filter>
@@ -154,6 +160,9 @@
     </ClCompile>
     <ClCompile Include="cPyramid.cpp">
       <Filter>98. Utility\06. cPyramid</Filter>
+    </ClCompile>
+    <ClCompile Include="cDeviceManager.cpp">
+      <Filter>01. cDeviceManager</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

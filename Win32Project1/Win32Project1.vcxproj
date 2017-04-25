@@ -19,9 +19,9 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{E387420F-DCEF-4047-9CE8-400AD80AAA05}</ProjectGuid>
+    <ProjectGuid>{886416D2-4C2C-4402-95C4-DB94B13D8AD8}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
-    <RootNamespace>MineCraft</RootNamespace>
+    <RootNamespace>Win32Project1</RootNamespace>
     <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -29,7 +29,7 @@
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v140</PlatformToolset>
-    <CharacterSet>NotSet</CharacterSet>
+    <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
@@ -71,13 +71,9 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>C:\Program Files %28x86%29\Microsoft DirectX SDK %28June 2010%29\Include;$(IncludePath)</IncludePath>
-    <LibraryPath>C:\Program Files %28x86%29\Microsoft DirectX SDK %28June 2010%29\Lib\x86;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>D:\Program Files %28x86%29\Microsoft DirectX SDK %28June 2010%29\Include;$(IncludePath)</IncludePath>
-    <LibraryPath>D:\Program Files %28x86%29\Microsoft DirectX SDK %28June 2010%29\Lib\x86;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
@@ -146,64 +142,29 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <Text Include="notice.txt" />
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="cBody.h" />
-    <ClInclude Include="cCamera.h" />
-    <ClInclude Include="cCharacter.h" />
-    <ClInclude Include="cCubeMan.h" />
-    <ClInclude Include="cCubeNode.h" />
-    <ClInclude Include="cCubePC.h" />
-    <ClInclude Include="cCubePNT.h" />
-    <ClInclude Include="cDeviceManager.h" />
-    <ClInclude Include="cGrid.h" />
-    <ClInclude Include="cHead.h" />
-    <ClInclude Include="cLeftArm.h" />
-    <ClInclude Include="cLeftLeg.h" />
-    <ClInclude Include="cMainGame.h" />
-    <ClInclude Include="cPlayScene.h" />
-    <ClInclude Include="cPyramid.h" />
-    <ClInclude Include="cRightArm.h" />
-    <ClInclude Include="cRightLeg.h" />
-    <ClInclude Include="MineCraft.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
+    <ClInclude Include="Win32Project1.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="cBody.cpp" />
-    <ClCompile Include="cCamera.cpp" />
-    <ClCompile Include="cCharacter.cpp" />
-    <ClCompile Include="cCubeMan.cpp" />
-    <ClCompile Include="cCubeNode.cpp" />
-    <ClCompile Include="cCubePC.cpp" />
-    <ClCompile Include="cCubePNT.cpp" />
-    <ClCompile Include="cDeviceManager.cpp" />
-    <ClCompile Include="cGrid.cpp" />
-    <ClCompile Include="cHead.cpp" />
-    <ClCompile Include="cLeftArm.cpp" />
-    <ClCompile Include="cLeftLeg.cpp" />
-    <ClCompile Include="cMainGame.cpp" />
-    <ClCompile Include="cPlayScene.cpp" />
-    <ClCompile Include="cPyramid.cpp" />
-    <ClCompile Include="cRightArm.cpp" />
-    <ClCompile Include="cRightLeg.cpp" />
-    <ClCompile Include="MineCraft.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="Win32Project1.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ResourceCompile Include="MineCraft.rc" />
+    <ResourceCompile Include="Win32Project1.rc" />
   </ItemGroup>
   <ItemGroup>
-    <Image Include="MineCraft.ico" />
     <Image Include="small.ico" />
+    <Image Include="Win32Project1.ico" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
