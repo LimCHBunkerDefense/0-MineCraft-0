@@ -3,7 +3,7 @@
 
 #include "stdafx.h"
 #include "MineCraft.h"
-#include "cPlayScene.h"
+#include "cMainGame.h"
 
 #define MAX_LOADSTRING 100
 
@@ -18,7 +18,7 @@ BOOL                InitInstance(HINSTANCE, int);
 LRESULT CALLBACK    WndProc(HWND, UINT, WPARAM, LPARAM);
 INT_PTR CALLBACK    About(HWND, UINT, WPARAM, LPARAM);
 
-cPlayScene*		g_pPlayScene;
+cMainGame*		g_pMainGame;
 HWND			g_hWnd;
 
 int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
@@ -44,8 +44,8 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 
     HACCEL hAccelTable = LoadAccelerators(hInstance, MAKEINTRESOURCE(IDC_MINECRAFT));
 
-	g_pPlayScene = new cPlayScene;
-	g_pPlayScene->Setup();
+	g_pMainGame = new cMainGame;
+	g_pMainGame->Setup();
 
     MSG msg;
 
@@ -67,18 +67,17 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 		}
 		else
 		{
-			g_pPlayScene->Update();
-			g_pPlayScene->Render();
+			g_pMainGame->Update();
+			g_pMainGame->Render();
 		}
 	}
 
-	delete g_pPlayScene;
+	delete g_pMainGame;
 
 	return (int)msg.wParam;
 }
 
 
-//111
 //
 //  ÇÔ¼ö: MyRegisterClass()
 //
@@ -89,7 +88,6 @@ ATOM MyRegisterClass(HINSTANCE hInstance)
     WNDCLASSEXW wcex;
 	//111
     wcex.cbSize = sizeof(WNDCLASSEX);
-	int i;
     wcex.style          = CS_HREDRAW | CS_VREDRAW;
     wcex.lpfnWndProc    = WndProc;
     wcex.cbClsExtra     = 0;
@@ -123,6 +121,8 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
    HWND hWnd = CreateWindowW(szWindowClass, szTitle, WS_OVERLAPPEDWINDOW,
       CW_USEDEFAULT, 0, CW_USEDEFAULT, 0, nullptr, nullptr, hInstance, nullptr);
 
+   g_hWnd = hWnd;
+
    if (!hWnd)
    {
       return FALSE;
@@ -146,6 +146,9 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
 //
 LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 {
+	if (g_pMainGame)
+		g_pMainGame->WndProc(hWnd, message, wParam, lParam);
+
     switch (message)
     {
     case WM_COMMAND:
