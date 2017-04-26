@@ -10,6 +10,9 @@
     <Filter Include="01. cSceneManager">
       <UniqueIdentifier>{62c85e6e-a098-441d-85b3-f634890f1c73}</UniqueIdentifier>
     </Filter>
+    <Filter Include="00.TitleScene">
+      <UniqueIdentifier>{46fae268-d6d2-47ed-a57c-6ad57e0cbcfc}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MineCraft.h" />
@@ -23,6 +26,9 @@
     <ClInclude Include="cPlayScene.h">
       <Filter>01.1cPlayScene</Filter>
     </ClInclude>
+    <ClInclude Include="cTitleScene.h">
+      <Filter>00.TitleScene</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -31,6 +37,9 @@
     <ClCompile Include="MineCraft.cpp" />
     <ClCompile Include="cPlayScene.cpp">
       <Filter>01.1cPlayScene</Filter>
+    </ClCompile>
+    <ClCompile Include="cTitleScene.cpp">
+      <Filter>00.TitleScene</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

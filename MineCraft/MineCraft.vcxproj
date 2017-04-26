@@ -151,6 +151,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="cPlayScene.h" />
+    <ClInclude Include="cTitleScene.h" />
     <ClInclude Include="MineCraft.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="stdafx.h" />
@@ -158,6 +159,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="cPlayScene.cpp" />
+    <ClCompile Include="cTitleScene.cpp" />
     <ClCompile Include="MineCraft.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
