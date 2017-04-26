@@ -1,10 +1,8 @@
 #pragma once
 
-class cPlayScene;
 
 class cMainGame
 {
-	cPlayScene* m_pPlayScene;
 
 public:
 	cMainGame();
