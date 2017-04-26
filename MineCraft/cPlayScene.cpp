@@ -10,3 +10,18 @@ cPlayScene::cPlayScene()
 cPlayScene::~cPlayScene()
 {
 }
+
+void cPlayScene::Setup()
+{
+
+}
+
+void cPlayScene::Update()
+{
+
+}
+
+void cPlayScene::Render()
+{
+
+}

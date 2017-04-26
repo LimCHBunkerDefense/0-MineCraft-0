@@ -4,11 +4,47 @@
     <Filter Include="99. etc">
       <UniqueIdentifier>{5a731b7a-3c8c-4e80-8e45-13d177f3b9f5}</UniqueIdentifier>
     </Filter>
-    <Filter Include="01.1cPlayScene">
+    <Filter Include="00. cMainGame">
+      <UniqueIdentifier>{1f674494-6e30-4c29-b32d-a789fa56b45b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="10. cCharacter">
+      <UniqueIdentifier>{f89a1623-d356-456d-9b08-3519431868d7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="98. Utility">
+      <UniqueIdentifier>{1e365266-52a7-47c0-a8ef-495d7e6bf322}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="98. Utility\01. cCubePC">
+      <UniqueIdentifier>{ffc86bb5-a2b0-4367-ac6d-9856cf8655e6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="98. Utility\02. cCubePNT">
+      <UniqueIdentifier>{e81683e1-8e65-4163-aa6a-8773b477a35a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="98. Utility\03. cCubeNode">
+      <UniqueIdentifier>{d863226d-f428-495a-9830-b8e4680e01a5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="10. cCharacter\01. cCubeMan">
+      <UniqueIdentifier>{9a3675fe-ea72-44fe-8748-06db2fc69232}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="10. cCharacter\01. cCubeMan\10.1.1 cCubeMan%27s">
+      <UniqueIdentifier>{8cbdd47b-fc55-46c1-9fce-d39ee4b865fa}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="98. Utility\04. cCamera">
+      <UniqueIdentifier>{404f7284-8944-4048-ba16-4337450bb778}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="98. Utility\05. cGrid">
+      <UniqueIdentifier>{2f2b9787-c348-4d4f-8210-db94704c29a3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="98. Utility\06. cPyramid">
+      <UniqueIdentifier>{d723f3e3-4550-47e0-a440-4922054ac273}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02. cSceneManager">
+      <UniqueIdentifier>{62c85e6e-a098-441d-85b3-f634890f1c73}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02. cSceneManager\01. cPlayScene">
       <UniqueIdentifier>{c44df880-0e6d-4dd8-88c4-dbd7b5225292}</UniqueIdentifier>
     </Filter>
-    <Filter Include="01. cSceneManager">
-      <UniqueIdentifier>{62c85e6e-a098-441d-85b3-f634890f1c73}</UniqueIdentifier>
+    <Filter Include="01. cDeviceManager">
+      <UniqueIdentifier>{258b150c-d007-4b3d-ade0-dfd0c9a9b1d0}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -21,16 +57,112 @@
     </ClInclude>
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="cPlayScene.h">
-      <Filter>01.1cPlayScene</Filter>
+      <Filter>02. cSceneManager\01. cPlayScene</Filter>
+    </ClInclude>
+    <ClInclude Include="cMainGame.h">
+      <Filter>00. cMainGame</Filter>
+    </ClInclude>
+    <ClInclude Include="cCharacter.h">
+      <Filter>10. cCharacter</Filter>
+    </ClInclude>
+    <ClInclude Include="cCubeMan.h">
+      <Filter>10. cCharacter\01. cCubeMan</Filter>
+    </ClInclude>
+    <ClInclude Include="cBody.h">
+      <Filter>10. cCharacter\01. cCubeMan\10.1.1 cCubeMan%27s</Filter>
+    </ClInclude>
+    <ClInclude Include="cHead.h">
+      <Filter>10. cCharacter\01. cCubeMan\10.1.1 cCubeMan%27s</Filter>
+    </ClInclude>
+    <ClInclude Include="cLeftArm.h">
+      <Filter>10. cCharacter\01. cCubeMan\10.1.1 cCubeMan%27s</Filter>
+    </ClInclude>
+    <ClInclude Include="cLeftLeg.h">
+      <Filter>10. cCharacter\01. cCubeMan\10.1.1 cCubeMan%27s</Filter>
+    </ClInclude>
+    <ClInclude Include="cRightArm.h">
+      <Filter>10. cCharacter\01. cCubeMan\10.1.1 cCubeMan%27s</Filter>
+    </ClInclude>
+    <ClInclude Include="cRightLeg.h">
+      <Filter>10. cCharacter\01. cCubeMan\10.1.1 cCubeMan%27s</Filter>
+    </ClInclude>
+    <ClInclude Include="cCubePC.h">
+      <Filter>98. Utility\01. cCubePC</Filter>
+    </ClInclude>
+    <ClInclude Include="cCubePNT.h">
+      <Filter>98. Utility\02. cCubePNT</Filter>
+    </ClInclude>
+    <ClInclude Include="cCubeNode.h">
+      <Filter>98. Utility\03. cCubeNode</Filter>
+    </ClInclude>
+    <ClInclude Include="cCamera.h">
+      <Filter>98. Utility\04. cCamera</Filter>
+    </ClInclude>
+    <ClInclude Include="cGrid.h">
+      <Filter>98. Utility\05. cGrid</Filter>
+    </ClInclude>
+    <ClInclude Include="cPyramid.h">
+      <Filter>98. Utility\06. cPyramid</Filter>
+    </ClInclude>
+    <ClInclude Include="cDeviceManager.h">
+      <Filter>01. cDeviceManager</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
       <Filter>99. etc</Filter>
     </ClCompile>
-    <ClCompile Include="MineCraft.cpp" />
     <ClCompile Include="cPlayScene.cpp">
-      <Filter>01.1cPlayScene</Filter>
+      <Filter>02. cSceneManager\01. cPlayScene</Filter>
+    </ClCompile>
+    <ClCompile Include="cMainGame.cpp">
+      <Filter>00. cMainGame</Filter>
+    </ClCompile>
+    <ClCompile Include="MineCraft.cpp" />
+    <ClCompile Include="cCharacter.cpp">
+      <Filter>10. cCharacter</Filter>
+    </ClCompile>
+    <ClCompile Include="cCubeMan.cpp">
+      <Filter>10. cCharacter\01. cCubeMan</Filter>
+    </ClCompile>
+    <ClCompile Include="cBody.cpp">
+      <Filter>10. cCharacter\01. cCubeMan\10.1.1 cCubeMan%27s</Filter>
+    </ClCompile>
+    <ClCompile Include="cHead.cpp">
+      <Filter>10. cCharacter\01. cCubeMan\10.1.1 cCubeMan%27s</Filter>
+    </ClCompile>
+    <ClCompile Include="cLeftArm.cpp">
+      <Filter>10. cCharacter\01. cCubeMan\10.1.1 cCubeMan%27s</Filter>
+    </ClCompile>
+    <ClCompile Include="cLeftLeg.cpp">
+      <Filter>10. cCharacter\01. cCubeMan\10.1.1 cCubeMan%27s</Filter>
+    </ClCompile>
+    <ClCompile Include="cRightArm.cpp">
+      <Filter>10. cCharacter\01. cCubeMan\10.1.1 cCubeMan%27s</Filter>
+    </ClCompile>
+    <ClCompile Include="cRightLeg.cpp">
+      <Filter>10. cCharacter\01. cCubeMan\10.1.1 cCubeMan%27s</Filter>
+    </ClCompile>
+    <ClCompile Include="cCubePC.cpp">
+      <Filter>98. Utility\01. cCubePC</Filter>
+    </ClCompile>
+    <ClCompile Include="cCubePNT.cpp">
+      <Filter>98. Utility\02. cCubePNT</Filter>
+    </ClCompile>
+    <ClCompile Include="cCubeNode.cpp">
+      <Filter>98. Utility\03. cCubeNode</Filter>
+    </ClCompile>
+    <ClCompile Include="cCamera.cpp">
+      <Filter>98. Utility\04. cCamera</Filter>
+    </ClCompile>
+    <ClCompile Include="cGrid.cpp">
+      <Filter>98. Utility\05. cGrid</Filter>
+    </ClCompile>
+    <ClCompile Include="cPyramid.cpp">
+      <Filter>98. Utility\06. cPyramid</Filter>
+    </ClCompile>
+    <ClCompile Include="cDeviceManager.cpp">
+      <Filter>01. cDeviceManager</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -50,5 +182,6 @@
     <Text Include="ReadMe.txt">
       <Filter>99. etc</Filter>
     </Text>
+    <Text Include="notice.txt" />
   </ItemGroup>
 </Project>
