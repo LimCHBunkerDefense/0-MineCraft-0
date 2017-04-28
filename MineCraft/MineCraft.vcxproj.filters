@@ -43,21 +43,30 @@
     <Filter Include="01. cDeviceManager">
       <UniqueIdentifier>{258b150c-d007-4b3d-ade0-dfd0c9a9b1d0}</UniqueIdentifier>
     </Filter>
+    <Filter Include="02. cSceneManager\01. cTitleScene">
+      <UniqueIdentifier>{a80427c9-e4fd-4166-a065-476eee49ad29}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02. cSceneManager\03. cShopScene">
+      <UniqueIdentifier>{8bf914b2-4d36-4f91-9179-9eb5abb660be}</UniqueIdentifier>
+    </Filter>
     <Filter Include="02. cSceneManager\02. cPlayScene">
       <UniqueIdentifier>{c44df880-0e6d-4dd8-88c4-dbd7b5225292}</UniqueIdentifier>
     </Filter>
-    <Filter Include="02. cSceneManager\01. cTitleScene">
-      <UniqueIdentifier>{09397c73-e99c-4d2f-bc81-e6e84a1569b9}</UniqueIdentifier>
+    <Filter Include="03. cInputManager">
+      <UniqueIdentifier>{0b7ccf89-559e-4a03-829e-71b9167aac3f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="98. Utility\07. cSurface">
+      <UniqueIdentifier>{d47de775-58ac-45f0-acd5-913daff1a350}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="MineCraft.h" />
     <ClInclude Include="Resource.h">
       <Filter>99. etc</Filter>
     </ClInclude>
     <ClInclude Include="targetver.h">
       <Filter>99. etc</Filter>
     </ClInclude>
+    <ClInclude Include="stdafx.h" />
     <ClInclude Include="cPlayScene.h">
       <Filter>02. cSceneManager\02. cPlayScene</Filter>
     </ClInclude>
@@ -109,11 +118,21 @@
     <ClInclude Include="cDeviceManager.h">
       <Filter>01. cDeviceManager</Filter>
     </ClInclude>
+    <ClInclude Include="cSceneManager.h">
+      <Filter>02. cSceneManager</Filter>
+    </ClInclude>
+    <ClInclude Include="cShopScene.h">
+      <Filter>02. cSceneManager\03. cShopScene</Filter>
+    </ClInclude>
     <ClInclude Include="cTitleScene.h">
       <Filter>02. cSceneManager\01. cTitleScene</Filter>
     </ClInclude>
-    <ClInclude Include="stdafx.h">
-      <Filter>99. etc</Filter>
+    <ClInclude Include="cInputManager.h">
+      <Filter>03. cInputManager</Filter>
+    </ClInclude>
+    <ClInclude Include="MineCraft.h" />
+    <ClInclude Include="cSurface.h">
+      <Filter>98. Utility\07. cSurface</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -126,7 +145,6 @@
     <ClCompile Include="cMainGame.cpp">
       <Filter>00. cMainGame</Filter>
     </ClCompile>
-    <ClCompile Include="MineCraft.cpp" />
     <ClCompile Include="cCharacter.cpp">
       <Filter>10. cCharacter</Filter>
     </ClCompile>
@@ -172,8 +190,21 @@
     <ClCompile Include="cDeviceManager.cpp">
       <Filter>01. cDeviceManager</Filter>
     </ClCompile>
+    <ClCompile Include="cSceneManager.cpp">
+      <Filter>02. cSceneManager</Filter>
+    </ClCompile>
+    <ClCompile Include="cShopScene.cpp">
+      <Filter>02. cSceneManager\03. cShopScene</Filter>
+    </ClCompile>
     <ClCompile Include="cTitleScene.cpp">
       <Filter>02. cSceneManager\01. cTitleScene</Filter>
+    </ClCompile>
+    <ClCompile Include="cInputManager.cpp">
+      <Filter>03. cInputManager</Filter>
+    </ClCompile>
+    <ClCompile Include="MineCraft.cpp" />
+    <ClCompile Include="cSurface.cpp">
+      <Filter>98. Utility\07. cSurface</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

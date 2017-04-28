@@ -28,8 +28,8 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <CharacterSet>NotSet</CharacterSet>
     <PlatformToolset>v140</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
@@ -71,11 +71,13 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>D:\Program Files %28x86%29\Microsoft DirectX SDK %28June 2010%29\Include;$(IncludePath)</IncludePath>
-    <LibraryPath>D:\Program Files %28x86%29\Microsoft DirectX SDK %28June 2010%29\Lib\x86;$(LibraryPath)</LibraryPath>
+    <IncludePath>C:\Program Files %28x86%29\Microsoft DirectX SDK %28June 2010%29\Include;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\Program Files %28x86%29\Microsoft DirectX SDK %28June 2010%29\Lib\x86;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
+    <IncludePath>C:\Program Files %28x86%29\Microsoft DirectX SDK %28June 2010%29\Include;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\Program Files %28x86%29\Microsoft DirectX SDK %28June 2010%29\Lib\x86;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
@@ -158,6 +160,7 @@
     <ClInclude Include="cDeviceManager.h" />
     <ClInclude Include="cGrid.h" />
     <ClInclude Include="cHead.h" />
+    <ClInclude Include="cInputManager.h" />
     <ClInclude Include="cLeftArm.h" />
     <ClInclude Include="cLeftLeg.h" />
     <ClInclude Include="cMainGame.h" />
@@ -165,6 +168,9 @@
     <ClInclude Include="cPyramid.h" />
     <ClInclude Include="cRightArm.h" />
     <ClInclude Include="cRightLeg.h" />
+    <ClInclude Include="cSceneManager.h" />
+    <ClInclude Include="cShopScene.h" />
+    <ClInclude Include="cSurface.h" />
     <ClInclude Include="cTitleScene.h" />
     <ClInclude Include="MineCraft.h" />
     <ClInclude Include="Resource.h" />
@@ -182,6 +188,7 @@
     <ClCompile Include="cDeviceManager.cpp" />
     <ClCompile Include="cGrid.cpp" />
     <ClCompile Include="cHead.cpp" />
+    <ClCompile Include="cInputManager.cpp" />
     <ClCompile Include="cLeftArm.cpp" />
     <ClCompile Include="cLeftLeg.cpp" />
     <ClCompile Include="cMainGame.cpp" />
@@ -189,6 +196,9 @@
     <ClCompile Include="cPyramid.cpp" />
     <ClCompile Include="cRightArm.cpp" />
     <ClCompile Include="cRightLeg.cpp" />
+    <ClCompile Include="cSceneManager.cpp" />
+    <ClCompile Include="cShopScene.cpp" />
+    <ClCompile Include="cSurface.cpp" />
     <ClCompile Include="cTitleScene.cpp" />
     <ClCompile Include="MineCraft.cpp" />
     <ClCompile Include="stdafx.cpp">

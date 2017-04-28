@@ -1,28 +1,27 @@
 #include "stdafx.h"
-#include "cTitleScene.h"
+#include "cShopScene.h"
 
 
-cTitleScene::cTitleScene()
+cShopScene::cShopScene()
 {
 }
 
 
-cTitleScene::~cTitleScene()
+cShopScene::~cShopScene()
 {
 }
 
-
-void cTitleScene::Setup()
+void cShopScene::Setup()
 {
 
 }
 
-void cTitleScene::Update()
+void cShopScene::Update()
 {
-	
+
 }
 
-void cTitleScene::Render()
+void cShopScene::Render()
 {
 	g_pD3DDevice->Clear(NULL,
 		NULL,
@@ -38,7 +37,7 @@ void cTitleScene::Render()
 	g_pD3DDevice->Present(NULL, NULL, NULL, NULL);
 }
 
-void cTitleScene::WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
+void cShopScene::WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
 {
 
 }

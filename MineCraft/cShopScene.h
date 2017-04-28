@@ -1,11 +1,12 @@
 #pragma once
 
 #include "cSceneManager.h"
-class cTitleScene : public IScene
+
+class cShopScene : public IScene
 {
 public:
-	cTitleScene();
-	~cTitleScene();
+	cShopScene();
+	~cShopScene();
 
 	void Setup();
 	void Update();

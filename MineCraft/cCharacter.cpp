@@ -1,5 +1,6 @@
 #include "stdafx.h"
 #include "cCharacter.h"
+#include "cInputManager.h"
 
 
 cCharacter::cCharacter()
@@ -23,20 +24,20 @@ void cCharacter::Setup()
 void cCharacter::Update() 
 {
 	// : to do someting
-	if (GetKeyState(VK_A) & KF_UP)
+	if (INPUT->IsKeyPress('A'))
 	{
 		m_fRotY -= 0.1f;
 	}
-	if (GetKeyState(VK_D) & KF_UP)
+	if (INPUT->IsKeyPress('D'))
 	{
 		m_fRotY += 0.1f;
 	}
 
-	if (GetKeyState(VK_W) & KF_UP)
+	if (INPUT->IsKeyPress('W'))
 	{
 		m_vPosition = m_vPosition + (m_vDirection * 0.1f);
 	}
-	if (GetKeyState(VK_S) & KF_UP)
+	if (INPUT->IsKeyPress('S'))
 	{
 		m_vPosition = m_vPosition - (m_vDirection * 0.1f);
 	}
