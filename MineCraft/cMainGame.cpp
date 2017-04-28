@@ -33,7 +33,7 @@ cMainGame::~cMainGame()
 void cMainGame::Setup()
 {
 	{
-		D3DXCreateTextureFromFile(g_pD3DDevice, "srccodetex.png", &m_pTexture);
+		D3DXCreateTextureFromFile(g_pD3DDevice, TEXT("srccodetex.png"), &m_pTexture);
 		ST_PT_VERTEX v;
 		v.p = D3DXVECTOR3(0, 0, 0);
 		v.t = D3DXVECTOR2(0, 1.0f);

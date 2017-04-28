@@ -32,7 +32,7 @@ void cCubeMan::Setup()
 
 	Set_Material(); 
 
-	D3DXCreateTextureFromFile(g_pD3DDevice, "batman.png",
+	D3DXCreateTextureFromFile(g_pD3DDevice, TEXT("batman.png"),
 		&m_pTexture); 
 
 

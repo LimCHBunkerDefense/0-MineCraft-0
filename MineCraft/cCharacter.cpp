@@ -23,20 +23,20 @@ void cCharacter::Setup()
 void cCharacter::Update() 
 {
 	// : to do someting
-	if (GetKeyState('A') & 0x8000)
+	if (GetKeyState(VK_A) & KF_UP)
 	{
 		m_fRotY -= 0.1f;
 	}
-	if (GetKeyState('D') & 0x8000)
+	if (GetKeyState(VK_D) & KF_UP)
 	{
 		m_fRotY += 0.1f;
 	}
 
-	if (GetKeyState('W') & 0x8000)
+	if (GetKeyState(VK_W) & KF_UP)
 	{
 		m_vPosition = m_vPosition + (m_vDirection * 0.1f);
 	}
-	if (GetKeyState('S') & 0x8000)
+	if (GetKeyState(VK_S) & KF_UP)
 	{
 		m_vPosition = m_vPosition - (m_vDirection * 0.1f);
 	}
