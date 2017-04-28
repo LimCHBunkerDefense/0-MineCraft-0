@@ -28,7 +28,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v141</PlatformToolset>
+    <PlatformToolset>v140</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
@@ -160,6 +160,7 @@
     <ClInclude Include="cDeviceManager.h" />
     <ClInclude Include="cGrid.h" />
     <ClInclude Include="cHead.h" />
+    <ClInclude Include="cInputManager.h" />
     <ClInclude Include="cLeftArm.h" />
     <ClInclude Include="cLeftLeg.h" />
     <ClInclude Include="cMainGame.h" />
@@ -167,6 +168,9 @@
     <ClInclude Include="cPyramid.h" />
     <ClInclude Include="cRightArm.h" />
     <ClInclude Include="cRightLeg.h" />
+    <ClInclude Include="cSceneManager.h" />
+    <ClInclude Include="cShopScene.h" />
+    <ClInclude Include="cTitleScene.h" />
     <ClInclude Include="MineCraft.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="stdafx.h" />
@@ -183,6 +187,7 @@
     <ClCompile Include="cDeviceManager.cpp" />
     <ClCompile Include="cGrid.cpp" />
     <ClCompile Include="cHead.cpp" />
+    <ClCompile Include="cInputManager.cpp" />
     <ClCompile Include="cLeftArm.cpp" />
     <ClCompile Include="cLeftLeg.cpp" />
     <ClCompile Include="cMainGame.cpp" />
@@ -190,6 +195,9 @@
     <ClCompile Include="cPyramid.cpp" />
     <ClCompile Include="cRightArm.cpp" />
     <ClCompile Include="cRightLeg.cpp" />
+    <ClCompile Include="cSceneManager.cpp" />
+    <ClCompile Include="cShopScene.cpp" />
+    <ClCompile Include="cTitleScene.cpp" />
     <ClCompile Include="MineCraft.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>

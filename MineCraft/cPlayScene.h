@@ -1,11 +1,13 @@
 #pragma once
 
+#include "cSceneManager.h"
+
 class cCubePC;
 class cCamera;
 class cGrid;
 class cCubeMan;
 
-class cPlayScene
+class cPlayScene : public IScene
 {
 	cCamera*	m_pCamera;
 	cGrid*		m_pGrid;
