@@ -6,6 +6,7 @@
 #include "cCamera.h"
 #include "cGrid.h"
 #include "cCubeMan.h"
+#include "cSurface.h"
 
 
 cPlayScene::cPlayScene() : 
@@ -34,7 +35,16 @@ void cPlayScene::Setup()
 	
 	m_pGrid = new cGrid;
 	m_pGrid->Setup();
-	
+
+	m_surface1 = new cSurface();
+	m_surface1->Setup(-300.0f, -1.0f, 300.0f, -300.0f, 300.0f, 300.0f, 300.0f, 300.0f, 300.0f, 300.0f, -1.0f, 300.0f, TEXT("Image/Surface/skywall.png"));
+	m_surface2 = new cSurface();
+	m_surface2->Setup(-300.0f, -1.0f, -300.0f, -300.0f, 300.0f, -300.0f, -300.0f, 300.0f, 300.0f, -300.0f, -1.0f, 300.0f, TEXT("Image/Surface/skywall2.png"));
+	m_surface3 = new cSurface();
+	m_surface3->Setup(300.0f, -1.0f, -300.0f, 300.0f, 300.0f, -300.0f, -300.0f, 300.0f, -300.0f, -300.0f, -1.0f, -300.0f, TEXT("Image/Surface/skywall.png"));
+	m_surface4 = new cSurface();
+	m_surface4->Setup(300.0f, -1.0f, 300.0f, 300.0f, 300.0f, 300.0f, 300.0f, 300.0f, -300.0f, 300.0f, -1.0f, -300.0f, TEXT("Image/Surface/skywall2.png"));
+
 	Set_Light();
 }
 
@@ -57,6 +67,10 @@ void cPlayScene::Render()
 
 	if (m_pGrid) m_pGrid->Render();
 	if (m_pCubeMan) m_pCubeMan->Render();
+	if (m_surface1) m_surface1->Render();
+	if (m_surface2) m_surface2->Render();
+	if (m_surface3) m_surface3->Render();
+	if (m_surface4) m_surface4->Render();
 
 
 	g_pD3DDevice->EndScene();

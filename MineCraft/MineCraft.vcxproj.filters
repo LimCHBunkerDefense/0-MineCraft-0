@@ -55,6 +55,9 @@
     <Filter Include="03. cInputManager">
       <UniqueIdentifier>{0b7ccf89-559e-4a03-829e-71b9167aac3f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="98. Utility\07. cSurface">
+      <UniqueIdentifier>{d47de775-58ac-45f0-acd5-913daff1a350}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Resource.h">
@@ -128,6 +131,9 @@
       <Filter>03. cInputManager</Filter>
     </ClInclude>
     <ClInclude Include="MineCraft.h" />
+    <ClInclude Include="cSurface.h">
+      <Filter>98. Utility\07. cSurface</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -197,6 +203,9 @@
       <Filter>03. cInputManager</Filter>
     </ClCompile>
     <ClCompile Include="MineCraft.cpp" />
+    <ClCompile Include="cSurface.cpp">
+      <Filter>98. Utility\07. cSurface</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Image Include="MineCraft.ico">
