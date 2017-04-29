@@ -30,6 +30,39 @@
 #pragma comment(lib, "d3d9.lib")
 #pragma comment(lib, "d3dx9.lib")
 
+//>> namesapce setting
+using namespace std;
+//<<
+
+//<<::
+// <<: KEY 
+// Getkeysate "0x8000" >> "KF_UP"
+#define VK_W			0x57
+#define VK_A			0x41
+#define VK_S			0x53
+#define VK_D			0x44
+#define VK_X			0x58
+#define VK_Z			0x5A
+
+// Mouse Whell
+#define VK_WHELLUP		120
+#define VK_WHELLDOWN	-120
+
+// NUM KEY
+#define VK_0		0x30
+#define VK_1		0x31
+#define VK_2		0x32
+#define VK_3		0x33
+#define VK_4		0x34
+#define VK_5		0x35
+#define VK_6		0x36
+#define VK_7		0x37
+#define VK_8		0x38
+#define VK_9		0x39
+// <<:
+
+//>>::
+
 extern HWND	g_hWnd;
 #define SAFE_RELEASE(p) { if(p) p->Release(); p = NULL; }
 #define SAFE_DELETE(p) { if(p) delete p; p = NULL; }	// << :
