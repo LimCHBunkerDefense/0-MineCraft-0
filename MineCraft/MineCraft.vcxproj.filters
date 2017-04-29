@@ -55,6 +55,15 @@
     <Filter Include="03. cInputManager">
       <UniqueIdentifier>{0b7ccf89-559e-4a03-829e-71b9167aac3f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="11. cPlanet">
+      <UniqueIdentifier>{3e933e45-0a55-4fe9-b122-987ac88a0926}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="11. cPlanet\cSun">
+      <UniqueIdentifier>{fe4ebcc2-8fd9-4654-b53d-a7de4b689b28}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="11. cPlanet\cMoon">
+      <UniqueIdentifier>{1c2fc00a-bc2a-4b0a-ab92-03b3c0371607}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Resource.h">
@@ -128,6 +137,15 @@
       <Filter>03. cInputManager</Filter>
     </ClInclude>
     <ClInclude Include="MineCraft.h" />
+    <ClInclude Include="cPlanet.h">
+      <Filter>11. cPlanet</Filter>
+    </ClInclude>
+    <ClInclude Include="cSun.h">
+      <Filter>11. cPlanet\cSun</Filter>
+    </ClInclude>
+    <ClInclude Include="cMoon.h">
+      <Filter>11. cPlanet\cMoon</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -197,6 +215,15 @@
       <Filter>03. cInputManager</Filter>
     </ClCompile>
     <ClCompile Include="MineCraft.cpp" />
+    <ClCompile Include="cPlanet.cpp">
+      <Filter>11. cPlanet</Filter>
+    </ClCompile>
+    <ClCompile Include="cSun.cpp">
+      <Filter>11. cPlanet\cSun</Filter>
+    </ClCompile>
+    <ClCompile Include="cMoon.cpp">
+      <Filter>11. cPlanet\cMoon</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Image Include="MineCraft.ico">
