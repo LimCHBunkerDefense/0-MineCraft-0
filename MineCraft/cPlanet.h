@@ -1,4 +1,5 @@
 #pragma once
+#include "cCubePNT.h"
 
 class cCubePNT;
 

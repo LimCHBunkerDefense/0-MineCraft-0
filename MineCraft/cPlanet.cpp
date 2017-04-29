@@ -1,6 +1,5 @@
 #include "stdafx.h"
 #include "cPlanet.h"
-#include "cCubePNT.h"
 
 
 cPlanet::cPlanet()

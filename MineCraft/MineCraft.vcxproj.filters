@@ -140,14 +140,8 @@
       <Filter>03. cInputManager</Filter>
     </ClInclude>
     <ClInclude Include="MineCraft.h" />
-    <ClInclude Include="cSurface.h">
-      <Filter>98. Utility\07. cSurface</Filter>
-    </ClInclude>
     <ClInclude Include="cPlanet.h">
       <Filter>11. cPlanet</Filter>
-    </ClInclude>
-    <ClInclude Include="cSun.h">
-      <Filter>11. cPlanet\cSun</Filter>
     </ClInclude>
     <ClInclude Include="cMoon.h">
       <Filter>11. cPlanet\cMoon</Filter>
@@ -224,14 +218,8 @@
     <ClCompile Include="cPlanet.cpp">
       <Filter>11. cPlanet</Filter>
     </ClCompile>
-    <ClCompile Include="cSun.cpp">
-      <Filter>11. cPlanet\cSun</Filter>
-    </ClCompile>
     <ClCompile Include="cMoon.cpp">
       <Filter>11. cPlanet\cMoon</Filter>
-    </ClCompile>
-    <ClCompile Include="cSurface.cpp">
-      <Filter>98. Utility\07. cSurface</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
