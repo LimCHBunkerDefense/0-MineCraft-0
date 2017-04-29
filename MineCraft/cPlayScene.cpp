@@ -12,7 +12,6 @@
 cPlayScene::cPlayScene() : 
 	m_pCubeMan(NULL)
 	, m_pCamera(NULL)
-	, m_pGrid(NULL)
 {
 }
 
@@ -21,7 +20,6 @@ cPlayScene::~cPlayScene()
 {
 	SAFE_DELETE(m_pCubeMan);
 	SAFE_DELETE(m_pCamera);
-	SAFE_DELETE(m_pGrid);
 	g_pDeviceManager->Destroy();
 }
 
@@ -32,9 +30,7 @@ void cPlayScene::Setup()
 	
 	m_pCamera = new cCamera;
 	m_pCamera->Setup(&m_pCubeMan->GetPosition());
-	
-	m_pGrid = new cGrid;
-	m_pGrid->Setup();
+
 
 	m_surface1 = new cSurface();
 	m_surface1->Setup(-300.0f, -1.0f, 300.0f, -300.0f, 300.0f, 300.0f, 300.0f, 300.0f, 300.0f, 300.0f, -1.0f, 300.0f, TEXT("Image/Surface/skywall.png"));
@@ -65,7 +61,6 @@ void cPlayScene::Render()
 	g_pD3DDevice->BeginScene();
 
 
-	if (m_pGrid) m_pGrid->Render();
 	if (m_pCubeMan) m_pCubeMan->Render();
 	if (m_surface1) m_surface1->Render();
 	if (m_surface2) m_surface2->Render();

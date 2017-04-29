@@ -83,5 +83,5 @@ void cHead::Setup()
 			&mat);
 	}
 
-	m_vLocalPos.y = 0.5f; 
+	m_vLocalPos.y = 1.4; 
 }

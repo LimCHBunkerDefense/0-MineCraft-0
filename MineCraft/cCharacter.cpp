@@ -4,10 +4,10 @@
 
 
 cCharacter::cCharacter()
-	// : to do someting
 	: m_fRotY(0.0f) ,
 	m_vDirection(0,0,1), 
-	m_vPosition(0,0,0)
+	m_vPosition(0,0,0),
+	m_isMoving(false)
 {
 	D3DXMatrixIdentity(&m_matWorld);
 }
@@ -23,22 +23,27 @@ void cCharacter::Setup()
 }
 void cCharacter::Update() 
 {
-	// : to do someting
+	m_isMoving = false;
+
 	if (INPUT->IsKeyPress('A'))
 	{
+		m_isMoving = true;
 		m_fRotY -= 0.1f;
 	}
 	if (INPUT->IsKeyPress('D'))
 	{
+		m_isMoving = true;
 		m_fRotY += 0.1f;
 	}
 
 	if (INPUT->IsKeyPress('W'))
 	{
+		m_isMoving = true;
 		m_vPosition = m_vPosition + (m_vDirection * 0.1f);
 	}
 	if (INPUT->IsKeyPress('S'))
 	{
+		m_isMoving = true;
 		m_vPosition = m_vPosition - (m_vDirection * 0.1f);
 	}
 
@@ -59,6 +64,5 @@ void cCharacter::Render()
 }
 D3DXVECTOR3 & cCharacter::GetPosition()
 {
-	// : to do someting
 	return m_vPosition;
 }
