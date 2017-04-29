@@ -172,6 +172,7 @@
     <ClInclude Include="cRightLeg.h" />
     <ClInclude Include="cSceneManager.h" />
     <ClInclude Include="cShopScene.h" />
+    <ClInclude Include="cSurface.h" />
     <ClInclude Include="cTitleScene.h" />
     <ClInclude Include="MineCraft.h" />
     <ClInclude Include="Resource.h" />
@@ -201,6 +202,7 @@
     <ClCompile Include="cRightLeg.cpp" />
     <ClCompile Include="cSceneManager.cpp" />
     <ClCompile Include="cShopScene.cpp" />
+    <ClCompile Include="cSurface.cpp" />
     <ClCompile Include="cTitleScene.cpp" />
     <ClCompile Include="MineCraft.cpp" />
     <ClCompile Include="stdafx.cpp">

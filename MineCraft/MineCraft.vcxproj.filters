@@ -146,6 +146,9 @@
     <ClInclude Include="cMoon.h">
       <Filter>11. cPlanet\cMoon</Filter>
     </ClInclude>
+    <ClInclude Include="cSurface.h">
+      <Filter>98. Utility\07. cSurface</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -220,6 +223,9 @@
     </ClCompile>
     <ClCompile Include="cMoon.cpp">
       <Filter>11. cPlanet\cMoon</Filter>
+    </ClCompile>
+    <ClCompile Include="cSurface.cpp">
+      <Filter>98. Utility\07. cSurface</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
