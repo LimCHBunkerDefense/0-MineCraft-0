@@ -67,6 +67,9 @@
     <Filter Include="11. cPlanet\cMoon">
       <UniqueIdentifier>{1c2fc00a-bc2a-4b0a-ab92-03b3c0371607}</UniqueIdentifier>
     </Filter>
+    <Filter Include="04. RenderManager">
+      <UniqueIdentifier>{494c572a-240d-40e1-8ea6-84745807b1d2}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Resource.h">
@@ -149,6 +152,9 @@
     <ClInclude Include="cSurface.h">
       <Filter>98. Utility\07. cSurface</Filter>
     </ClInclude>
+    <ClInclude Include="cRenderManager.h">
+      <Filter>04. RenderManager</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -226,6 +232,9 @@
     </ClCompile>
     <ClCompile Include="cSurface.cpp">
       <Filter>98. Utility\07. cSurface</Filter>
+    </ClCompile>
+    <ClCompile Include="cRenderManager.cpp">
+      <Filter>04. RenderManager</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

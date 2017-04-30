@@ -20,6 +20,8 @@ INT_PTR CALLBACK    About(HWND, UINT, WPARAM, LPARAM);
 
 cMainGame*		g_pMainGame;
 HWND			g_hWnd;
+float			VIEW_WIDTH;
+float			VIEW_HEIGHT;
 
 int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
                      _In_opt_ HINSTANCE hPrevInstance,
@@ -86,7 +88,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 ATOM MyRegisterClass(HINSTANCE hInstance)
 {
     WNDCLASSEXW wcex;
-	//111
+
     wcex.cbSize = sizeof(WNDCLASSEX);
     wcex.style          = CS_HREDRAW | CS_VREDRAW;
     wcex.lpfnWndProc    = WndProc;
@@ -99,7 +101,6 @@ ATOM MyRegisterClass(HINSTANCE hInstance)
     wcex.lpszMenuName   = MAKEINTRESOURCEW(IDC_MINECRAFT);
     wcex.lpszClassName  = szWindowClass;
     wcex.hIconSm        = LoadIcon(wcex.hInstance, MAKEINTRESOURCE(IDI_SMALL));
-
 
     return RegisterClassExW(&wcex);
 }
@@ -122,6 +123,12 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
       CW_USEDEFAULT, 0, CW_USEDEFAULT, 0, nullptr, nullptr, hInstance, nullptr);
 
    g_hWnd = hWnd;
+   // >> VIEW_WIDTH, VIEW_HEIGHT µî·Ï
+   RECT rc;
+   GetClientRect(g_hWnd, &rc);
+   VIEW_WIDTH = rc.right - rc.left;
+   VIEW_HEIGHT = rc.bottom - rc.top;
+	//<<
 
    if (!hWnd)
    {
