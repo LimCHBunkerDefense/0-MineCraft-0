@@ -1,5 +1,7 @@
 #pragma once
 
+#define ANGLE_TO_RADIAN		0.0174533f
+
 enum TEXT_ALIGN
 {
 	TEXT_ALIGN_LEFT = 0, TEXT_ALIGN_RIGHT = 1, TEXT_ALIGN_CENTER = 2,
@@ -111,18 +113,18 @@ class GText : public IGraphics
 	wstring m_text;
 	D3DXVECTOR2 m_leftTop;
 	D3DXVECTOR2 m_size;
-	ColorF m_color;
+	D3DXCOLOR m_color;
 
 public:
 	GText(IDWriteTextFormat* pFormat, wstring text, D3DXVECTOR2 leftTop
-		, D3DXVECTOR2 size, ColorF color) : m_color(color)
+		, D3DXVECTOR2 size, D3DXCOLOR color) : m_color(color)
 	{
 		m_pFormat = pFormat;
 		m_text = text;
 		m_leftTop = leftTop;
 		m_size = size;
 	}
-
+	
 	~GText() { SAFE_RELEASE(m_pFormat); }
 
 	void Render(ID2D1RenderTarget* pRenderTarget)
@@ -139,11 +141,11 @@ public:
 class GLine : public IGraphics
 {
 	D3DXVECTOR2 m_start, m_end;
-	ColorF m_color;
+	D3DXCOLOR m_color;
 	float m_lineSize;
 
 public:
-	GLine(D3DXVECTOR2 start, D3DXVECTOR2 end, ColorF color, float lineSize) : m_color(color)
+	GLine(D3DXVECTOR2 start, D3DXVECTOR2 end, D3DXCOLOR color, float lineSize) : m_color(color)
 	{
 		m_start = start;
 		m_end = end;
@@ -166,11 +168,11 @@ public:
 class GRect : public IGraphics
 {
 	D3DXVECTOR2 m_center, m_size;
-	ColorF m_color;
+	D3DXCOLOR m_color;
 	float m_lineSize;
 
 public:
-	GRect(D3DXVECTOR2 center, D3DXVECTOR2 size, ColorF color, float lineSize) : m_color(color)
+	GRect(D3DXVECTOR2 center, D3DXVECTOR2 size, D3DXCOLOR color, float lineSize) : m_color(color)
 	{
 		m_center = center;
 		m_size = size;
@@ -197,11 +199,11 @@ class GCircle : public IGraphics
 {
 	D3DXVECTOR2 m_center;
 	float m_radius;
-	ColorF m_color;
+	D3DXCOLOR m_color;
 	float m_lineSize;
 
 public:
-	GCircle(D3DXVECTOR2 center, float radius, ColorF color, float lineSize) : m_color(color)
+	GCircle(D3DXVECTOR2 center, float radius, D3DXCOLOR color, float lineSize) : m_color(color)
 	{
 		m_center = center;
 		m_radius = radius;
@@ -320,19 +322,19 @@ public:
 	map<wstring, ID2D1Bitmap*> GetImageMap();
 	void DeleteImageFile();
 	ID2D1Bitmap* GetImage(wstring key);
-	void Draw(wstring text, D3DXVECTOR2 pos, D3DXVECTOR2 size, float fontSize = 10, ColorF color = ColorF::White,
+	void Draw(wstring text, D3DXVECTOR2 pos, D3DXVECTOR2 size, float fontSize = 10, D3DXCOLOR color = D3DXCOLOR(255, 255, 255, 1),
 		TEXT_ALIGN align = TEXT_ALIGN_LEFT, wstring font = TEXT("Arial"));
 	void Draw(GSprite* pSprite);
 	void Draw(GSprite* pSprite, D3DXVECTOR2 pos);
-	void Draw(Line line, ColorF color, float lineSize = 1);
-	void Draw(Circle circle, ColorF color, float lineSize = 0);
-	void Draw(Box box, ColorF color, float lineSize = 1);
-	void Draw(Triangle triangle, ColorF color, float lineSize = 1);
-	void DrawLine(D3DXVECTOR2 startPos, D3DXVECTOR2 endPos, ColorF color = ColorF::White, float lineSize = 1);
-	void FillRect(D3DXVECTOR2 center, D3DXVECTOR2 size, ColorF color = ColorF::White);
-	void DrawRect(D3DXVECTOR2 center, D3DXVECTOR2 size, ColorF color = ColorF::White, float lineSize = 1);
-	void FillCircle(D3DXVECTOR2 center, float radius, ColorF color = ColorF::White);
-	void DrawCircle(D3DXVECTOR2 center, float radius, ColorF color = ColorF::White, float lineSize = 1);
+	void Draw(Line line, D3DXCOLOR color, float lineSize = 1);
+	void Draw(Circle circle, D3DXCOLOR color, float lineSize = 0);
+	void Draw(Box box, D3DXCOLOR color, float lineSize = 1);
+	void Draw(Triangle triangle, D3DXCOLOR color, float lineSize = 1);
+	void DrawLine(D3DXVECTOR2 startPos, D3DXVECTOR2 endPos, D3DXCOLOR color = D3DXCOLOR(255, 255, 255, 1), float lineSize = 1);
+	void FillRect(D3DXVECTOR2 center, D3DXVECTOR2 size, D3DXCOLOR color = D3DXCOLOR(255, 255, 255, 1));
+	void DrawRect(D3DXVECTOR2 center, D3DXVECTOR2 size, D3DXCOLOR color = D3DXCOLOR(255, 255, 255, 1), float lineSize = 1);
+	void FillCircle(D3DXVECTOR2 center, float radius, D3DXCOLOR color = D3DXCOLOR(255, 255, 255, 1));
+	void DrawCircle(D3DXVECTOR2 center, float radius, D3DXCOLOR color = D3DXCOLOR(255, 255, 255, 1), float lineSize = 1);
 	void Render();
 };
 

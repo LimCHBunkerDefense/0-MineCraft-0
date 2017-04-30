@@ -105,8 +105,7 @@ ID2D1Bitmap* cRenderManager::GetImage(wstring key)
 	return m_images[key];
 }
 
-void cRenderManager::Draw(wstring text, D3DXVECTOR2 pos, D3DXVECTOR2 size, float fontSize = 10, ColorF color = ColorF::White,
-	TEXT_ALIGN align = TEXT_ALIGN_LEFT, wstring font = TEXT("Arial"))
+void cRenderManager::Draw(wstring text, D3DXVECTOR2 pos, D3DXVECTOR2 size, float fontSize, D3DXCOLOR color,	TEXT_ALIGN align, wstring font)
 {
 	IDWriteTextFormat* pFormat = NULL;
 	m_pWriteFactory->CreateTextFormat(font.c_str(), 0,
@@ -131,17 +130,17 @@ void cRenderManager::Draw(GSprite* pSprite, D3DXVECTOR2 pos)
 	m_queGraphics.push(pNewSprite);
 }
 
-void cRenderManager::Draw(Line line, ColorF color, float lineSize = 1)
+void cRenderManager::Draw(Line line, D3DXCOLOR color, float lineSize)
 {
 	DrawLine(line.StartPoint(), line.EndPoint(), color, lineSize);
 }
 
-void cRenderManager::Draw(Circle circle, ColorF color, float lineSize = 0)
+void cRenderManager::Draw(Circle circle, D3DXCOLOR color, float lineSize)
 {
 	DrawCircle(circle.center, circle.radius, color, lineSize);
 }
 
-void cRenderManager::Draw(Box box, ColorF color, float lineSize = 1)
+void cRenderManager::Draw(Box box, D3DXCOLOR color, float lineSize)
 {
 	DrawLine(box.LeftTop(), box.RightTop(), color, lineSize);
 	DrawLine(box.LeftTop(), box.LeftBottom(), color, lineSize);
@@ -149,34 +148,34 @@ void cRenderManager::Draw(Box box, ColorF color, float lineSize = 1)
 	DrawLine(box.RightBottom(), box.LeftBottom(), color, lineSize);
 }
 
-void cRenderManager::Draw(Triangle triangle, ColorF color, float lineSize = 1)
+void cRenderManager::Draw(Triangle triangle, D3DXCOLOR color, float lineSize)
 {
 	DrawLine(triangle.p0, triangle.p1, color, lineSize);
 	DrawLine(triangle.p1, triangle.p2, color, lineSize);
 	DrawLine(triangle.p2, triangle.p0, color, lineSize);
 }
 
-void cRenderManager::DrawLine(D3DXVECTOR2 startPos, D3DXVECTOR2 endPos, ColorF color = ColorF::White, float lineSize = 1)
+void cRenderManager::DrawLine(D3DXVECTOR2 startPos, D3DXVECTOR2 endPos, D3DXCOLOR color, float lineSize)
 {
 	m_queGraphics.push(new GLine(startPos, endPos, color, lineSize));
 }
 
-void cRenderManager::FillRect(D3DXVECTOR2 center, D3DXVECTOR2 size, ColorF color = ColorF::White)
+void cRenderManager::FillRect(D3DXVECTOR2 center, D3DXVECTOR2 size, D3DXCOLOR color)
 {
 	m_queGraphics.push(new GRect(center, size, color, 0));
 }
 
-void cRenderManager::DrawRect(D3DXVECTOR2 center, D3DXVECTOR2 size, ColorF color = ColorF::White, float lineSize = 1)
+void cRenderManager::DrawRect(D3DXVECTOR2 center, D3DXVECTOR2 size, D3DXCOLOR color, float lineSize)
 {
 	m_queGraphics.push(new GRect(center, size, color, lineSize));
 }
 
-void cRenderManager::FillCircle(D3DXVECTOR2 center, float radius, ColorF color = ColorF::White)
+void cRenderManager::FillCircle(D3DXVECTOR2 center, float radius, D3DXCOLOR color)
 {
 	m_queGraphics.push(new GCircle(center, radius, color, 0));
 }
 
-void cRenderManager::DrawCircle(D3DXVECTOR2 center, float radius, ColorF color = ColorF::White, float lineSize = 1)
+void cRenderManager::DrawCircle(D3DXVECTOR2 center, float radius, D3DXCOLOR color, float lineSize)
 {
 	m_queGraphics.push(new GCircle(center, radius, color, lineSize));
 }
