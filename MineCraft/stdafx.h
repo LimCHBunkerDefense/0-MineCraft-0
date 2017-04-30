@@ -121,6 +121,7 @@ public: inline varType Get##funName(void) const { return varName; }\
 public: inline void Set##funName(varType var){ varName = var; }
 
 #include "cDeviceManager.h"
+#include "cRenderManager.h"
 
 using namespace std;
 
