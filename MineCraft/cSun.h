@@ -4,6 +4,9 @@
 class cSun : public cPlanet
 {
 private:
+	cCubePNT*			m_pSun;
+	D3DXVECTOR3			m_vPosition;
+
 	LPDIRECT3DTEXTURE9	m_pTexture;
 	D3DMATERIAL9		m_stMtl;
 
@@ -15,6 +18,7 @@ public:
 	virtual void Update();
 	virtual void Render();
 
+	virtual D3DXVECTOR3& GetPosition();
 	void Set_Material();
 };
 

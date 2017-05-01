@@ -3,6 +3,7 @@
 #include "cPlanet.h"
 
 cSun::cSun()
+	: m_vPosition(0, 0, 0)
 {
 }
 
@@ -24,6 +25,11 @@ void cSun::Update()
 void cSun::Render()
 {
 
+}
+
+D3DXVECTOR3& cSun::GetPosition()
+{
+	return m_vPosition;
 }
 
 void cSun::Set_Material()

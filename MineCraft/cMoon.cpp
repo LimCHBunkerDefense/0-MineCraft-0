@@ -2,9 +2,9 @@
 #include "cMoon.h"
 
 cMoon::cMoon()
+	: m_vPosition(0, 0, 0)
 {
 }
-
 
 cMoon::~cMoon()
 {
@@ -23,6 +23,11 @@ void cMoon::Update()
 void cMoon::Render()
 {
 
+}
+
+D3DXVECTOR3& cMoon::GetPosition()
+{
+	return m_vPosition;
 }
 
 void cMoon::Set_Material()
