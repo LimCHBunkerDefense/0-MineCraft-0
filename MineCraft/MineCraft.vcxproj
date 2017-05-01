@@ -176,6 +176,7 @@
     <ClInclude Include="cShopScene.h" />
     <ClInclude Include="cSurface.h" />
     <ClInclude Include="cSun.h" />
+    <ClInclude Include="cTextureManager.h" />
     <ClInclude Include="cTitleScene.h" />
     <ClInclude Include="MineCraft.h" />
     <ClInclude Include="Resource.h" />
@@ -209,6 +210,7 @@
     <ClCompile Include="cShopScene.cpp" />
     <ClCompile Include="cSurface.cpp" />
     <ClCompile Include="cSun.cpp" />
+    <ClCompile Include="cTextureManager.cpp" />
     <ClCompile Include="cTitleScene.cpp" />
     <ClCompile Include="MineCraft.cpp" />
     <ClCompile Include="stdafx.cpp">
