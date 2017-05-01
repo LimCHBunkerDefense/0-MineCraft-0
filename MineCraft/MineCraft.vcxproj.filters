@@ -70,6 +70,12 @@
     <Filter Include="04. RenderManager">
       <UniqueIdentifier>{494c572a-240d-40e1-8ea6-84745807b1d2}</UniqueIdentifier>
     </Filter>
+    <Filter Include="05. cObjectManager">
+      <UniqueIdentifier>{a0cf384c-f6d8-4169-a718-9c020d5a3e2c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="05. cObjectManager\01. cObject">
+      <UniqueIdentifier>{9d644b72-3e2e-4bae-a4a5-1c6dc46f8c02}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Resource.h">
@@ -155,6 +161,12 @@
     <ClInclude Include="cRenderManager.h">
       <Filter>04. RenderManager</Filter>
     </ClInclude>
+    <ClInclude Include="cObjectManager.h">
+      <Filter>05. cObjectManager</Filter>
+    </ClInclude>
+    <ClInclude Include="cObject.h">
+      <Filter>05. cObjectManager\01. cObject</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -235,6 +247,12 @@
     </ClCompile>
     <ClCompile Include="cRenderManager.cpp">
       <Filter>04. RenderManager</Filter>
+    </ClCompile>
+    <ClCompile Include="cObjectManager.cpp">
+      <Filter>05. cObjectManager</Filter>
+    </ClCompile>
+    <ClCompile Include="cObject.cpp">
+      <Filter>05. cObjectManager\01. cObject</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
