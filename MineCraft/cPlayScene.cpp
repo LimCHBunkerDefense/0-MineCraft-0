@@ -2,6 +2,7 @@
 #include "cPlayScene.h"
 #include "cObjectManager.h"
 #include "cDeviceManager.h"	
+#include "cInputManager.h"
 #include "cCubePC.h"
 #include "cCamera.h"
 #include "cGrid.h"
@@ -79,6 +80,8 @@ void cPlayScene::Setup()
 
 void cPlayScene::Update()
 {
+	if (INPUT->IsKeyDown(VK_BACK)) SCENE->ChangeScene(SCENE_TITLE);
+
 	if (m_pCubeMan)
 	{
 		m_pCubeMan->Update();
