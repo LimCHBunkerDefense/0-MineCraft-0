@@ -64,20 +64,11 @@
     <ClCompile Include="cSceneManager.cpp">
       <Filter>05. cSceneManager</Filter>
     </ClCompile>
-    <ClCompile Include="cTitleScene.cpp">
-      <Filter>05. cSceneManager</Filter>
-    </ClCompile>
-    <ClCompile Include="cShopScene.cpp">
-      <Filter>05. cSceneManager</Filter>
-    </ClCompile>
     <ClCompile Include="cPyramid.cpp">
       <Filter>98. Utility\07. cPyramid</Filter>
     </ClCompile>
     <ClCompile Include="cSurface.cpp">
       <Filter>98. Utility\08. cSurface</Filter>
-    </ClCompile>
-    <ClCompile Include="cPlayScene.cpp">
-      <Filter>05. cSceneManager</Filter>
     </ClCompile>
     <ClCompile Include="cTextureManager.cpp">
       <Filter>06. cTextureManager</Filter>
@@ -90,6 +81,15 @@
     </ClCompile>
     <ClCompile Include="cSun.cpp">
       <Filter>11. cPlanet\cSun</Filter>
+    </ClCompile>
+    <ClCompile Include="cTitleScene.cpp">
+      <Filter>12. cScene\01. cTitleScene</Filter>
+    </ClCompile>
+    <ClCompile Include="cShopScene.cpp">
+      <Filter>12. cScene\03. cShopScene</Filter>
+    </ClCompile>
+    <ClCompile Include="cPlayScene.cpp">
+      <Filter>12. cScene\02. cPlayScene</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -160,15 +160,6 @@
     <ClInclude Include="cSceneManager.h">
       <Filter>05. cSceneManager</Filter>
     </ClInclude>
-    <ClInclude Include="cTitleScene.h">
-      <Filter>05. cSceneManager</Filter>
-    </ClInclude>
-    <ClInclude Include="cShopScene.h">
-      <Filter>05. cSceneManager</Filter>
-    </ClInclude>
-    <ClInclude Include="cPlayScene.h">
-      <Filter>05. cSceneManager</Filter>
-    </ClInclude>
     <ClInclude Include="cPyramid.h">
       <Filter>98. Utility\07. cPyramid</Filter>
     </ClInclude>
@@ -186,6 +177,15 @@
     </ClInclude>
     <ClInclude Include="cSun.h">
       <Filter>11. cPlanet\cSun</Filter>
+    </ClInclude>
+    <ClInclude Include="cTitleScene.h">
+      <Filter>12. cScene\01. cTitleScene</Filter>
+    </ClInclude>
+    <ClInclude Include="cShopScene.h">
+      <Filter>12. cScene\03. cShopScene</Filter>
+    </ClInclude>
+    <ClInclude Include="cPlayScene.h">
+      <Filter>12. cScene\02. cPlayScene</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -245,9 +245,6 @@
     <Filter Include="03. cInputManager">
       <UniqueIdentifier>{56d660dc-6980-49d2-b972-9b84079dd1f4}</UniqueIdentifier>
     </Filter>
-    <Filter Include="98. Utility\06. cObject">
-      <UniqueIdentifier>{171f873e-24c2-4e58-99f1-6adc899896db}</UniqueIdentifier>
-    </Filter>
     <Filter Include="04. cObjectManager">
       <UniqueIdentifier>{a3912870-7a27-4ca0-b362-f460b475e715}</UniqueIdentifier>
     </Filter>
@@ -271,6 +268,21 @@
     </Filter>
     <Filter Include="11. cPlanet\cMoon">
       <UniqueIdentifier>{eef99dd7-2589-4c3f-8e74-d9fa7a0449d7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="98. Utility\06. cObject">
+      <UniqueIdentifier>{171f873e-24c2-4e58-99f1-6adc899896db}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="12. cScene">
+      <UniqueIdentifier>{f983f2df-ed39-4e2f-8c7f-670881999a7e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="12. cScene\01. cTitleScene">
+      <UniqueIdentifier>{00b0b376-dcec-4a88-a5d3-6928bc4b2bb1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="12. cScene\02. cPlayScene">
+      <UniqueIdentifier>{e0543972-2bee-4cdb-b4f2-22be3aaca0fc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="12. cScene\03. cShopScene">
+      <UniqueIdentifier>{73a91dcd-07c4-40db-9685-72151252a93e}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

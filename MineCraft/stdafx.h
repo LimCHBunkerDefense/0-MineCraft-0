@@ -34,7 +34,7 @@
 
 //>> namesapce setting
 using namespace std;
-//<<
+//<< 
 
 //<<::
 // <<: KEY 
