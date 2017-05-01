@@ -124,4 +124,4 @@ public: inline void Set##funName(varType var){ varName = var; }
 
 using namespace std;
 
- 
+  
