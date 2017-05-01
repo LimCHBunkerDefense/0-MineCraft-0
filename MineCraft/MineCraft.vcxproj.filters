@@ -242,6 +242,9 @@
     <Filter Include="98. Utility\08. cSurface">
       <UniqueIdentifier>{9aaf97a1-c043-4507-a825-98eea83e7c7e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="NewFilter1">
+      <UniqueIdentifier>{edb7ca7f-fb2d-464f-a653-ae28ced252a8}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="MineCraft.rc">
