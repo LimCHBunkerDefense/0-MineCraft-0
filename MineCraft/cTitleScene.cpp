@@ -48,6 +48,7 @@ void cTitleScene::Setup()
 void cTitleScene::Update()
 {
 	if (INPUT->IsKeyDown(VK_SPACE)) SCENE->ChangeScene(SCENE_PLAY);
+	if (INPUT->IsKeyDown(VK_RETURN)) SCENE->ChangeScene(SCENE_SHOP);
 }
 
 void cTitleScene::Render()
