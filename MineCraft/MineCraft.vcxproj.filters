@@ -73,14 +73,17 @@
     <ClCompile Include="cShopScene.cpp">
       <Filter>05. cSceneManager</Filter>
     </ClCompile>
-    <ClCompile Include="cPlayScene.cpp">
-      <Filter>05. cSceneManager</Filter>
-    </ClCompile>
     <ClCompile Include="cPyramid.cpp">
       <Filter>98. Utility\07. cPyramid</Filter>
     </ClCompile>
     <ClCompile Include="cSurface.cpp">
       <Filter>98. Utility\08. cSurface</Filter>
+    </ClCompile>
+    <ClCompile Include="cPlayScene.cpp">
+      <Filter>05. cSceneManager</Filter>
+    </ClCompile>
+    <ClCompile Include="cTextureManager.cpp">
+      <Filter>06. cTextureManager</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -169,6 +172,9 @@
     <ClInclude Include="cSurface.h">
       <Filter>98. Utility\08. cSurface</Filter>
     </ClInclude>
+    <ClInclude Include="cTextureManager.h">
+      <Filter>06. cTextureManager</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Image Include="small.ico">
@@ -241,6 +247,9 @@
     </Filter>
     <Filter Include="98. Utility\08. cSurface">
       <UniqueIdentifier>{9aaf97a1-c043-4507-a825-98eea83e7c7e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="06. cTextureManager">
+      <UniqueIdentifier>{9e677434-7c45-4e41-84cb-bc79b70b4477}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
