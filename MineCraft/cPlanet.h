@@ -1,6 +1,5 @@
 #pragma once
-
-class cCubePNT;
+#include "cCubePNT.h"
 
 class cPlanet : public cCubePNT
 {
