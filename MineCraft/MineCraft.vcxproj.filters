@@ -1,9 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <ClCompile Include="cMoon.cpp" />
-    <ClCompile Include="cPlanet.cpp" />
-    <ClCompile Include="cSun.cpp" />
     <ClCompile Include="stdafx.cpp">
       <Filter>99. etc</Filter>
     </ClCompile>
@@ -85,11 +82,17 @@
     <ClCompile Include="cTextureManager.cpp">
       <Filter>06. cTextureManager</Filter>
     </ClCompile>
+    <ClCompile Include="cMoon.cpp">
+      <Filter>11. cPlanet\cMoon</Filter>
+    </ClCompile>
+    <ClCompile Include="cPlanet.cpp">
+      <Filter>11. cPlanet</Filter>
+    </ClCompile>
+    <ClCompile Include="cSun.cpp">
+      <Filter>11. cPlanet\cSun</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="cMoon.h" />
-    <ClInclude Include="cPlanet.h" />
-    <ClInclude Include="cSun.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h">
       <Filter>99. etc</Filter>
@@ -175,6 +178,15 @@
     <ClInclude Include="cTextureManager.h">
       <Filter>06. cTextureManager</Filter>
     </ClInclude>
+    <ClInclude Include="cMoon.h">
+      <Filter>11. cPlanet\cMoon</Filter>
+    </ClInclude>
+    <ClInclude Include="cPlanet.h">
+      <Filter>11. cPlanet</Filter>
+    </ClInclude>
+    <ClInclude Include="cSun.h">
+      <Filter>11. cPlanet\cSun</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Image Include="small.ico">
@@ -250,6 +262,15 @@
     </Filter>
     <Filter Include="06. cTextureManager">
       <UniqueIdentifier>{9e677434-7c45-4e41-84cb-bc79b70b4477}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="11. cPlanet">
+      <UniqueIdentifier>{fdc5815a-da8e-4fe7-851f-083cc3c832c4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="11. cPlanet\cSun">
+      <UniqueIdentifier>{96008fc5-2fda-4d37-b1f2-b8283d35d570}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="11. cPlanet\cMoon">
+      <UniqueIdentifier>{eef99dd7-2589-4c3f-8e74-d9fa7a0449d7}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
