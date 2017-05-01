@@ -2,12 +2,14 @@
 #include "cTitleScene.h"
 #include "cCamera.h"
 #include "cSurface.h"
+#include "cButton.h"
 
 
 cTitleScene::cTitleScene() : 
 	m_pBg(NULL),
 	m_pLogo(NULL),
 	m_pCamera(NULL),
+	m_pButton_Start(NULL),
 	m_point(0.0f, VIEW_HEIGHT * 0.5f, 0.0f)
 {
 }
@@ -18,6 +20,7 @@ cTitleScene::~cTitleScene()
 	SAFE_DELETE(m_pBg);
 	SAFE_DELETE(m_pLogo);
 	SAFE_DELETE(m_pCamera);
+	SAFE_DELETE(m_pButton_Start);
 }
 
 
@@ -34,6 +37,10 @@ void cTitleScene::Setup()
 	m_pCamera = new cCamera();
 	m_pCamera->Setup(&m_point);
 	m_pCamera->SetPosition();
+
+	m_pButton_Start = new cButton();
+	m_pButton_Start->Setup(D3DXVECTOR3(-VIEW_WIDTH * 0.15F, VIEW_HEIGHT * 0.35f, -0.2f), D3DXVECTOR3(-VIEW_WIDTH * 0.15F, VIEW_HEIGHT * 0.5f, -0.2f),
+		D3DXVECTOR3(VIEW_WIDTH * 0.15F, VIEW_HEIGHT * 0.5f, -0.2f), D3DXVECTOR3(VIEW_WIDTH * 0.15F, VIEW_HEIGHT * 0.35f, -0.2f), D3DCOLOR_XRGB(150, 150, 150, 1));
 
 }
 
@@ -53,6 +60,7 @@ void cTitleScene::Render()
 
 	m_pBg->Render();
 	m_pLogo->Render();
+	m_pButton_Start->Render();
 
 	g_pD3DDevice->EndScene();
 
