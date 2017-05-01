@@ -20,7 +20,6 @@ cMainGame::cMainGame()
 
 cMainGame::~cMainGame()
 {
-
 }
 
 void cMainGame::Setup()
