@@ -2,10 +2,11 @@
 
 #include "cSceneManager.h"
 
-class GSprite;
+class cSurface;
 
 class cTitleScene : public IScene
 {
+	cSurface* m_Bg;
 public:
 	cTitleScene();
 	~cTitleScene();
