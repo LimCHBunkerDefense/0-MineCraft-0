@@ -154,7 +154,7 @@ void cPlayScene::Set_Light()
 		stLight.Ambient = D3DXCOLOR(0.8f, 0.8f, 0.8f, 1.0f);
 		stLight.Diffuse = D3DXCOLOR(0.8f, 0.8f, 0.8f, 1.0f);
 		stLight.Specular = D3DXCOLOR(0.8f, 0.8f, 0.8f, 1.0f);
-		D3DXVECTOR3 vDir(1.0f, -1.0f, 1.0f);
+		D3DXVECTOR3 vDir(1.0f, -1.0f, -1.0f);
 		D3DXVec3Normalize(&vDir, &vDir);
 		stLight.Direction = vDir;
 		g_pD3DDevice->SetLight(0, &stLight);
