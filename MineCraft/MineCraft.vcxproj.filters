@@ -155,6 +155,9 @@
     <ClInclude Include="cRenderManager.h">
       <Filter>04. RenderManager</Filter>
     </ClInclude>
+    <ClInclude Include="cSun.h">
+      <Filter>11. cPlanet\cSun</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -236,6 +239,7 @@
     <ClCompile Include="cRenderManager.cpp">
       <Filter>04. RenderManager</Filter>
     </ClCompile>
+    <ClCompile Include="cSurface.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="MineCraft.ico">
