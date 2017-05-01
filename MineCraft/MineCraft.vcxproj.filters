@@ -14,7 +14,6 @@
     <ClCompile Include="cInputManager.cpp" />
     <ClCompile Include="cLeftArm.cpp" />
     <ClCompile Include="cLeftLeg.cpp" />
-    <ClCompile Include="cMainGame.cpp" />
     <ClCompile Include="cMoon.cpp" />
     <ClCompile Include="cObject.cpp" />
     <ClCompile Include="cObjectManager.cpp" />
@@ -28,8 +27,15 @@
     <ClCompile Include="cSurface.cpp" />
     <ClCompile Include="cSun.cpp" />
     <ClCompile Include="cTitleScene.cpp" />
-    <ClCompile Include="MineCraft.cpp" />
-    <ClCompile Include="stdafx.cpp" />
+    <ClCompile Include="stdafx.cpp">
+      <Filter>99. etc</Filter>
+    </ClCompile>
+    <ClCompile Include="MineCraft.cpp">
+      <Filter>00. cMineCraft</Filter>
+    </ClCompile>
+    <ClCompile Include="cMainGame.cpp">
+      <Filter>01. cMainGame</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="cBody.h" />
@@ -45,7 +51,6 @@
     <ClInclude Include="cInputManager.h" />
     <ClInclude Include="cLeftArm.h" />
     <ClInclude Include="cLeftLeg.h" />
-    <ClInclude Include="cMainGame.h" />
     <ClInclude Include="cMoon.h" />
     <ClInclude Include="cObject.h" />
     <ClInclude Include="cObjectManager.h" />
@@ -59,20 +64,48 @@
     <ClInclude Include="cSurface.h" />
     <ClInclude Include="cSun.h" />
     <ClInclude Include="cTitleScene.h" />
-    <ClInclude Include="MineCraft.h" />
-    <ClInclude Include="Resource.h" />
     <ClInclude Include="stdafx.h" />
-    <ClInclude Include="targetver.h" />
+    <ClInclude Include="targetver.h">
+      <Filter>99. etc</Filter>
+    </ClInclude>
+    <ClInclude Include="Resource.h">
+      <Filter>99. etc</Filter>
+    </ClInclude>
+    <ClInclude Include="MineCraft.h">
+      <Filter>00. cMineCraft</Filter>
+    </ClInclude>
+    <ClInclude Include="cMainGame.h">
+      <Filter>01. cMainGame</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ResourceCompile Include="MineCraft.rc" />
-  </ItemGroup>
-  <ItemGroup>
-    <Image Include="MineCraft.ico" />
-    <Image Include="small.ico" />
+    <Image Include="small.ico">
+      <Filter>99. etc</Filter>
+    </Image>
+    <Image Include="MineCraft.ico">
+      <Filter>99. etc</Filter>
+    </Image>
   </ItemGroup>
   <ItemGroup>
     <Text Include="notice.txt" />
-    <Text Include="ReadMe.txt" />
+    <Text Include="ReadMe.txt">
+      <Filter>99. etc</Filter>
+    </Text>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="99. etc">
+      <UniqueIdentifier>{fd7db6e5-5617-4c5e-a94c-81dc69836f52}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="00. cMineCraft">
+      <UniqueIdentifier>{6aad5c0f-524d-477e-a095-246ed777a841}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01. cMainGame">
+      <UniqueIdentifier>{ada4fb67-777c-4fc6-b76b-dbef8cd7eb5c}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="MineCraft.rc">
+      <Filter>99. etc</Filter>
+    </ResourceCompile>
   </ItemGroup>
 </Project>
