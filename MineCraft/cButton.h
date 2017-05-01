@@ -6,6 +6,7 @@ class cButton
 	vector<ST_PC_VERTEX>	m_vecVertex_Bottom;
 	D3DXCOLOR				m_color;
 
+
 public:
 	cButton();
 	~cButton(); 
