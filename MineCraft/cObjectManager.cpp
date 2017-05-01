@@ -1,5 +1,6 @@
 #include "stdafx.h"
 #include "cObjectManager.h"
+#include "cTextureManager.h"
 #include "cObject.h"
 
 
@@ -26,6 +27,7 @@ void cObjectManager::Render()
 
 	for (vector<cObject*>::iterator it = m_vecObject.begin(); it != m_vecObject.end(); it++)
 	{
+		g_pD3DDevice->SetTexture(0, g_pTextureManager->GetTexture((*it)->GetName()));
 		(*it)->Render();
 	}
 }
@@ -40,6 +42,8 @@ void cObjectManager::CreateObject(D3DXVECTOR3 tagetPos)
 	if (isTargetEmpty == true)
 	{
 		cObject* pObject = new cObject(tagetPos);
+		pObject->SetName(string("Dirt"));
+		if (pObject->GetName() == "Dirt")pObject->SetDirtTexture();
 		m_vecObject.push_back(pObject);
 	}
 
