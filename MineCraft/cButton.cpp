@@ -230,7 +230,18 @@ void cButton::Render()
 		&m_vecVertex_Bottom[0],
 		sizeof(ST_PC_VERTEX));
 
+}
 
+void cButton::SetText(string text, int size, D3DXCOLOR color)
+{
+	m_text = text;
+	m_fontColor = color;
+	m_fontSize = size;
+}
+
+void cButton::DrawText_Button()
+{
+	//DRAWD2D->Draw(m_text, D3DXVECTOR2(500, 500), D3DXVECTOR2(500, 500), m_fontSize, ColorF(m_color.r, m_color.g, m_color.b, m_color.a));
 }
 
 bool cButton::IsCollided()

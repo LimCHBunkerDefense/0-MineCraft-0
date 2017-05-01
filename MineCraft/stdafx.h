@@ -32,6 +32,7 @@
 #pragma comment(lib, "d3d9.lib")
 #pragma comment(lib, "d3dx9.lib")
 
+
 //>> namesapce setting
 using namespace std;
 //<< 
@@ -121,7 +122,7 @@ public: inline varType Get##funName(void) const { return varName; }\
 public: inline void Set##funName(varType var){ varName = var; }
 
 #include "cDeviceManager.h"
-//#include "cDrawD2D.h"
+#include "cDrawD2D.h"
 
 using namespace std;
  
