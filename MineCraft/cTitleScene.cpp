@@ -3,6 +3,7 @@
 #include "cCamera.h"
 #include "cSurface.h"
 #include "cButton.h"
+#include "cInputManager.h"
 
 
 cTitleScene::cTitleScene() : 
@@ -46,6 +47,7 @@ void cTitleScene::Setup()
 
 void cTitleScene::Update()
 {
+	if (INPUT->IsKeyDown(VK_SPACE)) SCENE->ChangeScene(SCENE_PLAY);
 }
 
 void cTitleScene::Render()
@@ -57,12 +59,14 @@ void cTitleScene::Render()
 		1.0f, 0);
 
 	g_pD3DDevice->BeginScene();
-	m_pBg->Render();
-	g_pD3DDevice->SetRenderState(D3DRS_ALPHABLENDENABLE, TRUE);
-	g_pD3DDevice->SetRenderState(D3DRS_DESTBLEND, D3DBLEND_INVSRCALPHA);
-	g_pD3DDevice->SetRenderState(D3DRS_SRCBLEND, D3DBLEND_SRCALPHA);
-	m_pLogo->Render();
+
 	m_pButton_Start->Render();
+
+	m_pBg->Render();
+
+	m_pLogo->Render();
+
+
 
 	g_pD3DDevice->EndScene();
 

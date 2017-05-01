@@ -48,6 +48,8 @@ void cButton::Render()
 	g_pD3DDevice->SetRenderState(D3DRS_LIGHTING, false);
 	g_pD3DDevice->SetTransform(D3DTS_WORLD, &mat);
 
+	g_pD3DDevice->SetRenderState(D3DRS_ALPHABLENDENABLE, FALSE);
+
 	g_pD3DDevice->SetFVF(ST_PC_VERTEX::FVF);
 	g_pD3DDevice->DrawPrimitiveUP(D3DPT_TRIANGLELIST,
 		m_vecVertex.size() / 3,
@@ -56,18 +58,18 @@ void cButton::Render()
 
 	PAINTSTRUCT ps;
 	HDC hdc = BeginPaint(g_hWnd, &ps);
-
+	
 	RECT rc;
 	GetClientRect(g_hWnd, &rc);
-
+	
 	PatBlt(hdc, rc.bottom, rc.top, rc.right, rc.bottom, WHITENESS);
-
+	
 	MoveToEx(hdc, m_vecVertex[0].p.x - 0.1f, m_vecVertex[0].p.y - 0.1f, NULL);
 	LineTo(hdc, m_vecVertex[1].p.x - 0.1f, m_vecVertex[1].p.y + 0.1f);
 	LineTo(hdc, m_vecVertex[2].p.x + 0.1f, m_vecVertex[2].p.y + 0.1f);
-
+	
 	BitBlt(hdc, 0, 0, rc.right, rc.bottom, hdc, 0, 0, SRCCOPY);
-
+	
 	EndPaint(g_hWnd, &ps);
 	
 
