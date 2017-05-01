@@ -101,3 +101,26 @@ void cCamera::WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 		break;
 	}
 }
+
+void cCamera::SetPosition()
+{
+	m_fCameraDistance = m_pvTarget->y * 2.4f;
+	m_vLookAt = *m_pvTarget;
+	m_vEye = *m_pvTarget + D3DXVECTOR3(0, 0, -m_fCameraDistance);
+
+	RECT rc;
+	GetClientRect(g_hWnd, &rc);
+
+	D3DXMATRIXA16 matR, matRX, matRY;
+	D3DXMatrixRotationX(&matRX, m_vCamRotAngle.x);
+	D3DXMatrixRotationY(&matRY, m_vCamRotAngle.y);
+
+	matR = matRX * matRY;
+
+	D3DXVec3TransformCoord(&m_vEye, &m_vEye, &matR);
+
+	D3DXMATRIXA16 matView;
+	D3DXMatrixLookAtLH(&matView, &m_vEye, &m_vLookAt, &m_vUp);
+
+	g_pD3DDevice->SetTransform(D3DTS_VIEW, &matView);
+}

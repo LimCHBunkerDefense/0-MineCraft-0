@@ -3,10 +3,15 @@
 #include "cSceneManager.h"
 
 class cSurface;
+class cCamera;
 
 class cTitleScene : public IScene
 {
-	cSurface* m_Bg;
+	D3DXVECTOR3 m_point;
+	cSurface*	m_pBg;
+	cSurface*	m_pLogo;
+	cCamera*	m_pCamera;
+
 public:
 	cTitleScene();
 	~cTitleScene();

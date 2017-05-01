@@ -91,6 +91,9 @@
     <ClCompile Include="cPlayScene.cpp">
       <Filter>12. cScene\02. cPlayScene</Filter>
     </ClCompile>
+    <ClCompile Include="cDrawD2D.cpp">
+      <Filter>98. Utility\09. cDrawD2D</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h" />
@@ -186,6 +189,9 @@
     </ClInclude>
     <ClInclude Include="cPlayScene.h">
       <Filter>12. cScene\02. cPlayScene</Filter>
+    </ClInclude>
+    <ClInclude Include="cDrawD2D.h">
+      <Filter>98. Utility\09. cDrawD2D</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -283,6 +289,9 @@
     </Filter>
     <Filter Include="12. cScene\03. cShopScene">
       <UniqueIdentifier>{73a91dcd-07c4-40db-9685-72151252a93e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="98. Utility\09. cDrawD2D">
+      <UniqueIdentifier>{532c3dd5-daf6-43e4-b8a6-ffa43c896141}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

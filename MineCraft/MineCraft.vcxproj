@@ -158,6 +158,7 @@
     <ClInclude Include="cCubePC.h" />
     <ClInclude Include="cCubePNT.h" />
     <ClInclude Include="cDeviceManager.h" />
+    <ClInclude Include="cDrawD2D.h" />
     <ClInclude Include="cGrid.h" />
     <ClInclude Include="cHead.h" />
     <ClInclude Include="cInputManager.h" />
@@ -192,6 +193,7 @@
     <ClCompile Include="cCubePC.cpp" />
     <ClCompile Include="cCubePNT.cpp" />
     <ClCompile Include="cDeviceManager.cpp" />
+    <ClCompile Include="cDrawD2D.cpp" />
     <ClCompile Include="cGrid.cpp" />
     <ClCompile Include="cHead.cpp" />
     <ClCompile Include="cInputManager.cpp" />
