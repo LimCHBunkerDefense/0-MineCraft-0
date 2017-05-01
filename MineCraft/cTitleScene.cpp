@@ -41,14 +41,15 @@ void cTitleScene::Setup()
 
 	m_pButton_Start = new cButton();
 	m_pButton_Start->Setup(D3DXVECTOR3(-VIEW_WIDTH * 0.15F, VIEW_HEIGHT * 0.35f, -0.2f), D3DXVECTOR3(-VIEW_WIDTH * 0.15F, VIEW_HEIGHT * 0.5f, -0.2f),
-		D3DXVECTOR3(VIEW_WIDTH * 0.15F, VIEW_HEIGHT * 0.5f, -0.2f), D3DXVECTOR3(VIEW_WIDTH * 0.15F, VIEW_HEIGHT * 0.35f, -0.2f), D3DCOLOR_XRGB(150, 150, 150, 1));
+		D3DXVECTOR3(VIEW_WIDTH * 0.15F, VIEW_HEIGHT * 0.5f, -0.2f), D3DXVECTOR3(VIEW_WIDTH * 0.15F, VIEW_HEIGHT * 0.35f, -0.2f), D3DCOLOR_XRGB(150, 150, 150, 1.0f));
 
 }
 
 void cTitleScene::Update()
 {
-	if (INPUT->IsKeyDown(VK_SPACE)) SCENE->ChangeScene(SCENE_PLAY);
+	if (m_pButton_Start->IsClicked()) SCENE->ChangeScene(SCENE_PLAY);
 	if (INPUT->IsKeyDown(VK_RETURN)) SCENE->ChangeScene(SCENE_SHOP);
+	if (m_pButton_Start) m_pButton_Start->Update();
 }
 
 void cTitleScene::Render()
