@@ -9,7 +9,6 @@
 #include "cRightLeg.h"
 
 cCubeMan::cCubeMan()
-	// : to do someting 
 	: m_pRoot(NULL)
 {
 }
@@ -17,7 +16,6 @@ cCubeMan::cCubeMan()
 
 cCubeMan::~cCubeMan()
 {
-	// : to do someting 
 	if (m_pRoot)
 		m_pRoot->Destroy();
 
@@ -27,7 +25,6 @@ cCubeMan::~cCubeMan()
 
 void cCubeMan::Setup()
 {
-	// : to do someting 
 	cCharacter::Setup(); 
 
 	Set_Material(); 
@@ -67,16 +64,16 @@ void cCubeMan::Setup()
 
 void cCubeMan::Update()
 {
-	// : to do someting 
 	cCharacter::Update(); 
-	if (m_pRoot)
-		m_pRoot->Update(); 
+	if (!m_isMoving) m_pRoot->SetDefaultRotX();
+	else m_pRoot->RotateRotX();
+
+	if (m_pRoot) m_pRoot->Update();
+	
 }
 
 void cCubeMan::Render()
 {
-	// : to do someting 
-	
 	g_pD3DDevice->SetRenderState(D3DRS_LIGHTING, true); 
 	g_pD3DDevice->SetMaterial(&m_stMtl); 
 

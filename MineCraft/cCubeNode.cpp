@@ -31,21 +31,6 @@ void cCubeNode::Update()
 	// : to do someting
 	cCubePNT::Update();
 
-	{
-		m_fRotX += m_fRotDeltaX;
-		if (m_fRotX > D3DX_PI / 6.0f)
-		{
-			m_fRotX = D3DX_PI / 6.0f;
-			m_fRotDeltaX *= -1; 
-		}
-
-		if (m_fRotX < -D3DX_PI / 6.0f)
-		{
-			m_fRotX = -D3DX_PI / 6.0f;
-			m_fRotDeltaX *= -1;
-		}
-	}
-
 	D3DXMATRIXA16 matR, matT; 
 	D3DXMatrixIdentity(&matR); 
 	D3DXMatrixIdentity(&matT);
@@ -86,6 +71,38 @@ void cCubeNode::AddChild(cCubeNode* pChild)
 	pChild->m_pParentWorldTM = &m_matWorldTM; 
 	m_vecChild.push_back(pChild); 
 }
+
+void cCubeNode::RotateRotX()
+{
+	m_fRotX += m_fRotDeltaX;
+	if (m_fRotX > D3DX_PI / 6.0f)
+	{
+		m_fRotX = D3DX_PI / 6.0f;
+		m_fRotDeltaX *= -1;
+	}
+
+	if (m_fRotX < -D3DX_PI / 6.0f)
+	{
+		m_fRotX = -D3DX_PI / 6.0f;
+		m_fRotDeltaX *= -1;
+	}
+
+	for each(auto p in m_vecChild)
+	{
+		p->RotateRotX();
+	}
+}
+
+void cCubeNode::SetDefaultRotX()
+{
+	SetRotX(0.0f);
+	
+	for each(auto p in m_vecChild)
+	{
+		p->SetRotX(0.0f);
+	}
+}
+
 void cCubeNode::Destroy()
 {
 	// : to do someting 

@@ -12,37 +12,37 @@ cSurface::~cSurface()
 	SAFE_RELEASE(m_pTexture);
 }
 
-void cSurface::Setup(float x1, float y1, float z1, float x2, float y2, float z2, float x3, float y3, float z3, float x4, float y4, float z4, LPCWSTR imagePAth)
+void cSurface::Setup(D3DXVECTOR3 v1, D3DXVECTOR3 v2, D3DXVECTOR3 v3, D3DXVECTOR3 v4, LPCWSTR imagePath)
 {
 	/*
 	v1	v2
 	v0	v3
 	*/
-	D3DXCreateTextureFromFile(g_pD3DDevice, imagePAth, &m_pTexture);
+	D3DXCreateTextureFromFile(g_pD3DDevice, imagePath, &m_pTexture);
 
 	ST_PNT_VERTEX ver;
 
-	ver.p = D3DXVECTOR3(x1, y1, z1);
+	ver.p = v1;
 	ver.t = D3DXVECTOR2(0.0f, 1.0f);
 	m_vecVertex.push_back(ver);
 
-	ver.p = D3DXVECTOR3(x2, y2, z2);
+	ver.p = v2;
 	ver.t = D3DXVECTOR2(0.0f, 0.0f);
 	m_vecVertex.push_back(ver);
 
-	ver.p = D3DXVECTOR3(x3, y3, z3);
+	ver.p = v3;
 	ver.t = D3DXVECTOR2(1.0f, 0.0f);
 	m_vecVertex.push_back(ver);
 
-	ver.p = D3DXVECTOR3(x1, y1, z1);
+	ver.p = v1;
 	ver.t = D3DXVECTOR2(0.0f, 1.0f);
 	m_vecVertex.push_back(ver);
 
-	ver.p = D3DXVECTOR3(x3, y3, z3);
+	ver.p = v3;
 	ver.t = D3DXVECTOR2(1.0f, 0.0f);
 	m_vecVertex.push_back(ver);
 
-	ver.p = D3DXVECTOR3(x4, y4, z4);
+	ver.p = v4;
 	ver.t = D3DXVECTOR2(1.0f, 1.0f);
 	m_vecVertex.push_back(ver);
 
@@ -74,4 +74,19 @@ void cSurface::Render()
 		m_vecVertex.size() / 3,
 		&m_vecVertex[0],
 		sizeof(ST_PNT_VERTEX));
+}
+
+void cSurface::UpdateLocation(D3DXVECTOR3 vPosition)
+{
+	D3DXVECTOR3 v1 = vPosition + D3DXVECTOR3(-0.5f, 0.0f, -0.5f);
+	D3DXVECTOR3 v2 = vPosition + D3DXVECTOR3(-0.5f, 0.0f, 0.5f);
+	D3DXVECTOR3 v3 = vPosition + D3DXVECTOR3(0.5f, 0.0f, 0.5f);
+	D3DXVECTOR3 v4 = vPosition + D3DXVECTOR3(0.5f, 0.0f, -0.5f);
+
+	m_vecVertex[0].p = v1;
+	m_vecVertex[1].p = v2;
+	m_vecVertex[2].p = v3;
+	m_vecVertex[3].p = v1;
+	m_vecVertex[4].p = v3;
+	m_vecVertex[5].p = v4;
 }

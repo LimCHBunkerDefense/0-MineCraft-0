@@ -83,5 +83,5 @@ void cLeftArm::Setup()
 			&mat);
 	}
 
-	m_vLocalPos.y = 0.3f;
+	m_vLocalPos.y = 1.2;
 }

@@ -1,6 +1,9 @@
 #pragma once
 
 #include "cSceneManager.h"
+
+class GSprite;
+
 class cTitleScene : public IScene
 {
 public:

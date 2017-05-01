@@ -58,6 +58,18 @@
     <Filter Include="98. Utility\07. cSurface">
       <UniqueIdentifier>{d47de775-58ac-45f0-acd5-913daff1a350}</UniqueIdentifier>
     </Filter>
+    <Filter Include="11. cPlanet">
+      <UniqueIdentifier>{3e933e45-0a55-4fe9-b122-987ac88a0926}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="11. cPlanet\cSun">
+      <UniqueIdentifier>{fe4ebcc2-8fd9-4654-b53d-a7de4b689b28}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="11. cPlanet\cMoon">
+      <UniqueIdentifier>{1c2fc00a-bc2a-4b0a-ab92-03b3c0371607}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="04. RenderManager">
+      <UniqueIdentifier>{494c572a-240d-40e1-8ea6-84745807b1d2}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Resource.h">
@@ -131,8 +143,17 @@
       <Filter>03. cInputManager</Filter>
     </ClInclude>
     <ClInclude Include="MineCraft.h" />
+    <ClInclude Include="cPlanet.h">
+      <Filter>11. cPlanet</Filter>
+    </ClInclude>
+    <ClInclude Include="cMoon.h">
+      <Filter>11. cPlanet\cMoon</Filter>
+    </ClInclude>
     <ClInclude Include="cSurface.h">
       <Filter>98. Utility\07. cSurface</Filter>
+    </ClInclude>
+    <ClInclude Include="cRenderManager.h">
+      <Filter>04. RenderManager</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -203,8 +224,17 @@
       <Filter>03. cInputManager</Filter>
     </ClCompile>
     <ClCompile Include="MineCraft.cpp" />
+    <ClCompile Include="cPlanet.cpp">
+      <Filter>11. cPlanet</Filter>
+    </ClCompile>
+    <ClCompile Include="cMoon.cpp">
+      <Filter>11. cPlanet\cMoon</Filter>
+    </ClCompile>
     <ClCompile Include="cSurface.cpp">
       <Filter>98. Utility\07. cSurface</Filter>
+    </ClCompile>
+    <ClCompile Include="cRenderManager.cpp">
+      <Filter>04. RenderManager</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
