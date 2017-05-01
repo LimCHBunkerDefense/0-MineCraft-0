@@ -1,20 +1,24 @@
 #include "stdafx.h"
 #include "cTitleScene.h"
+#include "cSurface.h"
 
 
-cTitleScene::cTitleScene()
+cTitleScene::cTitleScene() : 
+	m_Bg(NULL)
 {
 }
 
 
 cTitleScene::~cTitleScene()
 {
+	SAFE_DELETE(m_Bg);
 }
 
 
 void cTitleScene::Setup()
 {
-
+	m_Bg = new cSurface();
+	//m_Bg->Setup(D3DXVECTOR3());
 }
 
 void cTitleScene::Update()
