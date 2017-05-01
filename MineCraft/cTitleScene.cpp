@@ -2,12 +2,15 @@
 #include "cTitleScene.h"
 #include "cCamera.h"
 #include "cSurface.h"
+#include "cButton.h"
+#include "cInputManager.h"
 
 
 cTitleScene::cTitleScene() : 
 	m_pBg(NULL),
 	m_pLogo(NULL),
 	m_pCamera(NULL),
+	m_pButton_Start(NULL),
 	m_point(0.0f, VIEW_HEIGHT * 0.5f, 0.0f)
 {
 }
@@ -18,6 +21,7 @@ cTitleScene::~cTitleScene()
 	SAFE_DELETE(m_pBg);
 	SAFE_DELETE(m_pLogo);
 	SAFE_DELETE(m_pCamera);
+	SAFE_DELETE(m_pButton_Start);
 }
 
 
@@ -35,10 +39,16 @@ void cTitleScene::Setup()
 	m_pCamera->Setup(&m_point);
 	m_pCamera->SetPosition();
 
+	m_pButton_Start = new cButton();
+	m_pButton_Start->Setup(D3DXVECTOR3(-VIEW_WIDTH * 0.15F, VIEW_HEIGHT * 0.35f, -0.2f), D3DXVECTOR3(-VIEW_WIDTH * 0.15F, VIEW_HEIGHT * 0.5f, -0.2f),
+		D3DXVECTOR3(VIEW_WIDTH * 0.15F, VIEW_HEIGHT * 0.5f, -0.2f), D3DXVECTOR3(VIEW_WIDTH * 0.15F, VIEW_HEIGHT * 0.35f, -0.2f), D3DCOLOR_XRGB(150, 150, 150, 1));
+
 }
 
 void cTitleScene::Update()
 {
+	if (INPUT->IsKeyDown(VK_SPACE)) SCENE->ChangeScene(SCENE_PLAY);
+	if (INPUT->IsKeyDown(VK_RETURN)) SCENE->ChangeScene(SCENE_SHOP);
 }
 
 void cTitleScene::Render()
@@ -51,11 +61,14 @@ void cTitleScene::Render()
 		1.0f, 0);
 
 	g_pD3DDevice->BeginScene();
+
+	m_pButton_Start->Render();
+
 	m_pBg->Render();
-	g_pD3DDevice->SetRenderState(D3DRS_ALPHABLENDENABLE, TRUE);
-	g_pD3DDevice->SetRenderState(D3DRS_DESTBLEND, D3DBLEND_INVSRCALPHA);
-	g_pD3DDevice->SetRenderState(D3DRS_SRCBLEND, D3DBLEND_SRCALPHA);
+
 	m_pLogo->Render();
+
+
 
 	g_pD3DDevice->EndScene();
 

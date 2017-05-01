@@ -124,6 +124,6 @@ public: inline void Set##funName(varType var){ varName = var; }
 //#include "cDrawD2D.h"
 
 using namespace std;
-
-  
+ 
+   
   

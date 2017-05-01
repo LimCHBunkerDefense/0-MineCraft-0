@@ -4,6 +4,7 @@
 
 class cSurface;
 class cCamera;
+class cButton;
 
 class cTitleScene : public IScene
 {
@@ -11,6 +12,7 @@ class cTitleScene : public IScene
 	cSurface*	m_pBg;
 	cSurface*	m_pLogo;
 	cCamera*	m_pCamera;
+	cButton*	m_pButton_Start;
 
 public:
 	cTitleScene();
