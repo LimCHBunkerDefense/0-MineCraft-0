@@ -123,3 +123,4 @@ public: inline void Set##funName(varType var){ varName = var; }
 #include "cDeviceManager.h"
 
 using namespace std;
+
