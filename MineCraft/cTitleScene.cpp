@@ -18,7 +18,7 @@ cTitleScene::~cTitleScene()
 void cTitleScene::Setup()
 {
 	m_Bg = new cSurface();
-	//m_Bg->Setup(D3DXVECTOR3())
+	//m_Bg->Setup(D3DXVECTOR3());
 }
 
 void cTitleScene::Update()
