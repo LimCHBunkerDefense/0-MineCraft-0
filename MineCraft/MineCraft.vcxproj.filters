@@ -158,15 +158,13 @@
     <ClInclude Include="cSurface.h">
       <Filter>98. Utility\07. cSurface</Filter>
     </ClInclude>
-    <ClInclude Include="cRenderManager.h">
-      <Filter>04. RenderManager</Filter>
-    </ClInclude>
     <ClInclude Include="cObjectManager.h">
       <Filter>05. cObjectManager</Filter>
     </ClInclude>
     <ClInclude Include="cObject.h">
       <Filter>05. cObjectManager\01. cObject</Filter>
     </ClInclude>
+    <ClInclude Include="cSun.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -245,15 +243,13 @@
     <ClCompile Include="cSurface.cpp">
       <Filter>98. Utility\07. cSurface</Filter>
     </ClCompile>
-    <ClCompile Include="cRenderManager.cpp">
-      <Filter>04. RenderManager</Filter>
-    </ClCompile>
     <ClCompile Include="cObjectManager.cpp">
       <Filter>05. cObjectManager</Filter>
     </ClCompile>
     <ClCompile Include="cObject.cpp">
       <Filter>05. cObjectManager\01. cObject</Filter>
     </ClCompile>
+    <ClCompile Include="cSun.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="MineCraft.ico">

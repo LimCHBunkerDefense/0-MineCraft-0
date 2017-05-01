@@ -170,7 +170,6 @@
     <ClInclude Include="cPlanet.h" />
     <ClInclude Include="cPlayScene.h" />
     <ClInclude Include="cPyramid.h" />
-    <ClInclude Include="cRenderManager.h" />
     <ClInclude Include="cRightArm.h" />
     <ClInclude Include="cRightLeg.h" />
     <ClInclude Include="cSceneManager.h" />
@@ -204,7 +203,6 @@
     <ClCompile Include="cPlanet.cpp" />
     <ClCompile Include="cPlayScene.cpp" />
     <ClCompile Include="cPyramid.cpp" />
-    <ClCompile Include="cRenderManager.cpp" />
     <ClCompile Include="cRightArm.cpp" />
     <ClCompile Include="cRightLeg.cpp" />
     <ClCompile Include="cSceneManager.cpp" />

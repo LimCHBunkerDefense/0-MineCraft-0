@@ -1,6 +1,6 @@
 #include "stdafx.h"
 #include "cPlayScene.h"
-
+#include "cObjectManager.h"
 #include "cDeviceManager.h"	
 #include "cCubePC.h"
 #include "cCamera.h"
@@ -96,7 +96,7 @@ void cPlayScene::Render()
 	if (m_pSide4) m_pSide4->Render();
 	if (m_pBottom) m_pBottom->Render();
 
-
+	g_ObjectManager->Render();
 	g_pD3DDevice->EndScene();
 
 	g_pD3DDevice->Present(NULL, NULL, NULL, NULL);

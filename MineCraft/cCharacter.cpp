@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "cCharacter.h"
 #include "cInputManager.h"
+#include "cObjectManager.h"
 
 
 cCharacter::cCharacter()
@@ -75,7 +76,10 @@ void cCharacter::Update()
 	else if (angle >= D3DX_PI / 8 * 13 && angle < D3DX_PI / 8 * 15)	tempPos = D3DXVECTOR3(1.0f, 0.01f, 1.0f);			// ¿ìÁ¤¸é
 	m_vFrontPos = D3DXVECTOR3((int)m_vPosition.x, (int)m_vPosition.y, (int)m_vPosition.z) + tempPos;
 	// << 
-
+	if (INPUT->IsKeyPress('E'))
+	{
+		g_ObjectManager->CreateObject(m_vFrontPos);
+	}
 }
 void cCharacter::Render()
 {

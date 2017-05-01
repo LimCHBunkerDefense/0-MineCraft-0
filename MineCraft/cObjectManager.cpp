@@ -32,8 +32,15 @@ void cObjectManager::Render()
 
 void cObjectManager::CreateObject(D3DXVECTOR3 tagetPos)
 {
-
-
-
+	bool isTargetEmpty = true;
+	for (vector<cObject*>::iterator it = m_vecObject.begin(); it != m_vecObject.end(); it++)
+	{
+		if ((*it)->GetPosition() == tagetPos)isTargetEmpty = false;
+	}
+	if (isTargetEmpty == true)
+	{
+		cObject* pObject = new cObject(tagetPos);
+		m_vecObject.push_back(pObject);
+	}
 
 }
