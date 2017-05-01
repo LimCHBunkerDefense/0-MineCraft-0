@@ -1,22 +1,24 @@
 #pragma once
-#include "cPlanet.h"
+#include "cCubePNT.h"
 
-class cSun : public cPlanet
+class cSun : public cCubePNT
 {
-private:
-	cCubePNT*			m_pSun;
-	D3DXVECTOR3			m_vPosition;
-
-	LPDIRECT3DTEXTURE9	m_pTexture;
-	D3DMATERIAL9		m_stMtl;
-
 public:
 	cSun();
 	~cSun();
 
-	virtual void Setup();
-	virtual void Update();
-	virtual void Render();
+public:
+	cCubePNT*			m_pSun;
+
+	D3DXVECTOR3			m_vPosition;
+	D3DXMATRIXA16		m_matWorld;
+
+	LPDIRECT3DTEXTURE9	m_pTexture;
+	D3DMATERIAL9		m_stMtl;
+
+	virtual void Setup() override;
+	virtual void Update() override;
+	virtual void Render() override;
 
 	virtual D3DXVECTOR3& GetPosition();
 	void Set_Material();
