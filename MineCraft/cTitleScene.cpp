@@ -63,12 +63,13 @@ void cTitleScene::Render()
 
 	g_pD3DDevice->BeginScene();
 
-	m_pButton_Start->Render();
+	
 
 	m_pBg->Render();
 
 	m_pLogo->Render();
 
+	m_pButton_Start->Render();
 
 
 	g_pD3DDevice->EndScene();
