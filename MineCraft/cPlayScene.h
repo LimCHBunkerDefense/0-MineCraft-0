@@ -7,6 +7,8 @@ class cCamera;
 class cGrid;
 class cCubeMan;
 class cSurface;
+class cSun;
+class cMoon;
 
 
 class cPlayScene : public IScene
@@ -14,6 +16,12 @@ class cPlayScene : public IScene
 	cCamera*	m_pCamera;
 	cCubeMan*	m_pCubeMan;
 	cSurface*	m_pPosToCreateTile;
+
+	// >> : 해와 달
+	cSun*		m_pSun;
+	cMoon*		m_pMoon;
+	int			time;		// 해와 달 움직이는 시간
+	// << :
 
 	// >>  : 배경
 	cSurface*	m_pTop;

@@ -1,28 +1,85 @@
 #include "stdafx.h"
 #include "cMoon.h"
 
+
 cMoon::cMoon()
-	: m_vPosition(0, 0, 0)
+	: m_pMoon(NULL)
+	, m_vPosition(0, 0, 0)
 {
+	D3DXMatrixIdentity(&m_matWorld);
 }
 
 cMoon::~cMoon()
 {
+	SAFE_DELETE(m_pMoon);
+	//SAFE_RELEASE(m_pTexture);
 }
+
 
 void cMoon::Setup()
 {
+	cCubePNT::Setup();
 
+	float x = -300;
+	float y = pow(x, 2) * -(1.0f / 300.0f) + 300;
+
+	m_vPosition.x = x;
+	m_vPosition.y = y;
+	m_vPosition.z = 200.0f;
 }
 
 void cMoon::Update()
 {
+	cCubePNT::Update();
+
+	m_vPosition.x += 0.05f;
+	m_vPosition.y = pow(m_vPosition.x, 2) * -(1.0f / 300.0f) + 300;
+
+	D3DXMATRIXA16 matT;
+	D3DXMatrixIdentity(&matT);
+
+	D3DXMatrixTranslation(&matT, m_vPosition.x, m_vPosition.y, m_vPosition.z);
+	m_matWorld = matT;
+
+	// D3DLIGHT9 stLight_Pnt;
+	// ZeroMemory(&stLight_Pnt, sizeof(D3DLIGHT9));
+	// 
+	// stLight_Pnt.Type = D3DLIGHT_POINT;
+	// stLight_Pnt.Ambient = D3DXCOLOR(1.0f, 1.0f, 0.0f, 10.f);
+	// stLight_Pnt.Diffuse = D3DXCOLOR(1.0f, 1.0f, 0.0f, 10.f);
+	// stLight_Pnt.Specular = D3DXCOLOR(1.0f, 1.0f, 0.0f, 10.f);
+	// stLight_Pnt.Range = 6.5f;
+	// stLight_Pnt.Attenuation0 = 0.0f;
+	// stLight_Pnt.Attenuation1 = 0.0f;
+	// stLight_Pnt.Attenuation2 = 0.0f;
+	// stLight_Pnt.Position = D3DXVECTOR3(m_vPosition.x, m_vPosition.y, m_vPosition.z);
+
+	D3DLIGHT9	stLight_Dir;
+	ZeroMemory(&stLight_Dir, sizeof(D3DLIGHT9));
+
+	stLight_Dir.Type = D3DLIGHT_DIRECTIONAL;
+	stLight_Dir.Ambient = D3DXCOLOR(0.2f, 0.2f, 0.2f, 1.0f);
+	stLight_Dir.Diffuse = D3DXCOLOR(1.0f, 1.0f, 1.0f, 1.0f);
+	stLight_Dir.Specular = D3DXCOLOR(1.0f, 1.0f, 1.0f, 1.0f);
+
+	D3DXVECTOR3 vDir = -m_vPosition;
+	D3DXVec3Normalize(&vDir, &vDir);
+	stLight_Dir.Direction = vDir;
+
+	g_pD3DDevice->SetLight(0, &stLight_Dir);
+	g_pD3DDevice->LightEnable(0, true);
+
+	g_pD3DDevice->SetTexture(0, NULL);
 
 }
 
 void cMoon::Render()
 {
+	g_pD3DDevice->SetTransform(D3DTS_WORLD, &m_matWorld);
+	g_pD3DDevice->SetRenderState(D3DRS_LIGHTING, false);
+	Set_Material();
 
+	cCubePNT::Render();
 }
 
 D3DXVECTOR3& cMoon::GetPosition()

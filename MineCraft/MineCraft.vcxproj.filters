@@ -67,9 +67,6 @@
     <Filter Include="11. cPlanet\cMoon">
       <UniqueIdentifier>{1c2fc00a-bc2a-4b0a-ab92-03b3c0371607}</UniqueIdentifier>
     </Filter>
-    <Filter Include="04. RenderManager">
-      <UniqueIdentifier>{494c572a-240d-40e1-8ea6-84745807b1d2}</UniqueIdentifier>
-    </Filter>
     <Filter Include="05. cObjectManager">
       <UniqueIdentifier>{a0cf384c-f6d8-4169-a718-9c020d5a3e2c}</UniqueIdentifier>
     </Filter>
@@ -163,6 +160,8 @@
     </ClInclude>
     <ClInclude Include="cObject.h">
       <Filter>05. cObjectManager\01. cObject</Filter>
+    <ClInclude Include="cSun.h">
+      <Filter>11. cPlanet\cSun</Filter>
     </ClInclude>
     <ClInclude Include="cSun.h" />
   </ItemGroup>
@@ -250,6 +249,7 @@
       <Filter>05. cObjectManager\01. cObject</Filter>
     </ClCompile>
     <ClCompile Include="cSun.cpp" />
+    <ClCompile Include="cSurface.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="MineCraft.ico">
