@@ -20,13 +20,12 @@ void cSun::Setup()
 {
 	cCubePNT::Setup();
 
-	float x = -7;
-	float test = pow(x, 2);
-	float y = pow(x, 2) * -(1.0f / 7.0f) + 7;
+	float x = -300;
+	float y = pow(x, 2) * -(1.0f / 300.0f) + 300;
 
 	m_vPosition.x = x;
 	m_vPosition.y = y;
-	m_vPosition.z = 4.0f;
+	m_vPosition.z = 200.0f;
 }
 
 void cSun::Update()
@@ -34,7 +33,7 @@ void cSun::Update()
 	cCubePNT::Update();
 
 	m_vPosition.x += 0.05f;
-	m_vPosition.y = pow(m_vPosition.x, 2) * -(1.0f / 7.0f) + 7;
+	m_vPosition.y = pow(m_vPosition.x, 2) * -(1.0f / 300.0f) + 300;
 
 	D3DXMATRIXA16 matT;
 	D3DXMatrixIdentity(&matT);

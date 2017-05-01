@@ -7,11 +7,15 @@
 #include "cGrid.h"
 #include "cCubeMan.h"
 #include "cSurface.h"
+#include "cSun.h"
+#include "cMoon.h"
 
 
 cPlayScene::cPlayScene() :
 	m_pCubeMan(NULL),
 	m_pCamera(NULL),
+	m_pSun(NULL),
+	m_pMoon(NULL),
 	m_pTop(NULL),
 	m_pBottom(NULL),
 	m_pSide1(NULL),
@@ -26,6 +30,8 @@ cPlayScene::cPlayScene() :
 cPlayScene::~cPlayScene()
 {
 	SAFE_DELETE(m_pCubeMan);
+	SAFE_DELETE(m_pSun);
+	SAFE_DELETE(m_pMoon);
 	SAFE_DELETE(m_pTop);
 	SAFE_DELETE(m_pBottom);
 	SAFE_DELETE(m_pSide1);
@@ -44,6 +50,12 @@ void cPlayScene::Setup()
 	
 	m_pCamera = new cCamera;
 	m_pCamera->Setup(&m_pCubeMan->GetPosition());
+
+	m_pSun = new cSun();
+	m_pSun->Setup();
+
+	m_pMoon = new cMoon();
+	m_pMoon->Setup();
 
 	m_pPosToCreateTile = new cSurface();
 	m_pPosToCreateTile->Setup(D3DXVECTOR3 (-1.0f, 0.0f, -1.0f), D3DXVECTOR3 (-1.0f, 0.0f, 1.0f), D3DXVECTOR3(1.0f, 0.0f, 1.0f), D3DXVECTOR3(1.0f, 0.0f, -1.0f), TEXT("Image/Surface/yellow.png"));
@@ -74,6 +86,23 @@ void cPlayScene::Update()
 	}
 
 	if (m_pCamera) m_pCamera->Update();
+
+	{
+		if (time / 10 == 1 || time == 0)
+		{
+			if (m_pSun)		m_pSun->Update();
+			if (m_pSun && m_pSun->GetPosition().y < 0)
+			{
+				SAFE_DELETE(m_pSun);
+				m_pMoon = new cMoon;
+				m_pMoon->Setup();
+			}
+
+			if (m_pMoon) m_pMoon->Update();
+			time = 0;
+		}
+		time += 1;
+	}
 }
 
 void cPlayScene::Render()
@@ -88,6 +117,8 @@ void cPlayScene::Render()
 
 
 	if (m_pCubeMan) m_pCubeMan->Render();
+	if (m_pSun)	m_pSun->Render();
+	if (m_pMoon) m_pMoon->Render();
 	if (m_pPosToCreateTile) m_pPosToCreateTile->Render();
 	//if (m_pTop) m_pTop->Render();
 	if (m_pSide1) m_pSide1->Render();

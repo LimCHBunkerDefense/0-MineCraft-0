@@ -1,7 +1,6 @@
 #include "stdafx.h"
 #include "cMainGame.h"
 #include "cDeviceManager.h"	
-#include "cRenderManager.h"
 #include "cSceneManager.h"
 #include "cPlayScene.h"
 #include "cTitleScene.h"
@@ -21,12 +20,11 @@ cMainGame::cMainGame()
 
 cMainGame::~cMainGame()
 {
-	RENDER->Release();
+
 }
 
 void cMainGame::Setup()
 {
-	RENDER->Init(g_hWnd);
 	INPUT->Setup();
 	SCENE->Register(SCENE_TITLE, new cTitleScene);
 	SCENE->Register(SCENE_PLAY, new cPlayScene);
