@@ -30,7 +30,7 @@ void cTitleScene::Setup()
 	m_pLogo = new cSurface();
 	m_pLogo->Setup(D3DXVECTOR3(-VIEW_WIDTH * 0.3F, VIEW_HEIGHT * 0.7f, -0.1f), D3DXVECTOR3(-VIEW_WIDTH * 0.3F, VIEW_HEIGHT * 0.9f, -0.1f),
 		D3DXVECTOR3(VIEW_WIDTH * 0.3F, VIEW_HEIGHT * 0.9f, -0.1f), D3DXVECTOR3(VIEW_WIDTH * 0.3F, VIEW_HEIGHT * 0.7f, -0.1f), TEXT("Image/TitleScene/logo.png"));
-
+	m_pLogo->SetisThisLogo();
 	m_pCamera = new cCamera();
 	m_pCamera->Setup(&m_point);
 	m_pCamera->SetPosition();
@@ -43,6 +43,7 @@ void cTitleScene::Update()
 
 void cTitleScene::Render()
 {
+	
 	g_pD3DDevice->Clear(NULL,
 		NULL,
 		D3DCLEAR_TARGET | D3DCLEAR_ZBUFFER,

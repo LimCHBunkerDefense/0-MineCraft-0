@@ -2,7 +2,10 @@
 #include "cSurface.h"
 
 
-cSurface::cSurface() : m_pTexture(NULL)
+cSurface::cSurface() : m_pTexture(NULL),
+m_logoScale(1.0f),
+m_isBiglogoScale(false),
+m_isThisLogo(false)
 {
 }
 
@@ -62,9 +65,15 @@ void cSurface::Setup(D3DXVECTOR3 v1, D3DXVECTOR3 v2, D3DXVECTOR3 v3, D3DXVECTOR3
 
 void cSurface::Render()
 {
+	if (m_isThisLogo == true)logoScaling();
+	D3DXMATRIXA16 matS;
+	D3DXMatrixIdentity(&matS);
+	D3DXMatrixScaling(&matS, m_logoScale, m_logoScale, m_logoScale);
+
+	g_pD3DDevice->SetTransform(D3DTS_WORLD, &matS);
 	D3DXMATRIXA16 mat;
 	D3DXMatrixIdentity(&mat);
-
+	mat = matS*mat;
 	g_pD3DDevice->SetRenderState(D3DRS_LIGHTING, false);
 	g_pD3DDevice->SetTransform(D3DTS_WORLD, &mat);
 
@@ -89,4 +98,17 @@ void cSurface::UpdateLocation(D3DXVECTOR3 vPosition)
 	m_vecVertex[3].p = v1;
 	m_vecVertex[4].p = v3;
 	m_vecVertex[5].p = v4;
+}
+
+void cSurface::SetisThisLogo()
+{
+	m_isThisLogo = true;
+}
+
+void cSurface::logoScaling()
+{
+	if (m_isBiglogoScale == false)m_logoScale += 0.005f;
+	if (m_isBiglogoScale == true)m_logoScale -= 0.005f;
+	if (m_logoScale >= 1.05f)m_isBiglogoScale = true;
+	else if (m_logoScale <= 0.95f)m_isBiglogoScale = false;
 }
