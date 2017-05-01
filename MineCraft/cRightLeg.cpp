@@ -83,5 +83,5 @@ void cRightLeg::Setup()
 			&mat);
 	}
 
-	m_vLocalPos.y = -0.3f;
+	m_vLocalPos.y = 0.6f;
 }

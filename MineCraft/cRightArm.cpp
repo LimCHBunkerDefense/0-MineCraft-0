@@ -83,5 +83,5 @@ void cRightArm::Setup()
 			&mat);
 	}
 
-	m_vLocalPos.y = 0.3f;
+	m_vLocalPos.y = 1.2f;
 }
