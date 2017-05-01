@@ -4,7 +4,7 @@
 class cSun : public cCubePNT
 {
 public:
-	cSun();
+	cSun();  
 	~cSun();
 
 public:
