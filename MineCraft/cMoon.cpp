@@ -23,7 +23,7 @@ void cMoon::Setup()
 	float x = -300;
 	float y = pow(x, 2) * -(1.0f / 300.0f) + 300;
 
-	m_vPosition.x = x;
+	m_vPosition.x = x;   
 	m_vPosition.y = y;
 	m_vPosition.z = 300.0f;
 }
