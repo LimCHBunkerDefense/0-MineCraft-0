@@ -1,6 +1,6 @@
 #include "stdafx.h"
 #include "cPlayScene.h"
-
+#include "cObjectManager.h"
 #include "cDeviceManager.h"	
 #include "cCubePC.h"
 #include "cCamera.h"
@@ -131,6 +131,7 @@ void cPlayScene::Render()
 	if (m_pMoon) m_pMoon->Render();
 	// << :
 
+	g_ObjectManager->Render();
 	g_pD3DDevice->EndScene();
 
 	g_pD3DDevice->Present(NULL, NULL, NULL, NULL);

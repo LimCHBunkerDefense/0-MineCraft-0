@@ -67,6 +67,12 @@
     <Filter Include="11. cPlanet\cMoon">
       <UniqueIdentifier>{1c2fc00a-bc2a-4b0a-ab92-03b3c0371607}</UniqueIdentifier>
     </Filter>
+    <Filter Include="05. cObjectManager">
+      <UniqueIdentifier>{a0cf384c-f6d8-4169-a718-9c020d5a3e2c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="05. cObjectManager\01. cObject">
+      <UniqueIdentifier>{9d644b72-3e2e-4bae-a4a5-1c6dc46f8c02}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Resource.h">
@@ -149,9 +155,15 @@
     <ClInclude Include="cSurface.h">
       <Filter>98. Utility\07. cSurface</Filter>
     </ClInclude>
+    <ClInclude Include="cObjectManager.h">
+      <Filter>05. cObjectManager</Filter>
+    </ClInclude>
+    <ClInclude Include="cObject.h">
+      <Filter>05. cObjectManager\01. cObject</Filter>
     <ClInclude Include="cSun.h">
       <Filter>11. cPlanet\cSun</Filter>
     </ClInclude>
+    <ClInclude Include="cSun.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -227,9 +239,16 @@
     <ClCompile Include="cMoon.cpp">
       <Filter>11. cPlanet\cMoon</Filter>
     </ClCompile>
-    <ClCompile Include="cSun.cpp">
-      <Filter>11. cPlanet\cSun</Filter>
+    <ClCompile Include="cSurface.cpp">
+      <Filter>98. Utility\07. cSurface</Filter>
     </ClCompile>
+    <ClCompile Include="cObjectManager.cpp">
+      <Filter>05. cObjectManager</Filter>
+    </ClCompile>
+    <ClCompile Include="cObject.cpp">
+      <Filter>05. cObjectManager\01. cObject</Filter>
+    </ClCompile>
+    <ClCompile Include="cSun.cpp" />
     <ClCompile Include="cSurface.cpp" />
   </ItemGroup>
   <ItemGroup>
