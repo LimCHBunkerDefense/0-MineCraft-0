@@ -1,7 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <ClCompile Include="cBody.cpp" />
     <ClCompile Include="cCamera.cpp" />
     <ClCompile Include="cCharacter.cpp" />
     <ClCompile Include="cCubeMan.cpp" />
@@ -36,9 +35,11 @@
     <ClCompile Include="cMainGame.cpp">
       <Filter>01. cMainGame</Filter>
     </ClCompile>
+    <ClCompile Include="cBody.cpp">
+      <Filter>cCubeMan%27s</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="cBody.h" />
     <ClInclude Include="cCamera.h" />
     <ClInclude Include="cCharacter.h" />
     <ClInclude Include="cCubeMan.h" />
@@ -77,6 +78,9 @@
     <ClInclude Include="cMainGame.h">
       <Filter>01. cMainGame</Filter>
     </ClInclude>
+    <ClInclude Include="cBody.h">
+      <Filter>cCubeMan%27s</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Image Include="small.ico">
@@ -101,6 +105,9 @@
     </Filter>
     <Filter Include="01. cMainGame">
       <UniqueIdentifier>{ada4fb67-777c-4fc6-b76b-dbef8cd7eb5c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="cCubeMan%27s">
+      <UniqueIdentifier>{331ae0fd-f4ee-4732-b701-8b998d6e7635}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
