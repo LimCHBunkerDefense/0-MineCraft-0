@@ -1,5 +1,6 @@
 #include "stdafx.h"
 #include "cShopScene.h"
+#include "cInputManager.h"
 
 
 cShopScene::cShopScene()
@@ -18,7 +19,7 @@ void cShopScene::Setup()
 
 void cShopScene::Update()
 {
-
+	if (INPUT->IsKeyDown(VK_BACK)) SCENE->ChangeScene(SCENE_TITLE);
 }
 
 void cShopScene::Render()
