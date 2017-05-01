@@ -117,8 +117,6 @@ void cPlayScene::Render()
 
 
 	if (m_pCubeMan) m_pCubeMan->Render();
-	if (m_pSun)	m_pSun->Render();
-	if (m_pMoon) m_pMoon->Render();
 	if (m_pPosToCreateTile) m_pPosToCreateTile->Render();
 	//if (m_pTop) m_pTop->Render();
 	if (m_pSide1) m_pSide1->Render();
@@ -127,6 +125,11 @@ void cPlayScene::Render()
 	if (m_pSide4) m_pSide4->Render();
 	if (m_pBottom) m_pBottom->Render();
 
+	// >> : ÇØ¿Í ´Ş Render
+	g_pD3DDevice->SetTexture(0, NULL);
+	if (m_pSun)	m_pSun->Render();
+	if (m_pMoon) m_pMoon->Render();
+	// << :
 
 	g_pD3DDevice->EndScene();
 
