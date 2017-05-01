@@ -25,7 +25,7 @@ void cSun::Setup()
 
 	m_vPosition.x = x;
 	m_vPosition.y = y;
-	m_vPosition.z = 200.0f;
+	m_vPosition.z = 300.0f;
 }
 
 void cSun::Update()
@@ -35,24 +35,13 @@ void cSun::Update()
 	m_vPosition.x += 0.05f;
 	m_vPosition.y = pow(m_vPosition.x, 2) * -(1.0f / 300.0f) + 300;
 
-	D3DXMATRIXA16 matT;
+	D3DXMATRIXA16 matS, matT;
+	D3DXMatrixIdentity(&matS);
 	D3DXMatrixIdentity(&matT);
 
+	D3DXMatrixScaling(&matS, 80.0f, 80.0f, 80.0f);
 	D3DXMatrixTranslation(&matT, m_vPosition.x, m_vPosition.y, m_vPosition.z);
-	m_matWorld = matT;
-
-	// D3DLIGHT9 stLight_Pnt;
-	// ZeroMemory(&stLight_Pnt, sizeof(D3DLIGHT9));
-	// 
-	// stLight_Pnt.Type = D3DLIGHT_POINT;
-	// stLight_Pnt.Ambient = D3DXCOLOR(1.0f, 1.0f, 0.0f, 10.f);
-	// stLight_Pnt.Diffuse = D3DXCOLOR(1.0f, 1.0f, 0.0f, 10.f);
-	// stLight_Pnt.Specular = D3DXCOLOR(1.0f, 1.0f, 0.0f, 10.f);
-	// stLight_Pnt.Range = 6.5f;
-	// stLight_Pnt.Attenuation0 = 0.0f;
-	// stLight_Pnt.Attenuation1 = 0.0f;
-	// stLight_Pnt.Attenuation2 = 0.0f;
-	// stLight_Pnt.Position = D3DXVECTOR3(m_vPosition.x, m_vPosition.y, m_vPosition.z);
+	m_matWorld = matS * matT;
 
 	D3DLIGHT9	stLight_Dir;
 	ZeroMemory(&stLight_Dir, sizeof(D3DLIGHT9));
