@@ -121,18 +121,5 @@ public: inline varType Get##funName(void) const { return varName; }\
 public: inline void Set##funName(varType var){ varName = var; }
 
 #include "cDeviceManager.h"
-//#include "cRenderManager.h"
 
 using namespace std;
-
-#define ANGLE_TO_RADIAN		0.0174533f
-
-// >> RenderManager¿ë Direct2D
-#include <d2d1.h>
-#include <dwrite.h>
-#include <wincodec.h>		// IWICImaging
-#include <wincodecsdk.h>	// IWICImaging
-#pragma comment(lib, "D2D1.lib")
-#pragma comment(lib, "dwrite.lib")
-using namespace D2D1;
-// << 
