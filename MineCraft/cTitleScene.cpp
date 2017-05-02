@@ -3,7 +3,6 @@
 #include "cCamera.h"
 #include "cSurface.h"
 #include "cButton.h"
-#include "cInputManager.h"
 
 
 cTitleScene::cTitleScene() : 
@@ -67,9 +66,9 @@ void cTitleScene::Render()
 	
 
 	m_pBg->Render();
-
+	
 	m_pLogo->Render();
-
+	
 	m_pButton_Start->Render();
 	m_pButton_Start->DrawText_Button();
 
