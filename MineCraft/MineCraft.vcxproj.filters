@@ -302,6 +302,12 @@
     <Filter Include="98. Utility\10. cButton">
       <UniqueIdentifier>{b5587505-2c8a-4818-8d38-c284b5299287}</UniqueIdentifier>
     </Filter>
+    <Filter Include="12. cScene\xx.cLoadingScene">
+      <UniqueIdentifier>{1c087d34-2271-40b6-89c9-8e70949b88c8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="98. Utility\NewFilter1">
+      <UniqueIdentifier>{fdee22c6-1342-4b00-b0d4-6b21abff64a1}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="MineCraft.rc">
