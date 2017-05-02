@@ -233,6 +233,7 @@ void cButton::Render()
 
 	if(m_text) m_text->Render();
 
+	g_pD3DDevice->SetTexture(0, NULL);
 }
 
 void cButton::SetText(LPCWSTR text, D3DXVECTOR3 fontPos, D3DXVECTOR3 fontSize, D3DXVECTOR3 fontRot, D3DXCOLOR fontColor)
