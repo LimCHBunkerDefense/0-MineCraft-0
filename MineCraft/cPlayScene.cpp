@@ -102,7 +102,13 @@ void cPlayScene::Update()
 				m_pMoon->Setup();
 			}
 
-			if (m_pMoon) m_pMoon->Update();
+			if (m_pMoon) m_pMoon->Update();	
+			if (m_pMoon && m_pMoon->GetPosition().y < 0)
+			{
+				SAFE_DELETE(m_pMoon);
+				m_pSun = new cSun;
+				m_pSun->Setup();
+			}
 			time = 0;
 		}
 		time += 1;
