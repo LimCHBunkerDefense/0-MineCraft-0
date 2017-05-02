@@ -137,7 +137,7 @@ void cPlayScene::Render()
 	if (m_pBottom) m_pBottom->Render();
 
 	// >> : ÇØ¿Í ´Ş Render
-	//if (m_pSun)	m_pSun->Render();
+	if (m_pSun)	m_pSun->Render();
 	if (m_pMoon) m_pMoon->Render();
 	// << :
 
