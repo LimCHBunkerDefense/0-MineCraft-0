@@ -230,9 +230,6 @@
     <Filter Include="99. etc">
       <UniqueIdentifier>{fd7db6e5-5617-4c5e-a94c-81dc69836f52}</UniqueIdentifier>
     </Filter>
-    <Filter Include="00. cMineCraft">
-      <UniqueIdentifier>{6aad5c0f-524d-477e-a095-246ed777a841}</UniqueIdentifier>
-    </Filter>
     <Filter Include="01. cMainGame">
       <UniqueIdentifier>{ada4fb67-777c-4fc6-b76b-dbef8cd7eb5c}</UniqueIdentifier>
     </Filter>
@@ -325,6 +322,9 @@
     </Filter>
     <Filter Include="07. cSoundManager">
       <UniqueIdentifier>{2e5e65d2-249d-400f-bad0-1b1a4f157597}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="00. cMineCraft">
+      <UniqueIdentifier>{6aad5c0f-524d-477e-a095-246ed777a841}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

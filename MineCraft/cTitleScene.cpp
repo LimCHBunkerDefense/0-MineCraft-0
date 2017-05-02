@@ -68,7 +68,6 @@ void cTitleScene::Update()
 
 void cTitleScene::Render()
 {
-	
 	g_pD3DDevice->Clear(NULL,
 		NULL,
 		D3DCLEAR_TARGET | D3DCLEAR_ZBUFFER,
@@ -76,8 +75,6 @@ void cTitleScene::Render()
 		1.0f, 0);
 
 	g_pD3DDevice->BeginScene();
-
-	
 
 	m_pBg->Render();
 	
