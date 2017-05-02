@@ -10,6 +10,7 @@
 #include "cSurface.h"
 #include "cSun.h"
 #include "cMoon.h"
+#include "cButton.h"
 
 
 cPlayScene::cPlayScene() :
@@ -62,6 +63,7 @@ void cPlayScene::Setup()
 	m_pPosToCreateTile->Setup(D3DXVECTOR3 (-1.0f, 0.0f, -1.0f), D3DXVECTOR3 (-1.0f, 0.0f, 1.0f), D3DXVECTOR3(1.0f, 0.0f, 1.0f), D3DXVECTOR3(1.0f, 0.0f, -1.0f), TEXT("Image/Surface/yellow.png"));
 
 	m_pTop = new cSurface();
+	m_pTop->Setup(D3DXVECTOR3(-300.0f, 300.0f, 300.0f), D3DXVECTOR3(-300.0f, 300.0f, -300.0f), D3DXVECTOR3(300.0f, 300.0f, -300.0f), D3DXVECTOR3(300.0f, 300.0f, 300.0f), TEXT("Image/Surface/skywall_top.png"));
 	//m_pTop->Setup(-300.0f, 300.0f, 300.0f, -300.0f, 300.0f, -300.0f, 300.0f, 300.0f, -300.0f, 300.0f, 300.0f, 300.0f, TEXT("Image/Surface/?????.png"));	// top이미지 필요
 	m_pBottom = new cSurface();
 	m_pBottom->Setup(D3DXVECTOR3 (-300.0f, 0.0f, -300.0f), D3DXVECTOR3 (-300.0f, 0.0f, 300.0f), D3DXVECTOR3(300.0f, 0.0f, 300.0f), D3DXVECTOR3(300.0f, 0.0f, -300.0f), TEXT("Image/Surface/ground.png"));
@@ -76,12 +78,17 @@ void cPlayScene::Setup()
 	m_pSide4->Setup(D3DXVECTOR3(300.0f, 0.0f, 300.0f), D3DXVECTOR3(300.0f, 300.0f, 300.0f), D3DXVECTOR3(300.0f, 300.0f, -300.0f), D3DXVECTOR3(300.0f, 0.0f, -300.0f), TEXT("Image/Surface/skywall2.png"));
 
 	Set_Light();
+
+	m_pButton_Start = new cButton();
+	m_pButton_Start->Setup(D3DXVECTOR3(-VIEW_WIDTH * 0.15F, VIEW_HEIGHT * 0.40f, -0.2f), D3DXVECTOR3(-VIEW_WIDTH * 0.15F, VIEW_HEIGHT * 0.52f, -0.2f),
+		D3DXVECTOR3(VIEW_WIDTH * 0.15F, VIEW_HEIGHT * 0.52f, -0.2f), D3DXVECTOR3(VIEW_WIDTH * 0.15F, VIEW_HEIGHT * 0.40f, -0.2f), D3DCOLOR_XRGB(150, 150, 150, 1.0f));
+	m_pButton_Start->SetText((" P L A Y "), 40, D3DCOLOR_XRGB(0, 0, 0, 0));
 }
 
 void cPlayScene::Update()
 {
 	if (INPUT->IsKeyDown(VK_BACK)) SCENE->ChangeScene(SCENE_TITLE);
-
+	if (m_pButton_Start) m_pButton_Start->Update();
 	if (m_pCubeMan)
 	{
 		m_pCubeMan->Update();
@@ -121,13 +128,14 @@ void cPlayScene::Render()
 
 	if (m_pCubeMan) m_pCubeMan->Render();
 	if (m_pPosToCreateTile) m_pPosToCreateTile->Render();
-	//if (m_pTop) m_pTop->Render();
+	if (m_pTop) m_pTop->Render();
 	if (m_pSide1) m_pSide1->Render();
 	if (m_pSide2) m_pSide2->Render();
 	if (m_pSide3) m_pSide3->Render();
 	if (m_pSide4) m_pSide4->Render();
 	if (m_pBottom) m_pBottom->Render();
-
+	m_pButton_Start->Render();
+	m_pButton_Start->DrawText_Button();
 	// >> : 해와 달 Render
 	g_pD3DDevice->SetTexture(0, NULL);
 	if (m_pSun)	m_pSun->Render();

@@ -87,6 +87,8 @@ void cSurface::Render()
 		m_vecVertex.size() / 3,
 		&m_vecVertex[0],
 		sizeof(ST_PNT_VERTEX));
+
+	g_pD3DDevice->SetTexture(0, NULL);
 }
 
 void cSurface::UpdateLocation(D3DXVECTOR3 vPosition)
@@ -115,4 +117,14 @@ void cSurface::logoScaling()
 	if (m_isBiglogoScale == true)m_logoScale -= 0.005f;
 	if (m_logoScale >= 1.05f)m_isBiglogoScale = true;
 	else if (m_logoScale <= 0.95f)m_isBiglogoScale = false;
+}
+
+void cSurface::SetUI(float width, float height)
+{
+	m_vecVertex[0].t = D3DXVECTOR2(0.0f, height);		// v1
+	m_vecVertex[1].t = D3DXVECTOR2(0.0f, 0.0f);		// v2
+	m_vecVertex[2].t = D3DXVECTOR2(width, 0.0f);		// v3
+	m_vecVertex[3].t = D3DXVECTOR2(0.0f, height);		// v1
+	m_vecVertex[4].t = D3DXVECTOR2(width, 0.0f);		// v3
+	m_vecVertex[5].t = D3DXVECTOR2(width, height);		// v4
 }

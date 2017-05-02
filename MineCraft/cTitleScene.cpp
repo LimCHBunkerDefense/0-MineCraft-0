@@ -3,7 +3,6 @@
 #include "cCamera.h"
 #include "cSurface.h"
 #include "cButton.h"
-#include "cInputManager.h"
 
 
 cTitleScene::cTitleScene() : 
@@ -35,13 +34,15 @@ void cTitleScene::Setup()
 	m_pLogo->Setup(D3DXVECTOR3(-VIEW_WIDTH * 0.3F, VIEW_HEIGHT * 0.7f, -0.1f), D3DXVECTOR3(-VIEW_WIDTH * 0.3F, VIEW_HEIGHT * 0.9f, -0.1f),
 		D3DXVECTOR3(VIEW_WIDTH * 0.3F, VIEW_HEIGHT * 0.9f, -0.1f), D3DXVECTOR3(VIEW_WIDTH * 0.3F, VIEW_HEIGHT * 0.7f, -0.1f), TEXT("Image/TitleScene/logo.png"));
 	m_pLogo->SetisThisLogo();
+
 	m_pCamera = new cCamera();
 	m_pCamera->Setup(&m_point);
 	m_pCamera->SetPosition();
 
 	m_pButton_Start = new cButton();
-	m_pButton_Start->Setup(D3DXVECTOR3(-VIEW_WIDTH * 0.15F, VIEW_HEIGHT * 0.35f, -0.2f), D3DXVECTOR3(-VIEW_WIDTH * 0.15F, VIEW_HEIGHT * 0.5f, -0.2f),
-		D3DXVECTOR3(VIEW_WIDTH * 0.15F, VIEW_HEIGHT * 0.5f, -0.2f), D3DXVECTOR3(VIEW_WIDTH * 0.15F, VIEW_HEIGHT * 0.35f, -0.2f), D3DCOLOR_XRGB(150, 150, 150, 1.0f));
+	m_pButton_Start->Setup(D3DXVECTOR3(-VIEW_WIDTH * 0.15F, VIEW_HEIGHT * 0.40f, -0.2f), D3DXVECTOR3(-VIEW_WIDTH * 0.15F, VIEW_HEIGHT * 0.52f, -0.2f),
+		D3DXVECTOR3(VIEW_WIDTH * 0.15F, VIEW_HEIGHT * 0.52f, -0.2f), D3DXVECTOR3(VIEW_WIDTH * 0.15F, VIEW_HEIGHT * 0.40f, -0.2f), D3DCOLOR_XRGB(150, 150, 150, 1.0f));
+	m_pButton_Start->SetText((" P L A Y "), 40, D3DCOLOR_XRGB(0, 0, 0, 0));
 
 }
 
@@ -66,10 +67,11 @@ void cTitleScene::Render()
 	
 
 	m_pBg->Render();
-
+	
 	m_pLogo->Render();
-
+	
 	m_pButton_Start->Render();
+	m_pButton_Start->DrawText_Button();
 
 
 	g_pD3DDevice->EndScene();

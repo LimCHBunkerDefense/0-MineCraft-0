@@ -6,6 +6,10 @@ class cButton
 	vector<ST_PC_VERTEX>	m_vecVertex_Bottom;
 	D3DXCOLOR				m_color;
 
+	string					m_text;
+	D3DXCOLOR				m_fontColor;
+	float					m_fontSize;
+
 public:
 	cButton();
 	~cButton(); 
@@ -14,6 +18,8 @@ public:
 	void Update();
 	void Render();
 
+	void SetText(string text, int size, D3DXCOLOR color);
+	void DrawText_Button();
 	bool IsCollided();
 	bool IsPressed();
 	bool IsClicked();

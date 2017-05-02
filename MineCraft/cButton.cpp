@@ -1,6 +1,5 @@
 #include "stdafx.h"
 #include "cButton.h"
-#include "cInputManager.h"
 
 
 cButton::cButton()
@@ -165,11 +164,11 @@ void cButton::Update()
 	{
 		for (int i = 0; i < m_vecVertex_Top.size(); i++)
 		{
-			m_vecVertex_Top[i].c = D3DCOLOR_XRGB(255, 255, 0, 1);
+			m_vecVertex_Top[i].c = D3DCOLOR_XRGB(50, 50, 50, 1);
 		}
 		for (int i = 0; i < m_vecVertex_Bottom.size(); i++)
 		{
-			m_vecVertex_Bottom[i].c = D3DCOLOR_XRGB(180, 180, 0, 1);
+			m_vecVertex_Bottom[i].c = D3DCOLOR_XRGB(255, 255, 255, 1);
 		}
 	}
 	else
@@ -212,6 +211,7 @@ void cButton::Render()
 	g_pD3DDevice->SetRenderState(D3DRS_LIGHTING, false);
 	g_pD3DDevice->SetTransform(D3DTS_WORLD, &mat);
 
+
 	g_pD3DDevice->SetRenderState(D3DRS_ALPHABLENDENABLE, false);
 
 	g_pD3DDevice->SetFVF(ST_PC_VERTEX::FVF);
@@ -230,6 +230,52 @@ void cButton::Render()
 		&m_vecVertex_Bottom[0],
 		sizeof(ST_PC_VERTEX));
 
+	DrawText_Button();
+
+}
+
+void cButton::SetText(string text, int size, D3DXCOLOR color)
+{
+	m_text = text;
+	m_fontColor = color;
+	m_fontSize = size;
+}
+
+void cButton::DrawText_Button()
+{
+	HDC hdc = CreateCompatibleDC(NULL);
+
+	LOGFONT lf;
+	ZeroMemory(&lf, sizeof(LOGFONT));
+
+	lf.lfHeight = 25;
+	lf.lfWidth = 12;
+	lf.lfWeight = 500;
+	lf.lfItalic = false;
+	lf.lfUnderline = false;
+	lf.lfCharSet = DEFAULT_CHARSET;
+	wcscpy_s(lf.lfFaceName, _countof(lf.lfFaceName), _T("Arial"));
+
+	HFONT hFont;
+	HFONT hFontOld;
+	hFont = CreateFontIndirect(&lf);
+	hFontOld = (HFONT)SelectObject(hdc, hFont);
+
+	ID3DXMesh* Text = 0;
+
+	bool aaa = D3DXCreateText(g_pD3DDevice, hdc, _T("P L A Y"), 0.001f, 0.4f, &Text, 0, 0);
+	
+	SelectObject(hdc, hFontOld);
+	DeleteObject(hFont);
+	DeleteDC(hdc);
+
+	D3DXMATRIXA16 mat;
+	D3DXMatrixIdentity(&mat);
+	D3DXMatrixTranslation(&mat, 0, 2, 0);
+
+	g_pD3DDevice->SetTransform(D3DTS_WORLD, &mat);
+	g_pD3DDevice->SetRenderState(D3DRS_LIGHTING, true);
+	Text->DrawSubset(0);
 
 }
 
@@ -239,7 +285,7 @@ bool cButton::IsCollided()
 	D3DXVECTOR2 mousePos = D3DXVECTOR2(pos.x, pos.y);
 
 	D3DXVECTOR2 leftTop, rightBottom;
-	leftTop.x = VIEW_WIDTH * 0.5 - fabs(m_vecVertex[0].p.x);
+	leftTop.x = VIEW_WIDTH * 0.5 + (m_vecVertex[0].p.x);
 	leftTop.y = VIEW_HEIGHT - m_vecVertex[1].p.y;
 	rightBottom.x = VIEW_WIDTH * 0.5 + m_vecVertex[2].p.x;
 	rightBottom.y = VIEW_HEIGHT - m_vecVertex[5].p.y;

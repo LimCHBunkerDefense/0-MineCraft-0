@@ -311,6 +311,12 @@
     <Filter Include="10. cCharacter\02. cTree">
       <UniqueIdentifier>{5f667332-313d-4559-a83d-16e55ea6e8a2}</UniqueIdentifier>
     </Filter>
+    <Filter Include="12. cScene\xx.cLoadingScene">
+      <UniqueIdentifier>{1c087d34-2271-40b6-89c9-8e70949b88c8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="98. Utility\NewFilter1">
+      <UniqueIdentifier>{fdee22c6-1342-4b00-b0d4-6b21abff64a1}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="MineCraft.rc">
