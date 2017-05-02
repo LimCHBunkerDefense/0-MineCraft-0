@@ -10,6 +10,7 @@ cTitleScene::cTitleScene() :
 	m_pLogo(NULL),
 	m_pCamera(NULL),
 	m_pButton_Start(NULL),
+	m_pButton_Shop(NULL),
 	m_point(0.0f, VIEW_HEIGHT * 0.5f, 0.0f)
 {
 }
@@ -21,6 +22,7 @@ cTitleScene::~cTitleScene()
 	SAFE_DELETE(m_pLogo);
 	SAFE_DELETE(m_pCamera);
 	SAFE_DELETE(m_pButton_Start);
+	SAFE_DELETE(m_pButton_Shop);
 }
 
 
@@ -42,15 +44,21 @@ void cTitleScene::Setup()
 	m_pButton_Start = new cButton();
 	m_pButton_Start->Setup(D3DXVECTOR3(-VIEW_WIDTH * 0.15F, VIEW_HEIGHT * 0.40f, -0.2f), D3DXVECTOR3(-VIEW_WIDTH * 0.15F, VIEW_HEIGHT * 0.52f, -0.2f),
 		D3DXVECTOR3(VIEW_WIDTH * 0.15F, VIEW_HEIGHT * 0.52f, -0.2f), D3DXVECTOR3(VIEW_WIDTH * 0.15F, VIEW_HEIGHT * 0.40f, -0.2f), D3DCOLOR_XRGB(150, 150, 150, 1.0f));
-	m_pButton_Start->SetText((" P L A Y "), 40, D3DCOLOR_XRGB(0, 0, 0, 0));
+	m_pButton_Start->SetText(LPCWSTR(TEXT(" P L A Y ")), D3DXVECTOR3(-130, 320, -0.2f), D3DXVECTOR3(80, 80, 80) );
+
+	m_pButton_Shop = new cButton();
+	m_pButton_Shop->Setup(D3DXVECTOR3(-VIEW_WIDTH * 0.15F, VIEW_HEIGHT * 0.25, -0.2f), D3DXVECTOR3(-VIEW_WIDTH * 0.15F, VIEW_HEIGHT * 0.37, -0.2f),
+		D3DXVECTOR3(VIEW_WIDTH * 0.15F, VIEW_HEIGHT * 0.37, -0.2f), D3DXVECTOR3(VIEW_WIDTH * 0.15F, VIEW_HEIGHT * 0.25, -0.2f), D3DCOLOR_XRGB(150, 150, 150, 1.0f));
+	m_pButton_Shop->SetText(LPCWSTR(TEXT(" S H O P ")), D3DXVECTOR3(-130, 200, -0.2f), D3DXVECTOR3(80, 80, 80) );
 
 }
 
 void cTitleScene::Update()
 {
 	if (m_pButton_Start->IsClicked()) SCENE->ChangeScene(SCENE_PLAY);
-	if (INPUT->IsKeyDown(VK_RETURN)) SCENE->ChangeScene(SCENE_SHOP);
+	if (m_pButton_Shop->IsClicked()) SCENE->ChangeScene(SCENE_SHOP);
 	if (m_pButton_Start) m_pButton_Start->Update();
+	if (m_pButton_Shop) m_pButton_Shop->Update();
 }
 
 void cTitleScene::Render()
@@ -71,7 +79,7 @@ void cTitleScene::Render()
 	m_pLogo->Render();
 	
 	m_pButton_Start->Render();
-	m_pButton_Start->DrawText_Button();
+	m_pButton_Shop->Render();
 
 
 	g_pD3DDevice->EndScene();

@@ -97,6 +97,9 @@
     <ClCompile Include="cButton.cpp">
       <Filter>98. Utility\10. cButton</Filter>
     </ClCompile>
+    <ClCompile Include="cText.cpp">
+      <Filter>98. Utility\11. cText</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h" />
@@ -198,6 +201,9 @@
     </ClInclude>
     <ClInclude Include="cButton.h">
       <Filter>98. Utility\10. cButton</Filter>
+    </ClInclude>
+    <ClInclude Include="cText.h">
+      <Filter>98. Utility\11. cText</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -307,6 +313,9 @@
     </Filter>
     <Filter Include="98. Utility\NewFilter1">
       <UniqueIdentifier>{fdee22c6-1342-4b00-b0d4-6b21abff64a1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="98. Utility\11. cText">
+      <UniqueIdentifier>{6d983cdb-c57f-45e3-aeb0-2b711d0c23f4}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

@@ -15,5 +15,8 @@ public:
 	LPDIRECT3DTEXTURE9 GetTexture(char* szFullPath);
 	LPDIRECT3DTEXTURE9 GetTexture(string& sFullPath);
 	void Destroy();
+	// >>:텍스쳐 인덱스좌표
+	void TextureIdexPos();
+	// <<:
 };
 
