@@ -276,6 +276,7 @@ void cButton::DrawText_Button()
 	g_pD3DDevice->SetTransform(D3DTS_WORLD, &mat);
 	g_pD3DDevice->SetRenderState(D3DRS_LIGHTING, true);
 	Text->DrawSubset(0);
+	//Text->Release();
 
 }
 

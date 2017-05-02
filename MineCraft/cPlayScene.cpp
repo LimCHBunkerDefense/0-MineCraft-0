@@ -113,6 +113,7 @@ void cPlayScene::Update()
 		}
 		time += 1;
 	}
+	
 }
 
 void cPlayScene::Render()
