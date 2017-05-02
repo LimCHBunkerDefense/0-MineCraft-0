@@ -8,9 +8,11 @@ class cButton;
 class cShopScene : public IScene
 {
 	cSurface*	m_pBg;
-	cSurface*	m_pGUI;
-	cSurface*	m_pUI_L01;
-	cSurface*	m_pUI_R01;
+	cSurface*	m_pGUI_Outline;
+	cSurface*	m_pGUI_In;
+
+	cButton*	m_pUI_leftButton;
+	cButton*	m_pUI_rightButton;
 	cButton*	m_pSelectButton;
 
 public:

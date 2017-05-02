@@ -97,9 +97,6 @@
     <ClCompile Include="cButton.cpp">
       <Filter>98. Utility\10. cButton</Filter>
     </ClCompile>
-    <ClCompile Include="cLoadingScene.cpp">
-      <Filter>12. cScene\xx.cLoadingScene</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h" />
@@ -201,9 +198,6 @@
     </ClInclude>
     <ClInclude Include="cButton.h">
       <Filter>98. Utility\10. cButton</Filter>
-    </ClInclude>
-    <ClInclude Include="cLoadingScene.h">
-      <Filter>12. cScene\xx.cLoadingScene</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
