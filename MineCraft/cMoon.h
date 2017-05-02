@@ -21,6 +21,8 @@ public:
 	virtual void Render() override;
 
 	virtual D3DXVECTOR3& GetPosition();
+	void Set_Light();
 	void Set_Material();
+	void Set_Texture();
 };
 

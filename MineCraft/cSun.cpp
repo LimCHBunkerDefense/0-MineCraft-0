@@ -31,7 +31,7 @@ void cSun::Setup()
 
 	m_vPosition.x = x;
 	m_vPosition.y = y;
-	m_vPosition.z = 300.0f;
+	m_vPosition.z = 400.0f;
 }
 
 void cSun::Update()
@@ -45,7 +45,7 @@ void cSun::Update()
 	D3DXMatrixIdentity(&matS);
 	D3DXMatrixIdentity(&matT);
 	
-	D3DXMatrixScaling(&matS, 80.0f, 80.0f, 80.0f);
+	D3DXMatrixScaling(&matS, 30.0f, 30.0f, 30.0f);
 	D3DXMatrixTranslation(&matT, m_vPosition.x, m_vPosition.y, m_vPosition.z);
 	m_matWorld = matS * matT;
 
@@ -55,12 +55,13 @@ void cSun::Update()
 void cSun::Render()
 {
 	g_pD3DDevice->SetTransform(D3DTS_WORLD, &m_matWorld);
+	g_pD3DDevice->SetTexture(0, m_pTexture);
 
 	cCubePNT::Render();
 
 	g_pD3DDevice->SetRenderState(D3DRS_LIGHTING, true);
 	g_pD3DDevice->SetMaterial(&m_stMtl);
-	g_pD3DDevice->SetTexture(0, m_pTexture);
+	g_pD3DDevice->SetTexture(0, NULL);
 }
 
 D3DXVECTOR3& cSun::GetPosition()
@@ -92,7 +93,7 @@ void cSun::Set_Material()
 	m_stMtl.Diffuse = D3DXCOLOR(0.8f, 0.8f, 0.8f, 1.0f);		// 주변광 : 일정한 방향을 가지지 않고 비춤
 	m_stMtl.Ambient = D3DXCOLOR(0.8f, 0.8f, 0.8f, 1.0f);		// 난반사광 : 특정 방향으로 비춰지지만, 고르게 반사됨
 	m_stMtl.Specular = D3DXCOLOR(0.8f, 0.8f, 0.8f, 1.0f);		// 전반사광 : 방향성을 가지며, 특정 방향으로 정확히 반사됨
-	m_stMtl.Emissive = D3DXCOLOR(0.5f, 0.5f, 0.5f, 1.0f);		// 자체 발광
+	m_stMtl.Emissive = D3DXCOLOR(0.5f, 0.5f, 0.0f, 1.0f);		// 자체 발광
 	 m_stMtl.Power = 5.0f;
 }
 
@@ -151,5 +152,4 @@ void cSun::Set_Texture()
 	m_vecVertex[33].t = D3DXVECTOR2(0.4f, 0.6f);
 	m_vecVertex[34].t = D3DXVECTOR2(0.6f, 0.4f);
 	m_vecVertex[35].t = D3DXVECTOR2(0.6f, 0.6f);
-	
 }

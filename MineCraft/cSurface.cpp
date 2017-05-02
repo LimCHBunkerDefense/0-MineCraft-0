@@ -74,7 +74,7 @@ void cSurface::Render()
 	D3DXMATRIXA16 mat;
 	D3DXMatrixIdentity(&mat);
 	mat = matS*mat;
-	g_pD3DDevice->SetRenderState(D3DRS_LIGHTING, false);
+	g_pD3DDevice->SetRenderState(D3DRS_LIGHTING, true);
 	g_pD3DDevice->SetTransform(D3DTS_WORLD, &mat);
 
 	g_pD3DDevice->SetRenderState(D3DRS_ALPHABLENDENABLE, TRUE);

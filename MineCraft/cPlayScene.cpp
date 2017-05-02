@@ -62,22 +62,23 @@ void cPlayScene::Setup()
 	m_pPosToCreateTile->Setup(D3DXVECTOR3 (-1.0f, 0.0f, -1.0f), D3DXVECTOR3 (-1.0f, 0.0f, 1.0f), D3DXVECTOR3(1.0f, 0.0f, 1.0f), D3DXVECTOR3(1.0f, 0.0f, -1.0f), TEXT("Image/Surface/yellow.png"));
 
 	m_pTop = new cSurface();
-	m_pTop->Setup(D3DXVECTOR3(-300.0f, 300.0f, 300.0f), D3DXVECTOR3(-300.0f, 300.0f, -300.0f), D3DXVECTOR3(300.0f, 300.0f, -300.0f), D3DXVECTOR3(300.0f, 300.0f, 300.0f), TEXT("Image/Surface/skywall_top.png"));
-	//m_pTop->Setup(-300.0f, 300.0f, 300.0f, -300.0f, 300.0f, -300.0f, 300.0f, 300.0f, -300.0f, 300.0f, 300.0f, 300.0f, TEXT("Image/Surface/?????.png"));	// top이미지 필요
+	m_pTop->Setup(D3DXVECTOR3(-WallLength, WallLength, WallLength), D3DXVECTOR3(-WallLength, WallLength, -WallLength), D3DXVECTOR3(WallLength, WallLength, -WallLength), D3DXVECTOR3(WallLength, WallLength, WallLength), TEXT("Image/Surface/skywall_top.png"));
+	//m_pTop->Setup(-WallLength, WallLength, WallLength, -WallLength, WallLength, -WallLength, WallLength, WallLength, -WallLength, WallLength, WallLength, WallLength, TEXT("Image/Surface/?????.png"));	// top이미지 필요
 	m_pBottom = new cSurface();
-	m_pBottom->Setup(D3DXVECTOR3 (-300.0f, 0.0f, -300.0f), D3DXVECTOR3 (-300.0f, 0.0f, 300.0f), D3DXVECTOR3(300.0f, 0.0f, 300.0f), D3DXVECTOR3(300.0f, 0.0f, -300.0f), TEXT("Image/Surface/ground.png"));
+	m_pBottom->Setup(D3DXVECTOR3 (-WallLength, 0.0f, -WallLength), D3DXVECTOR3 (-WallLength, 0.0f, WallLength), D3DXVECTOR3(WallLength, 0.0f, WallLength), D3DXVECTOR3(WallLength, 0.0f, -WallLength), TEXT("Image/Surface/ground.png"));
 
 	m_pSide1 = new cSurface();
-	m_pSide1->Setup(D3DXVECTOR3 (-300.0f, 0.0f, 300.0f), D3DXVECTOR3 (-300.0f, 300.0f, 300.0f), D3DXVECTOR3(300.0f, 300.0f, 300.0f), D3DXVECTOR3(300.0f, 0.0f, 300.0f), TEXT("Image/Surface/skywall.png"));
+	m_pSide1->Setup(D3DXVECTOR3 (-WallLength, 0.0f, WallLength), D3DXVECTOR3 (-WallLength, WallLength, WallLength), D3DXVECTOR3(WallLength, WallLength, WallLength), D3DXVECTOR3(WallLength, 0.0f, WallLength), TEXT("Image/Surface/skywall.png"));
 	m_pSide2 = new cSurface();
-	m_pSide2->Setup(D3DXVECTOR3 (-300.0f, 0.0f, -300.0f), D3DXVECTOR3 (-300.0f, 300.0f, -300.0f), D3DXVECTOR3 (-300.0f, 300.0f, 300.0f), D3DXVECTOR3 (-300.0f, 0.0f, 300.0f), TEXT("Image/Surface/skywall2.png"));
+	m_pSide2->Setup(D3DXVECTOR3 (-WallLength, 0.0f, -WallLength), D3DXVECTOR3 (-WallLength, WallLength, -WallLength), D3DXVECTOR3 (-WallLength, WallLength, WallLength), D3DXVECTOR3 (-WallLength, 0.0f, WallLength), TEXT("Image/Surface/skywall2.png"));
 	m_pSide3 = new cSurface();
-	m_pSide3->Setup(D3DXVECTOR3(300.0f, 0.0f, -300.0f), D3DXVECTOR3(300.0f, 300.0f, -300.0f), D3DXVECTOR3(-300.0f, 300.0f, -300.0f), D3DXVECTOR3(-300.0f, 0.0f, -300.0f), TEXT("Image/Surface/skywall.png"));
+	m_pSide3->Setup(D3DXVECTOR3(WallLength, 0.0f, -WallLength), D3DXVECTOR3(WallLength, WallLength, -WallLength), D3DXVECTOR3(-WallLength, WallLength, -WallLength), D3DXVECTOR3(-WallLength, 0.0f, -WallLength), TEXT("Image/Surface/skywall.png"));
 	m_pSide4 = new cSurface();
-	m_pSide4->Setup(D3DXVECTOR3(300.0f, 0.0f, 300.0f), D3DXVECTOR3(300.0f, 300.0f, 300.0f), D3DXVECTOR3(300.0f, 300.0f, -300.0f), D3DXVECTOR3(300.0f, 0.0f, -300.0f), TEXT("Image/Surface/skywall2.png"));
+	m_pSide4->Setup(D3DXVECTOR3(WallLength, 0.0f, WallLength), D3DXVECTOR3(WallLength, WallLength, WallLength), D3DXVECTOR3(WallLength, WallLength, -WallLength), D3DXVECTOR3(WallLength, 0.0f, -WallLength), TEXT("Image/Surface/skywall2.png"));
 
 	Set_Light();
 }
+
 
 void cPlayScene::Update()
 {
@@ -136,8 +137,7 @@ void cPlayScene::Render()
 	if (m_pBottom) m_pBottom->Render();
 
 	// >> : 해와 달 Render
-	g_pD3DDevice->SetTexture(0, NULL);
-	if (m_pSun)	m_pSun->Render();
+	//if (m_pSun)	m_pSun->Render();
 	if (m_pMoon) m_pMoon->Render();
 	// << :
 
