@@ -100,6 +100,9 @@
     <ClCompile Include="cText.cpp">
       <Filter>98. Utility\11. cText</Filter>
     </ClCompile>
+    <ClCompile Include="cSoundManager.cpp">
+      <Filter>07. cSoundManager</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h" />
@@ -204,6 +207,9 @@
     </ClInclude>
     <ClInclude Include="cText.h">
       <Filter>98. Utility\11. cText</Filter>
+    </ClInclude>
+    <ClInclude Include="cSoundManager.h">
+      <Filter>07. cSoundManager</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -316,6 +322,9 @@
     </Filter>
     <Filter Include="98. Utility\11. cText">
       <UniqueIdentifier>{6d983cdb-c57f-45e3-aeb0-2b711d0c23f4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="07. cSoundManager">
+      <UniqueIdentifier>{2e5e65d2-249d-400f-bad0-1b1a4f157597}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

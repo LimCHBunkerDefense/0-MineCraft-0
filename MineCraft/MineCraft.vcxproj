@@ -176,6 +176,7 @@
     <ClInclude Include="cRightLeg.h" />
     <ClInclude Include="cSceneManager.h" />
     <ClInclude Include="cShopScene.h" />
+    <ClInclude Include="cSoundManager.h" />
     <ClInclude Include="cSurface.h" />
     <ClInclude Include="cSun.h" />
     <ClInclude Include="cText.h" />
@@ -213,6 +214,7 @@
     <ClCompile Include="cRightLeg.cpp" />
     <ClCompile Include="cSceneManager.cpp" />
     <ClCompile Include="cShopScene.cpp" />
+    <ClCompile Include="cSoundManager.cpp" />
     <ClCompile Include="cSurface.cpp" />
     <ClCompile Include="cSun.cpp" />
     <ClCompile Include="cText.cpp" />
