@@ -2,8 +2,14 @@
 
 #include "cSceneManager.h"
 
+class cSurface;
+class cButton;
+
 class cShopScene : public IScene
 {
+	cSurface*	m_pBg;
+	cButton*	m_pSelectButton;
+
 public:
 	cShopScene();
 	~cShopScene();
