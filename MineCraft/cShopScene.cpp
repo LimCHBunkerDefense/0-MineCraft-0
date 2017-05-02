@@ -53,7 +53,7 @@ void cShopScene::Setup()
 	m_pSelectButton = new cButton();
 	m_pSelectButton->Setup(D3DXVECTOR3(VIEW_WIDTH * 0.13f, VIEW_HEIGHT * 0.26f, -0.3f), D3DXVECTOR3(VIEW_WIDTH * 0.13f, VIEW_HEIGHT * 0.32f, -0.3f),
 		D3DXVECTOR3(VIEW_WIDTH * 0.23f, VIEW_HEIGHT * 0.32f, -0.3f), D3DXVECTOR3(VIEW_WIDTH * 0.23f, VIEW_HEIGHT * 0.26f, -0.3f), D3DCOLOR_XRGB(150, 150, 150, 0.8f));
-	m_pSelectButton->SetText(("Select"), 40, D3DCOLOR_XRGB(0, 0, 0, 0));
+	//m_pSelectButton->SetText(("Select"), 40, D3DCOLOR_XRGB(0, 0, 0, 0));
 }
 
 void cShopScene::Update()

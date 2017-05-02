@@ -13,6 +13,7 @@ class cTitleScene : public IScene
 	cSurface*	m_pLogo;
 	cCamera*	m_pCamera;
 	cButton*	m_pButton_Start;
+	cButton*	m_pButton_Shop;
 
 public:
 	cTitleScene();

@@ -1,4 +1,7 @@
 #pragma once
+
+class cText;
+
 class cButton
 {
 	vector<ST_PC_VERTEX>	m_vecVertex;
@@ -6,9 +9,7 @@ class cButton
 	vector<ST_PC_VERTEX>	m_vecVertex_Bottom;
 	D3DXCOLOR				m_color;
 
-	string					m_text;
-	D3DXCOLOR				m_fontColor;
-	float					m_fontSize;
+	cText*					m_text;
 
 public:
 	cButton();
@@ -18,8 +19,7 @@ public:
 	void Update();
 	void Render();
 
-	void SetText(string text, int size, D3DXCOLOR color);
-	void DrawText_Button();
+	void SetText(LPCWSTR text, D3DXVECTOR3 fontPos, D3DXVECTOR3 fontSize, D3DXVECTOR3 m_fontRot = D3DXVECTOR3(0,0,0), D3DXCOLOR fontColor = D3DCOLOR_XRGB(0,0,0,0));
 	bool IsCollided();
 	bool IsPressed();
 	bool IsClicked();
