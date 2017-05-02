@@ -116,3 +116,13 @@ void cSurface::logoScaling()
 	if (m_logoScale >= 1.05f)m_isBiglogoScale = true;
 	else if (m_logoScale <= 0.95f)m_isBiglogoScale = false;
 }
+
+void cSurface::SetUI()
+{
+	m_vecVertex[0].t = D3DXVECTOR2(0.0f, 0.8f);		// v1
+	m_vecVertex[1].t = D3DXVECTOR2(0.0f, 0.0f);		// v2
+	m_vecVertex[2].t = D3DXVECTOR2(1.0f, 0.0f);		// v3
+	m_vecVertex[3].t = D3DXVECTOR2(0.0f, 0.8f);		// v1
+	m_vecVertex[4].t = D3DXVECTOR2(1.0f, 0.0f);		// v3
+	m_vecVertex[5].t = D3DXVECTOR2(1.0f, 0.8f);		// v4
+}

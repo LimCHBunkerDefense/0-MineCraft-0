@@ -3,7 +3,6 @@
 #include "cCamera.h"
 #include "cSurface.h"
 #include "cButton.h"
-#include "cInputManager.h"
 
 
 cTitleScene::cTitleScene() : 
@@ -35,6 +34,7 @@ void cTitleScene::Setup()
 	m_pLogo->Setup(D3DXVECTOR3(-VIEW_WIDTH * 0.3F, VIEW_HEIGHT * 0.7f, -0.1f), D3DXVECTOR3(-VIEW_WIDTH * 0.3F, VIEW_HEIGHT * 0.9f, -0.1f),
 		D3DXVECTOR3(VIEW_WIDTH * 0.3F, VIEW_HEIGHT * 0.9f, -0.1f), D3DXVECTOR3(VIEW_WIDTH * 0.3F, VIEW_HEIGHT * 0.7f, -0.1f), TEXT("Image/TitleScene/logo.png"));
 	m_pLogo->SetisThisLogo();
+
 	m_pCamera = new cCamera();
 	m_pCamera->Setup(&m_point);
 	m_pCamera->SetPosition();
@@ -67,9 +67,9 @@ void cTitleScene::Render()
 	
 
 	m_pBg->Render();
-
+	
 	m_pLogo->Render();
-
+	
 	m_pButton_Start->Render();
 	m_pButton_Start->DrawText_Button();
 
