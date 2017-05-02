@@ -79,5 +79,6 @@ void cTitleScene::Render()
 
 void cTitleScene::WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
 {
+	
 
 }

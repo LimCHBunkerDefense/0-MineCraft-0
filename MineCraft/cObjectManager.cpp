@@ -2,6 +2,7 @@
 #include "cObjectManager.h"
 #include "cTextureManager.h"
 #include "cObject.h"
+#include "cTree.h"
 
 
 cObjectManager::cObjectManager()
@@ -41,9 +42,9 @@ void cObjectManager::CreateObject(D3DXVECTOR3 tagetPos)
 	}
 	if (isTargetEmpty == true)
 	{
-		cObject* pObject = new cObject(tagetPos);
+		cObject* pObject = new cTree(tagetPos);
 		pObject->SetName(string("Dirt"));
-		if (pObject->GetName() == "Dirt")pObject->SetDirtTexture();
+		pObject->Setup();
 		m_vecObject.push_back(pObject);
 	}
 

@@ -180,6 +180,7 @@
     <ClInclude Include="cSun.h" />
     <ClInclude Include="cTextureManager.h" />
     <ClInclude Include="cTitleScene.h" />
+    <ClInclude Include="cTree.h" />
     <ClInclude Include="MineCraft.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="stdafx.h" />
@@ -216,6 +217,7 @@
     <ClCompile Include="cSun.cpp" />
     <ClCompile Include="cTextureManager.cpp" />
     <ClCompile Include="cTitleScene.cpp" />
+    <ClCompile Include="cTree.cpp" />
     <ClCompile Include="MineCraft.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
