@@ -108,7 +108,13 @@ void cPlayScene::Update()
 				m_pMoon->Setup();
 			}
 
-			if (m_pMoon) m_pMoon->Update();
+			if (m_pMoon) m_pMoon->Update();	
+			if (m_pMoon && m_pMoon->GetPosition().y < 0)
+			{
+				SAFE_DELETE(m_pMoon);
+				m_pSun = new cSun;
+				m_pSun->Setup();
+			}
 			time = 0;
 		}
 		time += 1;
@@ -136,6 +142,7 @@ void cPlayScene::Render()
 	if (m_pBottom) m_pBottom->Render();
 	m_pButton_Start->Render();
 	m_pButton_Start->DrawText_Button();
+
 	// >> : ÇØ¿Í ´Þ Render
 	g_pD3DDevice->SetTexture(0, NULL);
 	if (m_pSun)	m_pSun->Render();
