@@ -20,7 +20,6 @@ public:
 enum SCENE_TAG
 {
 	SCENE_NONE, SCENE_TITLE, SCENE_PLAY, SCENE_SHOP,
-	SCENE_LOADING
 };
 
 #define SCENE cSceneManager::GetInstance()

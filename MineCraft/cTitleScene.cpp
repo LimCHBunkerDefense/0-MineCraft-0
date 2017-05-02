@@ -3,7 +3,6 @@
 #include "cCamera.h"
 #include "cSurface.h"
 #include "cButton.h"
-#include "cInputManager.h"
 
 
 cTitleScene::cTitleScene() : 
@@ -51,7 +50,6 @@ void cTitleScene::Update()
 {
 	if (m_pButton_Start->IsClicked()) SCENE->ChangeScene(SCENE_PLAY);
 	if (INPUT->IsKeyDown(VK_RETURN)) SCENE->ChangeScene(SCENE_SHOP);
-	if (INPUT->IsKeyDown(VK_F2)) SCENE->ChangeScene(SCENE_LOADING);
 	if (m_pButton_Start) m_pButton_Start->Update();
 }
 
@@ -69,9 +67,9 @@ void cTitleScene::Render()
 	
 
 	m_pBg->Render();
-
+	
 	m_pLogo->Render();
-
+	
 	m_pButton_Start->Render();
 	m_pButton_Start->DrawText_Button();
 

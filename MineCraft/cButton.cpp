@@ -1,6 +1,5 @@
 #include "stdafx.h"
 #include "cButton.h"
-#include "cInputManager.h"
 
 
 cButton::cButton()
@@ -231,6 +230,8 @@ void cButton::Render()
 		&m_vecVertex_Bottom[0],
 		sizeof(ST_PC_VERTEX));
 
+	DrawText_Button();
+
 }
 
 void cButton::SetText(string text, int size, D3DXCOLOR color)
@@ -242,7 +243,34 @@ void cButton::SetText(string text, int size, D3DXCOLOR color)
 
 void cButton::DrawText_Button()
 {
-	//DRAWD2D->Draw(m_text, D3DXVECTOR2(500, 500), D3DXVECTOR2(500, 500), m_fontSize, ColorF(m_color.r, m_color.g, m_color.b, m_color.a));
+	HDC hdc = CreateCompatibleDC(NULL);
+
+	LOGFONT lf;
+	ZeroMemory(&lf, sizeof(LOGFONT));
+
+	lf.lfHeight = 25;
+	lf.lfWidth = 12;
+	lf.lfWeight = 500;
+	lf.lfItalic = false;
+	lf.lfUnderline = false;
+	lf.lfCharSet = DEFAULT_CHARSET;
+	wcscpy_s(lf.lfFaceName, _countof(lf.lfFaceName), _T("Arial"));
+
+	HFONT hFont;
+	HFONT hFontOld;
+	hFont = CreateFontIndirect(&lf);
+	hFontOld = (HFONT)SelectObject(hdc, hFont);
+
+	ID3DXMesh* Text = 0;
+
+	bool aaa = D3DXCreateText(g_pD3DDevice, hdc, L"P L A Y", 0.001f, 0.4f, &Text, 0, 0);
+	
+	SelectObject(hdc, hFontOld);
+	DeleteObject(hFont);
+	DeleteDC(hdc);
+
+	Text->DrawSubset(0);
+
 }
 
 bool cButton::IsCollided()
