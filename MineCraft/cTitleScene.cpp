@@ -40,8 +40,8 @@ void cTitleScene::Setup()
 	m_pCamera->SetPosition();
 
 	m_pButton_Start = new cButton();
-	m_pButton_Start->Setup(D3DXVECTOR3(-VIEW_WIDTH * 0.15F, VIEW_HEIGHT * 0.35f, -0.2f), D3DXVECTOR3(-VIEW_WIDTH * 0.15F, VIEW_HEIGHT * 0.5f, -0.2f),
-		D3DXVECTOR3(VIEW_WIDTH * 0.15F, VIEW_HEIGHT * 0.5f, -0.2f), D3DXVECTOR3(VIEW_WIDTH * 0.15F, VIEW_HEIGHT * 0.35f, -0.2f), D3DCOLOR_XRGB(150, 150, 150, 1.0f));
+	m_pButton_Start->Setup(D3DXVECTOR3(-VIEW_WIDTH * 0.15F, VIEW_HEIGHT * 0.40f, -0.2f), D3DXVECTOR3(-VIEW_WIDTH * 0.15F, VIEW_HEIGHT * 0.52f, -0.2f),
+		D3DXVECTOR3(VIEW_WIDTH * 0.15F, VIEW_HEIGHT * 0.52f, -0.2f), D3DXVECTOR3(VIEW_WIDTH * 0.15F, VIEW_HEIGHT * 0.40f, -0.2f), D3DCOLOR_XRGB(150, 150, 150, 1.0f));
 	m_pButton_Start->SetText((" P L A Y "), 40, D3DCOLOR_XRGB(0, 0, 0, 0));
 
 }

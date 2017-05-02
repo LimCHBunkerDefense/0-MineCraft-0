@@ -262,12 +262,18 @@ void cButton::DrawText_Button()
 
 	ID3DXMesh* Text = 0;
 
-	bool aaa = D3DXCreateText(g_pD3DDevice, hdc, L"P L A Y", 0.001f, 0.4f, &Text, 0, 0);
+	bool aaa = D3DXCreateText(g_pD3DDevice, hdc, _T("P L A Y"), 0.001f, 0.4f, &Text, 0, 0);
 	
 	SelectObject(hdc, hFontOld);
 	DeleteObject(hFont);
 	DeleteDC(hdc);
 
+	D3DXMATRIXA16 mat;
+	D3DXMatrixIdentity(&mat);
+	D3DXMatrixTranslation(&mat, 0, 2, 0);
+
+	g_pD3DDevice->SetTransform(D3DTS_WORLD, &mat);
+	g_pD3DDevice->SetRenderState(D3DRS_LIGHTING, true);
 	Text->DrawSubset(0);
 
 }
@@ -278,7 +284,7 @@ bool cButton::IsCollided()
 	D3DXVECTOR2 mousePos = D3DXVECTOR2(pos.x, pos.y);
 
 	D3DXVECTOR2 leftTop, rightBottom;
-	leftTop.x = VIEW_WIDTH * 0.5 - fabs(m_vecVertex[0].p.x);
+	leftTop.x = VIEW_WIDTH * 0.5 + (m_vecVertex[0].p.x);
 	leftTop.y = VIEW_HEIGHT - m_vecVertex[1].p.y;
 	rightBottom.x = VIEW_WIDTH * 0.5 + m_vecVertex[2].p.x;
 	rightBottom.y = VIEW_HEIGHT - m_vecVertex[5].p.y;

@@ -9,6 +9,7 @@ class cCubeMan;
 class cSurface;
 class cSun;
 class cMoon;
+class cButton;
 
 
 class cPlayScene : public IScene
@@ -31,7 +32,7 @@ class cPlayScene : public IScene
 	cSurface*	m_pSide3;
 	cSurface*	m_pSide4;
 	// << 
-
+	cButton*	m_pButton_Start;
 
 public:
 	cPlayScene();
