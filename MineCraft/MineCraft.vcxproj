@@ -165,7 +165,6 @@
     <ClInclude Include="cInputManager.h" />
     <ClInclude Include="cLeftArm.h" />
     <ClInclude Include="cLeftLeg.h" />
-    <ClInclude Include="cLoadingScene.h" />
     <ClInclude Include="cMainGame.h" />
     <ClInclude Include="cMoon.h" />
     <ClInclude Include="cObject.h" />
@@ -202,7 +201,6 @@
     <ClCompile Include="cInputManager.cpp" />
     <ClCompile Include="cLeftArm.cpp" />
     <ClCompile Include="cLeftLeg.cpp" />
-    <ClCompile Include="cLoadingScene.cpp" />
     <ClCompile Include="cMainGame.cpp" />
     <ClCompile Include="cMoon.cpp" />
     <ClCompile Include="cObject.cpp" />
