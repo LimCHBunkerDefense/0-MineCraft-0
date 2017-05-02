@@ -21,7 +21,7 @@ LPDIRECT3DTEXTURE9 cTextureManager::GetTexture(char* keyName)
 {
 	if (m_mapTexture.find(keyName) == m_mapTexture.end())
 	{
-		string szFilePath ="image/"+ (string)keyName + ".png";
+		string szFilePath ="image/Texture/"+ (string)keyName + ".png";  // 텍스쳐 이미지 기본경로.
 		D3DXCreateTextureFromFile(g_pD3DDevice, (LPCWSTR)((char*)szFilePath.c_str()), &m_mapTexture[keyName]);
 	}
 	return m_mapTexture[keyName];
