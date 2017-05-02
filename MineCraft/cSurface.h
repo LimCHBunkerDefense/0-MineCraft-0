@@ -10,7 +10,7 @@ public:
 	void UpdateLocation(D3DXVECTOR3 vPosition);
 	void SetisThisLogo();
 	void logoScaling();
-	void SetUI();
+	void SetUI(float width, float height);
 
 private:
 	LPDIRECT3DTEXTURE9		m_pTexture;

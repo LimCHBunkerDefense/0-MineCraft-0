@@ -165,11 +165,11 @@ void cButton::Update()
 	{
 		for (int i = 0; i < m_vecVertex_Top.size(); i++)
 		{
-			m_vecVertex_Top[i].c = D3DCOLOR_XRGB(255, 255, 0, 1);
+			m_vecVertex_Top[i].c = D3DCOLOR_XRGB(50, 50, 50, 1);
 		}
 		for (int i = 0; i < m_vecVertex_Bottom.size(); i++)
 		{
-			m_vecVertex_Bottom[i].c = D3DCOLOR_XRGB(180, 180, 0, 1);
+			m_vecVertex_Bottom[i].c = D3DCOLOR_XRGB(255, 255, 255, 1);
 		}
 	}
 	else
@@ -211,6 +211,7 @@ void cButton::Render()
 
 	g_pD3DDevice->SetRenderState(D3DRS_LIGHTING, false);
 	g_pD3DDevice->SetTransform(D3DTS_WORLD, &mat);
+
 
 	g_pD3DDevice->SetRenderState(D3DRS_ALPHABLENDENABLE, false);
 
