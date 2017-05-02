@@ -62,6 +62,7 @@ void cPlayScene::Setup()
 	m_pPosToCreateTile->Setup(D3DXVECTOR3 (-1.0f, 0.0f, -1.0f), D3DXVECTOR3 (-1.0f, 0.0f, 1.0f), D3DXVECTOR3(1.0f, 0.0f, 1.0f), D3DXVECTOR3(1.0f, 0.0f, -1.0f), TEXT("Image/Surface/yellow.png"));
 
 	m_pTop = new cSurface();
+	m_pTop->Setup(D3DXVECTOR3(-300.0f, 300.0f, 300.0f), D3DXVECTOR3(-300.0f, 300.0f, -300.0f), D3DXVECTOR3(300.0f, 300.0f, -300.0f), D3DXVECTOR3(300.0f, 300.0f, 300.0f), TEXT("Image/Surface/skywall_top.png"));
 	//m_pTop->Setup(-300.0f, 300.0f, 300.0f, -300.0f, 300.0f, -300.0f, 300.0f, 300.0f, -300.0f, 300.0f, 300.0f, 300.0f, TEXT("Image/Surface/?????.png"));	// top이미지 필요
 	m_pBottom = new cSurface();
 	m_pBottom->Setup(D3DXVECTOR3 (-300.0f, 0.0f, -300.0f), D3DXVECTOR3 (-300.0f, 0.0f, 300.0f), D3DXVECTOR3(300.0f, 0.0f, 300.0f), D3DXVECTOR3(300.0f, 0.0f, -300.0f), TEXT("Image/Surface/ground.png"));
@@ -121,7 +122,7 @@ void cPlayScene::Render()
 
 	if (m_pCubeMan) m_pCubeMan->Render();
 	if (m_pPosToCreateTile) m_pPosToCreateTile->Render();
-	//if (m_pTop) m_pTop->Render();
+	if (m_pTop) m_pTop->Render();
 	if (m_pSide1) m_pSide1->Render();
 	if (m_pSide2) m_pSide2->Render();
 	if (m_pSide3) m_pSide3->Render();

@@ -34,6 +34,7 @@ void cTitleScene::Setup()
 	m_pLogo->Setup(D3DXVECTOR3(-VIEW_WIDTH * 0.3F, VIEW_HEIGHT * 0.7f, -0.1f), D3DXVECTOR3(-VIEW_WIDTH * 0.3F, VIEW_HEIGHT * 0.9f, -0.1f),
 		D3DXVECTOR3(VIEW_WIDTH * 0.3F, VIEW_HEIGHT * 0.9f, -0.1f), D3DXVECTOR3(VIEW_WIDTH * 0.3F, VIEW_HEIGHT * 0.7f, -0.1f), TEXT("Image/TitleScene/logo.png"));
 	m_pLogo->SetisThisLogo();
+
 	m_pCamera = new cCamera();
 	m_pCamera->Setup(&m_point);
 	m_pCamera->SetPosition();
@@ -49,6 +50,7 @@ void cTitleScene::Update()
 {
 	if (m_pButton_Start->IsClicked()) SCENE->ChangeScene(SCENE_PLAY);
 	if (INPUT->IsKeyDown(VK_RETURN)) SCENE->ChangeScene(SCENE_SHOP);
+	if (INPUT->IsKeyDown(VK_F2)) SCENE->ChangeScene(SCENE_LOADING);
 	if (m_pButton_Start) m_pButton_Start->Update();
 }
 
