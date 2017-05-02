@@ -97,6 +97,9 @@
     <ClCompile Include="cButton.cpp">
       <Filter>98. Utility\10. cButton</Filter>
     </ClCompile>
+    <ClCompile Include="cLoadingScene.cpp">
+      <Filter>12. cScene\xx.cLoadingScene</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h" />
@@ -198,6 +201,9 @@
     </ClInclude>
     <ClInclude Include="cButton.h">
       <Filter>98. Utility\10. cButton</Filter>
+    </ClInclude>
+    <ClInclude Include="cLoadingScene.h">
+      <Filter>12. cScene\xx.cLoadingScene</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -301,6 +307,9 @@
     </Filter>
     <Filter Include="98. Utility\10. cButton">
       <UniqueIdentifier>{b5587505-2c8a-4818-8d38-c284b5299287}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="12. cScene\xx.cLoadingScene">
+      <UniqueIdentifier>{1c087d34-2271-40b6-89c9-8e70949b88c8}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

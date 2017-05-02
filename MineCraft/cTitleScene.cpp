@@ -51,6 +51,7 @@ void cTitleScene::Update()
 {
 	if (m_pButton_Start->IsClicked()) SCENE->ChangeScene(SCENE_PLAY);
 	if (INPUT->IsKeyDown(VK_RETURN)) SCENE->ChangeScene(SCENE_SHOP);
+	if (INPUT->IsKeyDown(VK_F2)) SCENE->ChangeScene(SCENE_LOADING);
 	if (m_pButton_Start) m_pButton_Start->Update();
 }
 
