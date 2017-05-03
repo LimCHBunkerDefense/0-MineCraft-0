@@ -156,7 +156,7 @@ float cSurface::IMG_SetScale(float scale)
 
 	return m_imgScale;
 }
-}
+
 
 vector<ST_PNT_VERTEX> cSurface::GetVerTex()
 {

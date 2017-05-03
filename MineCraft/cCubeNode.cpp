@@ -7,13 +7,7 @@ cCubeNode::cCubeNode()
 	m_pParentWorldTM(NULL),
 	m_vLocalPos(0, 0, 0)
 	, m_fRotX(0.0f)
-	, m_fScale(1.0f)
-// >> :
-	// : to do someting 
-	: m_fRotDeltaX(0.0f),
-	m_pParentWorldTM(NULL),
-	m_vLocalPos(0, 0, 0)
-	, m_fRotX(0.0f),
+	, m_fScale(1.0f),
 	m_fAttackRotX(0),
 	m_fAttackDir(0.5f)
 

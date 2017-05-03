@@ -61,9 +61,13 @@ void cCharacter::Update()
 	{
 		if (INPUT->IsKeyPress('E'))
 		{
-			g_ObjectManager->CreateObject(m_vFrontPos);
+			m_isAttack = true;
+			//g_ObjectManager->CreateObject(m_vFrontPos);
 		}
-
+		if (INPUT->IsKeyUp('E'))
+		{
+			m_isAttack = false;
+		}
 		// >> : update frontPos
 		float angle;
 		if (m_vDirection.x <= 0) angle = acosf(D3DXVec3Dot(&D3DXVECTOR3(0.0f, m_vDirection.y, 1.0f), &m_vDirection));
