@@ -13,13 +13,16 @@ public:
 	void SetUI(float width, float height);
 	void SetMaterial(D3DXVECTOR4 ambient, D3DXVECTOR4 diffuse, D3DXVECTOR4 specular, D3DXVECTOR4 emissive, float power = 1.0f);
 
+	//>>:스케일조절
+	float IMG_SetScale(float scale);
+
 private:
 	LPDIRECT3DTEXTURE9		m_pTexture;
 	D3DMATERIAL9			m_stMtl;
 	vector<ST_PNT_VERTEX>	m_vecVertex;
 	bool					m_isLightOn;
 
-	float       m_logoScale;
+	float       m_imgScale; //변수명 변경
 	bool        m_isBiglogoScale;
 	bool        m_isThisLogo;
 };
