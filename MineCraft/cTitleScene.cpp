@@ -54,7 +54,7 @@ void cTitleScene::OnEnter()
 
 void cTitleScene::OnUpdate()
 {
-	if (INPUT->IsKeyDown(VK_F2)) SCENE->ChangeScene(SCENE_LOADING);
+	//if (INPUT->IsKeyDown(VK_F7)) SCENE->ChangeScene(SCENE_LOADING);
 	if (m_pButton_Start->IsClicked()) SCENE->ChangeScene(SCENE_PLAY);
 	if (m_pButton_Shop->IsClicked()) SCENE->ChangeScene(SCENE_SHOP);
 	if (m_pButton_Start) m_pButton_Start->Update();
