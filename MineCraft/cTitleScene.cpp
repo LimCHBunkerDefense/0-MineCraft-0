@@ -93,7 +93,6 @@ void cTitleScene::OnExit()
 	SAFE_DELETE(m_pButton_Shop);
 
 	SOUND->Stop("TitleBGM");
-	SOUND->Release();
 }
 
 void cTitleScene::WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
