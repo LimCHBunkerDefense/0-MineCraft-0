@@ -18,7 +18,7 @@ private:
 public:
 	void Setup();
 	void Release();
-	void Update(float deltaTime);
+	void Update();
 
 	void LoadFile(string key, string filename, bool bgm);
 	void Play(string key, float volume = 1.0f);
