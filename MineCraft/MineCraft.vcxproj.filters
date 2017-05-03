@@ -104,6 +104,9 @@
     <ClCompile Include="cText_2D.cpp">
       <Filter>98. Utility\12. cText_2D</Filter>
     </ClCompile>
+    <ClCompile Include="cTree.cpp">
+      <Filter>10. cCharacter\02. cTree</Filter>
+    </ClCompile>
     <ClCompile Include="cText.cpp">
       <Filter>98. Utility\11. cText</Filter>
     </ClCompile>
@@ -208,6 +211,9 @@
     </ClInclude>
     <ClInclude Include="cButton.h">
       <Filter>98. Utility\10. cButton</Filter>
+    </ClInclude>
+    <ClInclude Include="cTree.h">
+      <Filter>10. cCharacter\02. cTree</Filter>
     </ClInclude>
     <ClInclude Include="cLoadingScene.h">
       <Filter>12. cScene\xx.cLoadingScene</Filter>
@@ -321,6 +327,9 @@
     </Filter>
     <Filter Include="98. Utility\10. cButton">
       <UniqueIdentifier>{b5587505-2c8a-4818-8d38-c284b5299287}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="10. cCharacter\02. cTree">
+      <UniqueIdentifier>{5f667332-313d-4559-a83d-16e55ea6e8a2}</UniqueIdentifier>
     </Filter>
     <Filter Include="12. cScene\xx.cLoadingScene">
       <UniqueIdentifier>{1c087d34-2271-40b6-89c9-8e70949b88c8}</UniqueIdentifier>

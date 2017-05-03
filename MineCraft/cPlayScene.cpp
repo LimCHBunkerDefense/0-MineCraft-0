@@ -116,6 +116,7 @@ void cPlayScene::OnUpdate()
 		}
 		time += 1;
 	}
+	
 }
 
 void cPlayScene::OnDraw()
