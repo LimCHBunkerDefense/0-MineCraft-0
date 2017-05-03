@@ -3,10 +3,7 @@
 
 class cObject;
 
-enum OBJECT_NAME
-{
-	OBJECT_DIRT, OBJECT_TREE, OBJECT_LEAF, 
-};
+
 
 class cObjectManager
 {
