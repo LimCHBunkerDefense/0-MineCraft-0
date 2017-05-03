@@ -22,7 +22,9 @@ class cShopScene : public IScene
 	cButton*	m_pSelectButton;
 
 	int			m_nSkinIndex;
-	cCubeMan*	m_pExampleMan;
+	cCubeMan*	m_pExampleMan01;
+	cCubeMan*	m_pExampleMan02;
+	cCubeMan*	m_pExampleMan03;
 	cCubeMan*	m_pMyMan;
 
 public:
@@ -37,6 +39,7 @@ public:
 	void WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam);
 
 	void Set_Light();
+	void SetupExampleMan();
 	void UpdateExampleMan();
 	void UpdateExampleSkin();
 	void SelectSkin();
