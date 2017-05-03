@@ -25,12 +25,12 @@ cPlayScene::cPlayScene() :
 	m_pSide4(NULL),
 	m_pPosToCreateTile(NULL)
 {
+	SOUND->LoadFile("PlayBGM", "Sound/Beginning_Beta.mp3", true);
 }
 
 
 cPlayScene::~cPlayScene()
 {
-
 	g_pDeviceManager->Destroy();
 }
 
@@ -67,6 +67,8 @@ void cPlayScene::OnEnter()
 	m_pSide4->Setup(D3DXVECTOR3(WallLength, 0.0f, WallLength), D3DXVECTOR3(WallLength, WallLength, WallLength), D3DXVECTOR3(WallLength, WallLength, -WallLength), D3DXVECTOR3(WallLength, 0.0f, -WallLength), TEXT("Image/Surface/skywall2.png"));
 
 	Set_Light();
+
+	SOUND->Play("PlayBGM", 10.0f);
 }
 
 
@@ -151,6 +153,8 @@ void cPlayScene::OnExit()
 	SAFE_DELETE(m_pMoon);
 	SAFE_DELETE(m_pCamera);
 	SAFE_DELETE(m_pPosToCreateTile);
+
+	SOUND->Stop("PlayBGM");
 }
 
 void cPlayScene::WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
