@@ -72,9 +72,6 @@ void cCubeMan::Update()
 {
 	cCharacter::Update(); 
 
-
-	
-
 	if (m_pRoot)
 	{
 		if (m_isMoving) m_pRoot->RotateRotX();
