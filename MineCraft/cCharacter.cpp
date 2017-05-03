@@ -33,23 +33,23 @@ void cCharacter::Update()
 	{
 		m_isMoving = false;
 
-		if (INPUT->IsKeyPress('A'))
+		if (INPUT->IsKeyPress(VK_A))
 		{
 			m_isMoving = true;
 			m_fRotY -= 0.1f;
 		}
-		if (INPUT->IsKeyPress('D'))
+		if (INPUT->IsKeyPress(VK_D))
 		{
 			m_isMoving = true;
 			m_fRotY += 0.1f;
 		}
 
-		if (INPUT->IsKeyPress('W'))
+		if (INPUT->IsKeyPress(VK_W))
 		{
 			m_isMoving = true;
 			m_vPosition = m_vPosition + (m_vDirection * 0.1f);
 		}
-		if (INPUT->IsKeyPress('S'))
+		if (INPUT->IsKeyPress(VK_S))
 		{
 			m_isMoving = true;
 			m_vPosition = m_vPosition - (m_vDirection * 0.1f);
@@ -59,12 +59,12 @@ void cCharacter::Update()
 
 	if (m_tag == CHARACTER_PLAYER)
 	{
-		if (INPUT->IsKeyPress('E'))
+		if (INPUT->IsKeyPress(VK_E))
 		{
 			m_isAttack = true;
 			//g_ObjectManager->CreateObject(m_vFrontPos);
 		}
-		if (INPUT->IsKeyUp('E'))
+		if (INPUT->IsKeyUp(VK_E))
 		{
 			m_isAttack = false;
 		}

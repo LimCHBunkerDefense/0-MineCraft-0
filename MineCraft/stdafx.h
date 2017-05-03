@@ -55,9 +55,18 @@ using namespace std;
 #define VK_L			0x4B
 #define VK_M			0x4C
 #define VK_N			0x4E
-#define VK_Z			0x5A
+#define VK_O			0x4F
+#define VK_P			0x50
+#define VK_Q			0x51
+#define VK_R			0x52
 #define VK_S			0x53
+#define VK_T			0x54
+#define VK_U			0x55
+#define VK_V			0x56
 #define VK_W			0x57
+#define VK_X			0x58
+#define VK_Y			0x59
+#define VK_Z			0x5A
 
 
 // Mouse Whell
@@ -78,13 +87,11 @@ using namespace std;
 // <<:
 
 //>>::
-
 extern HWND	g_hWnd;
 extern float VIEW_WIDTH;
 extern float VIEW_HEIGHT;
 #define SAFE_RELEASE(p) { if(p) p->Release(); p = NULL; }
 #define SAFE_DELETE(p) { if(p) delete p; p = NULL; }	// << :
-
 
 // >> : 
 #define SINGLETONE(class_name) \
