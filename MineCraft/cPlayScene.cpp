@@ -44,7 +44,7 @@ cPlayScene::~cPlayScene()
 	g_pDeviceManager->Destroy();
 }
 
-void cPlayScene::Setup()
+void cPlayScene::OnEnter()
 {
 	m_pCubeMan = new cCubeMan;
 	m_pCubeMan->Setup();
@@ -80,7 +80,7 @@ void cPlayScene::Setup()
 }
 
 
-void cPlayScene::Update()
+void cPlayScene::OnUpdate()
 {
 	if (INPUT->IsKeyDown(VK_BACK)) SCENE->ChangeScene(SCENE_TITLE);
 
@@ -116,7 +116,7 @@ void cPlayScene::Update()
 	}
 }
 
-void cPlayScene::Render()
+void cPlayScene::OnDraw()
 {
 	g_pD3DDevice->Clear(NULL,
 		NULL,
@@ -145,6 +145,11 @@ void cPlayScene::Render()
 	g_pD3DDevice->EndScene();
 
 	g_pD3DDevice->Present(NULL, NULL, NULL, NULL);
+}
+
+void cPlayScene::OnExit()
+{
+
 }
 
 void cPlayScene::WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)

@@ -11,9 +11,10 @@ public:
 	cLoadingScene();
 	~cLoadingScene();
 
-	void Setup();
-	void Update();
-	void Render();
+	void OnEnter();
+	void OnUpdate();
+	void OnExit();
+	void OnDraw();
 
 	void WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam);
 
