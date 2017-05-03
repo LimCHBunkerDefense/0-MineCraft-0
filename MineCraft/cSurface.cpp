@@ -15,7 +15,7 @@ cSurface::~cSurface()
 	SAFE_RELEASE(m_pTexture);
 }
 
-void cSurface::Setup(D3DXVECTOR3 v1, D3DXVECTOR3 v2, D3DXVECTOR3 v3, D3DXVECTOR3 v4, LPCWSTR imagePath)
+void cSurface::Setup(D3DXVECTOR3 v1, D3DXVECTOR3 v2, D3DXVECTOR3 v3, D3DXVECTOR3 v4, LPCWSTR imagePath, bool isLightOn)
 {
 	/*
 	v1	v2
@@ -61,6 +61,8 @@ void cSurface::Setup(D3DXVECTOR3 v1, D3DXVECTOR3 v2, D3DXVECTOR3 v3, D3DXVECTOR3
 		m_vecVertex[i + 1].n = n;
 		m_vecVertex[i + 2].n = n;
 	}
+
+	m_isLightOn = isLightOn;
 }
 
 void cSurface::Render()
@@ -74,7 +76,16 @@ void cSurface::Render()
 	D3DXMATRIXA16 mat;
 	D3DXMatrixIdentity(&mat);
 	mat = matS*mat;
-	g_pD3DDevice->SetRenderState(D3DRS_LIGHTING, false);
+
+	if (m_isLightOn)
+	{
+		g_pD3DDevice->SetRenderState(D3DRS_LIGHTING, true);
+	}
+	else
+	{
+		g_pD3DDevice->SetRenderState(D3DRS_LIGHTING, false);
+	}
+
 	g_pD3DDevice->SetTransform(D3DTS_WORLD, &mat);
 
 	g_pD3DDevice->SetRenderState(D3DRS_ALPHABLENDENABLE, TRUE);
