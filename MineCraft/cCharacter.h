@@ -13,7 +13,11 @@ protected :
 	D3DXMATRIXA16	m_matWorld; 
 
 	bool			m_isMoving;
-
+	bool			m_isJumping;
+	bool			m_isAttack;
+	
+	float			m_fPrevY;
+	
 public :
 	virtual ~cCharacter();
 
@@ -25,9 +29,7 @@ public :
 	virtual D3DXVECTOR3& GetFrontPos();
 	virtual D3DXVECTOR3& GetDirection();
 
-
-
-
-
+	void SetAttackState(bool a);
+	void SetJumpingState(bool j);
 };
 

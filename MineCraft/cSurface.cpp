@@ -149,3 +149,8 @@ void cSurface::SetMaterial(D3DXVECTOR4 ambient, D3DXVECTOR4 diffuse, D3DXVECTOR4
 	m_stMtl.Emissive = D3DXCOLOR(emissive.x, emissive.y, emissive.z, emissive.w);		// ÀÚÃ¼ ¹ß±¤
 	m_stMtl.Power = power;
 }
+
+vector<ST_PNT_VERTEX> cSurface::GetVerTex()
+{
+	return m_vecVertex;
+}

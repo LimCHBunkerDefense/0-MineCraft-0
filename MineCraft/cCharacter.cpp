@@ -5,11 +5,14 @@
 
 
 cCharacter::cCharacter()
-	: m_fRotY(0.0f) ,
-	m_vDirection(0,0,1), 
-	m_vPosition(0,0,0),
-	m_vFrontPos(0,0,0),
-	m_isMoving(false)
+	: m_fRotY(0.0f),
+	m_vDirection(0, 0, 1),
+	m_vPosition(0, 0, 0),
+	m_vFrontPos(0, 0, 0),
+	m_isMoving(false),
+	m_isJumping(false),
+	m_fPrevY(0),
+	m_isAttack(false)
 {
 	D3DXMatrixIdentity(&m_matWorld);
 }
@@ -80,6 +83,13 @@ void cCharacter::Update()
 	{
 		g_ObjectManager->CreateObject(m_vFrontPos);
 	}
+
+	if (INPUT->IsKeyDown(' ') && !m_isJumping)m_isJumping = true;
+
+	if (m_isJumping)m_vPosition.y += 0.25f;
+
+
+
 }
 void cCharacter::Render()
 {
@@ -99,3 +109,14 @@ D3DXVECTOR3 & cCharacter::GetDirection()
 {
 	return m_vDirection;
 }
+
+void cCharacter::SetAttackState(bool a)
+{
+	m_isAttack = a;
+}
+
+void cCharacter::SetJumpingState(bool j)
+{
+	m_isJumping = j;
+}
+

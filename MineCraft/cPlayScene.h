@@ -47,5 +47,7 @@ public:
 	void WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam);
 
 	void Set_Light();
+
+	void GravityUpdate(vector<ST_PNT_VERTEX> PNT);
 };
 
