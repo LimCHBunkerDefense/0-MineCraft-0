@@ -12,7 +12,7 @@ cLoadingScene::cLoadingScene()
 
 cLoadingScene::~cLoadingScene()
 {
-	SAFE_DELETE(m_pBg);
+	
 }
 
 
@@ -48,7 +48,7 @@ void cLoadingScene::OnDraw()
 
 void cLoadingScene::OnExit()
 {
-
+	SAFE_DELETE(m_pBg);
 }
 
 void cLoadingScene::WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)

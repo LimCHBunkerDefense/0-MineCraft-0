@@ -20,14 +20,7 @@ cTitleScene::cTitleScene() :
 
 cTitleScene::~cTitleScene()
 {
-	SAFE_DELETE(m_pBg);
-	SAFE_DELETE(m_pLogo);
-	SAFE_DELETE(m_pCamera);
-	SAFE_DELETE(m_pButton_Start);
-	SAFE_DELETE(m_pButton_Shop);
 
-	SOUND->Stop("TitleBGM");
-	SOUND->Release();
 }
 
 
@@ -93,7 +86,14 @@ void cTitleScene::OnDraw()
 
 void cTitleScene::OnExit()
 {
+	SAFE_DELETE(m_pBg);
+	SAFE_DELETE(m_pLogo);
+	SAFE_DELETE(m_pCamera);
+	SAFE_DELETE(m_pButton_Start);
+	SAFE_DELETE(m_pButton_Shop);
 
+	SOUND->Stop("TitleBGM");
+	SOUND->Release();
 }
 
 void cTitleScene::WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)

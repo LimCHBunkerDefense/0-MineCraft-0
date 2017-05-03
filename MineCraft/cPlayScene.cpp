@@ -30,17 +30,7 @@ cPlayScene::cPlayScene() :
 
 cPlayScene::~cPlayScene()
 {
-	SAFE_DELETE(m_pCubeMan);
-	SAFE_DELETE(m_pSun);
-	SAFE_DELETE(m_pMoon);
-	SAFE_DELETE(m_pTop);
-	SAFE_DELETE(m_pBottom);
-	SAFE_DELETE(m_pSide1);
-	SAFE_DELETE(m_pSide2);
-	SAFE_DELETE(m_pSide3);
-	SAFE_DELETE(m_pSide4);
-	SAFE_DELETE(m_pCamera);
-	SAFE_DELETE(m_pPosToCreateTile);
+
 	g_pDeviceManager->Destroy();
 }
 
@@ -149,7 +139,18 @@ void cPlayScene::OnDraw()
 
 void cPlayScene::OnExit()
 {
+	SAFE_DELETE(m_pTop);
+	SAFE_DELETE(m_pBottom);
+	SAFE_DELETE(m_pSide1);
+	SAFE_DELETE(m_pSide2);
+	SAFE_DELETE(m_pSide3);
+	SAFE_DELETE(m_pSide4);
 
+	SAFE_DELETE(m_pCubeMan);
+	SAFE_DELETE(m_pSun);
+	SAFE_DELETE(m_pMoon);
+	SAFE_DELETE(m_pCamera);
+	SAFE_DELETE(m_pPosToCreateTile);
 }
 
 void cPlayScene::WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)

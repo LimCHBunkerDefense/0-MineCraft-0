@@ -18,12 +18,7 @@ cShopScene::cShopScene()
 
 cShopScene::~cShopScene()
 {
-	SAFE_DELETE(m_pUI_rightButton);
-	SAFE_DELETE(m_pUI_leftButton);
-	SAFE_DELETE(m_pSelectButton);
-	SAFE_DELETE(m_pGUI_In);
-	SAFE_DELETE(m_pGUI_Outline);
-	SAFE_DELETE(m_pBg);
+
 }
 
 void cShopScene::OnEnter()
@@ -90,7 +85,12 @@ void cShopScene::OnDraw()
 
 void cShopScene::OnExit()
 {
-
+	SAFE_DELETE(m_pUI_rightButton);
+	SAFE_DELETE(m_pUI_leftButton);
+	SAFE_DELETE(m_pSelectButton);
+	SAFE_DELETE(m_pGUI_In);
+	SAFE_DELETE(m_pGUI_Outline);
+	SAFE_DELETE(m_pBg);
 }
 
 void cShopScene::WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
