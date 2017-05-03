@@ -53,7 +53,9 @@ void cCamera::Update()
 	if (m_pvTarget)
 	{
 		m_vLookAt = *m_pvTarget;
-		m_vEye = m_vEye + *m_pvTarget;
+
+		if (m_vEye.y > 0.5f) m_vEye = m_vEye + *m_pvTarget;
+		else m_vEye.y = 0.5f;
 	}
 
 	D3DXMATRIXA16 matView;

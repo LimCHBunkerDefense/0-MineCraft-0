@@ -11,6 +11,7 @@ class cSun;
 class cMoon;
 class cButton;
 
+#define WallLength	500.0f
 
 class cPlayScene : public IScene
 {
