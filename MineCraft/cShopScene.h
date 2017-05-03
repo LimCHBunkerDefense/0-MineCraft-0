@@ -8,7 +8,7 @@ class cCubeMan;
 
 enum SKIN_INDEX
 {
-	SKIN_NONE, SKIN_BATMAN, 
+	SKIN_NONE, SKIN_BATMAN, SKIN_CAPTAIN, SKIN_IRON, SKIN_SPIDER,
 };
 
 class cShopScene : public IScene
@@ -21,7 +21,7 @@ class cShopScene : public IScene
 	cButton*	m_pUI_rightButton;
 	cButton*	m_pSelectButton;
 
-	SKIN_INDEX	m_nSkinIndex;
+	int			m_nSkinIndex;
 	cCubeMan*	m_pExampleMan;
 	cCubeMan*	m_pMyMan;
 
@@ -38,5 +38,9 @@ public:
 
 	void Set_Light();
 	void UpdateExampleMan();
+	void UpdateExampleSkin();
+	void SelectSkin();
+
+	int GetSkinIndex() { return m_nSkinIndex; }
 };
 
