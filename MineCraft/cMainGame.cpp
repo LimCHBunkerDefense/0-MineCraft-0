@@ -2,8 +2,9 @@
 #include "cMainGame.h"
 #include "cDeviceManager.h"	
 #include "cSceneManager.h"
-#include "cPlayScene.h"
+#include "cLoadingScene.h"
 #include "cTitleScene.h"
+#include "cPlayScene.h"
 #include "cShopScene.h"
 #include "cCubePC.h"
 #include "cCamera.h"
@@ -26,6 +27,7 @@ void cMainGame::Setup()
 {
 	INPUT->Setup();
 	SOUND->Setup();
+	SCENE->Register(SCENE_LOADING, new cLoadingScene);
 	SCENE->Register(SCENE_TITLE, new cTitleScene);
 	SCENE->Register(SCENE_PLAY, new cPlayScene);
 	SCENE->Register(SCENE_SHOP, new cShopScene);

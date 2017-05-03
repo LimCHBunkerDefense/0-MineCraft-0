@@ -85,9 +85,6 @@
     <ClCompile Include="cTitleScene.cpp">
       <Filter>12. cScene\01. cTitleScene</Filter>
     </ClCompile>
-    <ClCompile Include="cShopScene.cpp">
-      <Filter>12. cScene\03. cShopScene</Filter>
-    </ClCompile>
     <ClCompile Include="cPlayScene.cpp">
       <Filter>12. cScene\02. cPlayScene</Filter>
     </ClCompile>
@@ -97,12 +94,14 @@
     <ClCompile Include="cButton.cpp">
       <Filter>98. Utility\10. cButton</Filter>
     </ClCompile>
-    <ClCompile Include="cText.cpp">
-      <Filter>98. Utility\11. cText</Filter>
+    <ClCompile Include="cShopScene.cpp">
+      <Filter>12. cScene\03. cShopScene</Filter>
     </ClCompile>
-    <ClCompile Include="cSoundManager.cpp">
-      <Filter>07. cSoundManager</Filter>
+    <ClCompile Include="cLoadingScene.cpp">
+      <Filter>12. cScene\xx.cLoadingScene</Filter>
     </ClCompile>
+    <ClCompile Include="cSoundManager.cpp" />
+    <ClCompile Include="cText.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h" />
@@ -205,12 +204,11 @@
     <ClInclude Include="cButton.h">
       <Filter>98. Utility\10. cButton</Filter>
     </ClInclude>
-    <ClInclude Include="cText.h">
-      <Filter>98. Utility\11. cText</Filter>
+    <ClInclude Include="cLoadingScene.h">
+      <Filter>12. cScene\xx.cLoadingScene</Filter>
     </ClInclude>
-    <ClInclude Include="cSoundManager.h">
-      <Filter>07. cSoundManager</Filter>
-    </ClInclude>
+    <ClInclude Include="cSoundManager.h" />
+    <ClInclude Include="cText.h" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="small.ico">
@@ -229,6 +227,9 @@
   <ItemGroup>
     <Filter Include="99. etc">
       <UniqueIdentifier>{fd7db6e5-5617-4c5e-a94c-81dc69836f52}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="00. cMineCraft">
+      <UniqueIdentifier>{6aad5c0f-524d-477e-a095-246ed777a841}</UniqueIdentifier>
     </Filter>
     <Filter Include="01. cMainGame">
       <UniqueIdentifier>{ada4fb67-777c-4fc6-b76b-dbef8cd7eb5c}</UniqueIdentifier>
@@ -316,15 +317,6 @@
     </Filter>
     <Filter Include="98. Utility\NewFilter1">
       <UniqueIdentifier>{fdee22c6-1342-4b00-b0d4-6b21abff64a1}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="98. Utility\11. cText">
-      <UniqueIdentifier>{6d983cdb-c57f-45e3-aeb0-2b711d0c23f4}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="07. cSoundManager">
-      <UniqueIdentifier>{2e5e65d2-249d-400f-bad0-1b1a4f157597}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="00. cMineCraft">
-      <UniqueIdentifier>{6aad5c0f-524d-477e-a095-246ed777a841}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
