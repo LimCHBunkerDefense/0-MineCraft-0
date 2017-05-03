@@ -11,7 +11,8 @@ cCharacter::cCharacter()
 	m_vFrontPos(0,0,0),
 	m_isMoving(false),
 	m_fScale(1.0f),
-	m_tag(CHARACTER_PLAYER)
+	m_tag(CHARACTER_PLAYER),
+	m_currentObjName(OBJECT_NONE)
 {
 	D3DXMatrixIdentity(&m_matWorld);
 }
@@ -31,23 +32,23 @@ void cCharacter::Update()
 	{
 		m_isMoving = false;
 
-		if (INPUT->IsKeyPress('A'))
+		if (INPUT->IsKeyPress(VK_A))
 		{
 			m_isMoving = true;
 			m_fRotY -= 0.1f;
 		}
-		if (INPUT->IsKeyPress('D'))
+		if (INPUT->IsKeyPress(VK_D))
 		{
 			m_isMoving = true;
 			m_fRotY += 0.1f;
 		}
 
-		if (INPUT->IsKeyPress('W'))
+		if (INPUT->IsKeyPress(VK_W))
 		{
 			m_isMoving = true;
 			m_vPosition = m_vPosition + (m_vDirection * 0.1f);
 		}
-		if (INPUT->IsKeyPress('S'))
+		if (INPUT->IsKeyPress(VK_S))
 		{
 			m_isMoving = true;
 			m_vPosition = m_vPosition - (m_vDirection * 0.1f);
@@ -57,9 +58,12 @@ void cCharacter::Update()
 
 	if (m_tag == CHARACTER_PLAYER)
 	{
-		if (INPUT->IsKeyPress('E'))
+		if (INPUT->IsKeyPress('1'))m_currentObjName = OBJECT_DIRT;
+		if (INPUT->IsKeyPress('2'))m_currentObjName = OBJECT_WOOD;
+
+		if (INPUT->IsKeyPress('E')&&m_currentObjName!=OBJECT_NONE)
 		{
-			g_ObjectManager->CreateObject(m_vFrontPos);
+			g_ObjectManager->CreateObject(m_vFrontPos, m_currentObjName);
 		}
 
 		// >> : update frontPos

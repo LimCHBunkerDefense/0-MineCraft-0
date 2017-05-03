@@ -12,5 +12,6 @@ public :
 	virtual	void Setup();
 	virtual	void Update();
 	virtual	void Render(); 
+	virtual vector<ST_PNT_VERTEX>& GetVectex() { return m_vecVertex; }
 };
 

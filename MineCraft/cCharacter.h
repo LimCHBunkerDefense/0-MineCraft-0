@@ -23,6 +23,8 @@ protected :
 	float			m_fScale;
 	CHARACTER_TAG	m_tag;
 
+	OBJECT_NAME     m_currentObjName;
+
 public :
 	virtual ~cCharacter();
 
@@ -35,6 +37,7 @@ public :
 	virtual D3DXVECTOR3& GetFrontPos();
 	virtual D3DXVECTOR3& GetDirection();
 	virtual void SetScale(float scale);
+	virtual float GetRotY() { return m_fRotY; }
 	virtual void SetRotY(float rotY);
 	virtual void SetTag(CHARACTER_TAG tag);
 
