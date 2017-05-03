@@ -3,9 +3,10 @@
 
 
 cSurface::cSurface() : m_pTexture(NULL),
-m_logoScale(1.0f),
-m_isBiglogoScale(false),
-m_isThisLogo(false)
+					m_logoScale(1.0f),
+					m_isLightOn(false),
+					m_isBiglogoScale(false),
+					m_isThisLogo(false)
 {
 }
 
