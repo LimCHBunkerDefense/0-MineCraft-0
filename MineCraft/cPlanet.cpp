@@ -14,8 +14,6 @@ cPlanet::~cPlanet()
 void cPlanet::Setup()
 {
 	cCubePNT::Setup();
-
-
 }
 
 void cPlanet::Update()

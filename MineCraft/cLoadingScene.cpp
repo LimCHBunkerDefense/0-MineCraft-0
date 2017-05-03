@@ -39,7 +39,7 @@ void cLoadingScene::Render()
 
 	g_pD3DDevice->BeginScene();
 
-	//m_pBg->Render();
+	m_pBg->Render();
 
 	g_pD3DDevice->EndScene();
 
