@@ -56,7 +56,7 @@ void cPlayScene::Setup()
 	m_pSun->Setup();
 
 	m_pMoon = new cMoon();
-	m_pMoon->Setup();
+	// m_pMoon->Setup();
 
 	m_pPosToCreateTile = new cSurface();
 	m_pPosToCreateTile->Setup(D3DXVECTOR3 (-1.0f, 0.0f, -1.0f), D3DXVECTOR3 (-1.0f, 0.0f, 1.0f), D3DXVECTOR3(1.0f, 0.0f, 1.0f), D3DXVECTOR3(1.0f, 0.0f, -1.0f), TEXT("Image/Surface/yellow.png"));
@@ -138,7 +138,7 @@ void cPlayScene::Render()
 
 	// >> : ÇØ¿Í ´Ş Render
 	if (m_pSun)	m_pSun->Render();
-	if (m_pMoon) m_pMoon->Render();
+	else if (m_pMoon) m_pMoon->Render();
 	// << :
 
 	g_ObjectManager->Render();
