@@ -6,6 +6,9 @@
 #include "cMainGame.h"
 
 #define MAX_LOADSTRING 100
+// >>: 해상도 조절
+#define WND_VIEW_WIDTH 1100
+#define WND_VIEW_HEIGHT 800
 
 // 전역 변수:
 HINSTANCE hInst;                                // 현재 인스턴스입니다.
@@ -120,7 +123,7 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
    hInst = hInstance; // 인스턴스 핸들을 전역 변수에 저장합니다.
 
    HWND hWnd = CreateWindowW(szWindowClass, szTitle, WS_OVERLAPPEDWINDOW,
-      CW_USEDEFAULT, 0, 1100, 800, nullptr, nullptr, hInstance, nullptr);
+      CW_USEDEFAULT, 0, WND_VIEW_WIDTH, WND_VIEW_HEIGHT, nullptr, nullptr, hInstance, nullptr);
 
    g_hWnd = hWnd;
    // >> VIEW_WIDTH, VIEW_HEIGHT 등록

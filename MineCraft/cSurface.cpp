@@ -3,7 +3,7 @@
 
 
 cSurface::cSurface() : m_pTexture(NULL),
-m_logoScale(1.0f),
+m_imgScale(1.0f),
 m_isBiglogoScale(false),
 m_isThisLogo(false)
 {
@@ -68,7 +68,7 @@ void cSurface::Render()
 	if (m_isThisLogo == true)logoScaling();
 	D3DXMATRIXA16 matS;
 	D3DXMatrixIdentity(&matS);
-	D3DXMatrixScaling(&matS, m_logoScale, m_logoScale, m_logoScale);
+	D3DXMatrixScaling(&matS, m_imgScale, m_imgScale, m_imgScale);
 
 	g_pD3DDevice->SetTransform(D3DTS_WORLD, &matS);
 	D3DXMATRIXA16 mat;
@@ -113,10 +113,10 @@ void cSurface::SetisThisLogo()
 
 void cSurface::logoScaling()
 {
-	if (m_isBiglogoScale == false)m_logoScale += 0.005f;
-	if (m_isBiglogoScale == true)m_logoScale -= 0.005f;
-	if (m_logoScale >= 1.05f)m_isBiglogoScale = true;
-	else if (m_logoScale <= 0.95f)m_isBiglogoScale = false;
+	if (m_isBiglogoScale == false)m_imgScale += 0.005f;
+	if (m_isBiglogoScale == true)m_imgScale -= 0.005f;
+	if (m_imgScale >= 1.05f)m_isBiglogoScale = true;
+	else if (m_imgScale <= 0.95f)m_isBiglogoScale = false;
 }
 
 void cSurface::SetUI(float width, float height)
@@ -128,3 +128,11 @@ void cSurface::SetUI(float width, float height)
 	m_vecVertex[4].t = D3DXVECTOR2(width, 0.0f);		// v3
 	m_vecVertex[5].t = D3DXVECTOR2(width, height);		// v4
 }
+
+float cSurface::IMG_SetScale(float scale)
+{
+	m_imgScale = scale;
+
+	return m_imgScale;
+}
+
