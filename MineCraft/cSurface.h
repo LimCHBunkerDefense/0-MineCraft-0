@@ -19,6 +19,7 @@ public:
 	//>>:스케일조절
 	float IMG_SetScale(float scale);
 
+	vector<ST_PNT_VERTEX> GetVerTex();
 private:
 	LPDIRECT3DTEXTURE9		m_pTexture;
 	D3DMATERIAL9			m_stMtl;

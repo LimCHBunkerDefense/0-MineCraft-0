@@ -71,10 +71,18 @@ void cCubeMan::Setup()
 void cCubeMan::Update()
 {
 	cCharacter::Update(); 
-	if (!m_isMoving) m_pRoot->SetDefaultRotX();
-	else m_pRoot->RotateRotX();
 
-	if (m_pRoot) m_pRoot->Update();
+
+	
+
+	if (m_pRoot)
+	{
+		if (m_isMoving) m_pRoot->RotateRotX();
+		if (!m_isMoving)m_pRoot->SetDefaultRotX();
+		if (m_isAttack) m_pRoot->AttackMotion();
+		if (!m_isAttack) m_pRoot->EndAttack();
+		m_pRoot->Update();
+	}
 	
 }
 
