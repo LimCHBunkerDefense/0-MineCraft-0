@@ -23,6 +23,8 @@ protected :
 	float			m_fScale;
 	CHARACTER_TAG	m_tag;
 
+	OBJECT_NAME     m_currentObjName;
+
 public :
 	virtual ~cCharacter();
 

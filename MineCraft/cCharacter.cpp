@@ -11,7 +11,8 @@ cCharacter::cCharacter()
 	m_vFrontPos(0,0,0),
 	m_isMoving(false),
 	m_fScale(1.0f),
-	m_tag(CHARACTER_PLAYER)
+	m_tag(CHARACTER_PLAYER),
+	m_currentObjName(OBJECT_NONE)
 {
 	D3DXMatrixIdentity(&m_matWorld);
 }
@@ -57,9 +58,12 @@ void cCharacter::Update()
 
 	if (m_tag == CHARACTER_PLAYER)
 	{
-		if (INPUT->IsKeyPress('E'))
+		if (INPUT->IsKeyPress('1'))m_currentObjName = OBJECT_DIRT;
+		if (INPUT->IsKeyPress('2'))m_currentObjName = OBJECT_WOOD;
+
+		if (INPUT->IsKeyPress('E')&&m_currentObjName!=OBJECT_NONE)
 		{
-			g_ObjectManager->CreateObject(m_vFrontPos);
+			g_ObjectManager->CreateObject(m_vFrontPos, m_currentObjName);
 		}
 
 		// >> : update frontPos
