@@ -13,6 +13,7 @@ cShopScene::cShopScene()
 	, m_pSelectButton(NULL)
 	, m_pUI_leftButton(NULL)
 	, m_pUI_rightButton(NULL)
+	, m_pBackButton(NULL)
 	, m_pExampleMan01(NULL)
 	, m_pExampleMan02(NULL)
 	, m_pExampleMan03(NULL)
@@ -52,9 +53,13 @@ void cShopScene::OnEnter()
 		D3DXVECTOR3(VIEW_WIDTH * 0.04f, VIEW_HEIGHT * 0.82f, -0.3f), D3DXVECTOR3(VIEW_WIDTH * 0.04f, VIEW_HEIGHT * 0.67f, -0.3f), D3DCOLOR_XRGB(175, 175, 175, 0.8f));
 
 	m_pSelectButton = new cButton();
-	m_pSelectButton->Setup(D3DXVECTOR3(VIEW_WIDTH * 0.14f, VIEW_HEIGHT * 0.29f, -0.3f), D3DXVECTOR3(VIEW_WIDTH * 0.14f, VIEW_HEIGHT * 0.35f, -0.3f),
-		D3DXVECTOR3(VIEW_WIDTH * 0.30f, VIEW_HEIGHT * 0.35f, -0.3f), D3DXVECTOR3(VIEW_WIDTH * 0.30f, VIEW_HEIGHT * 0.29f, -0.3f), D3DCOLOR_XRGB(175, 175, 175, 0.8f));
+	m_pSelectButton->Setup(D3DXVECTOR3(VIEW_WIDTH * 0.17f, VIEW_HEIGHT * 0.29f, -0.3f), D3DXVECTOR3(VIEW_WIDTH * 0.17f, VIEW_HEIGHT * 0.35f, -0.3f),
+		D3DXVECTOR3(VIEW_WIDTH * 0.33f, VIEW_HEIGHT * 0.35f, -0.3f), D3DXVECTOR3(VIEW_WIDTH * 0.33f, VIEW_HEIGHT * 0.29f, -0.3f), D3DCOLOR_XRGB(175, 175, 175, 0.8f));
 	//m_pSelectButton->SetText(("Select"), 40, D3DCOLOR_XRGB(0, 0, 0, 0));
+
+	m_pBackButton = new cButton();
+	m_pBackButton->Setup(D3DXVECTOR3(VIEW_WIDTH * 0.10f, VIEW_HEIGHT * 0.29f, -0.3f), D3DXVECTOR3(VIEW_WIDTH * 0.10f, VIEW_HEIGHT * 0.35f, -0.3f),
+		D3DXVECTOR3(VIEW_WIDTH * 0.16f, VIEW_HEIGHT * 0.35f, -0.3f), D3DXVECTOR3(VIEW_WIDTH * 0.16f, VIEW_HEIGHT * 0.29f, -0.3f), D3DCOLOR_XRGB(175, 175, 175, 0.8f));
 
 	SetupExampleMan();
 	
@@ -74,6 +79,7 @@ void cShopScene::OnUpdate()
 	if (m_pUI_leftButton)	m_pUI_leftButton->Update();
 	if (m_pUI_rightButton)	m_pUI_rightButton->Update();
 	if (m_pSelectButton)	m_pSelectButton->Update();
+	if (m_pBackButton)		m_pBackButton->Update();
 	if (m_pExampleMan01) m_pExampleMan01->Update();
 	if (m_pExampleMan02) m_pExampleMan02->Update();
 	if (m_pExampleMan03) m_pExampleMan03->Update();
@@ -101,6 +107,7 @@ void cShopScene::OnDraw()
 	m_pUI_rightButton->Render();
 	
 	m_pSelectButton->Render();
+	m_pBackButton->Render();
 
 	m_pExampleMan01->Render();
 	m_pExampleMan02->Render();

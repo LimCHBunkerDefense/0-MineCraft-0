@@ -20,6 +20,7 @@ class cShopScene : public IScene
 	cButton*	m_pUI_leftButton;
 	cButton*	m_pUI_rightButton;
 	cButton*	m_pSelectButton;
+	cButton*	m_pBackButton;
 
 	int			m_nSkinIndex;
 	cCubeMan*	m_pExampleMan01;
