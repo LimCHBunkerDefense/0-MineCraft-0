@@ -25,7 +25,6 @@ cMainGame::~cMainGame()
 
 void cMainGame::Setup()
 {
-
 	INPUT->Setup();
 	SOUND->Setup();
 	SCENE->Register(SCENE_LOADING, new cLoadingScene);
@@ -38,6 +37,7 @@ void cMainGame::Setup()
 void cMainGame::Update()
 {
 	SCENE->Update();
+	SOUND->Update();
 	INPUT->Update();	
 }
 

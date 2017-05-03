@@ -23,7 +23,7 @@ void cSoundManager::Release()
 	m_pSystem->close();
 }
 
-void cSoundManager::Update(float deltaTime)
+void cSoundManager::Update()
 {
 	m_pSystem->update();
 
