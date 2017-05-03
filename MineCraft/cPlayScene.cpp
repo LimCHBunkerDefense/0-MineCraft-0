@@ -49,22 +49,22 @@ void cPlayScene::OnEnter()
 	// m_pMoon->Setup();
 
 	m_pPosToCreateTile = new cSurface();
-	m_pPosToCreateTile->Setup(D3DXVECTOR3 (-1.0f, 0.0f, -1.0f), D3DXVECTOR3 (-1.0f, 0.0f, 1.0f), D3DXVECTOR3(1.0f, 0.0f, 1.0f), D3DXVECTOR3(1.0f, 0.0f, -1.0f), TEXT("Image/Surface/yellow.png"));
+	m_pPosToCreateTile->Setup(D3DXVECTOR3 (-1.0f, 0.0f, -1.0f), D3DXVECTOR3 (-1.0f, 0.0f, 1.0f), D3DXVECTOR3(1.0f, 0.0f, 1.0f), D3DXVECTOR3(1.0f, 0.0f, -1.0f), TEXT("Image/Surface/yellow.png"), false);
 
 	m_pTop = new cSurface();
-	m_pTop->Setup(D3DXVECTOR3(-WallLength, WallLength, WallLength), D3DXVECTOR3(-WallLength, WallLength, -WallLength), D3DXVECTOR3(WallLength, WallLength, -WallLength), D3DXVECTOR3(WallLength, WallLength, WallLength), TEXT("Image/Surface/skywall_top.png"));
+	m_pTop->Setup(D3DXVECTOR3(-WallLength, WallLength, WallLength), D3DXVECTOR3(-WallLength, WallLength, -WallLength), D3DXVECTOR3(WallLength, WallLength, -WallLength), D3DXVECTOR3(WallLength, WallLength, WallLength), TEXT("Image/Surface/skywall_top.png"), true);
 	//m_pTop->Setup(-WallLength, WallLength, WallLength, -WallLength, WallLength, -WallLength, WallLength, WallLength, -WallLength, WallLength, WallLength, WallLength, TEXT("Image/Surface/?????.png"));	// top이미지 필요
 	m_pBottom = new cSurface();
-	m_pBottom->Setup(D3DXVECTOR3 (-WallLength, 0.0f, -WallLength), D3DXVECTOR3 (-WallLength, 0.0f, WallLength), D3DXVECTOR3(WallLength, 0.0f, WallLength), D3DXVECTOR3(WallLength, 0.0f, -WallLength), TEXT("Image/Surface/ground.png"));
+	m_pBottom->Setup(D3DXVECTOR3 (-WallLength, 0.0f, -WallLength), D3DXVECTOR3 (-WallLength, 0.0f, WallLength), D3DXVECTOR3(WallLength, 0.0f, WallLength), D3DXVECTOR3(WallLength, 0.0f, -WallLength), TEXT("Image/Surface/ground.png"), true);
 
 	m_pSide1 = new cSurface();
-	m_pSide1->Setup(D3DXVECTOR3 (-WallLength, 0.0f, WallLength), D3DXVECTOR3 (-WallLength, WallLength, WallLength), D3DXVECTOR3(WallLength, WallLength, WallLength), D3DXVECTOR3(WallLength, 0.0f, WallLength), TEXT("Image/Surface/skywall.png"));
+	m_pSide1->Setup(D3DXVECTOR3 (-WallLength, 0.0f, WallLength), D3DXVECTOR3 (-WallLength, WallLength, WallLength), D3DXVECTOR3(WallLength, WallLength, WallLength), D3DXVECTOR3(WallLength, 0.0f, WallLength), TEXT("Image/Surface/skywall.png"), true);
 	m_pSide2 = new cSurface();
-	m_pSide2->Setup(D3DXVECTOR3 (-WallLength, 0.0f, -WallLength), D3DXVECTOR3 (-WallLength, WallLength, -WallLength), D3DXVECTOR3 (-WallLength, WallLength, WallLength), D3DXVECTOR3 (-WallLength, 0.0f, WallLength), TEXT("Image/Surface/skywall2.png"));
+	m_pSide2->Setup(D3DXVECTOR3 (-WallLength, 0.0f, -WallLength), D3DXVECTOR3 (-WallLength, WallLength, -WallLength), D3DXVECTOR3 (-WallLength, WallLength, WallLength), D3DXVECTOR3 (-WallLength, 0.0f, WallLength), TEXT("Image/Surface/skywall2.png"), true);
 	m_pSide3 = new cSurface();
-	m_pSide3->Setup(D3DXVECTOR3(WallLength, 0.0f, -WallLength), D3DXVECTOR3(WallLength, WallLength, -WallLength), D3DXVECTOR3(-WallLength, WallLength, -WallLength), D3DXVECTOR3(-WallLength, 0.0f, -WallLength), TEXT("Image/Surface/skywall.png"));
+	m_pSide3->Setup(D3DXVECTOR3(WallLength, 0.0f, -WallLength), D3DXVECTOR3(WallLength, WallLength, -WallLength), D3DXVECTOR3(-WallLength, WallLength, -WallLength), D3DXVECTOR3(-WallLength, 0.0f, -WallLength), TEXT("Image/Surface/skywall.png"), true);
 	m_pSide4 = new cSurface();
-	m_pSide4->Setup(D3DXVECTOR3(WallLength, 0.0f, WallLength), D3DXVECTOR3(WallLength, WallLength, WallLength), D3DXVECTOR3(WallLength, WallLength, -WallLength), D3DXVECTOR3(WallLength, 0.0f, -WallLength), TEXT("Image/Surface/skywall2.png"));
+	m_pSide4->Setup(D3DXVECTOR3(WallLength, 0.0f, WallLength), D3DXVECTOR3(WallLength, WallLength, WallLength), D3DXVECTOR3(WallLength, WallLength, -WallLength), D3DXVECTOR3(WallLength, 0.0f, -WallLength), TEXT("Image/Surface/skywall2.png"), true);
 
 	Set_Light();
 }
