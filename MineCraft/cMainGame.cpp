@@ -31,7 +31,7 @@ void cMainGame::Setup()
 	SCENE->Register(SCENE_TITLE, new cTitleScene);
 	SCENE->Register(SCENE_PLAY, new cPlayScene);
 	SCENE->Register(SCENE_SHOP, new cShopScene);
-	SCENE->ChangeScene(SCENE_TITLE);
+	SCENE->ChangeScene(SCENE_LOADING);
 }
 
 void cMainGame::Update()

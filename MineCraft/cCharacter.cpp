@@ -10,16 +10,10 @@ cCharacter::cCharacter()
 	m_vPosition(0,0,0),
 	m_vFrontPos(0,0,0),
 	m_isMoving(false),
-	m_fScale(1.0f),
-	m_tag(CHARACTER_PLAYER)
-	: m_fRotY(0.0f),
-	m_vDirection(0, 0, 1),
-	m_vPosition(0, 0, 0),
-	m_vFrontPos(0, 0, 0),
-	m_isMoving(false),
 	m_isJumping(false),
 	m_fPrevY(0),
-	m_isAttack(false)
+	m_fScale(1.0f),
+	m_tag(CHARACTER_PLAYER)
 {
 	D3DXMatrixIdentity(&m_matWorld);
 }

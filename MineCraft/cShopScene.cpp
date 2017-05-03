@@ -42,12 +42,12 @@ void cShopScene::OnEnter()
 	m_pGUI_In->SetUI(0.9f, 0.7f);
 
 	m_pUI_leftButton = new cButton();
-	m_pUI_leftButton->Setup(D3DXVECTOR3(-VIEW_WIDTH * 0.32f, VIEW_HEIGHT * 0.62f, -0.3f), D3DXVECTOR3(-VIEW_WIDTH * 0.32f, VIEW_HEIGHT * 0.72f, -0.3f),
-		D3DXVECTOR3(-VIEW_WIDTH * 0.29f, VIEW_HEIGHT * 0.72f, -0.3f), D3DXVECTOR3(-VIEW_WIDTH * 0.29f, VIEW_HEIGHT * 0.62f, -0.3f), D3DCOLOR_XRGB(150, 150, 150, 0.8f));
+	m_pUI_leftButton->Setup(D3DXVECTOR3(-VIEW_WIDTH * 0.25f, VIEW_HEIGHT * 0.62f, -0.3f), D3DXVECTOR3(-VIEW_WIDTH * 0.25f, VIEW_HEIGHT * 0.72f, -0.3f),
+		D3DXVECTOR3(-VIEW_WIDTH * 0.22f, VIEW_HEIGHT * 0.72f, -0.3f), D3DXVECTOR3(-VIEW_WIDTH * 0.22f, VIEW_HEIGHT * 0.62f, -0.3f), D3DCOLOR_XRGB(150, 150, 150, 0.8f));
 
 	m_pUI_rightButton = new cButton();
-	m_pUI_rightButton->Setup(D3DXVECTOR3(VIEW_WIDTH * -0.03f, VIEW_HEIGHT * 0.62f, -0.3f), D3DXVECTOR3(VIEW_WIDTH * -0.03f, VIEW_HEIGHT * 0.72f, -0.3f),
-		D3DXVECTOR3(VIEW_WIDTH * 0.0f, VIEW_HEIGHT * 0.72f, -0.3f), D3DXVECTOR3(VIEW_WIDTH * 0.0f, VIEW_HEIGHT * 0.62f, -0.3f), D3DCOLOR_XRGB(150, 150, 150, 0.8f));
+	m_pUI_rightButton->Setup(D3DXVECTOR3(VIEW_WIDTH * -0.08f, VIEW_HEIGHT * 0.62f, -0.3f), D3DXVECTOR3(VIEW_WIDTH * -0.08f, VIEW_HEIGHT * 0.72f, -0.3f),
+		D3DXVECTOR3(VIEW_WIDTH * -0.05f, VIEW_HEIGHT * 0.72f, -0.3f), D3DXVECTOR3(VIEW_WIDTH * -0.05f, VIEW_HEIGHT * 0.62f, -0.3f), D3DCOLOR_XRGB(150, 150, 150, 0.8f));
 
 	m_pSelectButton = new cButton();
 	m_pSelectButton->Setup(D3DXVECTOR3(VIEW_WIDTH * 0.13f, VIEW_HEIGHT * 0.26f, -0.3f), D3DXVECTOR3(VIEW_WIDTH * 0.13f, VIEW_HEIGHT * 0.32f, -0.3f),
@@ -55,17 +55,17 @@ void cShopScene::OnEnter()
 	//m_pSelectButton->SetText(("Select"), 40, D3DCOLOR_XRGB(0, 0, 0, 0));
 
 	m_pExampleMan = new cCubeMan;
-	m_pExampleMan->SetScale(100.0f);
+	m_pExampleMan->SetScale(70.0f);
 	m_pExampleMan->Setup();
 	m_pExampleMan->SetRotY(D3DX_PI);
-	m_pExampleMan->SetPosition(VIEW_WIDTH * -0.16f, VIEW_HEIGHT * 0.55f, -0.4f);
+	m_pExampleMan->SetPosition(VIEW_WIDTH * -0.14f, VIEW_HEIGHT * 0.58f, -70.0f);
 	m_pExampleMan->SetTag(CHARACTER_EXAMPLE);
 	
 	m_pMyMan = new cCubeMan;
 	m_pMyMan->SetScale(200.0f);
 	m_pMyMan->Setup();
 	m_pMyMan->SetRotY(D3DX_PI);
-	m_pMyMan->SetPosition(VIEW_WIDTH * 0.16f, VIEW_HEIGHT * 0.35f, -0.4f);
+	m_pMyMan->SetPosition(VIEW_WIDTH * 0.18f, VIEW_HEIGHT * 0.35f, -0.3f);
 	m_pMyMan->SetTag(CHARACTER_MY);
 
 	Set_Light();
@@ -81,7 +81,7 @@ void cShopScene::OnUpdate()
 	if (m_pMyMan) m_pMyMan->Update();
 
 	// 예시 케릭터 위에 커서가 가면, 예시 케릭터가 Y축으로 회전하도록.
-	//if (INPUT->IsCollided(m_pExampleMan->GetPosition() - D3DX))
+	UpdateExampleMan();
 }
 
 void cShopScene::OnDraw()
@@ -144,4 +144,16 @@ void cShopScene::Set_Light()
 	}
 
 	g_pD3DDevice->LightEnable(0, true);
+}
+
+void cShopScene::UpdateExampleMan()
+{
+	if (INPUT->IsCollided(D3DXVECTOR2(330, 150), D3DXVECTOR2(420, 330)))
+	{
+		m_pExampleMan->SetRotY(m_pExampleMan->GetRotY() + D3DX_PI * 0.02);
+	}
+	else
+	{
+		m_pExampleMan->SetRotY(D3DX_PI);
+	}
 }

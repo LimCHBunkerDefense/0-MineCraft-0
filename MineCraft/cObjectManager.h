@@ -13,5 +13,5 @@ private:
 public:
 	vector<cObject*>& GetVecObject() { return m_vecObject; }
 	void Render();
-	void CreateObject(D3DXVECTOR3 tagetPos);
+	void CreateObject(D3DXVECTOR3 tagetPos, OBJECT_NAME name);
 };
