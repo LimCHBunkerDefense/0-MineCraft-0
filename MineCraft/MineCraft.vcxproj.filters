@@ -101,12 +101,14 @@
       <Filter>12. cScene\xx.cLoadingScene</Filter>
     </ClCompile>
     <ClCompile Include="cSoundManager.cpp" />
-    <ClCompile Include="cText.cpp" />
     <ClCompile Include="cText_2D.cpp">
       <Filter>98. Utility\12. cText_2D</Filter>
     </ClCompile>
     <ClCompile Include="cTree.cpp">
       <Filter>10. cCharacter\02. cTree</Filter>
+    </ClCompile>
+    <ClCompile Include="cText.cpp">
+      <Filter>98. Utility\11. cText</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -217,9 +219,11 @@
       <Filter>12. cScene\xx.cLoadingScene</Filter>
     </ClInclude>
     <ClInclude Include="cSoundManager.h" />
-    <ClInclude Include="cText.h" />
     <ClInclude Include="cText_2D.h">
       <Filter>98. Utility\12. cText_2D</Filter>
+    </ClInclude>
+    <ClInclude Include="cText.h">
+      <Filter>98. Utility\11. cText</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

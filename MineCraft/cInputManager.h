@@ -63,5 +63,7 @@ public:
 	bool IsMouseUp(MOUSE_BUTTON btn) { return GetMouseState(btn) == MOUSE_UP; }
 	bool IsMousePress(MOUSE_BUTTON btn) { return GetMouseState(btn) == MOUSE_PRESS || GetMouseState(btn) == MOUSE_DRAG; }
 	bool IsMouseDrag(MOUSE_BUTTON btn) { return GetMouseState(btn) == MOUSE_DRAG; }
+
+	bool IsCollided(D3DXVECTOR2 leftTop, D3DXVECTOR2 rightBottom);
 };
 

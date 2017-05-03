@@ -73,8 +73,8 @@ void cBody::Setup()
 	
 
 	D3DXMATRIXA16 matS, matT, mat; 
-	D3DXMatrixScaling(&matS, 0.4f, 0.6f, 0.2f); 
-	D3DXMatrixTranslation(&matT, 0.0f, 0.9, 0.0f);
+	D3DXMatrixScaling(&matS, 0.4f * m_fScale, 0.6f * m_fScale, 0.2f * m_fScale);
+	D3DXMatrixTranslation(&matT, 0.0f * m_fScale, 0.9 * m_fScale, 0.0f * m_fScale);
 	mat = matS*matT;
 
 	for (size_t i = 0; i < m_vecVertex.size(); i++)
