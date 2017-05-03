@@ -85,9 +85,6 @@
     <ClCompile Include="cTitleScene.cpp">
       <Filter>12. cScene\01. cTitleScene</Filter>
     </ClCompile>
-    <ClCompile Include="cShopScene.cpp">
-      <Filter>12. cScene\03. cShopScene</Filter>
-    </ClCompile>
     <ClCompile Include="cPlayScene.cpp">
       <Filter>12. cScene\02. cPlayScene</Filter>
     </ClCompile>
@@ -96,6 +93,12 @@
     </ClCompile>
     <ClCompile Include="cButton.cpp">
       <Filter>98. Utility\10. cButton</Filter>
+    </ClCompile>
+    <ClCompile Include="cShopScene.cpp">
+      <Filter>12. cScene\03. cShopScene</Filter>
+    </ClCompile>
+    <ClCompile Include="cLoadingScene.cpp">
+      <Filter>12. cScene\xx.cLoadingScene</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -198,6 +201,9 @@
     </ClInclude>
     <ClInclude Include="cButton.h">
       <Filter>98. Utility\10. cButton</Filter>
+    </ClInclude>
+    <ClInclude Include="cLoadingScene.h">
+      <Filter>12. cScene\xx.cLoadingScene</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
