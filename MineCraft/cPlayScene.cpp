@@ -63,20 +63,22 @@ void cPlayScene::OnEnter()
 	m_pSide1 = new cSurface();
 	m_pSide1->Setup(D3DXVECTOR3 (-WallLength, 0.0f, WallLength), D3DXVECTOR3 (-WallLength, WallLength, WallLength), D3DXVECTOR3(WallLength, WallLength, WallLength), D3DXVECTOR3(WallLength, 0.0f, WallLength), TEXT("Image/Surface/skywall.png"), true);
 	if (m_pSide1->GetIsLightOn()) { m_pTop->SetMaterial(D3DXVECTOR4(0.0f, 1.0f, 1.0f, 1.0f), D3DXVECTOR4(0.0f, 1.0f, 1.0f, 1.0f), D3DXVECTOR4(0.0f, 1.0f, 1.0f, 1.0f), D3DXVECTOR4(0.8f, 0.8f, 0.8f, 1.0f), 1.0f); }
-	
+	m_pSide1->SetMaterial(D3DXVECTOR4(0.8f, 0.8f, 0.8f, 1.0f), D3DXVECTOR4(0.8f, 0.8f, 0.8f, 1.0f), D3DXVECTOR4(0.8f, 0.8f, 0.8f, 1.0f), D3DXVECTOR4(0.8f, 0.8f, 0.8f, 1.0f));
+
 	m_pSide2 = new cSurface();
 	m_pSide2->Setup(D3DXVECTOR3 (-WallLength, 0.0f, -WallLength), D3DXVECTOR3 (-WallLength, WallLength, -WallLength), D3DXVECTOR3 (-WallLength, WallLength, WallLength), D3DXVECTOR3 (-WallLength, 0.0f, WallLength), TEXT("Image/Surface/skywall2.png"), true);
 	if (m_pSide2->GetIsLightOn()) { m_pTop->SetMaterial(D3DXVECTOR4(0.8f, 0.8f, 0.8f, 1.0f), D3DXVECTOR4(0.8f, 0.8f, 0.8f, 1.0f), D3DXVECTOR4(0.8f, 0.8f, 0.8f, 1.0f), D3DXVECTOR4(0.8f, 0.8f, 0.8f, 1.0f), 1.0f); }
-	
+	m_pSide2->SetMaterial(D3DXVECTOR4(0.8f, 0.8f, 0.8f, 1.0f), D3DXVECTOR4(0.8f, 0.8f, 0.8f, 1.0f), D3DXVECTOR4(0.8f, 0.8f, 0.8f, 1.0f), D3DXVECTOR4(0.8f, 0.8f, 0.8f, 1.0f));
+
 	m_pSide3 = new cSurface();
 	m_pSide3->Setup(D3DXVECTOR3(WallLength, 0.0f, -WallLength), D3DXVECTOR3(WallLength, WallLength, -WallLength), D3DXVECTOR3(-WallLength, WallLength, -WallLength), D3DXVECTOR3(-WallLength, 0.0f, -WallLength), TEXT("Image/Surface/skywall.png"), true);
 	if (m_pSide3->GetIsLightOn()) { m_pTop->SetMaterial(D3DXVECTOR4(0.8f, 0.8f, 0.8f, 1.0f), D3DXVECTOR4(0.8f, 0.8f, 0.8f, 1.0f), D3DXVECTOR4(0.8f, 0.8f, 0.8f, 1.0f), D3DXVECTOR4(0.8f, 0.8f, 0.8f, 1.0f), 1.0f); }
-	
+	m_pSide3->SetMaterial(D3DXVECTOR4(0.8f, 0.8f, 0.8f, 1.0f), D3DXVECTOR4(0.8f, 0.8f, 0.8f, 1.0f), D3DXVECTOR4(0.8f, 0.8f, 0.8f, 1.0f), D3DXVECTOR4(0.8f, 0.8f, 0.8f, 1.0f));
+
 	m_pSide4 = new cSurface();
 	m_pSide4->Setup(D3DXVECTOR3(WallLength, 0.0f, WallLength), D3DXVECTOR3(WallLength, WallLength, WallLength), D3DXVECTOR3(WallLength, WallLength, -WallLength), D3DXVECTOR3(WallLength, 0.0f, -WallLength), TEXT("Image/Surface/skywall2.png"), true);
 	if (m_pSide4->GetIsLightOn()) { m_pTop->SetMaterial(D3DXVECTOR4(0.8f, 0.8f, 0.8f, 1.0f), D3DXVECTOR4(0.8f, 0.8f, 0.8f, 1.0f), D3DXVECTOR4(0.8f, 0.8f, 0.8f, 1.0f), D3DXVECTOR4(0.8f, 0.8f, 0.8f, 1.0f), 1.0f); }
-
-	Set_Light();
+	m_pSide4->SetMaterial(D3DXVECTOR4(0.8f, 0.8f, 0.8f, 1.0f), D3DXVECTOR4(0.8f, 0.8f, 0.8f, 1.0f), D3DXVECTOR4(0.8f, 0.8f, 0.8f, 1.0f), D3DXVECTOR4(0.8f, 0.8f, 0.8f, 1.0f));
 
 	SOUND->Play("PlayBGM", 10.0f);
 }
@@ -131,7 +133,7 @@ void cPlayScene::OnDraw()
 
 	g_pD3DDevice->BeginScene();
 
-
+	//Set_Light();
 	if (m_pCubeMan) m_pCubeMan->Render();
 	if (m_pPosToCreateTile) m_pPosToCreateTile->Render();
 	if (m_pTop) m_pTop->Render();
@@ -196,9 +198,9 @@ void cPlayScene::Set_Light()
 	{
 		ZeroMemory(&stLight, sizeof(D3DLIGHT9));
 		stLight.Type = D3DLIGHT_DIRECTIONAL;
-		stLight.Ambient = D3DXCOLOR(0.8f, 0.8f, 0.8f, 1.0f);
+		stLight.Ambient = D3DXCOLOR(0.2f, 0.2f, 0.2f, 1.0f);
 		stLight.Diffuse = D3DXCOLOR(0.8f, 0.8f, 0.8f, 1.0f);
-		stLight.Specular = D3DXCOLOR(0.8f, 0.8f, 0.8f, 1.0f);
+		stLight.Specular = D3DXCOLOR(0.2f, 0.2f, 0.2f, 1.0f);
 		D3DXVECTOR3 vDir(1.0f, -1.0f, -1.0f);
 		D3DXVec3Normalize(&vDir, &vDir);
 		stLight.Direction = vDir;

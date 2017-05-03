@@ -32,6 +32,8 @@ void cMoon::Setup()
 	m_vPosition.x = x;   
 	m_vPosition.y = y;
 	m_vPosition.z = 400.0f;
+
+	Set_Light();
 }
 
 void cMoon::Update()
@@ -49,7 +51,7 @@ void cMoon::Update()
 	D3DXMatrixTranslation(&matT, m_vPosition.x, m_vPosition.y, m_vPosition.z);
 	m_matWorld = matS * matT;
 
-	Set_Light();
+
 }
 
 void cMoon::Render()
@@ -75,9 +77,9 @@ void cMoon::Set_Light()
 	ZeroMemory(&stLight_Dir, sizeof(D3DLIGHT9));
 
 	stLight_Dir.Type = D3DLIGHT_DIRECTIONAL;
-	stLight_Dir.Ambient = D3DXCOLOR(0.8f, 0.8f, 0.8f, 1.0f);
+	stLight_Dir.Ambient = D3DXCOLOR(0.2f, 0.2f, 0.2f, 1.0f);
 	stLight_Dir.Diffuse = D3DXCOLOR(1.0f, 1.0f, 1.0f, 1.0f);
-	stLight_Dir.Specular = D3DXCOLOR(1.0f, 1.0f, 1.0f, 1.0f);
+	stLight_Dir.Specular = D3DXCOLOR(0.2f, 0.2f, 0.2f, 1.0f);
 
 	D3DXVECTOR3 vDir = -m_vPosition;
 	D3DXVec3Normalize(&vDir, &vDir);
@@ -93,7 +95,7 @@ void cMoon::Set_Material()
 	m_stMtl.Diffuse = D3DXCOLOR(1.0f, 1.0f, 1.0f, 1.0f);		// 주변광 : 일정한 방향을 가지지 않고 비춤
 	m_stMtl.Ambient = D3DXCOLOR(1.0f, 1.0f, 1.0f, 1.0f);		// 난반사광 : 특정 방향으로 비춰지지만, 고르게 반사됨
 	m_stMtl.Specular = D3DXCOLOR(1.0f, 1.0f, 1.0f, 1.0f);		// 전반사광 : 방향성을 가지며, 특정 방향으로 정확히 반사됨
-	m_stMtl.Emissive = D3DXCOLOR(0.8f, 0.8f, 0.8f, 1.0f);		// 자체 발광
+	m_stMtl.Emissive = D3DXCOLOR(0.2f, 0.2f, 0.2f, 1.0f);		// 자체 발광
 	m_stMtl.Power = 2.0f;
 }
 
