@@ -59,9 +59,12 @@ void cCharacter::Update()
 	if (m_tag == CHARACTER_PLAYER)
 	{
 		if (INPUT->IsKeyPress('1'))m_currentObjName = OBJECT_DIRT;
-		if (INPUT->IsKeyPress('2'))m_currentObjName = OBJECT_WOOD;
+		if (INPUT->IsKeyPress('2'))m_currentObjName = OBJECT_STONE;
+		if (INPUT->IsKeyPress('3'))m_currentObjName = OBJECT_BOARD;
+		if (INPUT->IsKeyPress('4'))m_currentObjName = OBJECT_STONEBRICK;
+		if (INPUT->IsKeyPress('5'))m_currentObjName = OBJECT_WOOD;
 
-		if (INPUT->IsKeyPress('E')&&m_currentObjName!=OBJECT_NONE)
+		if (INPUT->IsKeyPress('E')&&m_currentObjName!=OBJECT_NONE&&g_ObjectManager->IsObjectHere(m_vFrontPos))
 		{
 			g_ObjectManager->CreateObject(m_vFrontPos, m_currentObjName);
 		}

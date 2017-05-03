@@ -171,6 +171,24 @@ void cTextureManager::SetNormal(OBJECT_NAME name, vector<ST_PNT_VERTEX>& vecVert
 		SetTop(vecVertex, m_TextureIndex[28], m_TextureIndex[29], m_TextureIndex[36], m_TextureIndex[37]);
 		SetBottom(vecVertex, m_TextureIndex[28], m_TextureIndex[29], m_TextureIndex[36], m_TextureIndex[37]);
 	}break;
+	case OBJECT_STONE:
+	{
+		SetSide(vecVertex, m_TextureIndex[1], m_TextureIndex[2], m_TextureIndex[9], m_TextureIndex[10]);
+		SetTop(vecVertex, m_TextureIndex[1], m_TextureIndex[2], m_TextureIndex[9], m_TextureIndex[10]);
+		SetBottom(vecVertex, m_TextureIndex[1], m_TextureIndex[2], m_TextureIndex[9], m_TextureIndex[10]);
+	}break;
+	case OBJECT_BOARD:
+	{
+		SetSide(vecVertex, m_TextureIndex[4], m_TextureIndex[5], m_TextureIndex[12], m_TextureIndex[13]);
+		SetTop(vecVertex, m_TextureIndex[4], m_TextureIndex[5], m_TextureIndex[12], m_TextureIndex[13]);
+		SetBottom(vecVertex, m_TextureIndex[4], m_TextureIndex[5], m_TextureIndex[12], m_TextureIndex[13]);
+	}break;
+	case OBJECT_STONEBRICK:
+	{
+		SetSide(vecVertex, m_TextureIndex[5], m_TextureIndex[6], m_TextureIndex[13], m_TextureIndex[14]);
+		SetTop(vecVertex, m_TextureIndex[5], m_TextureIndex[6], m_TextureIndex[13], m_TextureIndex[14]);
+		SetBottom(vecVertex, m_TextureIndex[5], m_TextureIndex[6], m_TextureIndex[13], m_TextureIndex[14]);
+	}break;
 	}
 }
 
