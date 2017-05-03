@@ -15,6 +15,8 @@ public:
 
 	int Tag() { return m_tag; }
 	void SetTag(int tag) { m_tag = tag; }
+
+	virtual int GetSkinIndex() { return 0; }
 };
 
 enum SCENE_TAG

@@ -21,6 +21,7 @@ public :
 
 	void Set_Material(); // << : 
 	virtual void SetScale(float scale);
+	void SetTexture(LPDIRECT3DTEXTURE9 pTexture) { m_pTexture = pTexture; }
 
 };
 
