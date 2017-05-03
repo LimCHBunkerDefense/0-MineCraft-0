@@ -11,9 +11,11 @@ public:
 	void SetisThisLogo();
 	void logoScaling();
 	void SetUI(float width, float height);
+	void SetMaterial(D3DXVECTOR4 ambient, D3DXVECTOR4 diffuse, D3DXVECTOR4 specular, D3DXVECTOR4 emissive, float power = 1.0f);
 
 private:
 	LPDIRECT3DTEXTURE9		m_pTexture;
+	D3DMATERIAL9			m_stMtl;
 	vector<ST_PNT_VERTEX>	m_vecVertex;
 
 	float       m_logoScale;

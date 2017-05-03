@@ -13,7 +13,7 @@ cTitleScene::cTitleScene() :
 	m_pButton_Shop(NULL),
 	m_point(0.0f, VIEW_HEIGHT * 0.5f, 0.0f)
 {
-	SOUND->LoadFile("TitleBGM", "Sound/Volume Alpha - 11 - Mice on Venus.mp3", true);
+	SOUND->LoadFile("TitleBGM", "Sound/Mice on Venus.mp3", true);
 }
 
 
@@ -55,7 +55,7 @@ void cTitleScene::Setup()
 		D3DXVECTOR3(VIEW_WIDTH * 0.15F, VIEW_HEIGHT * 0.37, -0.2f), D3DXVECTOR3(VIEW_WIDTH * 0.15F, VIEW_HEIGHT * 0.25, -0.2f), D3DCOLOR_XRGB(150, 150, 150, 1.0f));
 	m_pButton_Shop->SetText(LPCWSTR(TEXT(" S H O P ")), D3DXVECTOR3(-130, 200, -0.2f), D3DXVECTOR3(80, 80, 80) );
 
-	SOUND->Play("TitleBGM", 0.2f);
+	SOUND->Play("TitleBGM", 0.5f);
 }
 
 void cTitleScene::Update()

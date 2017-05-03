@@ -128,3 +128,13 @@ void cSurface::SetUI(float width, float height)
 	m_vecVertex[4].t = D3DXVECTOR2(width, 0.0f);		// v3
 	m_vecVertex[5].t = D3DXVECTOR2(width, height);		// v4
 }
+
+void cSurface::SetMaterial(D3DXVECTOR4 ambient, D3DXVECTOR4 diffuse, D3DXVECTOR4 specular, D3DXVECTOR4 emissive, float power)
+{
+	ZeroMemory(&m_stMtl, sizeof(D3DMATERIAL9));
+	m_stMtl.Ambient = D3DXCOLOR(ambient.x, ambient.y, ambient.z, ambient.w);		// 난반사광 : 특정 방향으로 비춰지지만, 고르게 반사됨
+	m_stMtl.Diffuse = D3DXCOLOR(diffuse.x, diffuse.y, diffuse.z, diffuse.w);		// 주변광 : 일정한 방향을 가지지 않고 비춤
+	m_stMtl.Specular = D3DXCOLOR(specular.x, specular.y, specular.z, specular.w);		// 전반사광 : 방향성을 가지며, 특정 방향으로 정확히 반사됨
+	m_stMtl.Emissive = D3DXCOLOR(emissive.x, emissive.y, emissive.z, emissive.w);		// 자체 발광
+	m_stMtl.Power = power;
+}
