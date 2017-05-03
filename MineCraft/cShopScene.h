@@ -37,5 +37,6 @@ public:
 	void WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam);
 
 	void Set_Light();
+	void UpdateExampleMan();
 };
 
