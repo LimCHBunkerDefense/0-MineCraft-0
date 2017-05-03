@@ -24,7 +24,6 @@ cMainGame::~cMainGame()
 
 void cMainGame::Setup()
 {
-
 	INPUT->Setup();
 	SCENE->Register(SCENE_TITLE, new cTitleScene);
 	SCENE->Register(SCENE_PLAY, new cPlayScene);
@@ -35,7 +34,7 @@ void cMainGame::Setup()
 void cMainGame::Update()
 {
 	SCENE->Update();
-	INPUT->Update();	
+	INPUT->Update();
 }
 
 void cMainGame::Render()

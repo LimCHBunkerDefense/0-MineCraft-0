@@ -3,7 +3,6 @@
 #include "cCamera.h"
 #include "cSurface.h"
 #include "cButton.h"
-#include "cText_2D.h"
 
 
 cTitleScene::cTitleScene() : 
@@ -70,19 +69,21 @@ void cTitleScene::Render()
 		D3DCLEAR_TARGET | D3DCLEAR_ZBUFFER,
 		D3DCOLOR_XRGB(47, 121, 112),
 		1.0f, 0);
-	
+
 	g_pD3DDevice->BeginScene();
+
 	
+
 	m_pBg->Render();
 	
 	m_pLogo->Render();
 	
 	m_pButton_Start->Render();
 	m_pButton_Shop->Render();
-	
-	
+
+
 	g_pD3DDevice->EndScene();
-	
+
 	g_pD3DDevice->Present(NULL, NULL, NULL, NULL);
 }
 

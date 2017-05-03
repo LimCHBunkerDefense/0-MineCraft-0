@@ -418,10 +418,8 @@ public:
 
 class cDrawD2D
 {
-public:
 	SINGLETONE(cDrawD2D);
 
-private:
 	ID2D1Factory*			m_pFactory;
 	ID2D1HwndRenderTarget*	m_pRenderTarget;
 	IDWriteFactory*			m_pWriteFactory;
