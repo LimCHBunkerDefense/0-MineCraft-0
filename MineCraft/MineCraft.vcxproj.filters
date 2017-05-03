@@ -334,9 +334,6 @@
     <Filter Include="12. cScene\xx.cLoadingScene">
       <UniqueIdentifier>{1c087d34-2271-40b6-89c9-8e70949b88c8}</UniqueIdentifier>
     </Filter>
-    <Filter Include="98. Utility\NewFilter1">
-      <UniqueIdentifier>{fdee22c6-1342-4b00-b0d4-6b21abff64a1}</UniqueIdentifier>
-    </Filter>
     <Filter Include="98. Utility\11. cText">
       <UniqueIdentifier>{6d983cdb-c57f-45e3-aeb0-2b711d0c23f4}</UniqueIdentifier>
     </Filter>
