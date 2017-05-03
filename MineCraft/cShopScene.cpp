@@ -39,8 +39,8 @@ void cShopScene::OnEnter()
 	m_pGUI_Outline->SetUI(1.0f, 0.8f);
 
 	m_pGUI_Inform = new cSurface();
-	m_pGUI_Inform->Setup(D3DXVECTOR3(-VIEW_WIDTH * 0.4f, VIEW_HEIGHT * 0.05f, -0.2f), D3DXVECTOR3(-VIEW_WIDTH * 0.4f, VIEW_HEIGHT * 0.9f, -0.2f),
-		D3DXVECTOR3(VIEW_WIDTH * 0.4f, VIEW_HEIGHT * 0.9f, -0.2f), D3DXVECTOR3(VIEW_WIDTH * 0.4f, VIEW_HEIGHT * 0.05f, -0.2f), TEXT("Image/UI/GUI_In.png"), false);
+	m_pGUI_Inform->Setup(D3DXVECTOR3(-VIEW_WIDTH * 0.37f, VIEW_HEIGHT * 0.20f, -0.2f), D3DXVECTOR3(-VIEW_WIDTH * 0.37f, VIEW_HEIGHT * 0.60f, -0.2f),
+		D3DXVECTOR3(VIEW_WIDTH * 0.06f, VIEW_HEIGHT * 0.60f, -0.2f), D3DXVECTOR3(VIEW_WIDTH * 0.06f, VIEW_HEIGHT * 0.20f, -0.2f), TEXT("Image/UI/GUI_Inform.png"), false);
 	m_pGUI_Inform->SetUI(1.0f, 0.8f);
 
 	m_pUI_leftButton = new cButton();
@@ -53,7 +53,7 @@ void cShopScene::OnEnter()
 
 	m_pSelectButton = new cButton();
 	m_pSelectButton->Setup(D3DXVECTOR3(VIEW_WIDTH * 0.14f, VIEW_HEIGHT * 0.29f, -0.3f), D3DXVECTOR3(VIEW_WIDTH * 0.14f, VIEW_HEIGHT * 0.35f, -0.3f),
-		D3DXVECTOR3(VIEW_WIDTH * 0.30f, VIEW_HEIGHT * 0.35f, -0.3f), D3DXVECTOR3(VIEW_WIDTH * 0.30f, VIEW_HEIGHT * 0.29f, -0.3f), D3DCOLOR_XRGB(150, 150, 150, 0.8f));
+		D3DXVECTOR3(VIEW_WIDTH * 0.30f, VIEW_HEIGHT * 0.35f, -0.3f), D3DXVECTOR3(VIEW_WIDTH * 0.30f, VIEW_HEIGHT * 0.29f, -0.3f), D3DCOLOR_XRGB(175, 175, 175, 0.8f));
 	//m_pSelectButton->SetText(("Select"), 40, D3DCOLOR_XRGB(0, 0, 0, 0));
 
 	SetupExampleMan();
@@ -95,7 +95,7 @@ void cShopScene::OnDraw()
 
 	m_pBg->Render();
 	m_pGUI_Outline->Render();
-	// m_pGUI_Inform->Render();
+	m_pGUI_Inform->Render();
 
 	m_pUI_leftButton->Render();
 	m_pUI_rightButton->Render();
