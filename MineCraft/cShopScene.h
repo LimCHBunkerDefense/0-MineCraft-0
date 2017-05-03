@@ -4,6 +4,12 @@
 
 class cSurface;
 class cButton;
+class cCubeMan;
+
+enum SKIN_INDEX
+{
+	SKIN_NONE, SKIN_BATMAN, 
+};
 
 class cShopScene : public IScene
 {
@@ -15,6 +21,10 @@ class cShopScene : public IScene
 	cButton*	m_pUI_rightButton;
 	cButton*	m_pSelectButton;
 
+	SKIN_INDEX	m_nSkinIndex;
+	cCubeMan*	m_pExampleMan;
+	cCubeMan*	m_pMyMan;
+
 public:
 	cShopScene();
 	~cShopScene();
@@ -25,5 +35,7 @@ public:
 	void OnDraw();
 
 	void WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam);
+
+	void Set_Light();
 };
 

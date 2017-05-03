@@ -16,6 +16,8 @@ protected :
 	SYNTHESIZE(float, m_fRotDeltaX, RotDeltaX);
 	SYNTHESIZE(float, m_fRotX, RotX);
 
+	float			m_fScale;
+
 public :
 	virtual ~cCubeNode();
 
@@ -27,5 +29,7 @@ public :
 	virtual void Setup() override;
 	virtual void Update() override;
 	virtual void Render() override;
+
+	virtual void SetScale(float scale);
 };
 

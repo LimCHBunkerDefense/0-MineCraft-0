@@ -3,14 +3,11 @@
 
 
 cCubeNode::cCubeNode()
-	// >> :
-		// : to do someting 
-	: m_fRotDeltaX(0.0f) ,
-	m_pParentWorldTM(NULL) ,
-	m_vLocalPos(0,0,0)
-	,m_fRotX(0.0f) 
-
-	// << : 
+	: m_fRotDeltaX(0.0f),
+	m_pParentWorldTM(NULL),
+	m_vLocalPos(0, 0, 0)
+	, m_fRotX(0.0f)
+	, m_fScale(1.0f)
 {
 	D3DXMatrixIdentity(&m_matLocalTM); 
 	D3DXMatrixIdentity(&m_matWorldTM);
@@ -113,3 +110,7 @@ void cCubeNode::Destroy()
 	delete this; 
 }
 
+void cCubeNode::SetScale(float scale)
+{
+	m_fScale = scale ;
+}

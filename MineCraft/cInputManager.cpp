@@ -123,3 +123,16 @@ void cInputManager::Update()
 	UpdateKeyState();
 	UpdateMouseState();
 }
+
+bool cInputManager::IsCollided(D3DXVECTOR2 leftTop, D3DXVECTOR2 rightBottom)
+{
+	POINT temp = GetMousePos();
+	D3DXVECTOR2 mousePos = D3DXVECTOR2(temp.x, temp.y);
+
+	if (mousePos.x > leftTop.x &&
+		mousePos.x < rightBottom.x &&
+		mousePos.y > leftTop.y &&
+		mousePos.y < rightBottom.y) return true;
+
+	return false;
+}
