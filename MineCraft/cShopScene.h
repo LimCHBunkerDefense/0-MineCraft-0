@@ -15,7 +15,7 @@ class cShopScene : public IScene
 {
 	cSurface*	m_pBg;
 	cSurface*	m_pGUI_Outline;
-	cSurface*	m_pGUI_In;
+	cSurface*	m_pGUI_Inform;
 
 	cButton*	m_pUI_leftButton;
 	cButton*	m_pUI_rightButton;
