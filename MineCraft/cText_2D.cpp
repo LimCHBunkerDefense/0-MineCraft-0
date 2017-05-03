@@ -4,7 +4,7 @@
 
 cText_2D::cText_2D()
 {
-	D3DXCreateSprite(g_pD3DDevice, &Sprite);
+	
 }
 
 
@@ -14,13 +14,18 @@ cText_2D::~cText_2D()
 
 void cText_2D::Render()
 {
-	int Height = 30;
-	int Width = 30;
-	LPCWSTR FontName = TEXT("Arial");
-	D3DXCreateFont(g_pD3DDevice, Height, Width, FW_NORMAL, 1, false, DEFAULT_CHARSET, OUT_DEFAULT_PRECIS, DEFAULT_QUALITY, DEFAULT_PITCH | FF_DONTCARE, FontName, &this->Font);
+	LOGFONT lf;
+	ZeroMemory(&lf, sizeof(LOGFONT));
+	lf.lfHeight = 25;
+	lf.lfWidth = 12;
+	lf.lfWeight = 500;
+	lf.lfItalic = false;
+	lf.lfUnderline = false;
+	lf.lfStrikeOut = false;
+	lf.lfCharSet = DEFAULT_CHARSET;
+	wcscpy_s(lf.lfFaceName, _countof(lf.lfFaceName), _T("Arial"));
 
-	LPCWSTR Text = TEXT("가나다라");
-	RECT rt = { 300,300,0,0 };
-	Font->DrawText(Sprite, Text, -1, &rt, DT_NOCLIP, D3DCOLOR_XRGB(255, 0, 0));
+	ID3DXFont* font = 0;
+	//D3DXCreateFontIndirect(g_pD3DDevice, &lf, &font);
 
 }

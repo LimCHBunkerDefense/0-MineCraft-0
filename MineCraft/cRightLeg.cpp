@@ -72,8 +72,8 @@ void cRightLeg::Setup()
 	}
 
 	D3DXMATRIXA16 matS, matT, mat;
-	D3DXMatrixScaling(&matS, 0.2f, 0.6f, 0.2f);
-	D3DXMatrixTranslation(&matT, 0.1f, -0.3f, 0.0f);
+	D3DXMatrixScaling(&matS, 0.2f * m_fScale, 0.6f * m_fScale, 0.2f * m_fScale);
+	D3DXMatrixTranslation(&matT, 0.1f * m_fScale, -0.3f * m_fScale, 0.0f * m_fScale);
 	mat = matS*matT;
 
 	for (size_t i = 0; i < m_vecVertex.size(); i++)
@@ -83,5 +83,5 @@ void cRightLeg::Setup()
 			&mat);
 	}
 
-	m_vLocalPos.y = 0.6f;
+	m_vLocalPos.y = 0.6f * m_fScale;
 }

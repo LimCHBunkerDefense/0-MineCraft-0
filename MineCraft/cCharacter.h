@@ -1,4 +1,10 @@
 #pragma once
+
+enum CHARACTER_TAG
+{
+	CHARACTER_NONE, CHARACTER_PLAYER, CHARACTER_EXAMPLE, CHARACTER_MY, 
+};
+
 class cCharacter
 {
 public:
@@ -14,6 +20,9 @@ protected :
 
 	bool			m_isMoving;
 
+	float			m_fScale;
+	CHARACTER_TAG	m_tag;
+
 public :
 	virtual ~cCharacter();
 
@@ -22,8 +31,12 @@ public :
 	virtual void Render(); 
 
 	virtual D3DXVECTOR3& GetPosition(); 
+	virtual void SetPosition(float x, float y, float z);
 	virtual D3DXVECTOR3& GetFrontPos();
 	virtual D3DXVECTOR3& GetDirection();
+	virtual void SetScale(float scale);
+	virtual void SetRotY(float rotY);
+	virtual void SetTag(CHARACTER_TAG tag);
 
 
 

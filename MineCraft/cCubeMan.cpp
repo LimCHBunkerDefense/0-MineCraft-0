@@ -33,30 +33,36 @@ void cCubeMan::Setup()
 
 
 	cBody * pBody = new cBody; 
+	pBody->SetScale(m_fScale);
 	pBody->Setup();
 	pBody->SetParentWorldTM(&m_matWorld); 
 	m_pRoot = pBody; 
 
 	cHead * pHead = new cHead;
+	pHead->SetScale(m_fScale);
 	pHead->Setup();
 	m_pRoot->AddChild(pHead); 
 
 	cLeftArm * pLeftArm = new cLeftArm;
+	pLeftArm->SetScale(m_fScale);
 	pLeftArm->Setup();
 	pLeftArm->SetRotDeltaX(0.1f); 
 	m_pRoot->AddChild(pLeftArm);
 
 	cRightArm * pRightArm = new cRightArm;
+	pRightArm->SetScale(m_fScale);
 	pRightArm->Setup();
 	pRightArm->SetRotDeltaX(-0.1f);
 	m_pRoot->AddChild(pRightArm);
 
 	cLeftLeg * pLeftLeg = new cLeftLeg;
+	pLeftLeg->SetScale(m_fScale);
 	pLeftLeg->Setup();
 	pLeftLeg->SetRotDeltaX(-0.1f);
 	m_pRoot->AddChild(pLeftLeg);
 
 	cRightLeg * pRightLeg = new cRightLeg;
+	pRightLeg->SetScale(m_fScale);
 	pRightLeg->Setup();
 	pRightLeg->SetRotDeltaX(0.1f);
 	m_pRoot->AddChild(pRightLeg);
@@ -79,8 +85,10 @@ void cCubeMan::Render()
 
 	cCharacter::Render();
 
-	D3DXMATRIXA16 matWorld; 
+	D3DXMATRIXA16 matWorld, matS; 
 	D3DXMatrixIdentity(&matWorld); 
+	D3DXMatrixScaling(&matS, 1000.0f, 1000.0f, 1000.0f);
+	matWorld = matS;
 	g_pD3DDevice->SetTransform(D3DTS_WORLD, &matWorld); 
 	g_pD3DDevice->SetTexture(0, m_pTexture); 
 
@@ -97,4 +105,9 @@ void cCubeMan::Set_Material()
 	m_stMtl.Diffuse = D3DXCOLOR(0.9f, 0.9f, 0.9f, 1.0f);
 	m_stMtl.Specular = D3DXCOLOR(0.9f, 0.9f, 0.9f, 1.0f);
 	m_stMtl.Emissive = D3DXCOLOR(0.7f, 0.7f, 0.7f, 1.0f);
+}
+
+void cCubeMan::SetScale(float scale)
+{
+	m_fScale = scale;
 }

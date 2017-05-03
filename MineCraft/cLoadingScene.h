@@ -6,6 +6,8 @@ class cSurface;
 class cLoadingScene : public IScene
 {
 	cSurface*	m_pBg;
+	cSurface*	m_pGageBar;
+	cSurface*	m_pGage;
 
 public:
 	cLoadingScene();
