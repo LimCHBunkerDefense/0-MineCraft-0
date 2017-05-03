@@ -15,7 +15,7 @@ cSurface::~cSurface()
 	SAFE_RELEASE(m_pTexture);
 }
 
-void cSurface::Setup(D3DXVECTOR3 v1, D3DXVECTOR3 v2, D3DXVECTOR3 v3, D3DXVECTOR3 v4, LPCWSTR imagePath)
+void cSurface::Setup(D3DXVECTOR3 v1, D3DXVECTOR3 v2, D3DXVECTOR3 v3, D3DXVECTOR3 v4, LPCWSTR imagePath, bool isLightOn)
 {
 	/*
 	v1	v2
@@ -61,6 +61,8 @@ void cSurface::Setup(D3DXVECTOR3 v1, D3DXVECTOR3 v2, D3DXVECTOR3 v3, D3DXVECTOR3
 		m_vecVertex[i + 1].n = n;
 		m_vecVertex[i + 2].n = n;
 	}
+
+	m_isLightOn = isLightOn;
 }
 
 void cSurface::Render()
@@ -74,12 +76,21 @@ void cSurface::Render()
 	D3DXMATRIXA16 mat;
 	D3DXMatrixIdentity(&mat);
 	mat = matS*mat;
-	g_pD3DDevice->SetRenderState(D3DRS_LIGHTING, false);
+
+	if (m_isLightOn)
+	{
+		g_pD3DDevice->SetRenderState(D3DRS_LIGHTING, true);
+	}
+	else
+	{
+		g_pD3DDevice->SetRenderState(D3DRS_LIGHTING, false);
+	}
+
 	g_pD3DDevice->SetTransform(D3DTS_WORLD, &mat);
 
 	g_pD3DDevice->SetRenderState(D3DRS_ALPHABLENDENABLE, TRUE);
 	g_pD3DDevice->SetRenderState(D3DRS_DESTBLEND, D3DBLEND_INVSRCALPHA);
-	g_pD3DDevice->SetRenderState(D3DRS_SRCBLEND, D3DBLEND_SRCALPHA);
+	g_pD3DDevice->SetRenderState(D3DRS_SRCBLEND, D3DBLEND_SRCALPHA);   
 
 	g_pD3DDevice->SetFVF(ST_PNT_VERTEX::FVF);
 	g_pD3DDevice->SetTexture(0, m_pTexture);
@@ -129,10 +140,20 @@ void cSurface::SetUI(float width, float height)
 	m_vecVertex[5].t = D3DXVECTOR2(width, height);		// v4
 }
 
+void cSurface::SetMaterial(D3DXVECTOR4 ambient, D3DXVECTOR4 diffuse, D3DXVECTOR4 specular, D3DXVECTOR4 emissive, float power)
+{
+	ZeroMemory(&m_stMtl, sizeof(D3DMATERIAL9));
+	m_stMtl.Ambient = D3DXCOLOR(ambient.x, ambient.y, ambient.z, ambient.w);		// 난반사광 : 특정 방향으로 비춰지지만, 고르게 반사됨
+	m_stMtl.Diffuse = D3DXCOLOR(diffuse.x, diffuse.y, diffuse.z, diffuse.w);		// 주변광 : 일정한 방향을 가지지 않고 비춤
+	m_stMtl.Specular = D3DXCOLOR(specular.x, specular.y, specular.z, specular.w);		// 전반사광 : 방향성을 가지며, 특정 방향으로 정확히 반사됨
+	m_stMtl.Emissive = D3DXCOLOR(emissive.x, emissive.y, emissive.z, emissive.w);		// 자체 발광
+	m_stMtl.Power = power;
+}
+}
+
 float cSurface::IMG_SetScale(float scale)
 {
 	m_imgScale = scale;
 
 	return m_imgScale;
 }
-

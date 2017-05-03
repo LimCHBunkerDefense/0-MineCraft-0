@@ -6,10 +6,10 @@ class IScene
 
 public:
 
-	virtual void Setup() {}
-	virtual void Update() {}
-	virtual void Render() {}
-	virtual void Release() {}
+	virtual void OnEnter() = 0;
+	virtual void OnUpdate() = 0;
+	virtual void OnExit() = 0;
+	virtual void OnDraw() = 0;
 
 	virtual void WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam) {}
 
