@@ -130,6 +130,7 @@ public: inline void Set##funName(varType var){ varName = var; }
 #include "cDeviceManager.h"
 #include "cInputManager.h"
 #include "cSoundManager.h"
+#include "cTextureManager.h"
 #include "cDrawD2D.h"
 // << 
 

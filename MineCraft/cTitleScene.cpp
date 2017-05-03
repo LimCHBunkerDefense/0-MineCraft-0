@@ -63,7 +63,12 @@ void cTitleScene::OnEnter()
 void cTitleScene::OnUpdate()
 {
 	//if (INPUT->IsKeyDown(VK_F7)) SCENE->ChangeScene(SCENE_LOADING);
-	if (m_pButton_Start->IsClicked()) SCENE->ChangeScene(SCENE_PLAY);
+	if (m_pButton_Start->IsClicked())
+	{
+		SCENE->ChangeScene(SCENE_PLAY);
+		SOUND->Stop("TitleBGM");
+	}
+
 	if (m_pButton_Shop->IsClicked()) SCENE->ChangeScene(SCENE_SHOP);
 	if (m_pButton_Start) m_pButton_Start->Update();
 	if (m_pButton_Shop) m_pButton_Shop->Update();
@@ -98,8 +103,6 @@ void cTitleScene::OnExit()
 	SAFE_DELETE(m_pCamera);
 	SAFE_DELETE(m_pButton_Start);
 	SAFE_DELETE(m_pButton_Shop);
-
-	SOUND->Stop("TitleBGM");
 }
 
 void cTitleScene::WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)

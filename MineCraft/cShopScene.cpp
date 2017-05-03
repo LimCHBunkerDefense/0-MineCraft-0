@@ -16,7 +16,7 @@ cShopScene::cShopScene()
 	, m_pExampleMan(NULL)
 	, m_pMyMan(NULL)
 {
-	m_nSkinIndex = SKIN_NONE;
+	m_nSkinIndex = SKIN_BATMAN;
 }
 
 
@@ -80,8 +80,8 @@ void cShopScene::OnUpdate()
 	if (m_pExampleMan) m_pExampleMan->Update();
 	if (m_pMyMan) m_pMyMan->Update();
 
-	// 예시 케릭터 위에 커서가 가면, 예시 케릭터가 Y축으로 회전하도록.
-	UpdateExampleMan();
+	UpdateExampleMan();					// 예시 케릭터 위에 커서가 가면, 예시 케릭터가 Y축으로 회전하도록.
+	UpdateExampleSkin();				// 예시 케릭터 스킨 변경되도록
 }
 
 void cShopScene::OnDraw()
@@ -155,5 +155,53 @@ void cShopScene::UpdateExampleMan()
 	else
 	{
 		m_pExampleMan->SetRotY(D3DX_PI);
+	}
+}
+
+void cShopScene::UpdateExampleSkin()
+{
+
+	if (m_pUI_leftButton->IsClicked())
+	{
+		m_nSkinIndex--;
+		if (m_nSkinIndex < 1) m_nSkinIndex = SKIN_BATMAN;
+	}
+
+	if (m_pUI_rightButton->IsClicked())
+	{
+		m_nSkinIndex++;
+		if (m_nSkinIndex > 4) m_nSkinIndex = SKIN_SPIDER;
+	}
+
+	switch (m_nSkinIndex)
+	{
+	case SKIN_BATMAN:
+		m_pExampleMan->SetTexture(g_pTextureManager->GetTexture("batman"));
+		if (INPUT->IsCollided(D3DXVECTOR2(330, 150), D3DXVECTOR2(420, 330)) && INPUT->IsMouseDown(MOUSE_LEFT))
+			m_pMyMan->SetTexture(g_pTextureManager->GetTexture("batman"));
+		break;
+	case SKIN_CAPTAIN:
+		m_pExampleMan->SetTexture(g_pTextureManager->GetTexture("CaptainAmerica"));
+		if (INPUT->IsCollided(D3DXVECTOR2(330, 150), D3DXVECTOR2(420, 330)) && INPUT->IsMouseDown(MOUSE_LEFT))
+			m_pMyMan->SetTexture(g_pTextureManager->GetTexture("CaptainAmerica"));
+		break;
+	case SKIN_IRON:
+		m_pExampleMan->SetTexture(g_pTextureManager->GetTexture("Ironman"));
+		if (INPUT->IsCollided(D3DXVECTOR2(330, 150), D3DXVECTOR2(420, 330)) && INPUT->IsMouseDown(MOUSE_LEFT))
+			m_pMyMan->SetTexture(g_pTextureManager->GetTexture("Ironman"));
+		break;
+	case SKIN_SPIDER:
+		m_pExampleMan->SetTexture(g_pTextureManager->GetTexture("Spiderman"));
+		if (INPUT->IsCollided(D3DXVECTOR2(330, 150), D3DXVECTOR2(420, 330)) && INPUT->IsMouseDown(MOUSE_LEFT))
+			m_pMyMan->SetTexture(g_pTextureManager->GetTexture("Spiderman"));
+		break;
+	}
+}
+
+void cShopScene::SelectSkin()
+{
+	if (m_pSelectButton->IsClicked())
+	{
+		//SCENE->Ge
 	}
 }
