@@ -101,7 +101,7 @@ void cCubeMan::Render()
 void cCubeMan::Set_Material()
 {   
 	ZeroMemory(&m_stMtl, sizeof(D3DMATERIAL9));
-	m_stMtl.Ambient = D3DXCOLOR(0.9f, 0.9f, 0.9f, 1.0f);
+	m_stMtl.Ambient = D3DXCOLOR(0.2f, 0.2f, 0.2f, 1.0f);
 	m_stMtl.Diffuse = D3DXCOLOR(0.9f, 0.9f, 0.9f, 1.0f);
 	m_stMtl.Specular = D3DXCOLOR(0.9f, 0.9f, 0.9f, 1.0f);
 	m_stMtl.Emissive = D3DXCOLOR(0.7f, 0.7f, 0.7f, 1.0f);
