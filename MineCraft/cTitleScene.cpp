@@ -31,7 +31,7 @@ cTitleScene::~cTitleScene()
 }
 
 
-void cTitleScene::Setup()
+void cTitleScene::OnEnter()
 {
 	m_pBg = new cSurface();
 	m_pBg->Setup(D3DXVECTOR3(-VIEW_WIDTH * 0.5F, 0.0F, 0.0F), D3DXVECTOR3(-VIEW_WIDTH * 0.5F, VIEW_HEIGHT, 0.0F),
@@ -59,7 +59,7 @@ void cTitleScene::Setup()
 	SOUND->Play("TitleBGM", 0.2f);
 }
 
-void cTitleScene::Update()
+void cTitleScene::OnUpdate()
 {
 	if (INPUT->IsKeyDown(VK_F2)) SCENE->ChangeScene(SCENE_LOADING);
 	if (m_pButton_Start->IsClicked()) SCENE->ChangeScene(SCENE_PLAY);
@@ -68,7 +68,7 @@ void cTitleScene::Update()
 	if (m_pButton_Shop) m_pButton_Shop->Update();
 }
 
-void cTitleScene::Render()
+void cTitleScene::OnDraw()
 {
 	g_pD3DDevice->Clear(NULL,
 		NULL,
@@ -89,6 +89,11 @@ void cTitleScene::Render()
 	g_pD3DDevice->EndScene();
 	
 	g_pD3DDevice->Present(NULL, NULL, NULL, NULL);
+}
+
+void cTitleScene::OnExit()
+{
+
 }
 
 void cTitleScene::WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)

@@ -16,20 +16,20 @@ cLoadingScene::~cLoadingScene()
 }
 
 
-void cLoadingScene::Setup()
+void cLoadingScene::OnEnter()
 {
 	m_pBg = new cSurface();
 	m_pBg->Setup(D3DXVECTOR3(-VIEW_WIDTH * 0.5F, 0.0F, 0.0F), D3DXVECTOR3(-VIEW_WIDTH * 0.5F, VIEW_HEIGHT, 0.0F),
 		D3DXVECTOR3(VIEW_WIDTH * 0.5F, VIEW_HEIGHT, 0.0F), D3DXVECTOR3(VIEW_WIDTH * 0.5F, 0.0F, 0.0F), TEXT("Image/LoadingScene/bg.png"));
 }
 
-void cLoadingScene::Update()
+void cLoadingScene::OnUpdate()
 {
 	if (INPUT->IsKeyDown(VK_F2)) SCENE->ChangeScene(SCENE_TITLE);
 
 }
 
-void cLoadingScene::Render()
+void cLoadingScene::OnDraw()
 {
 	g_pD3DDevice->Clear(NULL,
 		NULL,
@@ -44,6 +44,11 @@ void cLoadingScene::Render()
 	g_pD3DDevice->EndScene();
 
 	g_pD3DDevice->Present(NULL, NULL, NULL, NULL);
+}
+
+void cLoadingScene::OnExit()
+{
+
 }
 
 void cLoadingScene::WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)

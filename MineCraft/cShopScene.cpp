@@ -26,7 +26,7 @@ cShopScene::~cShopScene()
 	SAFE_DELETE(m_pBg);
 }
 
-void cShopScene::Setup()
+void cShopScene::OnEnter()
 {
 	m_pBg = new cSurface();
 	m_pBg->Setup(D3DXVECTOR3(-VIEW_WIDTH * 0.5F, 0.0F, 0.0F), D3DXVECTOR3(-VIEW_WIDTH * 0.5F, VIEW_HEIGHT, 0.0F),
@@ -56,7 +56,7 @@ void cShopScene::Setup()
 	//m_pSelectButton->SetText(("Select"), 40, D3DCOLOR_XRGB(0, 0, 0, 0));
 }
 
-void cShopScene::Update()
+void cShopScene::OnUpdate()
 {
 	if (INPUT->IsKeyDown(VK_BACK)) SCENE->ChangeScene(SCENE_TITLE);
 	if (m_pUI_leftButton)	m_pUI_leftButton->Update();
@@ -64,7 +64,7 @@ void cShopScene::Update()
 	if (m_pSelectButton)	m_pSelectButton->Update();
 }
 
-void cShopScene::Render()
+void cShopScene::OnDraw()
 {
 	g_pD3DDevice->Clear(NULL,
 		NULL,
@@ -86,6 +86,11 @@ void cShopScene::Render()
 	g_pD3DDevice->EndScene();
 
 	g_pD3DDevice->Present(NULL, NULL, NULL, NULL);
+}
+
+void cShopScene::OnExit()
+{
+
 }
 
 void cShopScene::WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
