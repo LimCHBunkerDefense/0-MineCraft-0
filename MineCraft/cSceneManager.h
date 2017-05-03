@@ -33,6 +33,8 @@ private:
 	IScene* m_currentScene;
 	int m_current;
 
+	int m_nPlayerSkinIndex;
+
 public:
 	// ¾À µî·Ï
 	void Register(int tag, IScene* pScene);
@@ -52,5 +54,8 @@ public:
 	int Current() { return m_current; }
 
 	void WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam);
+
+	void SetSkinIndex(int index) { m_nPlayerSkinIndex = index; }
+	int GetSkinIndex() {return m_nPlayerSkinIndex;	}
 };
 

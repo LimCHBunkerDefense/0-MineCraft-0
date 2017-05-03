@@ -23,8 +23,11 @@ protected :
 	float			m_fScale;
 	CHARACTER_TAG	m_tag;
 
-	OBJECT_NAME     m_currentObjName;
-
+	bool			m_isJumping;
+	bool			m_isAttack;
+	
+	float			m_fPrevY;
+	
 public :
 	virtual ~cCharacter();
 
@@ -37,12 +40,11 @@ public :
 	virtual D3DXVECTOR3& GetFrontPos();
 	virtual D3DXVECTOR3& GetDirection();
 	virtual void SetScale(float scale);
+	virtual float GetRotY() { return m_fRotY; }
 	virtual void SetRotY(float rotY);
 	virtual void SetTag(CHARACTER_TAG tag);
 
-
-
-
-
+	void SetAttackState(bool a);
+	void SetJumpingState(bool j);
 };
 

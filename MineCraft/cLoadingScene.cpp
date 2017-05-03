@@ -9,8 +9,8 @@ cLoadingScene::cLoadingScene()
 	: m_pBg(NULL)
 	, m_pGageBar(NULL)
 	, m_pGage(NULL)
-	, m_pGage2(NULL)
-	, m_pGage3(NULL)
+	//, m_pGage2(NULL)
+	//, m_pGage3(NULL)
 	,m_point(0.0f, VIEW_HEIGHT * 0.5f, 0.0f)
 	, m_pCamera(NULL)
 {
@@ -38,7 +38,7 @@ void cLoadingScene::OnEnter()
 		D3DXVECTOR3(-150.0F, VIEW_HEIGHT * 0.9f, -0.1f), D3DXVECTOR3(-150.0F, VIEW_HEIGHT * 0.8f, -0.1f), TEXT("Image/LoadingScene/loading_Gage.png"), false);
 	m_pGage->IMG_SetScale(0.5F);
 
-	m_pGage2 = new cSurface();
+	/*m_pGage2 = new cSurface();
 	m_pGage2->Setup(D3DXVECTOR3(-VIEW_WIDTH * 0.3F, VIEW_HEIGHT * 0.8f, -0.1f), D3DXVECTOR3(-VIEW_WIDTH * 0.3F, VIEW_HEIGHT * 0.9f, -0.1f),
 		D3DXVECTOR3(-100.0F, VIEW_HEIGHT * 0.9f, -0.1f), D3DXVECTOR3(-100.0F, VIEW_HEIGHT * 0.8f, -0.1f), TEXT("Image/LoadingScene/loading_Gage.png"), false);
 	m_pGage2->IMG_SetScale(0.5F);
@@ -46,7 +46,7 @@ void cLoadingScene::OnEnter()
 	m_pGage3 = new cSurface();
 	m_pGage3->Setup(D3DXVECTOR3(-VIEW_WIDTH * 0.3F, VIEW_HEIGHT * 0.8f, -0.1f), D3DXVECTOR3(-VIEW_WIDTH * 0.3F, VIEW_HEIGHT * 0.9f, -0.1f),
 		D3DXVECTOR3(50.0F, VIEW_HEIGHT * 0.9f, -0.1f), D3DXVECTOR3(50.0F, VIEW_HEIGHT * 0.8f, -0.1f), TEXT("Image/LoadingScene/loading_Gage.png"), false);
-	m_pGage3->IMG_SetScale(0.5F);
+	m_pGage3->IMG_SetScale(0.5F);*/
 
 	m_pGageBar = new cSurface();
 	m_pGageBar->Setup(D3DXVECTOR3(-VIEW_WIDTH * 0.3F, VIEW_HEIGHT * 0.8f, -0.1f), D3DXVECTOR3(-VIEW_WIDTH * 0.3F, VIEW_HEIGHT * 0.9f, -0.1f),
@@ -68,10 +68,7 @@ void cLoadingScene::OnDraw()
 		1.0f, 0);
 
 	g_pD3DDevice->BeginScene();
-
 	m_pBg->Render();
-
-
 	g_pD3DDevice->EndScene();
 
 	g_pD3DDevice->Present(NULL, NULL, NULL, NULL);

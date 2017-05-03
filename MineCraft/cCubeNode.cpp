@@ -7,7 +7,11 @@ cCubeNode::cCubeNode()
 	m_pParentWorldTM(NULL),
 	m_vLocalPos(0, 0, 0)
 	, m_fRotX(0.0f)
-	, m_fScale(1.0f)
+	, m_fScale(1.0f),
+	m_fAttackRotX(0),
+	m_fAttackDir(0.5f)
+
+	// << : 
 {
 	D3DXMatrixIdentity(&m_matLocalTM); 
 	D3DXMatrixIdentity(&m_matWorldTM);
@@ -108,6 +112,21 @@ void cCubeNode::Destroy()
 		p->Destroy(); 
 	}
 	delete this; 
+}
+
+void cCubeNode::AttackMotion()
+{
+	if (m_fAttackRotX < -3)m_fAttackDir = -m_fAttackDir;
+	if (m_fAttackRotX > 0)m_fAttackDir = -m_fAttackDir;
+	m_fAttackRotX += m_fAttackDir;
+
+
+	m_vecChild[2]->SetRotX(m_fAttackRotX);
+}
+
+void cCubeNode::EndAttack()
+{
+	m_vecChild[2]->SetRotX(-m_vecChild[1]->GetRotX());
 }
 
 void cCubeNode::SetScale(float scale)
