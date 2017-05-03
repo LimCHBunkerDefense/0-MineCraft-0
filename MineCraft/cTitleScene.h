@@ -25,6 +25,8 @@ public:
 	void OnExit();
 	void OnDraw();
 
+	void OnHelp();
+
 	void WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam);
 };
 
