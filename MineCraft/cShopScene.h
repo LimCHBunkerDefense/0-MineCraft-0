@@ -6,11 +6,6 @@ class cSurface;
 class cButton;
 class cCubeMan;
 
-enum SKIN_INDEX
-{
-	SKIN_NONE, SKIN_BATMAN, SKIN_CAPTAIN, SKIN_IRON, SKIN_SPIDER,
-};
-
 class cShopScene : public IScene
 {
 	cSurface*	m_pBg;
@@ -41,6 +36,5 @@ public:
 	void UpdateExampleSkin();
 	void SelectSkin();
 
-	int GetSkinIndex() { return m_nSkinIndex; }
 };
 

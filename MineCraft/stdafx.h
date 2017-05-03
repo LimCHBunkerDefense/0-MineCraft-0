@@ -146,6 +146,9 @@ public: inline void Set##funName(varType var){ varName = var; }
 #include "cDrawD2D.h"
 // << 
 
- 
+enum SKIN_INDEX
+{
+	SKIN_NONE, SKIN_BATMAN, SKIN_CAPTAIN, SKIN_IRON, SKIN_SPIDER,
+};
    
    

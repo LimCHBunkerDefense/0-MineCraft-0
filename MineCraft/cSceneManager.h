@@ -15,8 +15,6 @@ public:
 
 	int Tag() { return m_tag; }
 	void SetTag(int tag) { m_tag = tag; }
-
-	virtual int GetSkinIndex() { return 0; }
 };
 
 enum SCENE_TAG
@@ -34,6 +32,8 @@ private:
 	map<int, IScene*> m_scenes;
 	IScene* m_currentScene;
 	int m_current;
+
+	int m_nPlayerSkinIndex;
 
 public:
 	// ¾À µî·Ï
@@ -54,5 +54,8 @@ public:
 	int Current() { return m_current; }
 
 	void WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam);
+
+	void SetSkinIndex(int index) { m_nPlayerSkinIndex = index; }
+	int GetSkinIndex() {return m_nPlayerSkinIndex;	}
 };
 

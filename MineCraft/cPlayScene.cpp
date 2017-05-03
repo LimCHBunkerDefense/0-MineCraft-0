@@ -38,6 +38,7 @@ void cPlayScene::OnEnter()
 {
 	m_pCubeMan = new cCubeMan;
 	m_pCubeMan->Setup();
+	SetPlayerSkin();
 	
 	m_pCamera = new cCamera;
 	m_pCamera->Setup(&m_pCubeMan->GetPosition());
@@ -226,5 +227,26 @@ void cPlayScene::GravityUpdate(vector<ST_PNT_VERTEX> PNT)
 		{
 			m_pCubeMan->SetJumpingState(false);
 		}
+	}
+}
+
+void cPlayScene::SetPlayerSkin()
+{
+	int index = SCENE->GetSkinIndex();
+
+	switch (index)
+	{
+	case SKIN_BATMAN:
+		m_pCubeMan->SetTexture(g_pTextureManager->GetTexture("batman"));
+		break;
+	case SKIN_CAPTAIN:
+		m_pCubeMan->SetTexture(g_pTextureManager->GetTexture("CaptainAmerica"));
+		break;
+	case SKIN_IRON:
+		m_pCubeMan->SetTexture(g_pTextureManager->GetTexture("Ironman"));
+		break;
+	case SKIN_SPIDER:
+		m_pCubeMan->SetTexture(g_pTextureManager->GetTexture("Spiderman"));
+		break;
 	}
 }

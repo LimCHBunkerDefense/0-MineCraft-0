@@ -82,6 +82,7 @@ void cShopScene::OnUpdate()
 
 	UpdateExampleMan();					// 예시 케릭터 위에 커서가 가면, 예시 케릭터가 Y축으로 회전하도록.
 	UpdateExampleSkin();				// 예시 케릭터 스킨 변경되도록
+	SelectSkin();						// 플레이어에 스킨 변경되도록
 }
 
 void cShopScene::OnDraw()
@@ -202,6 +203,6 @@ void cShopScene::SelectSkin()
 {
 	if (m_pSelectButton->IsClicked())
 	{
-		//SCENE->Ge
+		SCENE->SetSkinIndex(m_nSkinIndex);
 	}
 }
