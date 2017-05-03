@@ -13,14 +13,16 @@ class cTitleScene : public IScene
 	cSurface*	m_pLogo;
 	cCamera*	m_pCamera;
 	cButton*	m_pButton_Start;
+	cButton*	m_pButton_Shop;
 
 public:
 	cTitleScene();
 	~cTitleScene();
 
-	void Setup();
-	void Update();
-	void Render();
+	void OnEnter();
+	void OnUpdate();
+	void OnExit();
+	void OnDraw();
 
 	void WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam);
 };

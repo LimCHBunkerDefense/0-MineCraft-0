@@ -40,20 +40,18 @@ void cSceneManager::Update()
 {
 	if (m_currentScene == NULL || m_current != m_currentScene->Tag())
 	{
-		//if (m_currentScene != NULL) SAFE_RELEASE(m_currentScene); 
-		// 현재 각종 Scene은 서용필쌤 수업과 같이 Release를 안만들어서 이 줄을 주석처리함. 
-		// 따라서 메모리 할당받은것이 그대로 있을거임... 이거 풀려면 Scene에 전부 Release 처리 해야함.
+		if (m_currentScene != NULL) m_currentScene->OnExit();
 		m_currentScene = GetScene(m_current);
-		if (m_currentScene != NULL) m_currentScene->Setup();
+		if (m_currentScene != NULL) m_currentScene->OnEnter();
 	}
 
-	if (m_currentScene != NULL) m_currentScene->Update();
+	if (m_currentScene != NULL) m_currentScene->OnUpdate();
 }
 
 // 씬 드로우
 void cSceneManager::Render()
 {
-	if (m_currentScene != NULL) m_currentScene->Render();
+	if (m_currentScene != NULL) m_currentScene->OnDraw();
 }
 
 void cSceneManager::WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)

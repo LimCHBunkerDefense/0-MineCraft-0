@@ -11,6 +11,7 @@ class cSun;
 class cMoon;
 class cButton;
 
+#define WallLength	500.0f
 
 class cPlayScene : public IScene
 {
@@ -38,9 +39,10 @@ public:
 	cPlayScene();
 	~cPlayScene();
 
-	void Setup();
-	void Update();
-	void Render();
+	void OnEnter();
+	void OnUpdate();
+	void OnExit();
+	void OnDraw();
 
 	void WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam);
 

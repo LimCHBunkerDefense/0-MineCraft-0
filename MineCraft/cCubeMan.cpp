@@ -86,6 +86,8 @@ void cCubeMan::Render()
 
 	if (m_pRoot)
 		m_pRoot->Render(); 
+
+	g_pD3DDevice->SetTexture(0, NULL);
 }
 
 void cCubeMan::Set_Material()

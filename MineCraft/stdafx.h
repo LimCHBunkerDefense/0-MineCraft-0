@@ -128,8 +128,9 @@ public: inline void Set##funName(varType var){ varName = var; }
 
 // >> 전역으로 사용할 Manager
 #include "cDeviceManager.h"
-#include "cDrawD2D.h"
 #include "cInputManager.h"
+#include "cSoundManager.h"
+#include "cDrawD2D.h"
 // << 
 
  
