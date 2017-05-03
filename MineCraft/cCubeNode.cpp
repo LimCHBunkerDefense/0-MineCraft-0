@@ -3,6 +3,11 @@
 
 
 cCubeNode::cCubeNode()
+	: m_fRotDeltaX(0.0f),
+	m_pParentWorldTM(NULL),
+	m_vLocalPos(0, 0, 0)
+	, m_fRotX(0.0f)
+	, m_fScale(1.0f)
 // >> :
 	// : to do someting 
 	: m_fRotDeltaX(0.0f),
@@ -130,6 +135,7 @@ void cCubeNode::EndAttack()
 	m_vecChild[2]->SetRotX(-m_vecChild[1]->GetRotX());
 }
 
-	
-
-
+void cCubeNode::SetScale(float scale)
+{
+	m_fScale = scale ;
+}

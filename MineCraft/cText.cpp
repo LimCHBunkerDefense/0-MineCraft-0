@@ -4,6 +4,7 @@
 
 cText::cText()
 {
+	
 }
 
 cText::cText(LPCWSTR text, D3DXVECTOR3 pos, D3DXVECTOR3 size, D3DXVECTOR3 rotation, D3DXCOLOR color) :
@@ -63,11 +64,11 @@ void cText::Render()
 	D3DXMATRIXA16 mat;
 	D3DXMatrixIdentity(&mat);
 	mat = m_matS * m_matR * m_matT;
-
+	
 	g_pD3DDevice->SetTexture(0, m_pTexture);
 	g_pD3DDevice->SetTransform(D3DTS_WORLD, &mat);
 	g_pD3DDevice->SetRenderState(D3DRS_LIGHTING, true);
-
+	
 	Text->DrawSubset(0);
 
 

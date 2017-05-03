@@ -3,6 +3,8 @@
 
 class cObject;
 
+
+
 class cObjectManager
 {
 private:

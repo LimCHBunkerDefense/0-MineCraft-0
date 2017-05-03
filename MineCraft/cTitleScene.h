@@ -5,6 +5,7 @@
 class cSurface;
 class cCamera;
 class cButton;
+class cText_2D;
 
 class cTitleScene : public IScene
 {
@@ -14,7 +15,6 @@ class cTitleScene : public IScene
 	cCamera*	m_pCamera;
 	cButton*	m_pButton_Start;
 	cButton*	m_pButton_Shop;
-
 public:
 	cTitleScene();
 	~cTitleScene();

@@ -20,6 +20,7 @@ public :
 	virtual void Render() override;
 
 	void Set_Material(); // << : 
+	virtual void SetScale(float scale);
 
 };
 
