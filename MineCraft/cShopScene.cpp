@@ -37,9 +37,9 @@ void cShopScene::OnEnter()
 	m_pGUI_Outline->SetUI(1.0f, 0.8f);
 
 	m_pGUI_In = new cSurface();
-	m_pGUI_In->Setup(D3DXVECTOR3(-VIEW_WIDTH * 0.4f, VIEW_HEIGHT * 0.1f, -0.2f), D3DXVECTOR3(-VIEW_WIDTH * 0.4f, VIEW_HEIGHT * 0.9f, -0.2f),
-		D3DXVECTOR3(VIEW_WIDTH * 0.4f, VIEW_HEIGHT * 0.9f, -0.2f), D3DXVECTOR3(VIEW_WIDTH * 0.4f, VIEW_HEIGHT * 0.1f, -0.2f), TEXT("Image/UI/GUI_In.png"), false);
-	m_pGUI_In->SetUI(0.9f, 0.7f);
+	m_pGUI_In->Setup(D3DXVECTOR3(-VIEW_WIDTH * 0.4f, VIEW_HEIGHT * 0.05f, -0.2f), D3DXVECTOR3(-VIEW_WIDTH * 0.4f, VIEW_HEIGHT * 0.9f, -0.2f),
+		D3DXVECTOR3(VIEW_WIDTH * 0.4f, VIEW_HEIGHT * 0.9f, -0.2f), D3DXVECTOR3(VIEW_WIDTH * 0.4f, VIEW_HEIGHT * 0.05f, -0.2f), TEXT("Image/UI/GUI_In.png"), false);
+	m_pGUI_In->SetUI(1.0f, 0.8f);
 
 	m_pUI_leftButton = new cButton();
 	m_pUI_leftButton->Setup(D3DXVECTOR3(-VIEW_WIDTH * 0.25f, VIEW_HEIGHT * 0.62f, -0.3f), D3DXVECTOR3(-VIEW_WIDTH * 0.25f, VIEW_HEIGHT * 0.72f, -0.3f),
@@ -96,7 +96,7 @@ void cShopScene::OnDraw()
 
 	m_pBg->Render();
 	m_pGUI_In->Render();
-	m_pGUI_Outline->Render();
+	//m_pGUI_Outline->Render();
 
 	m_pUI_leftButton->Render();
 	m_pUI_rightButton->Render();

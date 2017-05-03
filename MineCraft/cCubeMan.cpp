@@ -71,10 +71,15 @@ void cCubeMan::Setup()
 void cCubeMan::Update()
 {
 	cCharacter::Update(); 
-	if (!m_isMoving) m_pRoot->SetDefaultRotX();
-	else m_pRoot->RotateRotX();
 
-	if (m_pRoot) m_pRoot->Update();
+	if (m_pRoot)
+	{
+		if (m_isMoving) m_pRoot->RotateRotX();
+		if (!m_isMoving)m_pRoot->SetDefaultRotX();
+		if (m_isAttack) m_pRoot->AttackMotion();
+		if (!m_isAttack) m_pRoot->EndAttack();
+		m_pRoot->Update();
+	}
 	
 }
 
@@ -101,7 +106,7 @@ void cCubeMan::Render()
 void cCubeMan::Set_Material()
 {   
 	ZeroMemory(&m_stMtl, sizeof(D3DMATERIAL9));
-	m_stMtl.Ambient = D3DXCOLOR(0.9f, 0.9f, 0.9f, 1.0f);
+	m_stMtl.Ambient = D3DXCOLOR(0.2f, 0.2f, 0.2f, 1.0f);
 	m_stMtl.Diffuse = D3DXCOLOR(0.9f, 0.9f, 0.9f, 1.0f);
 	m_stMtl.Specular = D3DXCOLOR(0.9f, 0.9f, 0.9f, 1.0f);
 	m_stMtl.Emissive = D3DXCOLOR(0.7f, 0.7f, 0.7f, 1.0f);

@@ -10,9 +10,10 @@ cCharacter::cCharacter()
 	m_vPosition(0,0,0),
 	m_vFrontPos(0,0,0),
 	m_isMoving(false),
+	m_isJumping(false),
+	m_fPrevY(0),
 	m_fScale(1.0f),
-	m_tag(CHARACTER_PLAYER),
-	m_currentObjName(OBJECT_NONE)
+	m_tag(CHARACTER_PLAYER)
 {
 	D3DXMatrixIdentity(&m_matWorld);
 }
@@ -32,23 +33,23 @@ void cCharacter::Update()
 	{
 		m_isMoving = false;
 
-		if (INPUT->IsKeyPress(VK_A))
+		if (INPUT->IsKeyPress('A'))
 		{
 			m_isMoving = true;
 			m_fRotY -= 0.1f;
 		}
-		if (INPUT->IsKeyPress(VK_D))
+		if (INPUT->IsKeyPress('D'))
 		{
 			m_isMoving = true;
 			m_fRotY += 0.1f;
 		}
 
-		if (INPUT->IsKeyPress(VK_W))
+		if (INPUT->IsKeyPress('W'))
 		{
 			m_isMoving = true;
 			m_vPosition = m_vPosition + (m_vDirection * 0.1f);
 		}
-		if (INPUT->IsKeyPress(VK_S))
+		if (INPUT->IsKeyPress('S'))
 		{
 			m_isMoving = true;
 			m_vPosition = m_vPosition - (m_vDirection * 0.1f);
@@ -58,14 +59,15 @@ void cCharacter::Update()
 
 	if (m_tag == CHARACTER_PLAYER)
 	{
-		if (INPUT->IsKeyPress('1'))m_currentObjName = OBJECT_DIRT;
-		if (INPUT->IsKeyPress('2'))m_currentObjName = OBJECT_WOOD;
-
-		if (INPUT->IsKeyPress('E')&&m_currentObjName!=OBJECT_NONE)
+		if (INPUT->IsKeyPress('E'))
 		{
-			g_ObjectManager->CreateObject(m_vFrontPos, m_currentObjName);
+			m_isAttack = true;
+			//g_ObjectManager->CreateObject(m_vFrontPos);
 		}
-
+		if (INPUT->IsKeyUp('E'))
+		{
+			m_isAttack = false;
+		}
 		// >> : update frontPos
 		float angle;
 		if (m_vDirection.x <= 0) angle = acosf(D3DXVec3Dot(&D3DXVECTOR3(0.0f, m_vDirection.y, 1.0f), &m_vDirection));
@@ -95,6 +97,13 @@ void cCharacter::Update()
 	D3DXVec3TransformNormal(&m_vDirection, &m_vDirection, &matR);
 	D3DXMatrixTranslation(&matT, m_vPosition.x, m_vPosition.y, m_vPosition.z);
 	m_matWorld = matR * matT;
+
+	if (INPUT->IsKeyDown(' ') && !m_isJumping)m_isJumping = true;
+
+	if (m_isJumping)m_vPosition.y += 0.25f;
+
+
+
 }
 void cCharacter::Render()
 {
@@ -135,4 +144,14 @@ void cCharacter::SetRotY(float rotY)
 void cCharacter::SetTag(CHARACTER_TAG tag)
 {
 	m_tag = tag;
+}
+
+void cCharacter::SetAttackState(bool a)
+{
+	m_isAttack = a;
+}
+
+void cCharacter::SetJumpingState(bool j)
+{
+	m_isJumping = j;
 }

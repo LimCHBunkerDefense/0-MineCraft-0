@@ -62,21 +62,25 @@ void cPlayScene::OnEnter()
 
 	m_pSide1 = new cSurface();
 	m_pSide1->Setup(D3DXVECTOR3 (-WallLength, 0.0f, WallLength), D3DXVECTOR3 (-WallLength, WallLength, WallLength), D3DXVECTOR3(WallLength, WallLength, WallLength), D3DXVECTOR3(WallLength, 0.0f, WallLength), TEXT("Image/Surface/skywall.png"), true);
+	m_pSide1->SetIsLightOn(false);
 	if (m_pSide1->GetIsLightOn()) { m_pTop->SetMaterial(D3DXVECTOR4(0.0f, 1.0f, 1.0f, 1.0f), D3DXVECTOR4(0.0f, 1.0f, 1.0f, 1.0f), D3DXVECTOR4(0.0f, 1.0f, 1.0f, 1.0f), D3DXVECTOR4(0.8f, 0.8f, 0.8f, 1.0f), 1.0f); }
-	
+	m_pSide1->SetMaterial(D3DXVECTOR4(0.8f, 0.8f, 0.8f, 1.0f), D3DXVECTOR4(0.8f, 0.8f, 0.8f, 1.0f), D3DXVECTOR4(0.8f, 0.8f, 0.8f, 1.0f), D3DXVECTOR4(0.8f, 0.8f, 0.8f, 1.0f));
+
 	m_pSide2 = new cSurface();
 	m_pSide2->Setup(D3DXVECTOR3 (-WallLength, 0.0f, -WallLength), D3DXVECTOR3 (-WallLength, WallLength, -WallLength), D3DXVECTOR3 (-WallLength, WallLength, WallLength), D3DXVECTOR3 (-WallLength, 0.0f, WallLength), TEXT("Image/Surface/skywall2.png"), true);
+	m_pSide2->SetIsLightOn(false);
 	if (m_pSide2->GetIsLightOn()) { m_pTop->SetMaterial(D3DXVECTOR4(0.8f, 0.8f, 0.8f, 1.0f), D3DXVECTOR4(0.8f, 0.8f, 0.8f, 1.0f), D3DXVECTOR4(0.8f, 0.8f, 0.8f, 1.0f), D3DXVECTOR4(0.8f, 0.8f, 0.8f, 1.0f), 1.0f); }
-	
+	m_pSide2->SetMaterial(D3DXVECTOR4(0.8f, 0.8f, 0.8f, 1.0f), D3DXVECTOR4(0.8f, 0.8f, 0.8f, 1.0f), D3DXVECTOR4(0.8f, 0.8f, 0.8f, 1.0f), D3DXVECTOR4(0.8f, 0.8f, 0.8f, 1.0f));
+
 	m_pSide3 = new cSurface();
 	m_pSide3->Setup(D3DXVECTOR3(WallLength, 0.0f, -WallLength), D3DXVECTOR3(WallLength, WallLength, -WallLength), D3DXVECTOR3(-WallLength, WallLength, -WallLength), D3DXVECTOR3(-WallLength, 0.0f, -WallLength), TEXT("Image/Surface/skywall.png"), true);
 	if (m_pSide3->GetIsLightOn()) { m_pTop->SetMaterial(D3DXVECTOR4(0.8f, 0.8f, 0.8f, 1.0f), D3DXVECTOR4(0.8f, 0.8f, 0.8f, 1.0f), D3DXVECTOR4(0.8f, 0.8f, 0.8f, 1.0f), D3DXVECTOR4(0.8f, 0.8f, 0.8f, 1.0f), 1.0f); }
-	
+	m_pSide3->SetMaterial(D3DXVECTOR4(0.8f, 0.8f, 0.8f, 1.0f), D3DXVECTOR4(0.8f, 0.8f, 0.8f, 1.0f), D3DXVECTOR4(0.8f, 0.8f, 0.8f, 1.0f), D3DXVECTOR4(0.8f, 0.8f, 0.8f, 1.0f));
+
 	m_pSide4 = new cSurface();
 	m_pSide4->Setup(D3DXVECTOR3(WallLength, 0.0f, WallLength), D3DXVECTOR3(WallLength, WallLength, WallLength), D3DXVECTOR3(WallLength, WallLength, -WallLength), D3DXVECTOR3(WallLength, 0.0f, -WallLength), TEXT("Image/Surface/skywall2.png"), true);
 	if (m_pSide4->GetIsLightOn()) { m_pTop->SetMaterial(D3DXVECTOR4(0.8f, 0.8f, 0.8f, 1.0f), D3DXVECTOR4(0.8f, 0.8f, 0.8f, 1.0f), D3DXVECTOR4(0.8f, 0.8f, 0.8f, 1.0f), D3DXVECTOR4(0.8f, 0.8f, 0.8f, 1.0f), 1.0f); }
-
-	Set_Light();
+	m_pSide4->SetMaterial(D3DXVECTOR4(0.8f, 0.8f, 0.8f, 1.0f), D3DXVECTOR4(0.8f, 0.8f, 0.8f, 1.0f), D3DXVECTOR4(0.8f, 0.8f, 0.8f, 1.0f), D3DXVECTOR4(0.8f, 0.8f, 0.8f, 1.0f));
 
 	SOUND->Play("PlayBGM", 10.0f);
 }
@@ -117,6 +121,8 @@ void cPlayScene::OnUpdate()
 		time += 1;
 	}
 	
+
+	GravityUpdate(m_pBottom->GetVerTex());
 }
 
 void cPlayScene::OnDraw()
@@ -129,7 +135,7 @@ void cPlayScene::OnDraw()
 
 	g_pD3DDevice->BeginScene();
 
-
+	//Set_Light();
 	if (m_pCubeMan) m_pCubeMan->Render();
 	if (m_pPosToCreateTile) m_pPosToCreateTile->Render();
 	if (m_pTop) m_pTop->Render();
@@ -174,6 +180,18 @@ void cPlayScene::WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
 	{
 		m_pCamera->WndProc(hwnd, message, wParam, lParam);
 	}
+
+	if (m_pCubeMan)
+	{
+		if (message == WM_LBUTTONDOWN)
+		{
+			m_pCubeMan->SetAttackState(true);
+		}
+		if (message == WM_LBUTTONUP)
+		{
+			m_pCubeMan->SetAttackState(false);
+		}
+	}
 }
 
 void cPlayScene::Set_Light()
@@ -182,9 +200,9 @@ void cPlayScene::Set_Light()
 	{
 		ZeroMemory(&stLight, sizeof(D3DLIGHT9));
 		stLight.Type = D3DLIGHT_DIRECTIONAL;
-		stLight.Ambient = D3DXCOLOR(0.8f, 0.8f, 0.8f, 1.0f);
+		stLight.Ambient = D3DXCOLOR(0.2f, 0.2f, 0.2f, 1.0f);
 		stLight.Diffuse = D3DXCOLOR(0.8f, 0.8f, 0.8f, 1.0f);
-		stLight.Specular = D3DXCOLOR(0.8f, 0.8f, 0.8f, 1.0f);
+		stLight.Specular = D3DXCOLOR(0.2f, 0.2f, 0.2f, 1.0f);
 		D3DXVECTOR3 vDir(1.0f, -1.0f, -1.0f);
 		D3DXVec3Normalize(&vDir, &vDir);
 		stLight.Direction = vDir;
@@ -192,4 +210,21 @@ void cPlayScene::Set_Light()
 	}
 
 	g_pD3DDevice->LightEnable(0, true);
+}
+
+void cPlayScene::GravityUpdate(vector<ST_PNT_VERTEX> PNT)
+{
+	D3DXVECTOR3	intersectDir = D3DXVECTOR3(0, -0.1, 0);
+
+	for (int k = 0; k < PNT.size(); k += 3)
+	{
+		if (D3DXIntersectTri(&PNT[k].p, &PNT[k + 1].p, &PNT[k + 2].p, &m_pCubeMan->GetPosition(), &intersectDir, 0, 0, 0))
+		{
+			m_pCubeMan->GetPosition().y -= 0.1f;
+		}
+		else if (m_pCubeMan->GetPosition().y - m_pBottom->GetVerTex()[k].p.y>2)
+		{
+			m_pCubeMan->SetJumpingState(false);
+		}
+	}
 }

@@ -18,6 +18,8 @@ protected :
 
 	float			m_fScale;
 
+	float		m_fAttackRotX;
+	float		m_fAttackDir;
 public :
 	virtual ~cCubeNode();
 
@@ -25,7 +27,8 @@ public :
 	virtual void RotateRotX();
 	virtual void SetDefaultRotX();
 	virtual void Destroy();
-
+	virtual void AttackMotion();
+	virtual void EndAttack();
 	virtual void Setup() override;
 	virtual void Update() override;
 	virtual void Render() override;
