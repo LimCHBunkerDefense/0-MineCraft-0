@@ -116,6 +116,10 @@ struct ST_PNT_VERTEX
 	enum { FVF = D3DFVF_XYZ | D3DFVF_NORMAL | D3DFVF_TEX1 };
 };
 
+enum OBJECT_NAME
+{
+	OBJECT_NONE, OBJECT_DIRT, OBJECT_WOOD, OBJECT_LEAF,
+};
 
 #define SYNTHESIZE(varType, varName, funName)\
 protected: varType varName;\

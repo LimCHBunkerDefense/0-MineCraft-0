@@ -4,6 +4,7 @@
 
 cText::cText()
 {
+	
 }
 
 cText::cText(LPCWSTR text, D3DXVECTOR3 pos, D3DXVECTOR3 size, D3DXVECTOR3 rotation, D3DXCOLOR color) :

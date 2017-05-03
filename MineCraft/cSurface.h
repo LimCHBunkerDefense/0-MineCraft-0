@@ -10,6 +10,9 @@ public:
 	void UpdateLocation(D3DXVECTOR3 vPosition);
 	void SetisThisLogo();
 	void logoScaling();
+
+	// >> : 창영 수정부분
+	bool GetIsLightOn() { return m_isLightOn; }
 	void SetUI(float width, float height);
 	void SetMaterial(D3DXVECTOR4 ambient, D3DXVECTOR4 diffuse, D3DXVECTOR4 specular, D3DXVECTOR4 emissive, float power = 1.0f);
 

@@ -1,9 +1,9 @@
 #include "stdafx.h"
 #include "cButton.h"
-#include "cText.h"
+#include "cText_2D.h"
 
 
-cButton::cButton() : m_text(NULL)
+cButton::cButton() : m_pText(NULL)
 {
 }
 
@@ -157,6 +157,9 @@ void cButton::Setup(D3DXVECTOR3 v1, D3DXVECTOR3 v2, D3DXVECTOR3 v3, D3DXVECTOR3 
 
 	ver.p = v4 + D3DXVECTOR3(5.0f, 0.0f, 0.0f);
 	m_vecVertex_Bottom.push_back(ver);
+
+	m_pText = new cText_2D;
+
 }
 
 void cButton::Update()
@@ -171,6 +174,7 @@ void cButton::Update()
 		{
 			m_vecVertex_Bottom[i].c = D3DCOLOR_XRGB(255, 255, 255, 1);
 		}
+		if (m_pText) m_pText->SetColor(D3DCOLOR_XRGB(255, 255, 255, 1));
 	}
 	else
 	{
@@ -182,6 +186,7 @@ void cButton::Update()
 		{
 			m_vecVertex_Bottom[i].c = D3DCOLOR_XRGB(50, 50, 50, 1);
 		}
+		if (m_pText) m_pText->SetColor(D3DCOLOR_XRGB(0,0,0, 1));
 	}
 
 	if(IsPressed())
@@ -194,6 +199,8 @@ void cButton::Update()
 		{
 			m_vecVertex[i].c = D3DCOLOR_XRGB(r, g, b, 1);
 		}
+		//D3DXCOLOR color(255, 255, 255,1);
+		
 	}
 	else
 	{
@@ -201,6 +208,7 @@ void cButton::Update()
 		{
 			m_vecVertex[i].c = m_color;
 		}
+		
 	}
 }
 
@@ -231,16 +239,18 @@ void cButton::Render()
 		&m_vecVertex_Bottom[0],
 		sizeof(ST_PC_VERTEX));
 
-	if(m_text) m_text->Render();
+	if(m_pText) m_pText->Render();
 
 	g_pD3DDevice->SetTexture(0, NULL);
 
 
 }
 
-void cButton::SetText(LPCWSTR text, D3DXVECTOR3 fontPos, D3DXVECTOR3 fontSize, D3DXVECTOR3 fontRot, D3DXCOLOR fontColor)
+void cButton::SetText(string text, RECT rect, int fontSize,  D3DXCOLOR fontColor)
 {
-	m_text = new cText(text, fontPos, fontSize, fontRot, fontColor);
+	//m_text = new cText(text, fontPos, fontSize, fontRot, fontColor);
+	m_pText = new cText_2D;
+	m_pText->Create(rect, text, fontSize, fontColor);
 }
 
 bool cButton::IsCollided()
