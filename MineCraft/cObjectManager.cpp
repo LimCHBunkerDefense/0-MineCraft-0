@@ -35,20 +35,28 @@ void cObjectManager::Render()
 	}
 }
 
-void cObjectManager::CreateObject(D3DXVECTOR3 tagetPos)
+void cObjectManager::CreateObject(D3DXVECTOR3 targetPos, OBJECT_NAME name)
 {
 	bool isTargetEmpty = true;
 	for (vector<cObject*>::iterator it = m_vecObject.begin(); it != m_vecObject.end(); it++)
 	{
-		if ((*it)->GetPosition() == tagetPos)isTargetEmpty = false;
+		if ((*it)->GetPosition() == targetPos)isTargetEmpty = false;
 	}
 	if (isTargetEmpty == true)
 	{
-		cObject* pObject = new cTree(tagetPos);
-		pObject->SetName(OBJECT_WOOD);
-		g_pTextureManager->SetNormal(pObject->GetName(), pObject->GetVectex());
-		pObject->Setup();
-		m_vecObject.push_back(pObject);
+		cObject* pObject = NULL;
+		switch (name)
+		{
+		case OBJECT_DIRT: pObject = new cObject(targetPos); break;
+		case OBJECT_WOOD:  pObject = new cTree(targetPos);  break;
+		}
+		if (pObject != NULL) 
+		{
+			pObject->SetName(name);
+			g_pTextureManager->SetNormal(pObject->GetName(), pObject->GetVectex());
+			pObject->Setup();
+			m_vecObject.push_back(pObject);
+		}
 	}
 
 }
