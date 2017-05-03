@@ -13,7 +13,8 @@ cCharacter::cCharacter()
 	m_isJumping(false),
 	m_fPrevY(0),
 	m_fScale(1.0f),
-	m_tag(CHARACTER_PLAYER)
+	m_tag(CHARACTER_PLAYER),
+	m_currentObjName(OBJECT_NONE)
 {
 	D3DXMatrixIdentity(&m_matWorld);
 }
@@ -69,7 +70,7 @@ void cCharacter::Update()
 		if (INPUT->IsKeyPress(VK_E))
 		{
 			m_isAttack = true;
-			g_ObjectManager->CreateObject(m_vFrontPos);
+			g_ObjectManager->CreateObject(m_vFrontPos, m_currentObjName);
 		}
 		if (INPUT->IsKeyUp(VK_E))
 		{
