@@ -4,6 +4,7 @@
 #include "cSurface.h"
 #include "cButton.h"
 #include "cCubeMan.h"
+#include "cMSGBox.h"
 
 
 cShopScene::cShopScene()
@@ -18,8 +19,10 @@ cShopScene::cShopScene()
 	, m_pExampleMan02(NULL)
 	, m_pExampleMan03(NULL)
 	, m_pMyMan(NULL)
+	, m_pMSGBox(NULL)
 {
 	m_nExampleSkinIndex = SKIN_BATMAN;
+	m_nMySkinIndex = SCENE->GetSkinIndex();
 }
 
 
@@ -34,6 +37,7 @@ void cShopScene::OnEnter()
 	SetButtons();
 	SetupExampleMan();
 	Set_Light();
+	SetMSGBox();
 }
 
 void cShopScene::OnUpdate()
@@ -78,6 +82,8 @@ void cShopScene::OnDraw()
 	m_pExampleMan03->Render();
 	m_pMyMan->Render();
 
+	RenderMSG();
+
 	g_pD3DDevice->EndScene();
 
 	g_pD3DDevice->Present(NULL, NULL, NULL, NULL);
@@ -100,6 +106,8 @@ void cShopScene::OnExit()
 	SAFE_DELETE(m_pExampleMan02);
 	SAFE_DELETE(m_pExampleMan03);
 	SAFE_DELETE(m_pMyMan);
+
+	SAFE_DELETE(m_pMSGBox);
 }
 
 void cShopScene::WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
@@ -294,4 +302,20 @@ void cShopScene::SetButtons()
 	SetRect(&rect, m_pBackButton->LeftTop().x + 15, m_pBackButton->LeftTop().y, m_pBackButton->RightBottom().x, m_pBackButton->RightBottom().y);
 	m_pBackButton->SetText("←", rect, 50);
 
+}
+
+void cShopScene::SetMSGBox()
+{
+	m_pMSGBox = new cMSGBox;
+
+	m_pMSGBox->Setup(D3DXVECTOR2(150, 300), D3DXVECTOR2(500, 600), 40, D3DCOLOR_XRGB(255, 255, 255, 1));
+	m_pMSGBox->RegisterMSG(SKIN_BATMAN, "배트맨\n\n박쥐를 모습을 하고 있는\n다이아수저 케릭터\n부럽다...");
+	m_pMSGBox->RegisterMSG(SKIN_CAPTAIN, "캡틴아메리카\n\n양키양키양키\n근육질 양키 케릭터\n울랄라...");
+	m_pMSGBox->RegisterMSG(SKIN_IRON, "아이언맨\n\n쇠덩어리 두르고\n다이아수저 케릭터\n빛나는구나...");
+	m_pMSGBox->RegisterMSG(SKIN_SPIDER, "스파이더맨\n\n손에서 찌익 뿌린다\n찍찍찍\n엉금엉금");
+}
+
+void cShopScene::RenderMSG()
+{
+	m_pMSGBox->Render(m_nMySkinIndex);
 }

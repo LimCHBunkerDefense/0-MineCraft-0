@@ -5,6 +5,7 @@
 class cSurface;
 class cButton;
 class cCubeMan;
+class cMSGBox;
 
 class cShopScene : public IScene
 {
@@ -23,6 +24,7 @@ class cShopScene : public IScene
 	cCubeMan*	m_pExampleMan02;
 	cCubeMan*	m_pExampleMan03;
 	cCubeMan*	m_pMyMan;
+	cMSGBox*	m_pMSGBox;
 
 public:
 	cShopScene();
@@ -42,6 +44,8 @@ public:
 	void SelectSkin();
 	void SetUIImage();
 	void SetButtons();
+	void SetMSGBox();
+	void RenderMSG();
 
 };
 

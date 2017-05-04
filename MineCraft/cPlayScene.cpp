@@ -32,7 +32,7 @@ cPlayScene::cPlayScene() :
 
 cPlayScene::~cPlayScene()
 {
-	g_pDeviceManager->Destroy();
+
 }
 
 void cPlayScene::OnEnter()
@@ -101,9 +101,7 @@ void cPlayScene::OnEnter()
 		//	}
 		//}
 	}
-	SOUND->Play("PlayBGM", 10.0f);
-
-
+	if(SOUND->FindChannel("PlayBGM") == NULL) SOUND->Play("PlayBGM", 10.0f);
 }
 
 

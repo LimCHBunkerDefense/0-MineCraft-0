@@ -254,8 +254,6 @@ void cButton::Render()
 
 void cButton::SetText(string text, RECT rect, int fontSize,  D3DXCOLOR fontColor)
 {
-	//m_text = new cText(text, fontPos, fontSize, fontRot, fontColor);
-	m_pText = new cText_2D;
 	m_pText->Create(rect, text, fontSize, fontColor);
 }
 
