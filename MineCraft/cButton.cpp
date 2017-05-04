@@ -172,6 +172,27 @@ void cButton::Update()
 {
 	if (IsCollided())
 	{
+		int r = 150;
+		int g = 150;
+		int b = 200;
+
+		for (int i = 0; i < m_vecVertex.size(); i++)
+		{
+			m_vecVertex[i].c = D3DCOLOR_XRGB(r, g, b, 1);
+		}
+
+	}
+	else
+	{
+		for (int i = 0; i < m_vecVertex.size(); i++)
+		{
+			m_vecVertex[i].c = m_color;
+		}
+
+	}
+
+	if (IsPressed())
+	{
 		for (int i = 0; i < m_vecVertex_Top.size(); i++)
 		{
 			m_vecVertex_Top[i].c = D3DCOLOR_XRGB(50, 50, 50, 1);
@@ -180,6 +201,15 @@ void cButton::Update()
 		{
 			m_vecVertex_Bottom[i].c = D3DCOLOR_XRGB(255, 255, 255, 1);
 		}
+
+		int r = m_color.r * 255 * 0.6;
+		int g = m_color.g * 255 * 0.6;
+		int b = m_color.b * 255 * 0.6;
+		for (int i = 0; i < m_vecVertex.size(); i++)
+		{	
+			m_vecVertex[i].c = D3DCOLOR_XRGB(r, g, b, 1);
+		}
+
 		if (m_pText) m_pText->SetColor(D3DCOLOR_XRGB(255, 255, 255, 1));
 	}
 	else
@@ -195,27 +225,7 @@ void cButton::Update()
 		if (m_pText) m_pText->SetColor(D3DCOLOR_XRGB(0,0,0, 1));
 	}
 
-	if(IsPressed())
-	{
-		int r = 255 * m_color.r * 0.6;
-		int g = 255 * m_color.g * 0.6;
-		int b = 255 * m_color.b * 0.6;
 
-		for (int i = 0; i < m_vecVertex.size(); i++)
-		{
-			m_vecVertex[i].c = D3DCOLOR_XRGB(r, g, b, 1);
-		}
-		//D3DXCOLOR color(255, 255, 255,1);
-		
-	}
-	else
-	{
-		for (int i = 0; i < m_vecVertex.size(); i++)
-		{
-			m_vecVertex[i].c = m_color;
-		}
-		
-	}
 }
 
 void cButton::Render()

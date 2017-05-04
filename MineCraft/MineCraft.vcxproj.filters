@@ -112,7 +112,9 @@
     <ClCompile Include="cSoundManager.cpp">
       <Filter>07. cSoundManager</Filter>
     </ClCompile>
-    <ClCompile Include="cMSGBox.cpp" />
+    <ClCompile Include="cMSGBox.cpp">
+      <Filter>98. Utility\13. cMSGBox</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h" />
@@ -230,7 +232,9 @@
     <ClInclude Include="cSoundManager.h">
       <Filter>07. cSoundManager</Filter>
     </ClInclude>
-    <ClInclude Include="cMSGBox.h" />
+    <ClInclude Include="cMSGBox.h">
+      <Filter>98. Utility\13. cMSGBox</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Image Include="small.ico">
