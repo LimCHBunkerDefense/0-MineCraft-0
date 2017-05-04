@@ -164,7 +164,8 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 	if (g_pMainGame)
 		g_pMainGame->WndProc(hWnd, message, wParam, lParam);
 
-	
+	bool GameOver = false;
+
     switch (message)
     {
     case WM_COMMAND:
@@ -177,7 +178,15 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
                 DialogBox(hInst, MAKEINTRESOURCE(IDD_ABOUTBOX), hWnd, About);
                 break;
             case IDM_EXIT:
-                DestroyWindow(hWnd);
+				if (MessageBox(hWnd, TEXT("게임을 종료 하시겠습니까?"), TEXT("GAME OVER"), MB_YESNO) == IDYES)
+				{
+					GameOver = true;
+					DestroyWindow(hWnd);
+				}
+				else
+				{
+					GameOver = false;
+				}
                 break;
             default:
                 return DefWindowProc(hWnd, message, wParam, lParam);
@@ -188,7 +197,15 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 	case WM_KEYDOWN:
 		if (GetKeyState(VK_ESCAPE) & KF_UP)
 		{
-		DestroyWindow(hWnd);
+			if (MessageBox(hWnd, TEXT("게임을 종료 하시겠습니까?"), TEXT("GAME OVER"),    MB_YESNO) == IDYES)
+			  {
+			        GameOver = true;
+					DestroyWindow(hWnd);
+			  }
+			else
+			  {
+			        GameOver = false;
+			  }
 		break;
 		}
 
@@ -200,9 +217,19 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
             EndPaint(hWnd, &ps);
         }
         break;
-    case WM_DESTROY:
-        PostQuitMessage(0);
+
+    case WM_CLOSE:
+		if (MessageBox(hWnd, TEXT("게임을 종료 하시겠습니까?"), TEXT("GAME OVER"), MB_YESNO) == IDYES)
+		{
+			GameOver = true;
+			PostQuitMessage(0);
+		}
+		else
+		{
+			GameOver = false;
+		}
         break;
+
     default:
         return DefWindowProc(hWnd, message, wParam, lParam);
     }
