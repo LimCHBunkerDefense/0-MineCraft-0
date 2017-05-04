@@ -77,7 +77,7 @@ void cLoadingScene::OnDraw()
 
 void cLoadingScene::OnExit()
 {
-	Sleep(1000);
+	Sleep(500);
 	SCENE->ChangeScene(SCENE_TITLE);
 
 }
