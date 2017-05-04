@@ -2,8 +2,10 @@
 #include "cObject.h"
 
 
-cObject::cObject()
+cObject::cObject():m_vLocalPos(0,0,0)
 {
+	cCubePNT::Setup();
+	D3DXMatrixIdentity(&m_matLocalTM);
 }
 
 cObject::cObject(D3DXVECTOR3 pos)

@@ -77,6 +77,7 @@ void cTitleScene::OnUpdate()
 	}
 
 	if (m_pButton_Shop->IsClicked()) SCENE->ChangeScene(SCENE_SHOP);
+	if (m_pButton_Help->IsClicked()) OnHelp();
 	if (m_pButton_Start) m_pButton_Start->Update();
 	if (m_pButton_Shop) m_pButton_Shop->Update();
 	if (m_pButton_Help) m_pButton_Help->Update();
@@ -116,6 +117,12 @@ void cTitleScene::OnExit()
 	SAFE_DELETE(m_pButton_Shop);
 	SAFE_DELETE(m_pButton_Help);
 }
+
+void cTitleScene::OnHelp()
+{
+	//도움말 창 만들것.
+}
+
 
 void cTitleScene::WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
 {

@@ -12,6 +12,7 @@ private:
 	vector<cObject*> m_vecObject;
 public:
 	vector<cObject*>& GetVecObject() { return m_vecObject; }
-	void Render();
+	void Render(D3DXVECTOR3 pos);
 	void CreateObject(D3DXVECTOR3 tagetPos, OBJECT_NAME name);
+	bool IsObjectHere(D3DXVECTOR3 tagetPos);
 };
