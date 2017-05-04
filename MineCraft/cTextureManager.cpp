@@ -5,7 +5,7 @@
 cTextureManager::cTextureManager()
 {
 	D3DXCreateTextureFromFile(g_pD3DDevice, TEXT("image/Dirt.png"), &m_mapTexture["Dirt"]);
-	D3DXCreateTextureFromFile(g_pD3DDevice, TEXT("image/Image.png"), &m_mapTexture["Image"]);
+	D3DXCreateTextureFromFile(g_pD3DDevice, TEXT("image/Texture/Texture00.png"), &m_mapTexture["Texture00"]); // 경로 텍스쳐폴더 및 이름변경
 	D3DXCreateTextureFromFile(g_pD3DDevice, TEXT("image/Skin/batman.png"), &m_mapTexture["batman"]);
 	D3DXCreateTextureFromFile(g_pD3DDevice, TEXT("image/Skin/CaptainAmerica.png"), &m_mapTexture["CaptainAmerica"]);
 	D3DXCreateTextureFromFile(g_pD3DDevice, TEXT("image/Skin/Ironman.png"), &m_mapTexture["Ironman"]);

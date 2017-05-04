@@ -62,7 +62,7 @@ void cCharacter::Update()
 		if (INPUT->IsKeyPress(VK_E))
 		{
 			m_isAttack = true;
-			//g_ObjectManager->CreateObject(m_vFrontPos);
+			g_ObjectManager->CreateObject(m_vFrontPos, OBJECT_WOOD);
 		}
 		if (INPUT->IsKeyUp(VK_E))
 		{

@@ -30,7 +30,7 @@ void cObjectManager::Render()
 	g_pD3DDevice->SetRenderState(D3DRS_SRCBLEND, D3DBLEND_SRCALPHA);
 	for (vector<cObject*>::iterator it = m_vecObject.begin(); it != m_vecObject.end(); it++)
 	{
-		g_pD3DDevice->SetTexture(0, g_pTextureManager->GetTexture("Image"));
+		g_pD3DDevice->SetTexture(0, g_pTextureManager->GetTexture("Texture00"));
 		(*it)->Render();
 	}
 }
