@@ -193,6 +193,22 @@ void cShopScene::UpdateExampleMan()
 	{
 		m_pExampleMan03->SetRotY(D3DX_PI);
 	}
+	
+	if (INPUT->IsCollided(D3DXVECTOR2(710, 435), D3DXVECTOR2(760, 460)))
+	{
+		m_pMyMan->SetRotY(m_pMyMan->GetRotY() + D3DX_PI * 0.02);
+	}
+	else if (INPUT->IsCollided(D3DXVECTOR2(805, 435), D3DXVECTOR2(855, 460)))
+	{
+		m_pMyMan->SetRotY(m_pMyMan->GetRotY() - D3DX_PI * 0.02);
+	}
+
+	else if (INPUT->IsCollided(D3DXVECTOR2(765, 435), D3DXVECTOR2(795, 460)))
+	{
+		m_pMyMan->SetRotY(D3DX_PI);
+
+	}
+
 }
 
 
