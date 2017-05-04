@@ -10,6 +10,8 @@ class cButton
 	vector<ST_PC_VERTEX>	m_vecVertex_Bottom;
 	D3DXCOLOR				m_color;
 	cText_2D*				m_pText;
+	D3DXVECTOR2				m_vLeftTop;
+	D3DXVECTOR2				m_vRightBottom;
 
 public:
 	cButton();
@@ -23,5 +25,7 @@ public:
 	bool IsCollided();
 	bool IsPressed();
 	bool IsClicked();
+	D3DXVECTOR2 LeftTop();
+	D3DXVECTOR2 RightBottom();
 };
 

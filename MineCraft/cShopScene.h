@@ -40,6 +40,8 @@ public:
 	void UpdateExampleMan();
 	void UpdateExampleSkin();
 	void SelectSkin();
+	void SetUIImage();
+	void SetButtons();
 
 };
 

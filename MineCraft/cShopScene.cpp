@@ -30,57 +30,19 @@ cShopScene::~cShopScene()
 
 void cShopScene::OnEnter()
 {
-	m_pBg = new cSurface();
-	m_pBg->Setup(D3DXVECTOR3(-VIEW_WIDTH * 0.5F, 0.0F, 0.0F), D3DXVECTOR3(-VIEW_WIDTH * 0.5F, VIEW_HEIGHT, 0.0F),
-		D3DXVECTOR3(VIEW_WIDTH * 0.5F, VIEW_HEIGHT, 0.0F), D3DXVECTOR3(VIEW_WIDTH * 0.5F, 0.0F, 0.0F), TEXT("Image/TitleScene/bg.png"), false);
-
-	m_pGUI_Outline = new cSurface();
-	m_pGUI_Outline->Setup(D3DXVECTOR3(-VIEW_WIDTH * 0.4f, VIEW_HEIGHT * 0.1f, -0.2f), D3DXVECTOR3(-VIEW_WIDTH * 0.4f, VIEW_HEIGHT * 0.9f, -0.2f),
-		D3DXVECTOR3(VIEW_WIDTH * 0.4f, VIEW_HEIGHT * 0.9f, -0.2f), D3DXVECTOR3(VIEW_WIDTH * 0.4f, VIEW_HEIGHT * 0.1f, -0.2f), TEXT("Image/UI/GUI_Outline.png"), false);
-	m_pGUI_Outline->SetUI(1.0f, 0.8f);
-
-	m_pGUI_Inform = new cSurface();
-	m_pGUI_Inform->Setup(D3DXVECTOR3(-VIEW_WIDTH * 0.37f, VIEW_HEIGHT * 0.20f, -0.2f), D3DXVECTOR3(-VIEW_WIDTH * 0.37f, VIEW_HEIGHT * 0.60f, -0.2f),
-		D3DXVECTOR3(VIEW_WIDTH * 0.06f, VIEW_HEIGHT * 0.60f, -0.2f), D3DXVECTOR3(VIEW_WIDTH * 0.06f, VIEW_HEIGHT * 0.20f, -0.2f), TEXT("Image/UI/GUI_Inform.png"), false);
-	m_pGUI_Inform->SetUI(1.0f, 0.8f);
-
-	m_pUI_leftButton = new cButton();
-	m_pUI_leftButton->Setup(D3DXVECTOR3(-VIEW_WIDTH * 0.37f, VIEW_HEIGHT * 0.67f, -0.3f), D3DXVECTOR3(-VIEW_WIDTH * 0.37f, VIEW_HEIGHT * 0.82f, -0.3f),
-		D3DXVECTOR3(-VIEW_WIDTH * 0.33f, VIEW_HEIGHT * 0.82f, -0.3f), D3DXVECTOR3(-VIEW_WIDTH * 0.33f, VIEW_HEIGHT * 0.67f, -0.3f), D3DCOLOR_XRGB(175, 175, 175, 0.8f));
-
-	m_pUI_rightButton = new cButton();
-	m_pUI_rightButton->Setup(D3DXVECTOR3(VIEW_WIDTH * 0.0f, VIEW_HEIGHT * 0.67f, -0.3f), D3DXVECTOR3(VIEW_WIDTH * 0.0f, VIEW_HEIGHT * 0.82f, -0.3f),
-		D3DXVECTOR3(VIEW_WIDTH * 0.04f, VIEW_HEIGHT * 0.82f, -0.3f), D3DXVECTOR3(VIEW_WIDTH * 0.04f, VIEW_HEIGHT * 0.67f, -0.3f), D3DCOLOR_XRGB(175, 175, 175, 0.8f));
-
-	m_pSelectButton = new cButton();
-	m_pSelectButton->Setup(D3DXVECTOR3(VIEW_WIDTH * 0.17f, VIEW_HEIGHT * 0.29f, -0.3f), D3DXVECTOR3(VIEW_WIDTH * 0.17f, VIEW_HEIGHT * 0.35f, -0.3f),
-		D3DXVECTOR3(VIEW_WIDTH * 0.33f, VIEW_HEIGHT * 0.35f, -0.3f), D3DXVECTOR3(VIEW_WIDTH * 0.33f, VIEW_HEIGHT * 0.29f, -0.3f), D3DCOLOR_XRGB(175, 175, 175, 0.8f));
-	//m_pSelectButton->SetText(("Select"), 40, D3DCOLOR_XRGB(0, 0, 0, 0));
-
-	m_pBackButton = new cButton();
-	m_pBackButton->Setup(D3DXVECTOR3(VIEW_WIDTH * 0.10f, VIEW_HEIGHT * 0.29f, -0.3f), D3DXVECTOR3(VIEW_WIDTH * 0.10f, VIEW_HEIGHT * 0.35f, -0.3f),
-		D3DXVECTOR3(VIEW_WIDTH * 0.16f, VIEW_HEIGHT * 0.35f, -0.3f), D3DXVECTOR3(VIEW_WIDTH * 0.16f, VIEW_HEIGHT * 0.29f, -0.3f), D3DCOLOR_XRGB(175, 175, 175, 0.8f));
-
+	SetUIImage();
+	SetButtons();
 	SetupExampleMan();
-	
-	m_pMyMan = new cCubeMan;
-	m_pMyMan->SetScale(180.0f);
-	m_pMyMan->Setup();
-	m_pMyMan->SetTexture(g_pTextureManager->GetTexture(SCENE->GetSkinIndex()));
-	m_pMyMan->SetRotY(D3DX_PI);
-	m_pMyMan->SetPosition(VIEW_WIDTH * 0.22f, VIEW_HEIGHT * 0.40f, -0.3f);
-	m_pMyMan->SetTag(CHARACTER_MY);
-
 	Set_Light();
 }
 
 void cShopScene::OnUpdate()
 {
-	if (INPUT->IsKeyDown(VK_BACK)) SCENE->ChangeScene(SCENE_TITLE);
 	if (m_pUI_leftButton)	m_pUI_leftButton->Update();
 	if (m_pUI_rightButton)	m_pUI_rightButton->Update();
 	if (m_pSelectButton)	m_pSelectButton->Update();
 	if (m_pBackButton)		m_pBackButton->Update();
+	if (m_pBackButton->IsClicked()) SCENE->ChangeScene(SCENE_TITLE);
 	if (m_pExampleMan01) m_pExampleMan01->Update();
 	if (m_pExampleMan02) m_pExampleMan02->Update();
 	if (m_pExampleMan03) m_pExampleMan03->Update();
@@ -185,6 +147,14 @@ void cShopScene::SetupExampleMan()
 	m_pExampleMan03->SetRotY(D3DX_PI);
 	m_pExampleMan03->SetPosition(VIEW_WIDTH * -0.05f, VIEW_HEIGHT * 0.65f, -70.0f);
 	m_pExampleMan03->SetTag(CHARACTER_EXAMPLE);
+
+	m_pMyMan = new cCubeMan;
+	m_pMyMan->SetScale(180.0f);
+	m_pMyMan->Setup();
+	m_pMyMan->SetTexture(g_pTextureManager->GetTexture(SCENE->GetSkinIndex()));
+	m_pMyMan->SetRotY(D3DX_PI);
+	m_pMyMan->SetPosition(VIEW_WIDTH * 0.22f, VIEW_HEIGHT * 0.40f, -0.3f);
+	m_pMyMan->SetTag(CHARACTER_MY);
 }
 
 void cShopScene::UpdateExampleMan()
@@ -277,4 +247,51 @@ void cShopScene::SelectSkin()
 	{
 		SCENE->SetSkinIndex(m_nMySkinIndex);
 	}
+}
+
+void cShopScene::SetUIImage()
+{
+	m_pBg = new cSurface();
+	m_pBg->Setup(D3DXVECTOR3(-VIEW_WIDTH * 0.5F, 0.0F, 0.0F), D3DXVECTOR3(-VIEW_WIDTH * 0.5F, VIEW_HEIGHT, 0.0F),
+		D3DXVECTOR3(VIEW_WIDTH * 0.5F, VIEW_HEIGHT, 0.0F), D3DXVECTOR3(VIEW_WIDTH * 0.5F, 0.0F, 0.0F), TEXT("Image/TitleScene/bg.png"), false);
+
+	m_pGUI_Outline = new cSurface();
+	m_pGUI_Outline->Setup(D3DXVECTOR3(-VIEW_WIDTH * 0.4f, VIEW_HEIGHT * 0.1f, -0.2f), D3DXVECTOR3(-VIEW_WIDTH * 0.4f, VIEW_HEIGHT * 0.9f, -0.2f),
+		D3DXVECTOR3(VIEW_WIDTH * 0.4f, VIEW_HEIGHT * 0.9f, -0.2f), D3DXVECTOR3(VIEW_WIDTH * 0.4f, VIEW_HEIGHT * 0.1f, -0.2f), TEXT("Image/UI/GUI_Outline.png"), false);
+	m_pGUI_Outline->SetUI(1.0f, 0.8f);
+
+	m_pGUI_Inform = new cSurface();
+	m_pGUI_Inform->Setup(D3DXVECTOR3(-VIEW_WIDTH * 0.37f, VIEW_HEIGHT * 0.20f, -0.2f), D3DXVECTOR3(-VIEW_WIDTH * 0.37f, VIEW_HEIGHT * 0.60f, -0.2f),
+		D3DXVECTOR3(VIEW_WIDTH * 0.06f, VIEW_HEIGHT * 0.60f, -0.2f), D3DXVECTOR3(VIEW_WIDTH * 0.06f, VIEW_HEIGHT * 0.20f, -0.2f), TEXT("Image/UI/GUI_Inform.png"), false);
+	m_pGUI_Inform->SetUI(1.0f, 0.8f);
+}
+
+void cShopScene::SetButtons()
+{
+	RECT rect;
+
+	m_pUI_leftButton = new cButton();
+	m_pUI_leftButton->Setup(D3DXVECTOR3(-VIEW_WIDTH * 0.37f, VIEW_HEIGHT * 0.67f, -0.3f), D3DXVECTOR3(-VIEW_WIDTH * 0.37f, VIEW_HEIGHT * 0.82f, -0.3f),
+		D3DXVECTOR3(-VIEW_WIDTH * 0.33f, VIEW_HEIGHT * 0.82f, -0.3f), D3DXVECTOR3(-VIEW_WIDTH * 0.33f, VIEW_HEIGHT * 0.67f, -0.3f), D3DCOLOR_XRGB(175, 175, 175, 0.8f));
+	SetRect(&rect, m_pUI_leftButton->LeftTop().x + 10, m_pUI_leftButton->LeftTop().y + 28, m_pUI_leftButton->RightBottom().x, m_pUI_leftButton->RightBottom().y);
+	m_pUI_leftButton->SetText("<", rect, 50);
+
+	m_pUI_rightButton = new cButton();
+	m_pUI_rightButton->Setup(D3DXVECTOR3(VIEW_WIDTH * 0.0f, VIEW_HEIGHT * 0.67f, -0.3f), D3DXVECTOR3(VIEW_WIDTH * 0.0f, VIEW_HEIGHT * 0.82f, -0.3f),
+		D3DXVECTOR3(VIEW_WIDTH * 0.04f, VIEW_HEIGHT * 0.82f, -0.3f), D3DXVECTOR3(VIEW_WIDTH * 0.04f, VIEW_HEIGHT * 0.67f, -0.3f), D3DCOLOR_XRGB(175, 175, 175, 0.8f));
+	SetRect(&rect, m_pUI_rightButton->LeftTop().x + 10, m_pUI_rightButton->LeftTop().y + 28, m_pUI_rightButton->RightBottom().x, m_pUI_rightButton->RightBottom().y);
+	m_pUI_rightButton->SetText(">", rect, 50);
+
+	m_pSelectButton = new cButton();
+	m_pSelectButton->Setup(D3DXVECTOR3(VIEW_WIDTH * 0.17f, VIEW_HEIGHT * 0.29f, -0.3f), D3DXVECTOR3(VIEW_WIDTH * 0.17f, VIEW_HEIGHT * 0.35f, -0.3f),
+		D3DXVECTOR3(VIEW_WIDTH * 0.33f, VIEW_HEIGHT * 0.35f, -0.3f), D3DXVECTOR3(VIEW_WIDTH * 0.33f, VIEW_HEIGHT * 0.29f, -0.3f), D3DCOLOR_XRGB(175, 175, 175, 0.8f));
+	SetRect(&rect, m_pSelectButton->LeftTop().x + 40, m_pSelectButton->LeftTop().y + 5 , m_pSelectButton->RightBottom().x, m_pSelectButton->RightBottom().y);
+	m_pSelectButton->SetText("Select", rect, 40);
+
+	m_pBackButton = new cButton();
+	m_pBackButton->Setup(D3DXVECTOR3(VIEW_WIDTH * 0.10f, VIEW_HEIGHT * 0.29f, -0.3f), D3DXVECTOR3(VIEW_WIDTH * 0.10f, VIEW_HEIGHT * 0.35f, -0.3f),
+		D3DXVECTOR3(VIEW_WIDTH * 0.16f, VIEW_HEIGHT * 0.35f, -0.3f), D3DXVECTOR3(VIEW_WIDTH * 0.16f, VIEW_HEIGHT * 0.29f, -0.3f), D3DCOLOR_XRGB(175, 175, 175, 0.8f));
+	SetRect(&rect, m_pBackButton->LeftTop().x + 15, m_pBackButton->LeftTop().y, m_pBackButton->RightBottom().x, m_pBackButton->RightBottom().y);
+	m_pBackButton->SetText("ก็", rect, 50);
+
 }

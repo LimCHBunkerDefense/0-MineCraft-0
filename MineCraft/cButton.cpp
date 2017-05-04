@@ -5,6 +5,7 @@
 
 cButton::cButton() : m_pText(NULL)
 {
+	SOUND->LoadFile("click", "Sound/click.mp3", false);
 }
 
 
@@ -160,6 +161,11 @@ void cButton::Setup(D3DXVECTOR3 v1, D3DXVECTOR3 v2, D3DXVECTOR3 v3, D3DXVECTOR3 
 
 	m_pText = new cText_2D;
 
+	m_vLeftTop.x = VIEW_WIDTH * 0.5 + (m_vecVertex[0].p.x);
+	m_vLeftTop.y = VIEW_HEIGHT - m_vecVertex[1].p.y;
+	m_vRightBottom.x = VIEW_WIDTH * 0.5 + m_vecVertex[2].p.x;
+	m_vRightBottom.y = VIEW_HEIGHT - m_vecVertex[5].p.y;
+
 }
 
 void cButton::Update()
@@ -258,16 +264,10 @@ bool cButton::IsCollided()
 	POINT pos = INPUT->GetMousePos();
 	D3DXVECTOR2 mousePos = D3DXVECTOR2(pos.x, pos.y);
 
-	D3DXVECTOR2 leftTop, rightBottom;
-	leftTop.x = VIEW_WIDTH * 0.5 + (m_vecVertex[0].p.x);
-	leftTop.y = VIEW_HEIGHT - m_vecVertex[1].p.y;
-	rightBottom.x = VIEW_WIDTH * 0.5 + m_vecVertex[2].p.x;
-	rightBottom.y = VIEW_HEIGHT - m_vecVertex[5].p.y;
-
-	if (mousePos.x >= leftTop.x &&
-		mousePos.x < rightBottom.x &&
-		mousePos.y >= leftTop.y &&
-		mousePos.y < rightBottom.y) return true;
+	if (mousePos.x >= m_vLeftTop.x &&
+		mousePos.x < m_vRightBottom.x &&
+		mousePos.y >= m_vLeftTop.y &&
+		mousePos.y < m_vRightBottom.y)	return true;
 	return false;
 }
 
@@ -278,16 +278,10 @@ bool cButton::IsPressed()
 		POINT pos = INPUT->GetMousePos();
 		D3DXVECTOR2 mousePos = D3DXVECTOR2(pos.x, pos.y);
 
-		D3DXVECTOR2 leftTop, rightBottom;
-		leftTop.x = VIEW_WIDTH * 0.5 - fabs(m_vecVertex[0].p.x);
-		leftTop.y = VIEW_HEIGHT - m_vecVertex[1].p.y;
-		rightBottom.x = VIEW_WIDTH * 0.5 + m_vecVertex[2].p.x;
-		rightBottom.y = VIEW_HEIGHT - m_vecVertex[5].p.y;
-
-		if (mousePos.x >= leftTop.x &&
-			mousePos.x < rightBottom.x &&
-			mousePos.y >= leftTop.y &&
-			mousePos.y < rightBottom.y) return true;		
+		if (mousePos.x >= m_vLeftTop.x &&
+			mousePos.x < m_vRightBottom.x &&
+			mousePos.y >= m_vLeftTop.y &&
+			mousePos.y < m_vRightBottom.y) return true;		
 	}
 	return false;	
 }
@@ -299,16 +293,23 @@ bool cButton::IsClicked()
 		POINT pos = INPUT->GetMousePos();
 		D3DXVECTOR2 mousePos = D3DXVECTOR2(pos.x, pos.y);
 
-		D3DXVECTOR2 leftTop, rightBottom;
-		leftTop.x = VIEW_WIDTH * 0.5 - fabs(m_vecVertex[0].p.x);
-		leftTop.y = VIEW_HEIGHT - m_vecVertex[1].p.y;
-		rightBottom.x = VIEW_WIDTH * 0.5 + m_vecVertex[2].p.x;
-		rightBottom.y = VIEW_HEIGHT - m_vecVertex[5].p.y;
-
-		if (mousePos.x >= leftTop.x &&
-			mousePos.x < rightBottom.x &&
-			mousePos.y >= leftTop.y &&
-			mousePos.y < rightBottom.y) return true;
+		if (mousePos.x >= m_vLeftTop.x &&
+			mousePos.x < m_vRightBottom.x &&
+			mousePos.y >= m_vLeftTop.y &&
+			mousePos.y < m_vRightBottom.y)
+		{
+			SOUND->Play("click");
+			return true;
+		}
 	}
 	return false;
+}
+
+D3DXVECTOR2 cButton::LeftTop()
+{
+	return m_vLeftTop;
+}
+D3DXVECTOR2 cButton::RightBottom()
+{
+	return m_vRightBottom;
 }
