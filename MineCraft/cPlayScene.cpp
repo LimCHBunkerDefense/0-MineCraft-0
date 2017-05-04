@@ -87,19 +87,19 @@ void cPlayScene::OnEnter()
 	Set_Light();
 	if (g_ObjectManager->GetVecObject().empty())
 	{
-		float x = -500.0f;
-		float z = -500.0f;
-		for (int i = 0; i < 1000000; i++)
-		{
-			D3DXVECTOR3 pos = D3DXVECTOR3(x, -1.0f, z);
-			g_ObjectManager->CreateObject(pos, OBJECT_DIRT);
-			x += 1.0f;
-			if (x >= 500.0f)
-			{
-				z += 1.0f;
-				x = -500.0f;
-			}
-		}
+		//float x = -500.0f;
+		//float z = -500.0f;
+		//for (int i = 0; i < 1000000; i++)
+		//{
+		//	D3DXVECTOR3 pos = D3DXVECTOR3(x, -1.0f, z);
+		//	g_ObjectManager->CreateObject(pos, OBJECT_DIRT);
+		//	x += 1.0f;
+		//	if (x >= 500.0f)
+		//	{
+		//		z += 1.0f;
+		//		x = -500.0f;
+		//	}
+		//}
 	}
 	SOUND->Play("PlayBGM", 10.0f);
 
@@ -170,7 +170,7 @@ void cPlayScene::OnDraw()
 	if (m_pSun)	m_pSun->Render();
 	else if (m_pMoon) m_pMoon->Render();
 	// << :
-	g_pD3DDevice->SetTexture(0, g_pTextureManager->GetTexture("Image"));
+	//g_pD3DDevice->SetTexture(0, g_pTextureManager->GetTexture("Image"));
 	g_ObjectManager->Render(m_pCubeMan->GetPosition());
 	g_pD3DDevice->EndScene();
 
@@ -186,6 +186,7 @@ void cPlayScene::OnExit()
 	SAFE_DELETE(m_pSide3);
 	SAFE_DELETE(m_pSide4);
 
+	m_pCubeMan->SetTexture(NULL);
 	SAFE_DELETE(m_pCubeMan);
 	SAFE_DELETE(m_pSun);
 	SAFE_DELETE(m_pMoon);
@@ -257,16 +258,16 @@ void cPlayScene::SetPlayerSkin()
 	switch (index)
 	{
 	case SKIN_BATMAN:
-		m_pCubeMan->SetTexture(g_pTextureManager->GetTexture("batman"));
+		m_pCubeMan->SetTexture(g_pTextureManager->GetTexture(SKIN_BATMAN));
 		break;
 	case SKIN_CAPTAIN:
-		m_pCubeMan->SetTexture(g_pTextureManager->GetTexture("CaptainAmerica"));
+		m_pCubeMan->SetTexture(g_pTextureManager->GetTexture(SKIN_CAPTAIN));
 		break;
 	case SKIN_IRON:
-		m_pCubeMan->SetTexture(g_pTextureManager->GetTexture("Ironman"));
+		m_pCubeMan->SetTexture(g_pTextureManager->GetTexture(SKIN_IRON));
 		break;
 	case SKIN_SPIDER:
-		m_pCubeMan->SetTexture(g_pTextureManager->GetTexture("Spiderman"));
+		m_pCubeMan->SetTexture(g_pTextureManager->GetTexture(SKIN_SPIDER));
 		break;
 	}
 }

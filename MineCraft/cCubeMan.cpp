@@ -90,10 +90,8 @@ void cCubeMan::Render()
 
 	cCharacter::Render();
 
-	D3DXMATRIXA16 matWorld, matS; 
+	D3DXMATRIXA16 matWorld; 
 	D3DXMatrixIdentity(&matWorld); 
-	D3DXMatrixScaling(&matS, 1000.0f, 1000.0f, 1000.0f);
-	matWorld = matS;
 	g_pD3DDevice->SetTransform(D3DTS_WORLD, &matWorld); 
 	g_pD3DDevice->SetTexture(0, m_pTexture); 
 

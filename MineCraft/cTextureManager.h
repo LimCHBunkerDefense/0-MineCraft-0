@@ -14,9 +14,11 @@ private:
 
 	map<string, LPDIRECT3DTEXTURE9> m_mapTexture;
 	map<float, D3DXVECTOR2> m_TextureIndex;
+	map<int, LPDIRECT3DTEXTURE9> m_mapSkin;
 public:
 	LPDIRECT3DTEXTURE9 GetTexture(char* szFullPath);
 	LPDIRECT3DTEXTURE9 GetTexture(string& sFullPath);
+	LPDIRECT3DTEXTURE9 GetTexture(int key);
 	void Destroy();
 	// >>:텍스쳐 인덱스좌표
 	void SetupIndex();

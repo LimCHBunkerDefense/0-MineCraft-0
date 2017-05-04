@@ -19,7 +19,7 @@ cShopScene::cShopScene()
 	, m_pExampleMan03(NULL)
 	, m_pMyMan(NULL)
 {
-	m_nSkinIndex = SKIN_BATMAN;
+	m_nExampleSkinIndex = SKIN_BATMAN;
 }
 
 
@@ -66,6 +66,7 @@ void cShopScene::OnEnter()
 	m_pMyMan = new cCubeMan;
 	m_pMyMan->SetScale(180.0f);
 	m_pMyMan->Setup();
+	m_pMyMan->SetTexture(g_pTextureManager->GetTexture(SCENE->GetSkinIndex()));
 	m_pMyMan->SetRotY(D3DX_PI);
 	m_pMyMan->SetPosition(VIEW_WIDTH * 0.22f, VIEW_HEIGHT * 0.40f, -0.3f);
 	m_pMyMan->SetTag(CHARACTER_MY);
@@ -128,6 +129,11 @@ void cShopScene::OnExit()
 	SAFE_DELETE(m_pGUI_Inform);
 	SAFE_DELETE(m_pGUI_Outline);
 	SAFE_DELETE(m_pBg);
+
+	m_pExampleMan01->SetTexture(NULL);
+	m_pExampleMan02->SetTexture(NULL);
+	m_pExampleMan03->SetTexture(NULL);
+	m_pMyMan->SetTexture(NULL);
 	SAFE_DELETE(m_pExampleMan01);
 	SAFE_DELETE(m_pExampleMan02);
 	SAFE_DELETE(m_pExampleMan03);
@@ -183,7 +189,7 @@ void cShopScene::SetupExampleMan()
 
 void cShopScene::UpdateExampleMan()
 {
-	if (INPUT->IsCollided(D3DXVECTOR2(330, 150), D3DXVECTOR2(420, 330)))
+	if (INPUT->IsCollided(D3DXVECTOR2(230, 130), D3DXVECTOR2(290, 260)))
 	{
 		m_pExampleMan01->SetRotY(m_pExampleMan01->GetRotY() + D3DX_PI * 0.02);
 	}
@@ -192,7 +198,7 @@ void cShopScene::UpdateExampleMan()
 		m_pExampleMan01->SetRotY(D3DX_PI - 0.30f);
 	}
 
-	if (INPUT->IsCollided(D3DXVECTOR2(330, 150), D3DXVECTOR2(420, 330)))
+	if (INPUT->IsCollided(D3DXVECTOR2(330, 130), D3DXVECTOR2(400, 260)))
 	{
 		m_pExampleMan02->SetRotY(m_pExampleMan02->GetRotY() + D3DX_PI * 0.02);
 	}
@@ -201,7 +207,7 @@ void cShopScene::UpdateExampleMan()
 		m_pExampleMan02->SetRotY(D3DX_PI - 0.20f);
 	}
 
-	if (INPUT->IsCollided(D3DXVECTOR2(330, 150), D3DXVECTOR2(420, 330)))
+	if (INPUT->IsCollided(D3DXVECTOR2(450, 130), D3DXVECTOR2(525, 260)))
 	{
 		m_pExampleMan03->SetRotY(m_pExampleMan03->GetRotY() + D3DX_PI * 0.02);
 	}
@@ -217,45 +223,58 @@ void cShopScene::UpdateExampleSkin()
 
 	if (m_pUI_leftButton->IsClicked())
 	{
-		m_nSkinIndex--;
-		if (m_nSkinIndex < 1) m_nSkinIndex = SKIN_BATMAN;
+		m_nExampleSkinIndex--;
+		if (m_nExampleSkinIndex < SKIN_BATMAN) m_nExampleSkinIndex = SKIN_BATMAN;
 	}
 
 	if (m_pUI_rightButton->IsClicked())
 	{
-		m_nSkinIndex++;
-		if (m_nSkinIndex > 4) m_nSkinIndex = SKIN_SPIDER;
+		m_nExampleSkinIndex++;
+		if (m_nExampleSkinIndex > SKIN_CAPTAIN) m_nExampleSkinIndex = SKIN_CAPTAIN;
 	}
 
-	switch (m_nSkinIndex)
+	switch (m_nExampleSkinIndex)
 	{
 	case SKIN_BATMAN:
-		m_pExampleMan01->SetTexture(g_pTextureManager->GetTexture("batman"));
-		if (INPUT->IsCollided(D3DXVECTOR2(330, 150), D3DXVECTOR2(420, 330)) && INPUT->IsMouseDown(MOUSE_LEFT))
-			m_pMyMan->SetTexture(g_pTextureManager->GetTexture("batman"));
+		m_pExampleMan01->SetTexture(g_pTextureManager->GetTexture(SKIN_BATMAN));
+		m_pExampleMan02->SetTexture(g_pTextureManager->GetTexture(SKIN_CAPTAIN));
+		m_pExampleMan03->SetTexture(g_pTextureManager->GetTexture(SKIN_IRON));
 		break;
 	case SKIN_CAPTAIN:
-		m_pExampleMan02->SetTexture(g_pTextureManager->GetTexture("CaptainAmerica"));
-		if (INPUT->IsCollided(D3DXVECTOR2(330, 150), D3DXVECTOR2(420, 330)) && INPUT->IsMouseDown(MOUSE_LEFT))
-			m_pMyMan->SetTexture(g_pTextureManager->GetTexture("CaptainAmerica"));
+		m_pExampleMan01->SetTexture(g_pTextureManager->GetTexture(SKIN_CAPTAIN));
+		m_pExampleMan02->SetTexture(g_pTextureManager->GetTexture(SKIN_IRON));
+		m_pExampleMan03->SetTexture(g_pTextureManager->GetTexture(SKIN_SPIDER));
 		break;
 	case SKIN_IRON:
-		m_pExampleMan03->SetTexture(g_pTextureManager->GetTexture("Ironman"));
-		if (INPUT->IsCollided(D3DXVECTOR2(330, 150), D3DXVECTOR2(420, 330)) && INPUT->IsMouseDown(MOUSE_LEFT))
-			m_pMyMan->SetTexture(g_pTextureManager->GetTexture("Ironman"));
 		break;
-	// case SKIN_SPIDER:
-	// 	->SetTexture(g_pTextureManager->GetTexture("Spiderman"));
-	// 	if (INPUT->IsCollided(D3DXVECTOR2(330, 150), D3DXVECTOR2(420, 330)) && INPUT->IsMouseDown(MOUSE_LEFT))
-	// 		m_pMyMan->SetTexture(g_pTextureManager->GetTexture("Spiderman"));
-	// 	break;
+	case SKIN_SPIDER:
+	 	break;
 	}
+
+	if (INPUT->IsMouseDown(MOUSE_LEFT))
+	{
+		if (INPUT->IsCollided(D3DXVECTOR2(230, 130), D3DXVECTOR2(290, 260)))
+		{
+			m_pMyMan->SetTexture(g_pTextureManager->GetTexture(m_nExampleSkinIndex + 0));
+			m_nMySkinIndex = m_nExampleSkinIndex;
+		}
+		if (INPUT->IsCollided(D3DXVECTOR2(330, 130), D3DXVECTOR2(400, 260)))
+		{
+			m_pMyMan->SetTexture(g_pTextureManager->GetTexture(m_nExampleSkinIndex + 1));
+			m_nMySkinIndex = m_nExampleSkinIndex + 1;
+		}
+		if (INPUT->IsCollided(D3DXVECTOR2(450, 130), D3DXVECTOR2(525, 260)))
+		{
+			m_pMyMan->SetTexture(g_pTextureManager->GetTexture(m_nExampleSkinIndex + 2));
+			m_nMySkinIndex = m_nExampleSkinIndex + 2;
+		}
+	}		
 }
 
 void cShopScene::SelectSkin()
 {
 	if (m_pSelectButton->IsClicked())
 	{
-		SCENE->SetSkinIndex(m_nSkinIndex);
+		SCENE->SetSkinIndex(m_nMySkinIndex);
 	}
 }

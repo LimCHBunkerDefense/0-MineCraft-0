@@ -6,10 +6,10 @@ cTextureManager::cTextureManager()
 {
 	D3DXCreateTextureFromFile(g_pD3DDevice, TEXT("image/Dirt.png"), &m_mapTexture["Dirt"]);
 	D3DXCreateTextureFromFile(g_pD3DDevice, TEXT("image/Texture/Texture00.png"), &m_mapTexture["Texture00"]); // 경로 텍스쳐폴더 및 이름변경
-	D3DXCreateTextureFromFile(g_pD3DDevice, TEXT("image/Skin/batman.png"), &m_mapTexture["batman"]);
-	D3DXCreateTextureFromFile(g_pD3DDevice, TEXT("image/Skin/CaptainAmerica.png"), &m_mapTexture["CaptainAmerica"]);
-	D3DXCreateTextureFromFile(g_pD3DDevice, TEXT("image/Skin/Ironman.png"), &m_mapTexture["Ironman"]);
-	D3DXCreateTextureFromFile(g_pD3DDevice, TEXT("image/Skin/Spiderman.png"), &m_mapTexture["Spiderman"]);
+	D3DXCreateTextureFromFile(g_pD3DDevice, TEXT("image/Skin/batman.png"), &m_mapSkin[SKIN_BATMAN]);
+	D3DXCreateTextureFromFile(g_pD3DDevice, TEXT("image/Skin/CaptainAmerica.png"), &m_mapSkin[SKIN_CAPTAIN]);
+	D3DXCreateTextureFromFile(g_pD3DDevice, TEXT("image/Skin/Ironman.png"), &m_mapSkin[SKIN_IRON]);
+	D3DXCreateTextureFromFile(g_pD3DDevice, TEXT("image/Skin/Spiderman.png"), &m_mapSkin[SKIN_SPIDER]);
 	SetupIndex();
 }
 
@@ -36,6 +36,15 @@ LPDIRECT3DTEXTURE9 cTextureManager::GetTexture(char* keyName)
 LPDIRECT3DTEXTURE9 cTextureManager::GetTexture(string & keyName)
 {
 	return GetTexture((char*)keyName.c_str());
+}
+
+LPDIRECT3DTEXTURE9 cTextureManager::GetTexture(int key)
+{
+	if (!(m_mapSkin.find(key) == m_mapSkin.end()))
+	{
+		return m_mapSkin[key];
+	}
+	return NULL;
 }
 
 void cTextureManager::Destroy()

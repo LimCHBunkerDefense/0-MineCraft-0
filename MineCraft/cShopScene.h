@@ -17,7 +17,8 @@ class cShopScene : public IScene
 	cButton*	m_pSelectButton;
 	cButton*	m_pBackButton;
 
-	int			m_nSkinIndex;
+	int			m_nExampleSkinIndex;
+	int			m_nMySkinIndex;
 	cCubeMan*	m_pExampleMan01;
 	cCubeMan*	m_pExampleMan02;
 	cCubeMan*	m_pExampleMan03;
