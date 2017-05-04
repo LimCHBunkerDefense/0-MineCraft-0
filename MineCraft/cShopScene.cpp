@@ -162,11 +162,11 @@ void cShopScene::SetupExampleMan()
 	m_pExampleMan03->SetTag(CHARACTER_EXAMPLE);
 
 	m_pMyMan = new cCubeMan;
-	m_pMyMan->SetScale(180.0f);
+	m_pMyMan->SetScale(160.0f);
 	m_pMyMan->Setup();
 	m_pMyMan->SetTexture(g_pTextureManager->GetTexture(SCENE->GetSkinIndex()));
 	m_pMyMan->SetRotY(D3DX_PI);
-	m_pMyMan->SetPosition(VIEW_WIDTH * 0.22f, VIEW_HEIGHT * 0.40f, -0.3f);
+	m_pMyMan->SetPosition(VIEW_WIDTH * 0.22f, VIEW_HEIGHT * 0.45f, -0.3f);
 	m_pMyMan->SetTag(CHARACTER_MY);
 }
 
@@ -198,6 +198,22 @@ void cShopScene::UpdateExampleMan()
 	{
 		m_pExampleMan03->SetRotY(D3DX_PI);
 	}
+	
+	if (INPUT->IsCollided(D3DXVECTOR2(710, 435), D3DXVECTOR2(760, 460)))
+	{
+		m_pMyMan->SetRotY(m_pMyMan->GetRotY() + D3DX_PI * 0.02);
+	}
+	else if (INPUT->IsCollided(D3DXVECTOR2(805, 435), D3DXVECTOR2(855, 460)))
+	{
+		m_pMyMan->SetRotY(m_pMyMan->GetRotY() - D3DX_PI * 0.02);
+	}
+
+	else if (INPUT->IsCollided(D3DXVECTOR2(765, 435), D3DXVECTOR2(795, 460)))
+	{
+		m_pMyMan->SetRotY(D3DX_PI);
+
+	}
+
 }
 
 
