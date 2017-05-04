@@ -2,6 +2,7 @@
 #include "cPlayScene.h"
 #include "cObjectManager.h"
 #include "cDeviceManager.h"	
+#include "cTextureManager.h"
 #include "cInputManager.h"
 #include "cCubePC.h"
 #include "cCamera.h"
@@ -83,7 +84,26 @@ void cPlayScene::OnEnter()
 	if (m_pSide4->GetIsLightOn()) { m_pTop->SetMaterial(D3DXVECTOR4(0.8f, 0.8f, 0.8f, 1.0f), D3DXVECTOR4(0.8f, 0.8f, 0.8f, 1.0f), D3DXVECTOR4(0.8f, 0.8f, 0.8f, 1.0f), D3DXVECTOR4(0.8f, 0.8f, 0.8f, 1.0f), 1.0f); }
 	m_pSide4->SetMaterial(D3DXVECTOR4(0.8f, 0.8f, 0.8f, 1.0f), D3DXVECTOR4(0.8f, 0.8f, 0.8f, 1.0f), D3DXVECTOR4(0.8f, 0.8f, 0.8f, 1.0f), D3DXVECTOR4(0.8f, 0.8f, 0.8f, 1.0f));
 
+	Set_Light();
+	if (g_ObjectManager->GetVecObject().empty())
+	{
+		float x = -500.0f;
+		float z = -500.0f;
+		for (int i = 0; i < 1000000; i++)
+		{
+			D3DXVECTOR3 pos = D3DXVECTOR3(x, -1.0f, z);
+			g_ObjectManager->CreateObject(pos, OBJECT_DIRT);
+			x += 1.0f;
+			if (x >= 500.0f)
+			{
+				z += 1.0f;
+				x = -500.0f;
+			}
+		}
+	}
 	SOUND->Play("PlayBGM", 10.0f);
+
+
 }
 
 
@@ -131,7 +151,7 @@ void cPlayScene::OnDraw()
 	g_pD3DDevice->Clear(NULL,
 		NULL,
 		D3DCLEAR_TARGET | D3DCLEAR_ZBUFFER,
-		D3DCOLOR_XRGB(47, 121, 112),
+		D3DCOLOR_XRGB(120, 164, 253),
 		1.0f, 0);
 
 	g_pD3DDevice->BeginScene();
@@ -139,19 +159,19 @@ void cPlayScene::OnDraw()
 	//Set_Light();
 	if (m_pCubeMan) m_pCubeMan->Render();
 	if (m_pPosToCreateTile) m_pPosToCreateTile->Render();
-	if (m_pTop) m_pTop->Render();
+	/*if (m_pTop) m_pTop->Render();
 	if (m_pSide1) m_pSide1->Render();
 	if (m_pSide2) m_pSide2->Render();
 	if (m_pSide3) m_pSide3->Render();
-	if (m_pSide4) m_pSide4->Render();
-	if (m_pBottom) m_pBottom->Render();
+	if (m_pSide4) m_pSide4->Render();*/
+	//if (m_pBottom) m_pBottom->Render();
 
 	// >> : ÇØ¿Í ´Þ Render
 	if (m_pSun)	m_pSun->Render();
 	else if (m_pMoon) m_pMoon->Render();
 	// << :
-
-	g_ObjectManager->Render();
+	g_pD3DDevice->SetTexture(0, g_pTextureManager->GetTexture("Image"));
+	g_ObjectManager->Render(m_pCubeMan->GetPosition());
 	g_pD3DDevice->EndScene();
 
 	g_pD3DDevice->Present(NULL, NULL, NULL, NULL);
