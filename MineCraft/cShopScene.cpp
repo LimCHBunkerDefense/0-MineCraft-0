@@ -50,7 +50,12 @@ void cShopScene::OnUpdate()
 	if (m_pExampleMan01) m_pExampleMan01->Update();
 	if (m_pExampleMan02) m_pExampleMan02->Update();
 	if (m_pExampleMan03) m_pExampleMan03->Update();
-	if (m_pMyMan) m_pMyMan->Update();
+	if (m_pMyMan)
+	{
+		m_pMyMan->Update();
+		D3DXVECTOR2 mousePos = D3DXVECTOR2(INPUT->GetMousePos().x, INPUT->GetMousePos().y);
+		m_pMyMan->LookAt(mousePos);
+	}
 
 	UpdateExampleMan();					// 예시 케릭터 위에 커서가 가면, 예시 케릭터가 Y축으로 회전하도록.
 	UpdateExampleSkin();				// 예시 케릭터 스킨 변경되도록
