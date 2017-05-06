@@ -98,9 +98,10 @@ void cCubeNode::SetDefaultRotX()
 {
 	SetRotX(0.0f);
 	
-	for each(auto p in m_vecChild)
+	for (int i = 0; i < m_vecChild.size(); i++)
 	{
-		p->SetRotX(0.0f);
+		if (i == 0) continue;					// 해당 cpp에서 RotateHead함수를 위해 0번을 빼놓도록 함(0번은 머리)
+		m_vecChild[i]->SetDefaultRotX();
 	}
 }
 
@@ -132,4 +133,32 @@ void cCubeNode::EndAttack()
 void cCubeNode::SetScale(float scale)
 {
 	m_fScale = scale ;
+}
+
+void cCubeNode::RotateHead(float angleX, float angleY)
+{
+	if (m_vecChild.size() == 0)
+	{
+		D3DXMATRIXA16 matRX, matRY, matR, mat;
+		D3DXMatrixRotationX(&matRX, angleX - m_fRotX);
+		D3DXMatrixRotationY(&matRY, angleY - m_fRotY);
+		matR = matRX * matRY;
+		mat = matR;
+
+		for (size_t i = 0; i < m_vecVertex.size(); i++)
+		{
+			D3DXVec3TransformCoord(&m_vecVertex[i].p,
+				&m_vecVertex[i].p,
+				&mat);
+		}
+	}
+
+	else
+	{
+		m_vecChild[0]->RotateHead(angleX, angleY);
+		m_vecChild[0]->SetRotX(angleX);
+		m_vecChild[0]->SetRotY(angleY);
+	
+	}
+	
 }

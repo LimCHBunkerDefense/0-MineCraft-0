@@ -15,6 +15,7 @@ protected :
 	SYNTHESIZE(D3DXMATRIXA16*, m_pParentWorldTM, ParentWorldTM);
 	SYNTHESIZE(float, m_fRotDeltaX, RotDeltaX);
 	SYNTHESIZE(float, m_fRotX, RotX);
+	SYNTHESIZE(float, m_fRotY, RotY);
 
 	float			m_fScale;
 
@@ -34,5 +35,6 @@ public :
 	virtual void Render() override;
 
 	virtual void SetScale(float scale);
+	virtual void RotateHead(float angleX, float angleY);
 };
 

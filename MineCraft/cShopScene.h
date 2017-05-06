@@ -5,25 +5,26 @@
 class cSurface;
 class cButton;
 class cCubeMan;
-
-enum SKIN_INDEX
-{
-	SKIN_NONE, SKIN_BATMAN, 
-};
+class cMSGBox;
 
 class cShopScene : public IScene
 {
 	cSurface*	m_pBg;
 	cSurface*	m_pGUI_Outline;
-	cSurface*	m_pGUI_In;
+	cSurface*	m_pGUI_Inform;
 
 	cButton*	m_pUI_leftButton;
 	cButton*	m_pUI_rightButton;
 	cButton*	m_pSelectButton;
+	cButton*	m_pBackButton;
 
-	SKIN_INDEX	m_nSkinIndex;
-	cCubeMan*	m_pExampleMan;
+	int			m_nExampleSkinIndex;
+	int			m_nMySkinIndex;
+	cCubeMan*	m_pExampleMan01;
+	cCubeMan*	m_pExampleMan02;
+	cCubeMan*	m_pExampleMan03;
 	cCubeMan*	m_pMyMan;
+	cMSGBox*	m_pMSGBox;
 
 public:
 	cShopScene();
@@ -37,6 +38,14 @@ public:
 	void WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam);
 
 	void Set_Light();
+	void SetupExampleMan();
 	void UpdateExampleMan();
+	void UpdateExampleSkin();
+	void SelectSkin();
+	void SetUIImage();
+	void SetButtons();
+	void SetMSGBox();
+	void RenderMSG();
+
 };
 

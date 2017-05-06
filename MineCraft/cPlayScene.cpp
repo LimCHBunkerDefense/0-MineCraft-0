@@ -2,6 +2,7 @@
 #include "cPlayScene.h"
 #include "cObjectManager.h"
 #include "cDeviceManager.h"	
+#include "cTextureManager.h"
 #include "cInputManager.h"
 #include "cCubePC.h"
 #include "cCamera.h"
@@ -10,7 +11,7 @@
 #include "cSurface.h"
 #include "cSun.h"
 #include "cMoon.h"
-#include "cObject.h"
+
 
 cPlayScene::cPlayScene() :
 	m_pCubeMan(NULL),
@@ -31,13 +32,14 @@ cPlayScene::cPlayScene() :
 
 cPlayScene::~cPlayScene()
 {
-	g_pDeviceManager->Destroy();
+
 }
 
 void cPlayScene::OnEnter()
 {
 	m_pCubeMan = new cCubeMan;
 	m_pCubeMan->Setup();
+	SetPlayerSkin();
 	
 	m_pCamera = new cCamera;
 	m_pCamera->Setup(&m_pCubeMan->GetPosition());
@@ -62,11 +64,13 @@ void cPlayScene::OnEnter()
 
 	m_pSide1 = new cSurface();
 	m_pSide1->Setup(D3DXVECTOR3 (-WallLength, 0.0f, WallLength), D3DXVECTOR3 (-WallLength, WallLength, WallLength), D3DXVECTOR3(WallLength, WallLength, WallLength), D3DXVECTOR3(WallLength, 0.0f, WallLength), TEXT("Image/Surface/skywall.png"), true);
+	m_pSide1->SetIsLightOn(false);
 	if (m_pSide1->GetIsLightOn()) { m_pTop->SetMaterial(D3DXVECTOR4(0.0f, 1.0f, 1.0f, 1.0f), D3DXVECTOR4(0.0f, 1.0f, 1.0f, 1.0f), D3DXVECTOR4(0.0f, 1.0f, 1.0f, 1.0f), D3DXVECTOR4(0.8f, 0.8f, 0.8f, 1.0f), 1.0f); }
 	m_pSide1->SetMaterial(D3DXVECTOR4(0.8f, 0.8f, 0.8f, 1.0f), D3DXVECTOR4(0.8f, 0.8f, 0.8f, 1.0f), D3DXVECTOR4(0.8f, 0.8f, 0.8f, 1.0f), D3DXVECTOR4(0.8f, 0.8f, 0.8f, 1.0f));
 
 	m_pSide2 = new cSurface();
 	m_pSide2->Setup(D3DXVECTOR3 (-WallLength, 0.0f, -WallLength), D3DXVECTOR3 (-WallLength, WallLength, -WallLength), D3DXVECTOR3 (-WallLength, WallLength, WallLength), D3DXVECTOR3 (-WallLength, 0.0f, WallLength), TEXT("Image/Surface/skywall2.png"), true);
+	m_pSide2->SetIsLightOn(false);
 	if (m_pSide2->GetIsLightOn()) { m_pTop->SetMaterial(D3DXVECTOR4(0.8f, 0.8f, 0.8f, 1.0f), D3DXVECTOR4(0.8f, 0.8f, 0.8f, 1.0f), D3DXVECTOR4(0.8f, 0.8f, 0.8f, 1.0f), D3DXVECTOR4(0.8f, 0.8f, 0.8f, 1.0f), 1.0f); }
 	m_pSide2->SetMaterial(D3DXVECTOR4(0.8f, 0.8f, 0.8f, 1.0f), D3DXVECTOR4(0.8f, 0.8f, 0.8f, 1.0f), D3DXVECTOR4(0.8f, 0.8f, 0.8f, 1.0f), D3DXVECTOR4(0.8f, 0.8f, 0.8f, 1.0f));
 
@@ -80,7 +84,24 @@ void cPlayScene::OnEnter()
 	if (m_pSide4->GetIsLightOn()) { m_pTop->SetMaterial(D3DXVECTOR4(0.8f, 0.8f, 0.8f, 1.0f), D3DXVECTOR4(0.8f, 0.8f, 0.8f, 1.0f), D3DXVECTOR4(0.8f, 0.8f, 0.8f, 1.0f), D3DXVECTOR4(0.8f, 0.8f, 0.8f, 1.0f), 1.0f); }
 	m_pSide4->SetMaterial(D3DXVECTOR4(0.8f, 0.8f, 0.8f, 1.0f), D3DXVECTOR4(0.8f, 0.8f, 0.8f, 1.0f), D3DXVECTOR4(0.8f, 0.8f, 0.8f, 1.0f), D3DXVECTOR4(0.8f, 0.8f, 0.8f, 1.0f));
 
-	SOUND->Play("PlayBGM", 10.0f);
+	Set_Light();
+	if (g_ObjectManager->GetVecObject().empty())
+	{
+		//float x = -500.0f;
+		//float z = -500.0f;
+		//for (int i = 0; i < 1000000; i++)
+		//{
+		//	D3DXVECTOR3 pos = D3DXVECTOR3(x, -1.0f, z);
+		//	g_ObjectManager->CreateObject(pos, OBJECT_DIRT);
+		//	x += 1.0f;
+		//	if (x >= 500.0f)
+		//	{
+		//		z += 1.0f;
+		//		x = -500.0f;
+		//	}
+		//}
+	}
+	if(SOUND->FindChannel("PlayBGM") == NULL) SOUND->Play("PlayBGM", 10.0f);
 }
 
 
@@ -118,23 +139,9 @@ void cPlayScene::OnUpdate()
 		}
 		time += 1;
 	}
-
-	D3DXVECTOR3 Left(1, 0, 1);
-	D3DXVECTOR3 Right(-1, 0, 1);
-	D3DXVECTOR3 Front(1, 0, -1);
-	D3DXVECTOR3 Back(-1, 0, -1);
+	
 
 	GravityUpdate(m_pBottom->GetVerTex());
-	vector<cObject*> vecObject = g_ObjectManager->GetVecObject();
-	for (int i = 0; i <vecObject.size(); i++)
-	{
-		GravityUpdate(vecObject[i]->GetVectex());
-		
-	}
-	
-
-		
-	
 }
 
 void cPlayScene::OnDraw()
@@ -142,7 +149,7 @@ void cPlayScene::OnDraw()
 	g_pD3DDevice->Clear(NULL,
 		NULL,
 		D3DCLEAR_TARGET | D3DCLEAR_ZBUFFER,
-		D3DCOLOR_XRGB(47, 121, 112),
+		D3DCOLOR_XRGB(120, 164, 253),
 		1.0f, 0);
 
 	g_pD3DDevice->BeginScene();
@@ -150,19 +157,19 @@ void cPlayScene::OnDraw()
 	//Set_Light();
 	if (m_pCubeMan) m_pCubeMan->Render();
 	if (m_pPosToCreateTile) m_pPosToCreateTile->Render();
-	if (m_pTop) m_pTop->Render();
+	/*if (m_pTop) m_pTop->Render();
 	if (m_pSide1) m_pSide1->Render();
 	if (m_pSide2) m_pSide2->Render();
 	if (m_pSide3) m_pSide3->Render();
-	if (m_pSide4) m_pSide4->Render();
-	if (m_pBottom) m_pBottom->Render();
+	if (m_pSide4) m_pSide4->Render();*/
+	//if (m_pBottom) m_pBottom->Render();
 
 	// >> : ÇØ¿Í ´Þ Render
 	if (m_pSun)	m_pSun->Render();
 	else if (m_pMoon) m_pMoon->Render();
 	// << :
-
-	g_ObjectManager->Render();
+	//g_pD3DDevice->SetTexture(0, g_pTextureManager->GetTexture("Image"));
+	g_ObjectManager->Render(m_pCubeMan->GetPosition());
 	g_pD3DDevice->EndScene();
 
 	g_pD3DDevice->Present(NULL, NULL, NULL, NULL);
@@ -177,6 +184,7 @@ void cPlayScene::OnExit()
 	SAFE_DELETE(m_pSide3);
 	SAFE_DELETE(m_pSide4);
 
+	m_pCubeMan->SetTexture(NULL);
 	SAFE_DELETE(m_pCubeMan);
 	SAFE_DELETE(m_pSun);
 	SAFE_DELETE(m_pMoon);
@@ -226,32 +234,38 @@ void cPlayScene::Set_Light()
 
 void cPlayScene::GravityUpdate(vector<ST_PNT_VERTEX> PNT)
 {
-	
-	D3DXVECTOR3	intersectDir = D3DXVECTOR3(0, -1, 0);
+	D3DXVECTOR3	intersectDir = D3DXVECTOR3(0, -0.1, 0);
 
 	for (int k = 0; k < PNT.size(); k += 3)
 	{
 		if (D3DXIntersectTri(&PNT[k].p, &PNT[k + 1].p, &PNT[k + 2].p, &m_pCubeMan->GetPosition(), &intersectDir, 0, 0, 0))
 		{
-			m_pCubeMan->GetPosition().y -= 0.1f; 
-			if (m_pCubeMan->GetPosition().y - PNT[1].p.y < DBL_EPSILON)m_pCubeMan->GetPosition().y=PNT[1].p.y;
+			m_pCubeMan->GetPosition().y -= 0.1f;
 		}
-		else if (m_pCubeMan->GetPosition().y - PNT[k].p.y>1)
+		else if (m_pCubeMan->GetPosition().y - m_pBottom->GetVerTex()[k].p.y>2)
 		{
 			m_pCubeMan->SetJumpingState(false);
 		}
 	}
 }
 
-void cPlayScene::ColliedWithObject(vector<ST_PNT_VERTEX> PNT, D3DXVECTOR3 intersectDir)
+void cPlayScene::SetPlayerSkin()
 {
-	m_pCubeMan->SetPrevPos(m_pCubeMan->GetPosition());
-	D3DXVECTOR3 pos= m_pCubeMan->GetPrevPos();
-	for (int k = 0; k < PNT.size(); k += 3)
+	int index = SCENE->GetSkinIndex();
+
+	switch (index)
 	{
-		if (!D3DXIntersectTri(&PNT[k].p, &PNT[k + 1].p, &PNT[k + 2].p, &m_pCubeMan->GetPosition(), &intersectDir, 0, 0, 0))
-		{
-			m_pCubeMan->SetPosition(pos.x,pos.y,pos.z);
-		}
+	case SKIN_BATMAN:
+		m_pCubeMan->SetTexture(g_pTextureManager->GetTexture(SKIN_BATMAN));
+		break;
+	case SKIN_CAPTAIN:
+		m_pCubeMan->SetTexture(g_pTextureManager->GetTexture(SKIN_CAPTAIN));
+		break;
+	case SKIN_IRON:
+		m_pCubeMan->SetTexture(g_pTextureManager->GetTexture(SKIN_IRON));
+		break;
+	case SKIN_SPIDER:
+		m_pCubeMan->SetTexture(g_pTextureManager->GetTexture(SKIN_SPIDER));
+		break;
 	}
 }

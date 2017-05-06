@@ -72,9 +72,6 @@ void cCubeMan::Update()
 {
 	cCharacter::Update(); 
 
-
-	
-
 	if (m_pRoot)
 	{
 		if (m_isMoving) m_pRoot->RotateRotX();
@@ -93,10 +90,8 @@ void cCubeMan::Render()
 
 	cCharacter::Render();
 
-	D3DXMATRIXA16 matWorld, matS; 
+	D3DXMATRIXA16 matWorld; 
 	D3DXMatrixIdentity(&matWorld); 
-	D3DXMatrixScaling(&matS, 1000.0f, 1000.0f, 1000.0f);
-	matWorld = matS;
 	g_pD3DDevice->SetTransform(D3DTS_WORLD, &matWorld); 
 	g_pD3DDevice->SetTexture(0, m_pTexture); 
 
@@ -118,4 +113,21 @@ void cCubeMan::Set_Material()
 void cCubeMan::SetScale(float scale)
 {
 	m_fScale = scale;
+}
+
+void cCubeMan::LookAt(D3DXVECTOR2 lookAt)
+{
+	D3DXVECTOR2 headPos = D3DXVECTOR2(m_vPosition.x + VIEW_WIDTH * 0.5f, m_vPosition.y);
+	
+	float deltaX = (lookAt.x - headPos.x) * -1;
+	float deltaY = (lookAt.y - headPos.y);
+
+	float angleX = deltaY * 0.005;
+	if (angleX > D3DX_PI * 0.15) angleX = D3DX_PI * 0.15;
+	else if (angleX < -D3DX_PI * 0.15) angleX = -D3DX_PI * 0.15;
+	float angleY = deltaX * 0.005;
+	if (angleY > D3DX_PI * 0.2) angleY = D3DX_PI * 0.2;
+	else if (angleY < -D3DX_PI * 0.2) angleY = -D3DX_PI * 0.2;
+
+	m_pRoot->RotateHead(angleX, angleY);
 }

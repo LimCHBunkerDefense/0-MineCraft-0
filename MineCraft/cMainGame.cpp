@@ -20,6 +20,7 @@ cMainGame::cMainGame()
 
 cMainGame::~cMainGame()
 {
+	g_pDeviceManager->Destroy();
 	SOUND->Release();
 }
 

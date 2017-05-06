@@ -14,7 +14,7 @@ cCharacter::cCharacter()
 	m_fPrevY(0),
 	m_fScale(1.0f),
 	m_tag(CHARACTER_PLAYER),
-	m_vPrevPos(0,0,0)
+	m_currentObjName(OBJECT_NONE)
 {
 	D3DXMatrixIdentity(&m_matWorld);
 }
@@ -34,23 +34,23 @@ void cCharacter::Update()
 	{
 		m_isMoving = false;
 
-		if (INPUT->IsKeyPress('A'))
+		if (INPUT->IsKeyPress(VK_A))
 		{
 			m_isMoving = true;
 			m_fRotY -= 0.1f;
 		}
-		if (INPUT->IsKeyPress('D'))
+		if (INPUT->IsKeyPress(VK_D))
 		{
 			m_isMoving = true;
 			m_fRotY += 0.1f;
 		}
 
-		if (INPUT->IsKeyPress('W'))
+		if (INPUT->IsKeyPress(VK_W))
 		{
 			m_isMoving = true;
 			m_vPosition = m_vPosition + (m_vDirection * 0.1f);
 		}
-		if (INPUT->IsKeyPress('S'))
+		if (INPUT->IsKeyPress(VK_S))
 		{
 			m_isMoving = true;
 			m_vPosition = m_vPosition - (m_vDirection * 0.1f);
@@ -60,12 +60,19 @@ void cCharacter::Update()
 
 	if (m_tag == CHARACTER_PLAYER)
 	{
-		if (INPUT->IsKeyPress('E'))
+		if (INPUT->IsKeyPress('1'))m_currentObjName = OBJECT_DIRT;
+		if (INPUT->IsKeyPress('2'))m_currentObjName = OBJECT_STONE;
+		if (INPUT->IsKeyPress('3'))m_currentObjName = OBJECT_BOARD;
+		if (INPUT->IsKeyPress('4'))m_currentObjName = OBJECT_STONEBRICK;
+		if (INPUT->IsKeyPress('5'))m_currentObjName = OBJECT_WOOD;
+
+		if (INPUT->IsKeyPress('E')&&m_currentObjName!=OBJECT_NONE&&g_ObjectManager->IsObjectHere(m_vFrontPos))
+		if (INPUT->IsKeyPress(VK_E))
 		{
 			m_isAttack = true;
-			g_ObjectManager->CreateObject(m_vFrontPos, OBJECT_DIRT);
+			g_ObjectManager->CreateObject(m_vFrontPos, m_currentObjName);
 		}
-		if (INPUT->IsKeyUp('E'))
+		if (INPUT->IsKeyUp(VK_E))
 		{
 			m_isAttack = false;
 		}
@@ -99,7 +106,7 @@ void cCharacter::Update()
 	D3DXMatrixTranslation(&matT, m_vPosition.x, m_vPosition.y, m_vPosition.z);
 	m_matWorld = matR * matT;
 
-	if (INPUT->IsKeyDown(' ') && !m_isJumping)m_isJumping = true;
+	if (INPUT->IsKeyDown(' ') && !m_isJumping && m_tag == CHARACTER_PLAYER)m_isJumping = true;
 
 	if (m_isJumping)m_vPosition.y += 0.25f;
 
@@ -134,7 +141,7 @@ D3DXVECTOR3 & cCharacter::GetDirection()
 
 void cCharacter::SetScale(float scale)
 {
-	m_fScale = scale;
+
 }
 
 void cCharacter::SetRotY(float rotY)

@@ -5,6 +5,7 @@
 cSceneManager::cSceneManager()
 {
 	m_current = 0;
+	m_nPlayerSkinIndex = SKIN_BATMAN;
 }
 
 

@@ -97,7 +97,6 @@ void cSun::Set_Light()
 	D3DXVec3Normalize(&vDir, &vDir);
 	stLight_Dir.Direction = vDir;
 
-
 	g_pD3DDevice->SetLight(0, &stLight_Pnt);
 	g_pD3DDevice->SetLight(1, &stLight_Dir);
 	g_pD3DDevice->LightEnable(0, true);

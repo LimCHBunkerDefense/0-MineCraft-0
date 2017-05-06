@@ -22,6 +22,7 @@ protected :
 
 	float			m_fScale;
 	CHARACTER_TAG	m_tag;
+	OBJECT_NAME     m_currentObjName;
 
 	bool			m_isJumping;
 	bool			m_isAttack;

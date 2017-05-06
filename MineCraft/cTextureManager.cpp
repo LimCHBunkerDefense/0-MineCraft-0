@@ -5,7 +5,11 @@
 cTextureManager::cTextureManager()
 {
 	D3DXCreateTextureFromFile(g_pD3DDevice, TEXT("image/Dirt.png"), &m_mapTexture["Dirt"]);
-	D3DXCreateTextureFromFile(g_pD3DDevice, TEXT("image/Image.png"), &m_mapTexture["Image"]);
+	D3DXCreateTextureFromFile(g_pD3DDevice, TEXT("image/Texture/Texture00.png"), &m_mapTexture["Texture00"]); // 경로 텍스쳐폴더 및 이름변경
+	D3DXCreateTextureFromFile(g_pD3DDevice, TEXT("image/Skin/batman.png"), &m_mapSkin[SKIN_BATMAN]);
+	D3DXCreateTextureFromFile(g_pD3DDevice, TEXT("image/Skin/CaptainAmerica.png"), &m_mapSkin[SKIN_CAPTAIN]);
+	D3DXCreateTextureFromFile(g_pD3DDevice, TEXT("image/Skin/Ironman.png"), &m_mapSkin[SKIN_IRON]);
+	D3DXCreateTextureFromFile(g_pD3DDevice, TEXT("image/Skin/Spiderman.png"), &m_mapSkin[SKIN_SPIDER]);
 	SetupIndex();
 }
 
@@ -32,6 +36,15 @@ LPDIRECT3DTEXTURE9 cTextureManager::GetTexture(char* keyName)
 LPDIRECT3DTEXTURE9 cTextureManager::GetTexture(string & keyName)
 {
 	return GetTexture((char*)keyName.c_str());
+}
+
+LPDIRECT3DTEXTURE9 cTextureManager::GetTexture(int key)
+{
+	if (!(m_mapSkin.find(key) == m_mapSkin.end()))
+	{
+		return m_mapSkin[key];
+	}
+	return NULL;
 }
 
 void cTextureManager::Destroy()
@@ -170,6 +183,24 @@ void cTextureManager::SetNormal(OBJECT_NAME name, vector<ST_PNT_VERTEX>& vecVert
 		SetSide(vecVertex, m_TextureIndex[28], m_TextureIndex[29], m_TextureIndex[36], m_TextureIndex[37]);
 		SetTop(vecVertex, m_TextureIndex[28], m_TextureIndex[29], m_TextureIndex[36], m_TextureIndex[37]);
 		SetBottom(vecVertex, m_TextureIndex[28], m_TextureIndex[29], m_TextureIndex[36], m_TextureIndex[37]);
+	}break;
+	case OBJECT_STONE:
+	{
+		SetSide(vecVertex, m_TextureIndex[1], m_TextureIndex[2], m_TextureIndex[9], m_TextureIndex[10]);
+		SetTop(vecVertex, m_TextureIndex[1], m_TextureIndex[2], m_TextureIndex[9], m_TextureIndex[10]);
+		SetBottom(vecVertex, m_TextureIndex[1], m_TextureIndex[2], m_TextureIndex[9], m_TextureIndex[10]);
+	}break;
+	case OBJECT_BOARD:
+	{
+		SetSide(vecVertex, m_TextureIndex[4], m_TextureIndex[5], m_TextureIndex[12], m_TextureIndex[13]);
+		SetTop(vecVertex, m_TextureIndex[4], m_TextureIndex[5], m_TextureIndex[12], m_TextureIndex[13]);
+		SetBottom(vecVertex, m_TextureIndex[4], m_TextureIndex[5], m_TextureIndex[12], m_TextureIndex[13]);
+	}break;
+	case OBJECT_STONEBRICK:
+	{
+		SetSide(vecVertex, m_TextureIndex[5], m_TextureIndex[6], m_TextureIndex[13], m_TextureIndex[14]);
+		SetTop(vecVertex, m_TextureIndex[5], m_TextureIndex[6], m_TextureIndex[13], m_TextureIndex[14]);
+		SetBottom(vecVertex, m_TextureIndex[5], m_TextureIndex[6], m_TextureIndex[13], m_TextureIndex[14]);
 	}break;
 	}
 }

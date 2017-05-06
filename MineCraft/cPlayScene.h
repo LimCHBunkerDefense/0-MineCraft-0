@@ -49,6 +49,6 @@ public:
 	void Set_Light();
 
 	void GravityUpdate(vector<ST_PNT_VERTEX> PNT);
-	void ColliedWithObject(vector<ST_PNT_VERTEX> PNT, D3DXVECTOR3 intersectDir);
+	void SetPlayerSkin();
 };
 
