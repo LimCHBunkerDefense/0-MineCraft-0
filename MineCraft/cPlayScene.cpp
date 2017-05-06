@@ -141,7 +141,7 @@ void cPlayScene::OnUpdate()
 	}
 	
 
-	GravityUpdate(m_pBottom->GetVerTex());
+
 }
 
 void cPlayScene::OnDraw()
@@ -230,23 +230,6 @@ void cPlayScene::Set_Light()
 	}
 
 	g_pD3DDevice->LightEnable(0, true);
-}
-
-void cPlayScene::GravityUpdate(vector<ST_PNT_VERTEX> PNT)
-{
-	D3DXVECTOR3	intersectDir = D3DXVECTOR3(0, -0.1, 0);
-
-	for (int k = 0; k < PNT.size(); k += 3)
-	{
-		if (D3DXIntersectTri(&PNT[k].p, &PNT[k + 1].p, &PNT[k + 2].p, &m_pCubeMan->GetPosition(), &intersectDir, 0, 0, 0))
-		{
-			m_pCubeMan->GetPosition().y -= 0.1f;
-		}
-		else if (m_pCubeMan->GetPosition().y - m_pBottom->GetVerTex()[k].p.y>2)
-		{
-			m_pCubeMan->SetJumpingState(false);
-		}
-	}
 }
 
 void cPlayScene::SetPlayerSkin()

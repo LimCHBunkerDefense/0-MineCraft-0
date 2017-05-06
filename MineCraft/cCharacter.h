@@ -1,5 +1,5 @@
 #pragma once
-
+class cObjectManager;
 enum CHARACTER_TAG
 {
 	CHARACTER_NONE, CHARACTER_PLAYER, CHARACTER_EXAMPLE, CHARACTER_MY, 
@@ -47,6 +47,8 @@ public :
 
 	void SetAttackState(bool a);
 	void SetJumpingState(bool j);
+
+	void GravityUpdate(vector<ST_PNT_VERTEX> PNT);
 
 	virtual D3DXVECTOR3& GetPrevPos() { return m_vPrevPos; }
 	virtual void SetPrevPos(D3DXVECTOR3 pos) { m_vPrevPos = pos; }

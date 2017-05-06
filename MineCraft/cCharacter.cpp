@@ -2,7 +2,7 @@
 #include "cCharacter.h"
 #include "cInputManager.h"
 #include "cObjectManager.h"
-
+#include "cObject.h"
 
 cCharacter::cCharacter()
 	: m_fRotY(0.0f) ,
@@ -106,11 +106,27 @@ void cCharacter::Update()
 	D3DXMatrixTranslation(&matT, m_vPosition.x, m_vPosition.y, m_vPosition.z);
 	m_matWorld = matR * matT;
 
-	if (INPUT->IsKeyDown(' ') && !m_isJumping && m_tag == CHARACTER_PLAYER)m_isJumping = true;
+	if (INPUT->IsKeyDown(' ') && !m_isJumping && m_tag == CHARACTER_PLAYER)
+	{
+		m_isJumping = true;
+		m_vPrevPos = m_vPosition;
+	}
+
 
 	if (m_isJumping)m_vPosition.y += 0.25f;
+	if (m_vPosition.y - m_vPrevPos.y > 2)m_isJumping = false;
+	if (!m_isJumping)
+	{
+		m_vPosition.y -= 0.01;
+		
+	}
 
 
+//for(int i=0;i<g_ObjectManager->GetVecObject().size();i++)
+//{
+//	GravityUpdate(g_ObjectManager->GetVecObject()[i]->GetVectex());
+//}
+	
 
 }
 void cCharacter::Render()
@@ -162,4 +178,23 @@ void cCharacter::SetAttackState(bool a)
 void cCharacter::SetJumpingState(bool j)
 {
 	m_isJumping = j;
+}
+
+
+
+void cCharacter::GravityUpdate(vector<ST_PNT_VERTEX> PNT)
+{
+	D3DXVECTOR3	intersectDir = D3DXVECTOR3(0, -0.1, 0);
+
+	for (int k = 0; k < PNT.size(); k += 3)
+	{
+		if (D3DXIntersectTri(&PNT[k].p, &PNT[k + 1].p, &PNT[k + 2].p, &m_vPosition, &intersectDir, 0, 0, 0))
+		{
+			m_vPosition.y -= 0.01f;
+		}
+		else if (m_vPosition.y - PNT[k].p.y>2)
+		{
+			SetJumpingState(false);
+		}
+	}
 }
