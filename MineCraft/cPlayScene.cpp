@@ -10,7 +10,7 @@
 #include "cSurface.h"
 #include "cSun.h"
 #include "cMoon.h"
-
+#include "cObject.h"
 
 cPlayScene::cPlayScene() :
 	m_pCubeMan(NULL),
@@ -118,9 +118,23 @@ void cPlayScene::OnUpdate()
 		}
 		time += 1;
 	}
-	
+
+	D3DXVECTOR3 Left(1, 0, 1);
+	D3DXVECTOR3 Right(-1, 0, 1);
+	D3DXVECTOR3 Front(1, 0, -1);
+	D3DXVECTOR3 Back(-1, 0, -1);
 
 	GravityUpdate(m_pBottom->GetVerTex());
+	vector<cObject*> vecObject = g_ObjectManager->GetVecObject();
+	for (int i = 0; i <vecObject.size(); i++)
+	{
+		GravityUpdate(vecObject[i]->GetVectex());
+		
+	}
+	
+
+		
+	
 }
 
 void cPlayScene::OnDraw()
@@ -212,17 +226,32 @@ void cPlayScene::Set_Light()
 
 void cPlayScene::GravityUpdate(vector<ST_PNT_VERTEX> PNT)
 {
-	D3DXVECTOR3	intersectDir = D3DXVECTOR3(0, -0.1, 0);
+	
+	D3DXVECTOR3	intersectDir = D3DXVECTOR3(0, -1, 0);
 
 	for (int k = 0; k < PNT.size(); k += 3)
 	{
 		if (D3DXIntersectTri(&PNT[k].p, &PNT[k + 1].p, &PNT[k + 2].p, &m_pCubeMan->GetPosition(), &intersectDir, 0, 0, 0))
 		{
-			m_pCubeMan->GetPosition().y -= 0.1f;
+			m_pCubeMan->GetPosition().y -= 0.1f; 
+			if (m_pCubeMan->GetPosition().y - PNT[1].p.y < DBL_EPSILON)m_pCubeMan->GetPosition().y=PNT[1].p.y;
 		}
-		else if (m_pCubeMan->GetPosition().y - m_pBottom->GetVerTex()[k].p.y>2)
+		else if (m_pCubeMan->GetPosition().y - PNT[k].p.y>1)
 		{
 			m_pCubeMan->SetJumpingState(false);
+		}
+	}
+}
+
+void cPlayScene::ColliedWithObject(vector<ST_PNT_VERTEX> PNT, D3DXVECTOR3 intersectDir)
+{
+	m_pCubeMan->SetPrevPos(m_pCubeMan->GetPosition());
+	D3DXVECTOR3 pos= m_pCubeMan->GetPrevPos();
+	for (int k = 0; k < PNT.size(); k += 3)
+	{
+		if (!D3DXIntersectTri(&PNT[k].p, &PNT[k + 1].p, &PNT[k + 2].p, &m_pCubeMan->GetPosition(), &intersectDir, 0, 0, 0))
+		{
+			m_pCubeMan->SetPosition(pos.x,pos.y,pos.z);
 		}
 	}
 }

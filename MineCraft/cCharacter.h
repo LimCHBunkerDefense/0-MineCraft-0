@@ -17,7 +17,7 @@ protected :
 	D3DXVECTOR3		m_vPosition; 
 	D3DXVECTOR3		m_vFrontPos;
 	D3DXMATRIXA16	m_matWorld; 
-
+	D3DXVECTOR3		m_vPrevPos;
 	bool			m_isMoving;
 
 	float			m_fScale;
@@ -46,5 +46,8 @@ public :
 
 	void SetAttackState(bool a);
 	void SetJumpingState(bool j);
+
+	virtual D3DXVECTOR3& GetPrevPos() { return m_vPrevPos; }
+	virtual void SetPrevPos(D3DXVECTOR3 pos) { m_vPrevPos = pos; }
 };
 

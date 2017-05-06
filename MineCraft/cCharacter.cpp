@@ -13,7 +13,8 @@ cCharacter::cCharacter()
 	m_isJumping(false),
 	m_fPrevY(0),
 	m_fScale(1.0f),
-	m_tag(CHARACTER_PLAYER)
+	m_tag(CHARACTER_PLAYER),
+	m_vPrevPos(0,0,0)
 {
 	D3DXMatrixIdentity(&m_matWorld);
 }
@@ -62,7 +63,7 @@ void cCharacter::Update()
 		if (INPUT->IsKeyPress('E'))
 		{
 			m_isAttack = true;
-			//g_ObjectManager->CreateObject(m_vFrontPos);
+			g_ObjectManager->CreateObject(m_vFrontPos, OBJECT_DIRT);
 		}
 		if (INPUT->IsKeyUp('E'))
 		{
@@ -133,7 +134,7 @@ D3DXVECTOR3 & cCharacter::GetDirection()
 
 void cCharacter::SetScale(float scale)
 {
-
+	m_fScale = scale;
 }
 
 void cCharacter::SetRotY(float rotY)
