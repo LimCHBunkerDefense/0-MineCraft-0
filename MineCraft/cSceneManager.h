@@ -16,7 +16,7 @@ public:
 	int Tag() { return m_tag; }
 	void SetTag(int tag) { m_tag = tag; }
 };
-
+ 
 enum SCENE_TAG
 {
 	SCENE_NONE, SCENE_LOADING, SCENE_TITLE, SCENE_PLAY, SCENE_SHOP,

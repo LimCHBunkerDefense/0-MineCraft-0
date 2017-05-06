@@ -5,6 +5,7 @@
 class cSurface;
 class cButton;
 class cCubeMan;
+class cMSGBox;
 
 class cShopScene : public IScene
 {
@@ -17,11 +18,13 @@ class cShopScene : public IScene
 	cButton*	m_pSelectButton;
 	cButton*	m_pBackButton;
 
-	int			m_nSkinIndex;
+	int			m_nExampleSkinIndex;
+	int			m_nMySkinIndex;
 	cCubeMan*	m_pExampleMan01;
 	cCubeMan*	m_pExampleMan02;
 	cCubeMan*	m_pExampleMan03;
 	cCubeMan*	m_pMyMan;
+	cMSGBox*	m_pMSGBox;
 
 public:
 	cShopScene();
@@ -39,6 +42,10 @@ public:
 	void UpdateExampleMan();
 	void UpdateExampleSkin();
 	void SelectSkin();
+	void SetUIImage();
+	void SetButtons();
+	void SetMSGBox();
+	void RenderMSG();
 
 };
 

@@ -5,6 +5,7 @@
 
 cButton::cButton() : m_pText(NULL)
 {
+	SOUND->LoadFile("click", "Sound/click.mp3", false);
 }
 
 
@@ -160,11 +161,37 @@ void cButton::Setup(D3DXVECTOR3 v1, D3DXVECTOR3 v2, D3DXVECTOR3 v3, D3DXVECTOR3 
 
 	m_pText = new cText_2D;
 
+	m_vLeftTop.x = VIEW_WIDTH * 0.5 + (m_vecVertex[0].p.x);
+	m_vLeftTop.y = VIEW_HEIGHT - m_vecVertex[1].p.y;
+	m_vRightBottom.x = VIEW_WIDTH * 0.5 + m_vecVertex[2].p.x;
+	m_vRightBottom.y = VIEW_HEIGHT - m_vecVertex[5].p.y;
+
 }
 
 void cButton::Update()
 {
 	if (IsCollided())
+	{
+		int r = 150;
+		int g = 150;
+		int b = 200;
+
+		for (int i = 0; i < m_vecVertex.size(); i++)
+		{
+			m_vecVertex[i].c = D3DCOLOR_XRGB(r, g, b, 1);
+		}
+
+	}
+	else
+	{
+		for (int i = 0; i < m_vecVertex.size(); i++)
+		{
+			m_vecVertex[i].c = m_color;
+		}
+
+	}
+
+	if (IsPressed())
 	{
 		for (int i = 0; i < m_vecVertex_Top.size(); i++)
 		{
@@ -174,6 +201,15 @@ void cButton::Update()
 		{
 			m_vecVertex_Bottom[i].c = D3DCOLOR_XRGB(255, 255, 255, 1);
 		}
+
+		int r = m_color.r * 255 * 0.6;
+		int g = m_color.g * 255 * 0.6;
+		int b = m_color.b * 255 * 0.6;
+		for (int i = 0; i < m_vecVertex.size(); i++)
+		{	
+			m_vecVertex[i].c = D3DCOLOR_XRGB(r, g, b, 1);
+		}
+
 		if (m_pText) m_pText->SetColor(D3DCOLOR_XRGB(255, 255, 255, 1));
 	}
 	else
@@ -189,27 +225,7 @@ void cButton::Update()
 		if (m_pText) m_pText->SetColor(D3DCOLOR_XRGB(0,0,0, 1));
 	}
 
-	if(IsPressed())
-	{
-		int r = 255 * m_color.r * 0.6;
-		int g = 255 * m_color.g * 0.6;
-		int b = 255 * m_color.b * 0.6;
 
-		for (int i = 0; i < m_vecVertex.size(); i++)
-		{
-			m_vecVertex[i].c = D3DCOLOR_XRGB(r, g, b, 1);
-		}
-		//D3DXCOLOR color(255, 255, 255,1);
-		
-	}
-	else
-	{
-		for (int i = 0; i < m_vecVertex.size(); i++)
-		{
-			m_vecVertex[i].c = m_color;
-		}
-		
-	}
 }
 
 void cButton::Render()
@@ -248,8 +264,6 @@ void cButton::Render()
 
 void cButton::SetText(string text, RECT rect, int fontSize,  D3DXCOLOR fontColor)
 {
-	//m_text = new cText(text, fontPos, fontSize, fontRot, fontColor);
-	m_pText = new cText_2D;
 	m_pText->Create(rect, text, fontSize, fontColor);
 }
 
@@ -258,16 +272,10 @@ bool cButton::IsCollided()
 	POINT pos = INPUT->GetMousePos();
 	D3DXVECTOR2 mousePos = D3DXVECTOR2(pos.x, pos.y);
 
-	D3DXVECTOR2 leftTop, rightBottom;
-	leftTop.x = VIEW_WIDTH * 0.5 + (m_vecVertex[0].p.x);
-	leftTop.y = VIEW_HEIGHT - m_vecVertex[1].p.y;
-	rightBottom.x = VIEW_WIDTH * 0.5 + m_vecVertex[2].p.x;
-	rightBottom.y = VIEW_HEIGHT - m_vecVertex[5].p.y;
-
-	if (mousePos.x >= leftTop.x &&
-		mousePos.x < rightBottom.x &&
-		mousePos.y >= leftTop.y &&
-		mousePos.y < rightBottom.y) return true;
+	if (mousePos.x >= m_vLeftTop.x &&
+		mousePos.x < m_vRightBottom.x &&
+		mousePos.y >= m_vLeftTop.y &&
+		mousePos.y < m_vRightBottom.y)	return true;
 	return false;
 }
 
@@ -278,16 +286,10 @@ bool cButton::IsPressed()
 		POINT pos = INPUT->GetMousePos();
 		D3DXVECTOR2 mousePos = D3DXVECTOR2(pos.x, pos.y);
 
-		D3DXVECTOR2 leftTop, rightBottom;
-		leftTop.x = VIEW_WIDTH * 0.5 - fabs(m_vecVertex[0].p.x);
-		leftTop.y = VIEW_HEIGHT - m_vecVertex[1].p.y;
-		rightBottom.x = VIEW_WIDTH * 0.5 + m_vecVertex[2].p.x;
-		rightBottom.y = VIEW_HEIGHT - m_vecVertex[5].p.y;
-
-		if (mousePos.x >= leftTop.x &&
-			mousePos.x < rightBottom.x &&
-			mousePos.y >= leftTop.y &&
-			mousePos.y < rightBottom.y) return true;		
+		if (mousePos.x >= m_vLeftTop.x &&
+			mousePos.x < m_vRightBottom.x &&
+			mousePos.y >= m_vLeftTop.y &&
+			mousePos.y < m_vRightBottom.y) return true;		
 	}
 	return false;	
 }
@@ -299,16 +301,23 @@ bool cButton::IsClicked()
 		POINT pos = INPUT->GetMousePos();
 		D3DXVECTOR2 mousePos = D3DXVECTOR2(pos.x, pos.y);
 
-		D3DXVECTOR2 leftTop, rightBottom;
-		leftTop.x = VIEW_WIDTH * 0.5 - fabs(m_vecVertex[0].p.x);
-		leftTop.y = VIEW_HEIGHT - m_vecVertex[1].p.y;
-		rightBottom.x = VIEW_WIDTH * 0.5 + m_vecVertex[2].p.x;
-		rightBottom.y = VIEW_HEIGHT - m_vecVertex[5].p.y;
-
-		if (mousePos.x >= leftTop.x &&
-			mousePos.x < rightBottom.x &&
-			mousePos.y >= leftTop.y &&
-			mousePos.y < rightBottom.y) return true;
+		if (mousePos.x >= m_vLeftTop.x &&
+			mousePos.x < m_vRightBottom.x &&
+			mousePos.y >= m_vLeftTop.y &&
+			mousePos.y < m_vRightBottom.y)
+		{
+			SOUND->Play("click");
+			return true;
+		}
 	}
 	return false;
+}
+
+D3DXVECTOR2 cButton::LeftTop()
+{
+	return m_vLeftTop;
+}
+D3DXVECTOR2 cButton::RightBottom()
+{
+	return m_vRightBottom;
 }
