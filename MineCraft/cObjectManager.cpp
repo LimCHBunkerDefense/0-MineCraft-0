@@ -38,7 +38,7 @@ void cObjectManager::Render(D3DXVECTOR3 pos)
 			g_pD3DDevice->SetRenderState(D3DRS_DESTBLEND, D3DBLEND_INVSRCALPHA);
 			g_pD3DDevice->SetRenderState(D3DRS_SRCBLEND, D3DBLEND_SRCALPHA);
 		}*/
-		if((pos.x-100 <= (*it)->GetPosition().x&&(*it)->GetPosition().x<=pos.x+100)&& (pos.z - 100 <= (*it)->GetPosition().z && (*it)->GetPosition().z <= pos.z + 100))
+		if((pos.x-50 <= (*it)->GetPosition().x&&(*it)->GetPosition().x<=pos.x+50)&& (pos.z - 50 <= (*it)->GetPosition().z && (*it)->GetPosition().z <= pos.z + 50))
 		(*it)->Render();
 	}
 }
