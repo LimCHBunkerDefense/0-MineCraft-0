@@ -28,6 +28,8 @@ protected :
 	bool			m_isAttack;
 	
 	float			m_fPrevY;
+	float           m_jumpingHeight;
+	float           m_currentHeight;
 	
 public :
 	virtual ~cCharacter();
@@ -47,5 +49,9 @@ public :
 
 	void SetAttackState(bool a);
 	void SetJumpingState(bool j);
+	bool GetJumpingState() { return m_isJumping; }
+	void GravityUpdate();
+	void CollidChecker(int root);
+
 };
 
