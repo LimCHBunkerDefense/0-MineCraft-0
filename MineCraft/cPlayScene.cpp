@@ -14,17 +14,17 @@
 
 
 cPlayScene::cPlayScene() :
-	m_pCubeMan(NULL),
-	m_pCamera(NULL),
-	m_pSun(NULL),
-	m_pMoon(NULL),
-	m_pTop(NULL),
-	m_pBottom(NULL),
-	m_pSide1(NULL),
-	m_pSide2(NULL),
-	m_pSide3(NULL),
-	m_pSide4(NULL),
-	m_pPosToCreateTile(NULL)
+	m_pCubeMan(NULL)
+	, m_pCamera(NULL)
+	, m_pSun(NULL)
+	, m_pMoon(NULL)
+	, m_pTop(NULL)
+	, m_pBottom(NULL)
+	, m_pSide1(NULL)
+	, m_pSide2(NULL)
+	, m_pSide3(NULL)
+	, m_pSide4(NULL)
+	, m_pPosToCreateTile(NULL)
 {
 	SOUND->LoadFile("PlayBGM", "Sound/Beginning_Beta.mp3", true);
 }
@@ -87,6 +87,8 @@ void cPlayScene::OnEnter()
 	Set_Light();
 	if (g_ObjectManager->GetVecObject().empty())
 	{
+		// >> 디버그모드일땐 주석처리후 할것.(릴리즈로만 활성)
+
 		//float x = -500.0f;
 		//float z = -500.0f;
 		//for (int i = 0; i < 1000000; i++)
@@ -116,8 +118,8 @@ void cPlayScene::OnUpdate()
 	}
 
 	if (m_pCamera) m_pCamera->Update();
-
 	{
+
 		if (time / 10 == 1 || time == 0)
 		{
 			if (m_pSun)		m_pSun->Update();
@@ -139,7 +141,7 @@ void cPlayScene::OnUpdate()
 		}
 		time += 1;
 	}
-	
+
 
 	GravityUpdate(m_pBottom->GetVerTex());
 }
@@ -157,18 +159,22 @@ void cPlayScene::OnDraw()
 	//Set_Light();
 	if (m_pCubeMan) m_pCubeMan->Render();
 	if (m_pPosToCreateTile) m_pPosToCreateTile->Render();
-	/*if (m_pTop) m_pTop->Render();
-	if (m_pSide1) m_pSide1->Render();
-	if (m_pSide2) m_pSide2->Render();
-	if (m_pSide3) m_pSide3->Render();
-	if (m_pSide4) m_pSide4->Render();*/
+
+	//if (m_pTop) m_pTop->Render();
+	//if (m_pSide1) m_pSide1->Render();
+	//if (m_pSide2) m_pSide2->Render();
+	//if (m_pSide3) m_pSide3->Render();
+	//if (m_pSide4) m_pSide4->Render();
 	//if (m_pBottom) m_pBottom->Render();
 
 	// >> : 해와 달 Render
 	if (m_pSun)	m_pSun->Render();
 	else if (m_pMoon) m_pMoon->Render();
+
+
+
 	// << :
-	//g_pD3DDevice->SetTexture(0, g_pTextureManager->GetTexture("Image"));
+	g_pD3DDevice->SetTexture(0, g_pTextureManager->GetTexture("Texture00")); // 텍스쳐 경로/이름 바꿈..
 	g_ObjectManager->Render(m_pCubeMan->GetPosition());
 	g_pD3DDevice->EndScene();
 

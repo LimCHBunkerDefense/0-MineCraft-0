@@ -35,6 +35,7 @@ class cPlayScene : public IScene
 	// << 
 	cButton*	m_pButton_Start;
 
+
 public:
 	cPlayScene();
 	~cPlayScene();
