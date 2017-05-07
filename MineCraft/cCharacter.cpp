@@ -12,6 +12,7 @@ cCharacter::cCharacter()
 	m_vFrontPos(0, 0, 0),
 	m_isMoving(false),
 	m_isJumping(false),
+	m_isFall(false),
 	m_fPrevY(0),
 	m_fScale(1.0f),
 	m_tag(CHARACTER_PLAYER),
@@ -200,12 +201,20 @@ void cCharacter::GravityUpdate()
 		{
 			if (D3DXIntersectTri(&pPNT[24 + (k * 3)].p, &pPNT[25 + (k * 3)].p, &pPNT[26 + (k * 3)].p, &rayPos, &intersectDir, &u, &v, &dist))
 			{
+				if (rayPos.y - dist < m_vPosition.y)m_isFall = true;
+				if (m_isJumping == false && m_isFall==true) { m_currentHeight = m_vPosition.y - (rayPos.y - dist);  }
 				if (m_isJumping == false)
 				{
 					m_currentHeight -= 0.1f;
-					if (m_currentHeight <= 0.0f)m_currentHeight = 0.0f;
+					if (m_currentHeight <= 0.0f)
+					{
+						m_currentHeight = 0.0f;
+						m_isFall = false;
+					}
 				}
-				m_vPosition.y = rayPos.y - dist + m_currentHeight;//점프 버그있음 수정해야함
+				
+				m_vPosition.y = rayPos.y - dist + m_currentHeight; //점프 버그있음 수정해야함
+				
 			}
 		}
 	}
@@ -241,4 +250,12 @@ void cCharacter::CollidChecker(int root)
 		}
 	}
 	if (isWayBlocked == false)m_vPosition = m_vPosition + root*(m_vDirection * 0.1f);
+}
+
+void cCharacter::FallUpdate()
+{
+
+
+
+
 }
