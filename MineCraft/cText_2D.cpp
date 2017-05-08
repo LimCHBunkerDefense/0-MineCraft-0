@@ -11,6 +11,7 @@ cText_2D::cText_2D()
 
 cText_2D::~cText_2D()
 {
+
 }
 
 void cText_2D::Create(RECT rect, string message, int size, D3DXCOLOR color)
@@ -23,10 +24,10 @@ void cText_2D::Create(RECT rect, string message, int size, D3DXCOLOR color)
 	m_color = color;
 	D3DXCreateFont(g_pD3DDevice, m_size, 0, FW_NORMAL, 1, false, DEFAULT_CHARSET, OUT_DEFAULT_PRECIS,
 		ANTIALIASED_QUALITY, FF_DONTCARE, TEXT("Arial"), &m_Font);
-
 }
 void cText_2D::Delete(string message)
 {
+
 }
 
 void cText_2D::Clear()

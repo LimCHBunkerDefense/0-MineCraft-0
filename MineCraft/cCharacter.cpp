@@ -2,19 +2,23 @@
 #include "cCharacter.h"
 #include "cInputManager.h"
 #include "cObjectManager.h"
+#include "cObject.h"
 
 
 cCharacter::cCharacter()
-	: m_fRotY(0.0f) ,
-	m_vDirection(0,0,1), 
-	m_vPosition(0,0,0),
-	m_vFrontPos(0,0,0),
+	: m_fRotY(0.0f),
+	m_vDirection(0, 0, 1),
+	m_vPosition(0, 0, 0),
+	m_vFrontPos(0, 0, 0),
 	m_isMoving(false),
 	m_isJumping(false),
+	m_isFall(false),
 	m_fPrevY(0),
 	m_fScale(1.0f),
 	m_tag(CHARACTER_PLAYER),
-	m_currentObjName(OBJECT_NONE)
+	m_currentObjName(OBJECT_NONE),
+	m_jumpingHeight(1.5f),
+	m_currentHeight(0.0f)
 {
 	D3DXMatrixIdentity(&m_matWorld);
 }
@@ -28,8 +32,9 @@ void cCharacter::Setup()
 {
 
 }
-void cCharacter::Update() 
+void cCharacter::Update()
 {
+	GravityUpdate();
 	if (m_tag == CHARACTER_PLAYER)
 	{
 		m_isMoving = false;
@@ -48,12 +53,14 @@ void cCharacter::Update()
 		if (INPUT->IsKeyPress(VK_W))
 		{
 			m_isMoving = true;
-			m_vPosition = m_vPosition + (m_vDirection * 0.1f);
+			CollidChecker(1);
+			//m_vPosition = m_vPosition + (m_vDirection * 0.1f);
 		}
 		if (INPUT->IsKeyPress(VK_S))
 		{
 			m_isMoving = true;
-			m_vPosition = m_vPosition - (m_vDirection * 0.1f);
+			CollidChecker(-1);
+			//m_vPosition = m_vPosition - (m_vDirection * 0.1f);
 		}
 
 	}
@@ -66,12 +73,12 @@ void cCharacter::Update()
 		if (INPUT->IsKeyPress('4'))m_currentObjName = OBJECT_STONEBRICK;
 		if (INPUT->IsKeyPress('5'))m_currentObjName = OBJECT_WOOD;
 
-		if (INPUT->IsKeyPress('E')&&m_currentObjName!=OBJECT_NONE&&g_ObjectManager->IsObjectHere(m_vFrontPos))
-		if (INPUT->IsKeyPress(VK_E))
-		{
-			m_isAttack = true;
-			g_ObjectManager->CreateObject(m_vFrontPos, m_currentObjName);
-		}
+		if (INPUT->IsKeyPress('E') && m_currentObjName != OBJECT_NONE&&g_ObjectManager->IsObjectHere(m_vFrontPos))
+			if (INPUT->IsKeyPress(VK_E))
+			{
+				m_isAttack = true;
+				g_ObjectManager->CreateObject(m_vFrontPos, m_currentObjName);
+			}
 		if (INPUT->IsKeyUp(VK_E))
 		{
 			m_isAttack = false;
@@ -94,7 +101,7 @@ void cCharacter::Update()
 		m_vFrontPos = D3DXVECTOR3((int)m_vPosition.x, (int)m_vPosition.y, (int)m_vPosition.z) + tempPos;
 		// << 
 	}
-	
+
 
 	RECT rc;
 	GetClientRect(g_hWnd, &rc);
@@ -108,10 +115,18 @@ void cCharacter::Update()
 
 	if (INPUT->IsKeyDown(' ') && !m_isJumping && m_tag == CHARACTER_PLAYER)m_isJumping = true;
 
-	if (m_isJumping)m_vPosition.y += 0.25f;
-
-
-
+	if (m_isJumping)
+	{
+		if (m_jumpingHeight >= m_currentHeight)
+		{
+			//m_vPosition.y += 0.25f;
+			m_currentHeight += 0.1;
+		}
+	}
+	if (m_jumpingHeight <= m_currentHeight)
+	{
+		m_isJumping = false;
+	}
 }
 void cCharacter::Render()
 {
@@ -162,4 +177,85 @@ void cCharacter::SetAttackState(bool a)
 void cCharacter::SetJumpingState(bool j)
 {
 	m_isJumping = j;
+}
+
+void cCharacter::GravityUpdate()
+{
+
+	D3DXVECTOR3	intersectDir = D3DXVECTOR3(0, -1, 0);
+
+	vector<cObject*> vecObject = g_ObjectManager->GetNearPlayerVecObject();
+
+
+	for (vector<cObject*>::iterator it = vecObject.begin(); it != vecObject.end(); it++)
+	{
+		D3DXVECTOR3 pos = m_vPosition;
+
+		D3DXVECTOR3 rayPos = m_vPosition;
+		float u, v;
+		float dist;
+		rayPos.y = 500.0f;
+
+		vector<ST_PNT_VERTEX> pPNT = (*it)->GetVectex();
+		for (int k = 0; k < 2; k++)
+		{
+			if (D3DXIntersectTri(&pPNT[24 + (k * 3)].p, &pPNT[25 + (k * 3)].p, &pPNT[26 + (k * 3)].p, &rayPos, &intersectDir, &u, &v, &dist))
+			{
+				if (rayPos.y - dist < m_vPosition.y)m_isFall = true;
+				if (m_isJumping == false && m_isFall==true) { m_currentHeight = m_vPosition.y - (rayPos.y - dist);  }
+				if (m_isJumping == false)
+				{
+					m_currentHeight -= 0.1f;
+					if (m_currentHeight <= 0.0f)
+					{
+						m_currentHeight = 0.0f;
+						m_isFall = false;
+					}
+				}
+				
+				m_vPosition.y = rayPos.y - dist + m_currentHeight; //점프 버그있음 수정해야함
+				
+			}
+		}
+	}
+}
+
+void cCharacter::CollidChecker(int root)
+{
+	D3DXVECTOR3	intersectDir;
+	switch (root)
+	{
+	case 1:intersectDir = m_vDirection * 1; break;
+	case -1:intersectDir = m_vDirection * -1; break;
+	}
+
+	vector<cObject*> vecObject = g_ObjectManager->GetNearPlayerVecObject();
+	bool isWayBlocked = false;
+
+	for (vector<cObject*>::iterator it = vecObject.begin(); it != vecObject.end(); it++)
+	{
+		D3DXVECTOR3 rayPos = m_vPosition;
+		float u, v;
+		float dist;
+		if (rayPos.y < rayPos.y + 0.6f)rayPos.y += 0.6f;
+
+		vector<ST_PNT_VERTEX> pPNT = (*it)->GetVectex();
+		for (int k = 0; k < 8; k++)
+		{
+			if (D3DXIntersectTri(&pPNT[0 + (k * 3)].p, &pPNT[1 + (k * 3)].p, &pPNT[2 + (k * 3)].p, &rayPos, &intersectDir, &u, &v, &dist))
+			{
+				if (dist < 0.6f) { isWayBlocked = true; }
+			}
+
+		}
+	}
+	if (isWayBlocked == false)m_vPosition = m_vPosition + root*(m_vDirection * 0.1f);
+}
+
+void cCharacter::FallUpdate()
+{
+
+
+
+
 }
