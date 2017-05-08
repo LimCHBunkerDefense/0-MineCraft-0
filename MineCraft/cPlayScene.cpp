@@ -314,7 +314,6 @@ D3DXCOLOR cPlayScene::ColorLerp(float startAngle, float endAngle, float currentA
 
 	return startColor + D3DXCOLOR(deltaAngle * deltaColorR, deltaAngle * deltaColorG, deltaAngle * deltaColorB, 1.0f);
 }
-}
 
 void cPlayScene::UISkillbar()
 {
