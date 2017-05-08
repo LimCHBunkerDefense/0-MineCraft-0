@@ -60,37 +60,6 @@ void cPlayScene::OnEnter()
 	m_pPosToCreateTile = new cSurface();
 	m_pPosToCreateTile->Setup(D3DXVECTOR3(-1.0f, 0.0f, -1.0f), D3DXVECTOR3(-1.0f, 0.0f, 1.0f), D3DXVECTOR3(1.0f, 0.0f, 1.0f), D3DXVECTOR3(1.0f, 0.0f, -1.0f), TEXT("Image/Surface/yellow.png"), false);
 
-	m_pTop = new cSurface();
-	m_pTop->Setup(D3DXVECTOR3(-WallLength, WallLength, WallLength), D3DXVECTOR3(-WallLength, WallLength, -WallLength), D3DXVECTOR3(WallLength, WallLength, -WallLength), D3DXVECTOR3(WallLength, WallLength, WallLength), TEXT("Image/Surface/skywall_top.png"), true);
-	if (m_pTop->GetIsLightOn()) { m_pTop->SetMaterial(D3DXVECTOR4(0.8f, 0.8f, 0.8f, 1.0f), D3DXVECTOR4(0.8f, 0.8f, 0.8f, 1.0f), D3DXVECTOR4(0.8f, 0.8f, 0.8f, 1.0f), D3DXVECTOR4(0.8f, 0.8f, 0.8f, 1.0f), 1.0f); }
-
-	//m_pTop->Setup(-WallLength, WallLength, WallLength, -WallLength, WallLength, -WallLength, WallLength, WallLength, -WallLength, WallLength, WallLength, WallLength, TEXT("Image/Surface/?????.png"));	// top이미지 필요
-	m_pBottom = new cSurface();
-	m_pBottom->Setup(D3DXVECTOR3(-WallLength, 0.0f, -WallLength), D3DXVECTOR3(-WallLength, 0.0f, WallLength), D3DXVECTOR3(WallLength, 0.0f, WallLength), D3DXVECTOR3(WallLength, 0.0f, -WallLength), TEXT("Image/Surface/ground.png"), true);
-	if (m_pBottom->GetIsLightOn()) { m_pTop->SetMaterial(D3DXVECTOR4(0.8f, 0.8f, 0.8f, 1.0f), D3DXVECTOR4(0.8f, 0.8f, 0.8f, 1.0f), D3DXVECTOR4(0.8f, 0.8f, 0.8f, 1.0f), D3DXVECTOR4(0.8f, 0.8f, 0.8f, 1.0f), 1.0f); }
-
-	m_pSide1 = new cSurface();
-	m_pSide1->Setup(D3DXVECTOR3(-WallLength, 0.0f, WallLength), D3DXVECTOR3(-WallLength, WallLength, WallLength), D3DXVECTOR3(WallLength, WallLength, WallLength), D3DXVECTOR3(WallLength, 0.0f, WallLength), TEXT("Image/Surface/skywall.png"), true);
-	m_pSide1->SetIsLightOn(false);
-	if (m_pSide1->GetIsLightOn()) { m_pTop->SetMaterial(D3DXVECTOR4(0.0f, 1.0f, 1.0f, 1.0f), D3DXVECTOR4(0.0f, 1.0f, 1.0f, 1.0f), D3DXVECTOR4(0.0f, 1.0f, 1.0f, 1.0f), D3DXVECTOR4(0.8f, 0.8f, 0.8f, 1.0f), 1.0f); }
-	m_pSide1->SetMaterial(D3DXVECTOR4(0.8f, 0.8f, 0.8f, 1.0f), D3DXVECTOR4(0.8f, 0.8f, 0.8f, 1.0f), D3DXVECTOR4(0.8f, 0.8f, 0.8f, 1.0f), D3DXVECTOR4(0.8f, 0.8f, 0.8f, 1.0f));
-
-	m_pSide2 = new cSurface();
-	m_pSide2->Setup(D3DXVECTOR3(-WallLength, 0.0f, -WallLength), D3DXVECTOR3(-WallLength, WallLength, -WallLength), D3DXVECTOR3(-WallLength, WallLength, WallLength), D3DXVECTOR3(-WallLength, 0.0f, WallLength), TEXT("Image/Surface/skywall2.png"), true);
-	m_pSide2->SetIsLightOn(false);
-	if (m_pSide2->GetIsLightOn()) { m_pTop->SetMaterial(D3DXVECTOR4(0.8f, 0.8f, 0.8f, 1.0f), D3DXVECTOR4(0.8f, 0.8f, 0.8f, 1.0f), D3DXVECTOR4(0.8f, 0.8f, 0.8f, 1.0f), D3DXVECTOR4(0.8f, 0.8f, 0.8f, 1.0f), 1.0f); }
-	m_pSide2->SetMaterial(D3DXVECTOR4(0.8f, 0.8f, 0.8f, 1.0f), D3DXVECTOR4(0.8f, 0.8f, 0.8f, 1.0f), D3DXVECTOR4(0.8f, 0.8f, 0.8f, 1.0f), D3DXVECTOR4(0.8f, 0.8f, 0.8f, 1.0f));
-
-	m_pSide3 = new cSurface();
-	m_pSide3->Setup(D3DXVECTOR3(WallLength, 0.0f, -WallLength), D3DXVECTOR3(WallLength, WallLength, -WallLength), D3DXVECTOR3(-WallLength, WallLength, -WallLength), D3DXVECTOR3(-WallLength, 0.0f, -WallLength), TEXT("Image/Surface/skywall.png"), true);
-	if (m_pSide3->GetIsLightOn()) { m_pTop->SetMaterial(D3DXVECTOR4(0.8f, 0.8f, 0.8f, 1.0f), D3DXVECTOR4(0.8f, 0.8f, 0.8f, 1.0f), D3DXVECTOR4(0.8f, 0.8f, 0.8f, 1.0f), D3DXVECTOR4(0.8f, 0.8f, 0.8f, 1.0f), 1.0f); }
-	m_pSide3->SetMaterial(D3DXVECTOR4(0.8f, 0.8f, 0.8f, 1.0f), D3DXVECTOR4(0.8f, 0.8f, 0.8f, 1.0f), D3DXVECTOR4(0.8f, 0.8f, 0.8f, 1.0f), D3DXVECTOR4(0.8f, 0.8f, 0.8f, 1.0f));
-
-	m_pSide4 = new cSurface();
-	m_pSide4->Setup(D3DXVECTOR3(WallLength, 0.0f, WallLength), D3DXVECTOR3(WallLength, WallLength, WallLength), D3DXVECTOR3(WallLength, WallLength, -WallLength), D3DXVECTOR3(WallLength, 0.0f, -WallLength), TEXT("Image/Surface/skywall2.png"), true);
-	if (m_pSide4->GetIsLightOn()) { m_pTop->SetMaterial(D3DXVECTOR4(0.8f, 0.8f, 0.8f, 1.0f), D3DXVECTOR4(0.8f, 0.8f, 0.8f, 1.0f), D3DXVECTOR4(0.8f, 0.8f, 0.8f, 1.0f), D3DXVECTOR4(0.8f, 0.8f, 0.8f, 1.0f), 1.0f); }
-	m_pSide4->SetMaterial(D3DXVECTOR4(0.8f, 0.8f, 0.8f, 1.0f), D3DXVECTOR4(0.8f, 0.8f, 0.8f, 1.0f), D3DXVECTOR4(0.8f, 0.8f, 0.8f, 1.0f), D3DXVECTOR4(0.8f, 0.8f, 0.8f, 1.0f));
-
 	Set_Light();
 	if (g_ObjectManager->GetVecObject().empty())
 	{
@@ -165,7 +134,7 @@ void cPlayScene::OnDraw()
 	g_pD3DDevice->Clear(NULL,
 		NULL,
 		D3DCLEAR_TARGET | D3DCLEAR_ZBUFFER,
-		D3DCOLOR_XRGB(120, 164, 253),
+		D3DCOLOR_RGBA((int)SkyColor().r, (int)SkyColor().g, (int)SkyColor().b, (int)SkyColor().a),
 		1.0f, 0);
 
 	g_pD3DDevice->BeginScene();
@@ -204,13 +173,6 @@ void cPlayScene::OnDraw()
 
 void cPlayScene::OnExit()
 {
-	SAFE_DELETE(m_pTop);
-	SAFE_DELETE(m_pBottom);
-	SAFE_DELETE(m_pSide1);
-	SAFE_DELETE(m_pSide2);
-	SAFE_DELETE(m_pSide3);
-	SAFE_DELETE(m_pSide4);
-
 	m_pCubeMan->SetTexture(NULL);
 	SAFE_DELETE(m_pCubeMan);
 	SAFE_DELETE(m_pSun);
@@ -282,6 +244,60 @@ void cPlayScene::SetPlayerSkin()
 		m_pCubeMan->SetTexture(g_pTextureManager->GetTexture(SKIN_SPIDER));
 		break;
 	}
+}
+
+void cPlayScene::SetCamera()
+{
+	if (INPUT->IsKeyDown('-'))
+	{
+
+	}
+}
+
+D3DXCOLOR& cPlayScene::SkyColor()
+{
+	if (m_pSun)
+	{
+		D3DXVECTOR2 vLeft = D3DXVECTOR2(-1, 0);
+		D3DXVECTOR2 vPosition = D3DXVECTOR2(m_pSun->GetPosition().x, m_pSun->GetPosition().y);
+		D3DXVec2Normalize(&vPosition, &vPosition);
+
+		float cosTheta = D3DXVec2Dot(&vLeft, &vPosition);
+		if (acosf(cosTheta) < D3DX_PI / 2.0f)
+		{
+			return D3DXCOLOR(120, 164, 253, 1.0f);
+		}
+		else if (acosf(cosTheta) > D3DX_PI / 2.0f && acosf(cosTheta) < (D3DX_PI / 2.0f + D3DX_PI / 4.0f))
+		{
+			return ColorLerp(D3DX_PI / 2.0f, D3DX_PI / 2.0 + D3DX_PI / 4.0f, acosf(cosTheta), (120, 164, 253, 1.0f), (0, 0, 255, 1.0f));
+		}
+		else if (acosf(cosTheta) > (D3DX_PI / 2.0f + D3DX_PI / 4.0f) && acosf(cosTheta) < D3DX_PI)
+		{
+			return D3DXCOLOR(0, 255, 255, 1.0f);
+		}
+		else
+
+		{
+			return D3DXCOLOR(120, 164, 253, 1.0f);
+		}
+	}
+	else
+	{
+		return D3DXCOLOR(0, 0, 255, 1.0f);
+	}
+}
+//D3DCOLOR_XRGB(120, 164, 253)
+
+D3DXCOLOR cPlayScene::ColorLerp(float startAngle, float endAngle, float currentAngle, D3DXCOLOR startColor, D3DXCOLOR endColor)
+{
+	float deltaAngle = (currentAngle - startAngle) / (endAngle - startAngle);
+	float deltaColorR = endColor.r - startColor.r;
+	float deltaColorG = endColor.g - startColor.g;
+	float deltaColorB = endColor.b - startColor.b;
+
+
+	return startColor + D3DXCOLOR(deltaAngle * deltaColorR, deltaAngle * deltaColorG, deltaAngle * deltaColorB, 1.0f);
+}
 }
 
 void cPlayScene::UISkillbar()
