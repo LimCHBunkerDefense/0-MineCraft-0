@@ -1,5 +1,5 @@
 #pragma once
-class cObjectManager;
+
 enum CHARACTER_TAG
 {
 	CHARACTER_NONE, CHARACTER_PLAYER, CHARACTER_EXAMPLE, CHARACTER_MY, 
@@ -17,7 +17,7 @@ protected :
 	D3DXVECTOR3		m_vPosition; 
 	D3DXVECTOR3		m_vFrontPos;
 	D3DXMATRIXA16	m_matWorld; 
-	D3DXVECTOR3		m_vPrevPos;
+
 	bool			m_isMoving;
 
 	float			m_fScale;
@@ -26,8 +26,12 @@ protected :
 
 	bool			m_isJumping;
 	bool			m_isAttack;
+	bool            m_isFall;
 	
 	float			m_fPrevY;
+	float           m_jumpingHeight;
+	float           m_currentHeight;
+	float           m_fallHeight;
 	
 public :
 	virtual ~cCharacter();
@@ -47,12 +51,10 @@ public :
 
 	void SetAttackState(bool a);
 	void SetJumpingState(bool j);
+	bool GetJumpingState() { return m_isJumping; }
+	void GravityUpdate();
+	void CollidChecker(int root);
+	void FallUpdate();
 
-	void GravityUpdate(vector<ST_PNT_VERTEX> PNT, D3DXVECTOR3 intersectDir);
-
-
-
-	virtual D3DXVECTOR3& GetPrevPos() { return m_vPrevPos; }
-	virtual void SetPrevPos(D3DXVECTOR3 pos) { m_vPrevPos = pos; }
 };
 

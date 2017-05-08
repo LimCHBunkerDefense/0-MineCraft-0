@@ -19,7 +19,11 @@ cLoadingScene::cLoadingScene()
 
 cLoadingScene::~cLoadingScene()
 {
-	
+	SAFE_DELETE(m_pBg);
+	SAFE_DELETE(m_pGageBar);
+	SAFE_DELETE(m_pGage);
+	SAFE_DELETE(m_pBg);
+	SAFE_DELETE(m_pCamera);
 }
 
 
