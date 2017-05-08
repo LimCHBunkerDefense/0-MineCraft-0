@@ -1,4 +1,4 @@
-#include "stdafx.h"
+﻿#include "stdafx.h"
 #include "cPlayScene.h"
 #include "cObjectManager.h"
 #include "cDeviceManager.h"	
@@ -13,14 +13,42 @@
 #include "cSurface.h"
 #include "cSun.h"
 #include "cMoon.h"
+#include "cAnimalMan.h"
 
+
+cPlayScene::cPlayScene()
+	: m_pCubeMan(NULL)
+	, m_pCamera(NULL)
+	, m_pSun(NULL)
+	, m_pMoon(NULL)
+	, m_pTop(NULL)
+	, m_pBottom(NULL)
+	, m_pSide1(NULL)
+	, m_pSide2(NULL)
+	, m_pSide3(NULL)
+	, m_pSide4(NULL)
+	, m_pPosToCreateTile(NULL)
+	, m_pSprite(NULL)
+	, m_pTexture(NULL)
+	, m_pSelTexture(NULL)
+	, m_pTexturePos(0.0f,0.0f,0.0f)
 
 cPlayScene::cPlayScene() :
 	m_pCubeMan(NULL),
 	m_pCamera(NULL),
 	m_pSun(NULL),
 	m_pMoon(NULL),
-	m_pPosToCreateTile(NULL)
+	m_pTop(NULL),
+	m_pBottom(NULL),
+	m_pSide1(NULL),
+	m_pSide2(NULL),
+	m_pSide3(NULL),
+	m_pSide4(NULL),
+	m_pPosToCreateTile(NULL),
+	m_pAnimal(NULL),
+	m_pAnimal2(NULL),
+	m_pAnimal3(NULL),
+	m_pAnimal4(NULL)
 {
 	SOUND->LoadFile("PlayBGM", "Sound/Beginning_Beta.mp3", true);
 }
@@ -28,7 +56,18 @@ cPlayScene::cPlayScene() :
 
 cPlayScene::~cPlayScene()
 {
-
+	SAFE_DELETE(m_pCubeMan);
+	SAFE_DELETE(m_pSun);
+	SAFE_DELETE(m_pMoon);
+	SAFE_DELETE(m_pTop);
+	SAFE_DELETE(m_pBottom);
+	SAFE_DELETE(m_pSide1);
+	SAFE_DELETE(m_pSide2);
+	SAFE_DELETE(m_pSide3);
+	SAFE_DELETE(m_pSide4);
+	SAFE_DELETE(m_pCamera);
+	SAFE_DELETE(m_pPosToCreateTile);
+	g_pDeviceManager->Destroy();
 }
 
 void cPlayScene::OnEnter()
@@ -67,6 +106,29 @@ void cPlayScene::OnEnter()
 		}
 	}
 	g_ObjectManager->CreateObject(D3DXVECTOR3(0.5f, 0.0f, 0.5f), OBJECT_DIRT);
+	if (g_ObjectManager->GetVecObject().empty())
+	{
+		float x = -500.0f;
+		float z = -500.0f;
+		for (int i = 0; i < 1000000; i++)
+		{
+			D3DXVECTOR3 pos = D3DXVECTOR3(x, -1.0f, z);
+			g_ObjectManager->CreateObject(pos, OBJECT_DIRT);
+			x += 1.0f;
+			if (x >= 500.0f)
+			{
+				z += 1.0f;
+				x = -500.0f;
+			}
+		}
+	}
+
+	// << : Sprite 생성 및 텍스쳐 이미지 불러오기
+	D3DXCreateSprite(g_pD3DDevice, &m_pSprite);
+	D3DXCreateTextureFromFile(g_pD3DDevice, L"Image/UI/GUI_Skill_Bar.png", &m_pTexture);
+	D3DXCreateTextureFromFile(g_pD3DDevice, L"Image/UI/GUI_Skill_Bar_Sel.png", &m_pSelTexture);
+	// <<
+	//g_ObjectManager->CreateObject(D3DXVECTOR3(0.5f, 0.0f, 0.5f), OBJECT_DIRT);
 	if (SOUND->FindChannel("PlayBGM") == NULL) SOUND->Play("PlayBGM", 10.0f);
 }
 
@@ -80,9 +142,16 @@ void cPlayScene::OnUpdate()
 		m_pCubeMan->Update();
 		m_pPosToCreateTile->UpdateLocation(m_pCubeMan->GetFrontPos());
 	}
-	
-	
-	if (m_pCamera)
+
+	// >> : 동물
+	for (int i = 0; i < m_vecAnimal.size(); i++)
+	{
+		m_vecAnimal[i]->Update();
+	}
+	// << :
+
+	if (m_pCamera) m_pCamera->Update();
+
 	{
 		SetCamera();
 		if (m_pCamera->GetCamIndex() == CAMERA_1) m_pCamera->Update();
@@ -129,12 +198,36 @@ void cPlayScene::OnDraw()
 	g_ObjectManager->Render(m_pCubeMan->GetPosition());
 	if (m_pCubeMan) m_pCubeMan->Render();
 	if (m_pPosToCreateTile) m_pPosToCreateTile->Render();
+	if (m_pTop) m_pTop->Render();
+	if (m_pSide1) m_pSide1->Render();
+	if (m_pSide2) m_pSide2->Render();
+	if (m_pSide3) m_pSide3->Render();
+	if (m_pSide4) m_pSide4->Render();	
+	/*if (m_pBottom) m_pBottom->Render();*/
 
-	// >> : �ؿ� �� Render
+	// >> : 해와 달 Render
 	if (m_pSun)	m_pSun->Render();
 	else if (m_pMoon) m_pMoon->Render();
-	// << :
 	
+	if (m_pSprite)
+	{
+		m_pSprite->Begin(D3DXSPRITE_ALPHABLEND);
+		m_pSprite->Draw(m_pTexture, NULL, NULL, &D3DXVECTOR3(325.0f, 650.0f, 0.0f), D3DCOLOR_ARGB(255, 255, 255, 255));
+		UISkillbar();
+	
+		m_pSprite->End();
+	}
+
+	// << :
+
+	// >> : 동물
+	for (int i = 0; i < m_vecAnimal.size(); i++)
+	{
+		m_vecAnimal[i]->Render();
+	}
+	// << :
+
+	g_ObjectManager->Render();
 	g_pD3DDevice->EndScene();
 
 	g_pD3DDevice->Present(NULL, NULL, NULL, NULL);
@@ -148,6 +241,10 @@ void cPlayScene::OnExit()
 	SAFE_DELETE(m_pMoon);
 	SAFE_DELETE(m_pCamera);
 	SAFE_DELETE(m_pPosToCreateTile);
+	
+	SAFE_RELEASE(m_pSprite);
+	SAFE_RELEASE(m_pTexture);
+	SAFE_RELEASE(m_pSelTexture);
 
 	SOUND->Stop("PlayBGM");
 }
@@ -263,4 +360,44 @@ D3DXCOLOR cPlayScene::ColorLerp(float startAngle, float endAngle, float currentA
 
 
 	return startColor + D3DXCOLOR(deltaAngle * deltaColorR, deltaAngle * deltaColorG, deltaAngle * deltaColorB, 1.0f);
+}
+
+void cPlayScene::UISkillbar()
+{
+	if (INPUT->IsKeyPress(VK_1))
+	{
+		m_pSprite->Draw(m_pSelTexture, NULL, NULL, &D3DXVECTOR3(325.0f, 650.0f, 0.0f), D3DCOLOR_ARGB(255, 255, 255, 255));
+	}
+	else if (INPUT->IsKeyPress(VK_2))
+	{
+		m_pSprite->Draw(m_pSelTexture, NULL, NULL, &D3DXVECTOR3(380.0f, 650.0f, 0.0f), D3DCOLOR_ARGB(255, 255, 255, 255));
+	}
+	else if (INPUT->IsKeyPress(VK_3))
+	{
+		m_pSprite->Draw(m_pSelTexture, NULL, NULL, &D3DXVECTOR3(437.0f, 650.0f, 0.0f), D3DCOLOR_ARGB(255, 255, 255, 255));
+	}
+	else if (INPUT->IsKeyPress(VK_4))
+	{
+		m_pSprite->Draw(m_pSelTexture, NULL, NULL, &D3DXVECTOR3(494.0f, 650.0f, 0.0f), D3DCOLOR_ARGB(255, 255, 255, 255));
+	}
+	else if (INPUT->IsKeyPress(VK_5))
+	{
+		m_pSprite->Draw(m_pSelTexture, NULL, NULL, &D3DXVECTOR3(550.0f, 650.0f, 0.0f), D3DCOLOR_ARGB(255, 255, 255, 255));
+	}
+	else if (INPUT->IsKeyPress(VK_6))
+	{
+		m_pSprite->Draw(m_pSelTexture, NULL, NULL, &D3DXVECTOR3(605.0f, 650.0f, 0.0f), D3DCOLOR_ARGB(255, 255, 255, 255));
+	}
+	else if (INPUT->IsKeyPress(VK_7))
+	{
+		m_pSprite->Draw(m_pSelTexture, NULL, NULL, &D3DXVECTOR3(660.0f, 650.0f, 0.0f), D3DCOLOR_ARGB(255, 255, 255, 255));
+	}
+	else if (INPUT->IsKeyPress(VK_8))
+	{
+		m_pSprite->Draw(m_pSelTexture, NULL, NULL, &D3DXVECTOR3(717.0f, 650.0f, 0.0f), D3DCOLOR_ARGB(255, 255, 255, 255));
+	}
+	else if (INPUT->IsKeyPress(VK_9))
+	{
+		m_pSprite->Draw(m_pSelTexture, NULL, NULL, &D3DXVECTOR3(776.0f, 650.0f, 0.0f), D3DCOLOR_ARGB(255, 255, 255, 255));
+	}
 }
