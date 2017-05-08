@@ -36,6 +36,14 @@ class cPlayScene : public IScene
 	// << 
 	cButton*	m_pButton_Start;
 
+	// <<: 2D 텍스쳐출력
+	LPD3DXSPRITE m_pSprite;
+	LPDIRECT3DTEXTURE9 m_pTexture;
+	LPDIRECT3DTEXTURE9 m_pSelTexture;
+	D3DXVECTOR3 m_pTexturePos;
+
+	// >>
+
 	// << : 동물
 	cAnimal*	m_pAnimal;
 	cAnimal*	m_pAnimal2;
@@ -48,12 +56,19 @@ public:
 	cPlayScene();
 	~cPlayScene();
 
-	void Setup();
-	void Update();
-	void Render();
+	void OnEnter();
+	void OnUpdate();
+	void OnExit();
+	void OnDraw();
 
 	void WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam);
 
 	void Set_Light();
+	D3DXCOLOR& SkyColor();
+	D3DXCOLOR ColorLerp(float startAngle, float endAngle, float currentAngle, D3DXCOLOR startColor, D3DXCOLOR endColor);
+
+	void SetPlayerSkin();
+	void SetCamera();
+	void UISkillbar();
 };
 

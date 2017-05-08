@@ -36,9 +36,11 @@ void cSun::Setup()
 
 void cSun::Update()
 {
+	Set_Light();
+
 	cCubePNT::Update();
 
-	m_vPosition.x += 0.05f;
+	m_vPosition.x += 10.0f;
 	m_vPosition.y = pow(m_vPosition.x, 2) * -(1.0f / 300.0f) + 300;
 	
 	D3DXMATRIXA16 matS, matT;
@@ -49,7 +51,6 @@ void cSun::Update()
 	D3DXMatrixTranslation(&matT, m_vPosition.x, m_vPosition.y, m_vPosition.z);
 	m_matWorld = matS * matT;
 
-	Set_Light();
 }
 
 void cSun::Render()
@@ -71,20 +72,35 @@ D3DXVECTOR3& cSun::GetPosition()
 
 void cSun::Set_Light()
 {
+	// D3DLIGHT9	stLight_Pnt;
+	// ZeroMemory(&stLight_Pnt, sizeof(D3DLIGHT9));
+
+	// stLight_Pnt.Type = D3DLIGHT_POINT;
+	// stLight_Pnt.Ambient = D3DXCOLOR(1.0f, 1.0f, 1.0f, 10.f);
+	// stLight_Pnt.Diffuse = D3DXCOLOR(1.0f, 1.0f, 1.0f, 10.f);
+	// stLight_Pnt.Specular = D3DXCOLOR(1.0f, 1.0f, 1.0f, 10.f);
+	// stLight_Pnt.Position = m_vPosition;
+	// stLight_Pnt.Range = 100.0f;
+	// stLight_Pnt.Attenuation0 = 1.0f;
+	// stLight_Pnt.Attenuation1 = 0.0f;
+	// stLight_Pnt.Attenuation2 = 0.0f;
+
+
 	D3DLIGHT9	stLight_Dir;
 	ZeroMemory(&stLight_Dir, sizeof(D3DLIGHT9));
 
 	stLight_Dir.Type = D3DLIGHT_DIRECTIONAL;
-	stLight_Dir.Ambient = D3DXCOLOR(0.2f, 0.2f, 0.2f, 1.0f);
+	stLight_Dir.Ambient = D3DXCOLOR(0.9f, 0.9f, 0.9f, 1.0f);
 	stLight_Dir.Diffuse = D3DXCOLOR(1.0f, 1.0f, 1.0f, 1.0f);
-	stLight_Dir.Specular = D3DXCOLOR(1.0f, 1.0f, 1.0f, 1.0f);
-
+	stLight_Dir.Specular = D3DXCOLOR(0.9f, 0.9f, 0.9f, 1.0f);
 	D3DXVECTOR3 vDir = -m_vPosition;
 	D3DXVec3Normalize(&vDir, &vDir);
-	stLight_Dir.Direction = vDir;
+	stLight_Dir.Direction = vDir;   
 
-	g_pD3DDevice->SetLight(0, &stLight_Dir);
-	g_pD3DDevice->LightEnable(0, true);
+	// g_pD3DDevice->SetLight(0, &stLight_Pnt);
+	g_pD3DDevice->SetLight(1, &stLight_Dir);
+	// g_pD3DDevice->LightEnable(0, true);
+	g_pD3DDevice->LightEnable(1, true);
 }
 
 void cSun::Set_Material()

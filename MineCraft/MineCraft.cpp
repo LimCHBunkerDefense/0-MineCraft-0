@@ -7,6 +7,14 @@
 
 #define MAX_LOADSTRING 100
 
+// >>: 윈도창 생성 창 위치
+#define WND_START_WIDTH		50
+#define WND_START_HEIGHT	10
+
+// 윈도우 생성시 창 크기(해상도)
+#define WND_VIEW_WIDTH		1100
+#define WND_VIEW_HEIGHT		800
+
 // 전역 변수:
 HINSTANCE hInst;                                // 현재 인스턴스입니다.
 WCHAR szTitle[MAX_LOADSTRING];                  // 제목 표시줄 텍스트입니다.
@@ -120,7 +128,7 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
    hInst = hInstance; // 인스턴스 핸들을 전역 변수에 저장합니다.
 
    HWND hWnd = CreateWindowW(szWindowClass, szTitle, WS_OVERLAPPEDWINDOW,
-      CW_USEDEFAULT, 0, 1100, 800, nullptr, nullptr, hInstance, nullptr);
+      WND_START_WIDTH, WND_START_HEIGHT, WND_VIEW_WIDTH, WND_VIEW_HEIGHT, nullptr, nullptr, hInstance, nullptr);
 
    g_hWnd = hWnd;
    // >> VIEW_WIDTH, VIEW_HEIGHT 등록
@@ -156,6 +164,8 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 	if (g_pMainGame)
 		g_pMainGame->WndProc(hWnd, message, wParam, lParam);
 
+	bool GameOver = false;
+
     switch (message)
     {
     case WM_COMMAND:
@@ -168,26 +178,62 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
                 DialogBox(hInst, MAKEINTRESOURCE(IDD_ABOUTBOX), hWnd, About);
                 break;
             case IDM_EXIT:
-                DestroyWindow(hWnd);
+				if (MessageBox(hWnd, TEXT("게임을 종료 하시겠습니까?"), TEXT("OUT"), MB_YESNO) == IDYES)
+				{
+					GameOver = true;
+					DestroyWindow(hWnd);
+				}
+				else
+				{
+					GameOver = false;
+				}
                 break;
             default:
                 return DefWindowProc(hWnd, message, wParam, lParam);
             }
         }
         break;
+
+	case WM_KEYDOWN:
+		if (GetKeyState(VK_ESCAPE) & KF_UP)
+		{
+			if (MessageBox(hWnd, TEXT("게임을 종료 하시겠습니까?"), TEXT("OUT"),    MB_YESNO) == IDYES)
+			  {
+			        GameOver = true;
+					DestroyWindow(hWnd);
+			  }
+			else
+			  {
+			        GameOver = false;
+			  }
+		break;
+		}
+
     case WM_PAINT:
         {
             PAINTSTRUCT ps;
             HDC hdc = BeginPaint(hWnd, &ps);
             // TODO: 여기에 hdc를 사용하는 그리기 코드를 추가합니다.
-
-
             EndPaint(hWnd, &ps);
         }
         break;
-    case WM_DESTROY:
-        PostQuitMessage(0);
+
+    case WM_CLOSE:
+		if (MessageBox(hWnd, TEXT("게임을 종료 하시겠습니까?"), TEXT("OUT"), MB_YESNO) == IDYES)
+		{
+			GameOver = true;
+			PostQuitMessage(0);
+		}
+		else
+		{
+			GameOver = false;
+		}
         break;
+
+	case WM_DESTROY:
+		PostQuitMessage(0);
+		break;
+
     default:
         return DefWindowProc(hWnd, message, wParam, lParam);
     }

@@ -3,16 +3,21 @@
 class cObject :
 	public cCubePNT
 {
+protected:
 	D3DXVECTOR3		m_vLocalPos;
 	D3DXMATRIXA16	m_matLocalTM;
-	string          m_name;
+	OBJECT_NAME     m_name;
 public:
 	cObject();
 	cObject(D3DXVECTOR3 pos);
 	~cObject();
 	D3DXVECTOR3 GetPosition() { return m_vLocalPos; }
-	void        SetName(string name) { m_name = name; }
-	string      GetName() { return m_name; }
+	void        SetName(OBJECT_NAME name) { m_name = name; }
+	OBJECT_NAME GetName() { return m_name; }
 	void        SetDirtTexture();
+
+	virtual void Setup() {};
+	virtual void Render();
+	vector<ST_PNT_VERTEX> GetVertex() { return m_vecVertex; }
 };
 

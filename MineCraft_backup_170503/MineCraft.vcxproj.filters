@@ -1,0 +1,339 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="stdafx.cpp">
+      <Filter>99. etc</Filter>
+    </ClCompile>
+    <ClCompile Include="MineCraft.cpp">
+      <Filter>00. cMineCraft</Filter>
+    </ClCompile>
+    <ClCompile Include="cMainGame.cpp">
+      <Filter>01. cMainGame</Filter>
+    </ClCompile>
+    <ClCompile Include="cBody.cpp">
+      <Filter>10. cCharacter\01. cCubeMan\01. cCubeMan%27s</Filter>
+    </ClCompile>
+    <ClCompile Include="cCamera.cpp">
+      <Filter>98. Utility\01. cCamera</Filter>
+    </ClCompile>
+    <ClCompile Include="cCharacter.cpp">
+      <Filter>10. cCharacter</Filter>
+    </ClCompile>
+    <ClCompile Include="cCubeMan.cpp">
+      <Filter>10. cCharacter\01. cCubeMan</Filter>
+    </ClCompile>
+    <ClCompile Include="cCubePC.cpp">
+      <Filter>98. Utility\02. cCubePC</Filter>
+    </ClCompile>
+    <ClCompile Include="cCubePNT.cpp">
+      <Filter>98. Utility\03. cCubePNT</Filter>
+    </ClCompile>
+    <ClCompile Include="cCubeNode.cpp">
+      <Filter>98. Utility\04. cCubeNode</Filter>
+    </ClCompile>
+    <ClCompile Include="cDeviceManager.cpp">
+      <Filter>02. cDeviceManager</Filter>
+    </ClCompile>
+    <ClCompile Include="cGrid.cpp">
+      <Filter>98. Utility\05. cGrid</Filter>
+    </ClCompile>
+    <ClCompile Include="cHead.cpp">
+      <Filter>10. cCharacter\01. cCubeMan\01. cCubeMan%27s</Filter>
+    </ClCompile>
+    <ClCompile Include="cLeftArm.cpp">
+      <Filter>10. cCharacter\01. cCubeMan\01. cCubeMan%27s</Filter>
+    </ClCompile>
+    <ClCompile Include="cLeftLeg.cpp">
+      <Filter>10. cCharacter\01. cCubeMan\01. cCubeMan%27s</Filter>
+    </ClCompile>
+    <ClCompile Include="cRightArm.cpp">
+      <Filter>10. cCharacter\01. cCubeMan\01. cCubeMan%27s</Filter>
+    </ClCompile>
+    <ClCompile Include="cRightLeg.cpp">
+      <Filter>10. cCharacter\01. cCubeMan\01. cCubeMan%27s</Filter>
+    </ClCompile>
+    <ClCompile Include="cInputManager.cpp">
+      <Filter>03. cInputManager</Filter>
+    </ClCompile>
+    <ClCompile Include="cObject.cpp">
+      <Filter>98. Utility\06. cObject</Filter>
+    </ClCompile>
+    <ClCompile Include="cObjectManager.cpp">
+      <Filter>04. cObjectManager</Filter>
+    </ClCompile>
+    <ClCompile Include="cSceneManager.cpp">
+      <Filter>05. cSceneManager</Filter>
+    </ClCompile>
+    <ClCompile Include="cPyramid.cpp">
+      <Filter>98. Utility\07. cPyramid</Filter>
+    </ClCompile>
+    <ClCompile Include="cSurface.cpp">
+      <Filter>98. Utility\08. cSurface</Filter>
+    </ClCompile>
+    <ClCompile Include="cTextureManager.cpp">
+      <Filter>06. cTextureManager</Filter>
+    </ClCompile>
+    <ClCompile Include="cMoon.cpp">
+      <Filter>11. cPlanet\cMoon</Filter>
+    </ClCompile>
+    <ClCompile Include="cPlanet.cpp">
+      <Filter>11. cPlanet</Filter>
+    </ClCompile>
+    <ClCompile Include="cSun.cpp">
+      <Filter>11. cPlanet\cSun</Filter>
+    </ClCompile>
+    <ClCompile Include="cTitleScene.cpp">
+      <Filter>12. cScene\01. cTitleScene</Filter>
+    </ClCompile>
+    <ClCompile Include="cPlayScene.cpp">
+      <Filter>12. cScene\02. cPlayScene</Filter>
+    </ClCompile>
+    <ClCompile Include="cDrawD2D.cpp">
+      <Filter>98. Utility\09. cDrawD2D</Filter>
+    </ClCompile>
+    <ClCompile Include="cButton.cpp">
+      <Filter>98. Utility\10. cButton</Filter>
+    </ClCompile>
+    <ClCompile Include="cShopScene.cpp">
+      <Filter>12. cScene\03. cShopScene</Filter>
+    </ClCompile>
+    <ClCompile Include="cLoadingScene.cpp">
+      <Filter>12. cScene\xx.cLoadingScene</Filter>
+    </ClCompile>
+    <ClCompile Include="cSoundManager.cpp" />
+    <ClCompile Include="cText.cpp" />
+    <ClCompile Include="cText_2D.cpp">
+      <Filter>98. Utility\12. cText_2D</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="stdafx.h" />
+    <ClInclude Include="targetver.h">
+      <Filter>99. etc</Filter>
+    </ClInclude>
+    <ClInclude Include="Resource.h">
+      <Filter>99. etc</Filter>
+    </ClInclude>
+    <ClInclude Include="MineCraft.h">
+      <Filter>00. cMineCraft</Filter>
+    </ClInclude>
+    <ClInclude Include="cMainGame.h">
+      <Filter>01. cMainGame</Filter>
+    </ClInclude>
+    <ClInclude Include="cBody.h">
+      <Filter>10. cCharacter\01. cCubeMan\01. cCubeMan%27s</Filter>
+    </ClInclude>
+    <ClInclude Include="cCamera.h">
+      <Filter>98. Utility\01. cCamera</Filter>
+    </ClInclude>
+    <ClInclude Include="cCharacter.h">
+      <Filter>10. cCharacter</Filter>
+    </ClInclude>
+    <ClInclude Include="cCubeMan.h">
+      <Filter>10. cCharacter\01. cCubeMan</Filter>
+    </ClInclude>
+    <ClInclude Include="cCubePC.h">
+      <Filter>98. Utility\02. cCubePC</Filter>
+    </ClInclude>
+    <ClInclude Include="cCubePNT.h">
+      <Filter>98. Utility\03. cCubePNT</Filter>
+    </ClInclude>
+    <ClInclude Include="cCubeNode.h">
+      <Filter>98. Utility\04. cCubeNode</Filter>
+    </ClInclude>
+    <ClInclude Include="cDeviceManager.h">
+      <Filter>02. cDeviceManager</Filter>
+    </ClInclude>
+    <ClInclude Include="cGrid.h">
+      <Filter>98. Utility\05. cGrid</Filter>
+    </ClInclude>
+    <ClInclude Include="cHead.h">
+      <Filter>10. cCharacter\01. cCubeMan\01. cCubeMan%27s</Filter>
+    </ClInclude>
+    <ClInclude Include="cLeftArm.h">
+      <Filter>10. cCharacter\01. cCubeMan\01. cCubeMan%27s</Filter>
+    </ClInclude>
+    <ClInclude Include="cLeftLeg.h">
+      <Filter>10. cCharacter\01. cCubeMan\01. cCubeMan%27s</Filter>
+    </ClInclude>
+    <ClInclude Include="cRightArm.h">
+      <Filter>10. cCharacter\01. cCubeMan\01. cCubeMan%27s</Filter>
+    </ClInclude>
+    <ClInclude Include="cRightLeg.h">
+      <Filter>10. cCharacter\01. cCubeMan\01. cCubeMan%27s</Filter>
+    </ClInclude>
+    <ClInclude Include="cInputManager.h">
+      <Filter>03. cInputManager</Filter>
+    </ClInclude>
+    <ClInclude Include="cObject.h">
+      <Filter>98. Utility\06. cObject</Filter>
+    </ClInclude>
+    <ClInclude Include="cObjectManager.h">
+      <Filter>04. cObjectManager</Filter>
+    </ClInclude>
+    <ClInclude Include="cSceneManager.h">
+      <Filter>05. cSceneManager</Filter>
+    </ClInclude>
+    <ClInclude Include="cPyramid.h">
+      <Filter>98. Utility\07. cPyramid</Filter>
+    </ClInclude>
+    <ClInclude Include="cSurface.h">
+      <Filter>98. Utility\08. cSurface</Filter>
+    </ClInclude>
+    <ClInclude Include="cTextureManager.h">
+      <Filter>06. cTextureManager</Filter>
+    </ClInclude>
+    <ClInclude Include="cMoon.h">
+      <Filter>11. cPlanet\cMoon</Filter>
+    </ClInclude>
+    <ClInclude Include="cPlanet.h">
+      <Filter>11. cPlanet</Filter>
+    </ClInclude>
+    <ClInclude Include="cSun.h">
+      <Filter>11. cPlanet\cSun</Filter>
+    </ClInclude>
+    <ClInclude Include="cTitleScene.h">
+      <Filter>12. cScene\01. cTitleScene</Filter>
+    </ClInclude>
+    <ClInclude Include="cShopScene.h">
+      <Filter>12. cScene\03. cShopScene</Filter>
+    </ClInclude>
+    <ClInclude Include="cPlayScene.h">
+      <Filter>12. cScene\02. cPlayScene</Filter>
+    </ClInclude>
+    <ClInclude Include="cDrawD2D.h">
+      <Filter>98. Utility\09. cDrawD2D</Filter>
+    </ClInclude>
+    <ClInclude Include="cButton.h">
+      <Filter>98. Utility\10. cButton</Filter>
+    </ClInclude>
+    <ClInclude Include="cLoadingScene.h">
+      <Filter>12. cScene\xx.cLoadingScene</Filter>
+    </ClInclude>
+    <ClInclude Include="cSoundManager.h" />
+    <ClInclude Include="cText.h" />
+    <ClInclude Include="cText_2D.h">
+      <Filter>98. Utility\12. cText_2D</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="small.ico">
+      <Filter>99. etc</Filter>
+    </Image>
+    <Image Include="MineCraft.ico">
+      <Filter>99. etc</Filter>
+    </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="notice.txt" />
+    <Text Include="ReadMe.txt">
+      <Filter>99. etc</Filter>
+    </Text>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="99. etc">
+      <UniqueIdentifier>{fd7db6e5-5617-4c5e-a94c-81dc69836f52}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="00. cMineCraft">
+      <UniqueIdentifier>{6aad5c0f-524d-477e-a095-246ed777a841}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01. cMainGame">
+      <UniqueIdentifier>{ada4fb67-777c-4fc6-b76b-dbef8cd7eb5c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="98. Utility">
+      <UniqueIdentifier>{b32011f1-b7f3-4bd1-aa8c-ab0564c3c7b0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="98. Utility\01. cCamera">
+      <UniqueIdentifier>{b0d3f71f-82d8-4957-a18e-cf964e5820b3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="10. cCharacter">
+      <UniqueIdentifier>{6688afea-afbf-4b82-a508-d471dcc8c9a5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="10. cCharacter\01. cCubeMan">
+      <UniqueIdentifier>{7cd33e78-3072-4bbd-8d53-a35327e78a35}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="10. cCharacter\01. cCubeMan\01. cCubeMan%27s">
+      <UniqueIdentifier>{331ae0fd-f4ee-4732-b701-8b998d6e7635}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="98. Utility\02. cCubePC">
+      <UniqueIdentifier>{5d5072d1-e1ab-4f5a-be40-a332b160aecc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="98. Utility\03. cCubePNT">
+      <UniqueIdentifier>{0ff531bb-fa5a-43f9-b9ff-363ed2aa0f9e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="98. Utility\04. cCubeNode">
+      <UniqueIdentifier>{13ea8216-094e-41c3-8404-435e4f9bf187}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02. cDeviceManager">
+      <UniqueIdentifier>{f8a39579-ad79-46f3-ae6d-c99126ac2146}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="98. Utility\05. cGrid">
+      <UniqueIdentifier>{9f36d024-6a68-4d99-8096-a22fd9387448}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03. cInputManager">
+      <UniqueIdentifier>{56d660dc-6980-49d2-b972-9b84079dd1f4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="04. cObjectManager">
+      <UniqueIdentifier>{a3912870-7a27-4ca0-b362-f460b475e715}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="05. cSceneManager">
+      <UniqueIdentifier>{aa670f91-c85c-45e2-88bd-219cbda7c4f5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="98. Utility\07. cPyramid">
+      <UniqueIdentifier>{0d620120-face-4f07-a605-f16dfc941899}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="98. Utility\08. cSurface">
+      <UniqueIdentifier>{9aaf97a1-c043-4507-a825-98eea83e7c7e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="06. cTextureManager">
+      <UniqueIdentifier>{9e677434-7c45-4e41-84cb-bc79b70b4477}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="11. cPlanet">
+      <UniqueIdentifier>{fdc5815a-da8e-4fe7-851f-083cc3c832c4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="11. cPlanet\cSun">
+      <UniqueIdentifier>{96008fc5-2fda-4d37-b1f2-b8283d35d570}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="11. cPlanet\cMoon">
+      <UniqueIdentifier>{eef99dd7-2589-4c3f-8e74-d9fa7a0449d7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="98. Utility\06. cObject">
+      <UniqueIdentifier>{171f873e-24c2-4e58-99f1-6adc899896db}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="12. cScene">
+      <UniqueIdentifier>{f983f2df-ed39-4e2f-8c7f-670881999a7e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="12. cScene\01. cTitleScene">
+      <UniqueIdentifier>{00b0b376-dcec-4a88-a5d3-6928bc4b2bb1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="12. cScene\02. cPlayScene">
+      <UniqueIdentifier>{e0543972-2bee-4cdb-b4f2-22be3aaca0fc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="12. cScene\03. cShopScene">
+      <UniqueIdentifier>{73a91dcd-07c4-40db-9685-72151252a93e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="98. Utility\09. cDrawD2D">
+      <UniqueIdentifier>{532c3dd5-daf6-43e4-b8a6-ffa43c896141}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="98. Utility\10. cButton">
+      <UniqueIdentifier>{b5587505-2c8a-4818-8d38-c284b5299287}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="12. cScene\xx.cLoadingScene">
+      <UniqueIdentifier>{1c087d34-2271-40b6-89c9-8e70949b88c8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="98. Utility\NewFilter1">
+      <UniqueIdentifier>{fdee22c6-1342-4b00-b0d4-6b21abff64a1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="98. Utility\11. cText">
+      <UniqueIdentifier>{6d983cdb-c57f-45e3-aeb0-2b711d0c23f4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="98. Utility\12. cText_2D">
+      <UniqueIdentifier>{fdee22c6-1342-4b00-b0d4-6b21abff64a1}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="MineCraft.rc">
+      <Filter>99. etc</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+</Project>
