@@ -16,34 +16,11 @@
 #include "cAnimalMan.h"
 
 
-cPlayScene::cPlayScene()
-	: m_pCubeMan(NULL)
-	, m_pCamera(NULL)
-	, m_pSun(NULL)
-	, m_pMoon(NULL)
-	, m_pTop(NULL)
-	, m_pBottom(NULL)
-	, m_pSide1(NULL)
-	, m_pSide2(NULL)
-	, m_pSide3(NULL)
-	, m_pSide4(NULL)
-	, m_pPosToCreateTile(NULL)
-	, m_pSprite(NULL)
-	, m_pTexture(NULL)
-	, m_pSelTexture(NULL)
-	, m_pTexturePos(0.0f,0.0f,0.0f)
-
 cPlayScene::cPlayScene() :
 	m_pCubeMan(NULL),
 	m_pCamera(NULL),
 	m_pSun(NULL),
 	m_pMoon(NULL),
-	m_pTop(NULL),
-	m_pBottom(NULL),
-	m_pSide1(NULL),
-	m_pSide2(NULL),
-	m_pSide3(NULL),
-	m_pSide4(NULL),
 	m_pPosToCreateTile(NULL),
 	m_pAnimal(NULL),
 	m_pAnimal2(NULL),
@@ -56,18 +33,7 @@ cPlayScene::cPlayScene() :
 
 cPlayScene::~cPlayScene()
 {
-	SAFE_DELETE(m_pCubeMan);
-	SAFE_DELETE(m_pSun);
-	SAFE_DELETE(m_pMoon);
-	SAFE_DELETE(m_pTop);
-	SAFE_DELETE(m_pBottom);
-	SAFE_DELETE(m_pSide1);
-	SAFE_DELETE(m_pSide2);
-	SAFE_DELETE(m_pSide3);
-	SAFE_DELETE(m_pSide4);
-	SAFE_DELETE(m_pCamera);
-	SAFE_DELETE(m_pPosToCreateTile);
-	g_pDeviceManager->Destroy();
+
 }
 
 void cPlayScene::OnEnter()
@@ -198,11 +164,7 @@ void cPlayScene::OnDraw()
 	g_ObjectManager->Render(m_pCubeMan->GetPosition());
 	if (m_pCubeMan) m_pCubeMan->Render();
 	if (m_pPosToCreateTile) m_pPosToCreateTile->Render();
-	if (m_pTop) m_pTop->Render();
-	if (m_pSide1) m_pSide1->Render();
-	if (m_pSide2) m_pSide2->Render();
-	if (m_pSide3) m_pSide3->Render();
-	if (m_pSide4) m_pSide4->Render();	
+	
 	/*if (m_pBottom) m_pBottom->Render();*/
 
 	// >> : 해와 달 Render
@@ -227,7 +189,7 @@ void cPlayScene::OnDraw()
 	}
 	// << :
 
-	g_ObjectManager->Render();
+	//g_ObjectManager->Render();
 	g_pD3DDevice->EndScene();
 
 	g_pD3DDevice->Present(NULL, NULL, NULL, NULL);
