@@ -13,14 +13,19 @@
 #include "cSurface.h"
 #include "cSun.h"
 #include "cMoon.h"
+#include "cAnimalMan.h"
 
 
-cPlayScene::cPlayScene()
-	: m_pCubeMan(NULL)
-	, m_pCamera(NULL)
-	, m_pSun(NULL)
-	, m_pMoon(NULL)
-	, m_pPosToCreateTile(NULL)
+cPlayScene::cPlayScene() :
+	m_pCubeMan(NULL),
+	m_pCamera(NULL),
+	m_pSun(NULL),
+	m_pMoon(NULL),
+	m_pPosToCreateTile(NULL),
+	m_pAnimal(NULL),
+	m_pAnimal2(NULL),
+	m_pAnimal3(NULL),
+	m_pAnimal4(NULL)
 	, m_pSprite(NULL)
 	, m_pTexture(NULL)
 	, m_pSelTexture(NULL)
@@ -128,9 +133,16 @@ void cPlayScene::OnUpdate()
 		m_pCubeMan->Update();
 		m_pPosToCreateTile->UpdateLocation(m_pCubeMan->GetFrontPos());
 	}
-	
-	
-	if (m_pCamera)
+
+	// >> : 동물
+	for (int i = 0; i < m_vecAnimal.size(); i++)
+	{
+		m_vecAnimal[i]->Update();
+	}
+	// << :
+
+	if (m_pCamera) m_pCamera->Update();
+
 	{
 		SetCamera();
 		if (m_pCamera->GetCamIndex() == CAMERA_1) m_pCamera->Update();
@@ -193,6 +205,14 @@ void cPlayScene::OnDraw()
 
 	// << :
 
+	// >> : 동물
+	for (int i = 0; i < m_vecAnimal.size(); i++)
+	{
+		m_vecAnimal[i]->Render();
+	}
+	// << :
+
+	//g_ObjectManager->Render();
 	g_pD3DDevice->EndScene();
 
 	g_pD3DDevice->Present(NULL, NULL, NULL, NULL);
@@ -275,7 +295,11 @@ void cPlayScene::SetPlayerSkin()
 
 void cPlayScene::SetCamera()
 {
-	if (INPUT->IsKeyDown('C')) m_pCamera->SetCamIndex();
+	if (INPUT->IsKeyDown('C'))
+	{
+		m_pCamera->SetCamIndex();
+		m_pCubeMan->SetMouseOn();
+	}
 }
 
 D3DXCOLOR& cPlayScene::SkyColor()

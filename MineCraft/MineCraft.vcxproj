@@ -151,6 +151,17 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="cAnimal.h" />
+    <ClInclude Include="cAnimalBody.h" />
+    <ClInclude Include="cAnimalHead.h" />
+    <ClInclude Include="cAnimalLeftArm.h" />
+    <ClInclude Include="cAnimalLeftLeg.h" />
+    <ClInclude Include="cAnimalMan.h" />
+    <ClInclude Include="cAnimalNode.h" />
+    <ClInclude Include="cAnimalNose.h" />
+    <ClInclude Include="cAnimalPNT.h" />
+    <ClInclude Include="cAnimalRightArm.h" />
+    <ClInclude Include="cAnimalRightLeg.h" />
     <ClInclude Include="cBody.h" />
     <ClInclude Include="cButton.h" />
     <ClInclude Include="cCamera.h" />
@@ -193,6 +204,17 @@
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="cAnimal.cpp" />
+    <ClCompile Include="cAnimalBody.cpp" />
+    <ClCompile Include="cAnimalHead.cpp" />
+    <ClCompile Include="cAnimalLeftArm.cpp" />
+    <ClCompile Include="cAnimalLeftLeg.cpp" />
+    <ClCompile Include="cAnimalMan.cpp" />
+    <ClCompile Include="cAnimalNode.cpp" />
+    <ClCompile Include="cAnimalNose.cpp" />
+    <ClCompile Include="cAnimalPNT.cpp" />
+    <ClCompile Include="cAnimalRightArm.cpp" />
+    <ClCompile Include="cAnimalRightLeg.cpp" />
     <ClCompile Include="cBody.cpp" />
     <ClCompile Include="cButton.cpp" />
     <ClCompile Include="cCamera.cpp" />

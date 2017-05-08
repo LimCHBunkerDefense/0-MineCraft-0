@@ -10,6 +10,7 @@ class cSurface;
 class cSun;
 class cMoon;
 class cButton;
+class cAnimal;
 
 #define WallLength	500.0f
 
@@ -34,6 +35,14 @@ class cPlayScene : public IScene
 	D3DXVECTOR3 m_pTexturePos;
 
 	// >>
+
+	// << : µ¿¹°
+	cAnimal*	m_pAnimal;
+	cAnimal*	m_pAnimal2;
+	cAnimal*	m_pAnimal3;
+	cAnimal*	m_pAnimal4;
+	std::vector<cAnimal*> m_vecAnimal;
+	// >> :
 
 public:
 	cPlayScene();
