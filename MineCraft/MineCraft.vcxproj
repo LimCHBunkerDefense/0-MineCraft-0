@@ -34,7 +34,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
-    <PlatformToolset>v141</PlatformToolset>
+    <PlatformToolset>v140</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
@@ -170,6 +170,7 @@
     <ClInclude Include="cLoadingScene.h" />
     <ClInclude Include="cMainGame.h" />
     <ClInclude Include="cMoon.h" />
+    <ClInclude Include="cMSGBox.h" />
     <ClInclude Include="cObject.h" />
     <ClInclude Include="cObjectManager.h" />
     <ClInclude Include="cPlanet.h" />
@@ -211,6 +212,7 @@
     <ClCompile Include="cLoadingScene.cpp" />
     <ClCompile Include="cMainGame.cpp" />
     <ClCompile Include="cMoon.cpp" />
+    <ClCompile Include="cMSGBox.cpp" />
     <ClCompile Include="cObject.cpp" />
     <ClCompile Include="cObjectManager.cpp" />
     <ClCompile Include="cPlanet.cpp" />

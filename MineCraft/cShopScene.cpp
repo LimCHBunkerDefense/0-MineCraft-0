@@ -4,6 +4,7 @@
 #include "cSurface.h"
 #include "cButton.h"
 #include "cCubeMan.h"
+#include "cMSGBox.h"
 
 
 cShopScene::cShopScene()
@@ -18,8 +19,10 @@ cShopScene::cShopScene()
 	, m_pExampleMan02(NULL)
 	, m_pExampleMan03(NULL)
 	, m_pMyMan(NULL)
+	, m_pMSGBox(NULL)
 {
 	m_nExampleSkinIndex = SKIN_BATMAN;
+	m_nMySkinIndex = SCENE->GetSkinIndex();
 }
 
 
@@ -30,61 +33,29 @@ cShopScene::~cShopScene()
 
 void cShopScene::OnEnter()
 {
-	m_pBg = new cSurface();
-	m_pBg->Setup(D3DXVECTOR3(-VIEW_WIDTH * 0.5F, 0.0F, 0.0F), D3DXVECTOR3(-VIEW_WIDTH * 0.5F, VIEW_HEIGHT, 0.0F),
-		D3DXVECTOR3(VIEW_WIDTH * 0.5F, VIEW_HEIGHT, 0.0F), D3DXVECTOR3(VIEW_WIDTH * 0.5F, 0.0F, 0.0F), TEXT("Image/TitleScene/bg.png"), false);
-
-	m_pGUI_Outline = new cSurface();
-	m_pGUI_Outline->Setup(D3DXVECTOR3(-VIEW_WIDTH * 0.4f, VIEW_HEIGHT * 0.1f, -0.2f), D3DXVECTOR3(-VIEW_WIDTH * 0.4f, VIEW_HEIGHT * 0.9f, -0.2f),
-		D3DXVECTOR3(VIEW_WIDTH * 0.4f, VIEW_HEIGHT * 0.9f, -0.2f), D3DXVECTOR3(VIEW_WIDTH * 0.4f, VIEW_HEIGHT * 0.1f, -0.2f), TEXT("Image/UI/GUI_Outline.png"), false);
-	m_pGUI_Outline->SetUI(1.0f, 0.8f);
-
-	m_pGUI_Inform = new cSurface();
-	m_pGUI_Inform->Setup(D3DXVECTOR3(-VIEW_WIDTH * 0.37f, VIEW_HEIGHT * 0.20f, -0.2f), D3DXVECTOR3(-VIEW_WIDTH * 0.37f, VIEW_HEIGHT * 0.60f, -0.2f),
-		D3DXVECTOR3(VIEW_WIDTH * 0.06f, VIEW_HEIGHT * 0.60f, -0.2f), D3DXVECTOR3(VIEW_WIDTH * 0.06f, VIEW_HEIGHT * 0.20f, -0.2f), TEXT("Image/UI/GUI_Inform.png"), false);
-	m_pGUI_Inform->SetUI(1.0f, 0.8f);
-
-	m_pUI_leftButton = new cButton();
-	m_pUI_leftButton->Setup(D3DXVECTOR3(-VIEW_WIDTH * 0.37f, VIEW_HEIGHT * 0.67f, -0.3f), D3DXVECTOR3(-VIEW_WIDTH * 0.37f, VIEW_HEIGHT * 0.82f, -0.3f),
-		D3DXVECTOR3(-VIEW_WIDTH * 0.33f, VIEW_HEIGHT * 0.82f, -0.3f), D3DXVECTOR3(-VIEW_WIDTH * 0.33f, VIEW_HEIGHT * 0.67f, -0.3f), D3DCOLOR_XRGB(175, 175, 175, 0.8f));
-
-	m_pUI_rightButton = new cButton();
-	m_pUI_rightButton->Setup(D3DXVECTOR3(VIEW_WIDTH * 0.0f, VIEW_HEIGHT * 0.67f, -0.3f), D3DXVECTOR3(VIEW_WIDTH * 0.0f, VIEW_HEIGHT * 0.82f, -0.3f),
-		D3DXVECTOR3(VIEW_WIDTH * 0.04f, VIEW_HEIGHT * 0.82f, -0.3f), D3DXVECTOR3(VIEW_WIDTH * 0.04f, VIEW_HEIGHT * 0.67f, -0.3f), D3DCOLOR_XRGB(175, 175, 175, 0.8f));
-
-	m_pSelectButton = new cButton();
-	m_pSelectButton->Setup(D3DXVECTOR3(VIEW_WIDTH * 0.17f, VIEW_HEIGHT * 0.29f, -0.3f), D3DXVECTOR3(VIEW_WIDTH * 0.17f, VIEW_HEIGHT * 0.35f, -0.3f),
-		D3DXVECTOR3(VIEW_WIDTH * 0.33f, VIEW_HEIGHT * 0.35f, -0.3f), D3DXVECTOR3(VIEW_WIDTH * 0.33f, VIEW_HEIGHT * 0.29f, -0.3f), D3DCOLOR_XRGB(175, 175, 175, 0.8f));
-	//m_pSelectButton->SetText(("Select"), 40, D3DCOLOR_XRGB(0, 0, 0, 0));
-
-	m_pBackButton = new cButton();
-	m_pBackButton->Setup(D3DXVECTOR3(VIEW_WIDTH * 0.10f, VIEW_HEIGHT * 0.29f, -0.3f), D3DXVECTOR3(VIEW_WIDTH * 0.10f, VIEW_HEIGHT * 0.35f, -0.3f),
-		D3DXVECTOR3(VIEW_WIDTH * 0.16f, VIEW_HEIGHT * 0.35f, -0.3f), D3DXVECTOR3(VIEW_WIDTH * 0.16f, VIEW_HEIGHT * 0.29f, -0.3f), D3DCOLOR_XRGB(175, 175, 175, 0.8f));
-
+	SetUIImage();
+	SetButtons();
 	SetupExampleMan();
-	
-	m_pMyMan = new cCubeMan;
-	m_pMyMan->SetScale(180.0f);
-	m_pMyMan->Setup();
-	m_pMyMan->SetTexture(g_pTextureManager->GetTexture(SCENE->GetSkinIndex()));
-	m_pMyMan->SetRotY(D3DX_PI);
-	m_pMyMan->SetPosition(VIEW_WIDTH * 0.22f, VIEW_HEIGHT * 0.40f, -0.3f);
-	m_pMyMan->SetTag(CHARACTER_MY);
-
 	Set_Light();
+	SetMSGBox();
 }
 
 void cShopScene::OnUpdate()
 {
-	if (INPUT->IsKeyDown(VK_BACK)) SCENE->ChangeScene(SCENE_TITLE);
 	if (m_pUI_leftButton)	m_pUI_leftButton->Update();
 	if (m_pUI_rightButton)	m_pUI_rightButton->Update();
 	if (m_pSelectButton)	m_pSelectButton->Update();
 	if (m_pBackButton)		m_pBackButton->Update();
+	if (m_pBackButton->IsClicked()) SCENE->ChangeScene(SCENE_TITLE);
 	if (m_pExampleMan01) m_pExampleMan01->Update();
 	if (m_pExampleMan02) m_pExampleMan02->Update();
 	if (m_pExampleMan03) m_pExampleMan03->Update();
-	if (m_pMyMan) m_pMyMan->Update();
+	if (m_pMyMan)
+	{
+		m_pMyMan->Update();
+		D3DXVECTOR2 mousePos = D3DXVECTOR2(INPUT->GetMousePos().x, INPUT->GetMousePos().y);
+		m_pMyMan->LookAt(mousePos);
+	}
 
 	UpdateExampleMan();					// 예시 케릭터 위에 커서가 가면, 예시 케릭터가 Y축으로 회전하도록.
 	UpdateExampleSkin();				// 예시 케릭터 스킨 변경되도록
@@ -116,6 +87,8 @@ void cShopScene::OnDraw()
 	m_pExampleMan03->Render();
 	m_pMyMan->Render();
 
+	RenderMSG();
+
 	g_pD3DDevice->EndScene();
 
 	g_pD3DDevice->Present(NULL, NULL, NULL, NULL);
@@ -138,6 +111,8 @@ void cShopScene::OnExit()
 	SAFE_DELETE(m_pExampleMan02);
 	SAFE_DELETE(m_pExampleMan03);
 	SAFE_DELETE(m_pMyMan);
+
+	SAFE_DELETE(m_pMSGBox);
 }
 
 void cShopScene::WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
@@ -185,6 +160,14 @@ void cShopScene::SetupExampleMan()
 	m_pExampleMan03->SetRotY(D3DX_PI);
 	m_pExampleMan03->SetPosition(VIEW_WIDTH * -0.05f, VIEW_HEIGHT * 0.65f, -70.0f);
 	m_pExampleMan03->SetTag(CHARACTER_EXAMPLE);
+
+	m_pMyMan = new cCubeMan;
+	m_pMyMan->SetScale(160.0f);
+	m_pMyMan->Setup();
+	m_pMyMan->SetTexture(g_pTextureManager->GetTexture(SCENE->GetSkinIndex()));
+	m_pMyMan->SetRotY(D3DX_PI);
+	m_pMyMan->SetPosition(VIEW_WIDTH * 0.22f, VIEW_HEIGHT * 0.45f, -0.3f);
+	m_pMyMan->SetTag(CHARACTER_MY);
 }
 
 void cShopScene::UpdateExampleMan()
@@ -215,6 +198,22 @@ void cShopScene::UpdateExampleMan()
 	{
 		m_pExampleMan03->SetRotY(D3DX_PI);
 	}
+	
+	if (INPUT->IsCollided(D3DXVECTOR2(710, 435), D3DXVECTOR2(760, 460)))
+	{
+		m_pMyMan->SetRotY(m_pMyMan->GetRotY() + D3DX_PI * 0.02);
+	}
+	else if (INPUT->IsCollided(D3DXVECTOR2(805, 435), D3DXVECTOR2(855, 460)))
+	{
+		m_pMyMan->SetRotY(m_pMyMan->GetRotY() - D3DX_PI * 0.02);
+	}
+
+	else if (INPUT->IsCollided(D3DXVECTOR2(765, 435), D3DXVECTOR2(795, 460)))
+	{
+		m_pMyMan->SetRotY(D3DX_PI);
+
+	}
+
 }
 
 
@@ -277,4 +276,67 @@ void cShopScene::SelectSkin()
 	{
 		SCENE->SetSkinIndex(m_nMySkinIndex);
 	}
+}
+
+void cShopScene::SetUIImage()
+{
+	m_pBg = new cSurface();
+	m_pBg->Setup(D3DXVECTOR3(-VIEW_WIDTH * 0.5F, 0.0F, 0.0F), D3DXVECTOR3(-VIEW_WIDTH * 0.5F, VIEW_HEIGHT, 0.0F),
+		D3DXVECTOR3(VIEW_WIDTH * 0.5F, VIEW_HEIGHT, 0.0F), D3DXVECTOR3(VIEW_WIDTH * 0.5F, 0.0F, 0.0F), TEXT("Image/TitleScene/bg.png"), false);
+
+	m_pGUI_Outline = new cSurface();
+	m_pGUI_Outline->Setup(D3DXVECTOR3(-VIEW_WIDTH * 0.4f, VIEW_HEIGHT * 0.1f, -0.2f), D3DXVECTOR3(-VIEW_WIDTH * 0.4f, VIEW_HEIGHT * 0.9f, -0.2f),
+		D3DXVECTOR3(VIEW_WIDTH * 0.4f, VIEW_HEIGHT * 0.9f, -0.2f), D3DXVECTOR3(VIEW_WIDTH * 0.4f, VIEW_HEIGHT * 0.1f, -0.2f), TEXT("Image/UI/GUI_Outline.png"), false);
+	m_pGUI_Outline->SetUI(1.0f, 0.8f);
+
+	m_pGUI_Inform = new cSurface();
+	m_pGUI_Inform->Setup(D3DXVECTOR3(-VIEW_WIDTH * 0.37f, VIEW_HEIGHT * 0.20f, -0.2f), D3DXVECTOR3(-VIEW_WIDTH * 0.37f, VIEW_HEIGHT * 0.60f, -0.2f),
+		D3DXVECTOR3(VIEW_WIDTH * 0.06f, VIEW_HEIGHT * 0.60f, -0.2f), D3DXVECTOR3(VIEW_WIDTH * 0.06f, VIEW_HEIGHT * 0.20f, -0.2f), TEXT("Image/UI/GUI_Inform.png"), false);
+	m_pGUI_Inform->SetUI(1.0f, 0.8f);
+}
+
+void cShopScene::SetButtons()
+{
+	RECT rect;
+
+	m_pUI_leftButton = new cButton();
+	m_pUI_leftButton->Setup(D3DXVECTOR3(-VIEW_WIDTH * 0.37f, VIEW_HEIGHT * 0.67f, -0.3f), D3DXVECTOR3(-VIEW_WIDTH * 0.37f, VIEW_HEIGHT * 0.82f, -0.3f),
+		D3DXVECTOR3(-VIEW_WIDTH * 0.33f, VIEW_HEIGHT * 0.82f, -0.3f), D3DXVECTOR3(-VIEW_WIDTH * 0.33f, VIEW_HEIGHT * 0.67f, -0.3f), D3DCOLOR_XRGB(175, 175, 175, 0.8f));
+	SetRect(&rect, m_pUI_leftButton->LeftTop().x + 10, m_pUI_leftButton->LeftTop().y + 28, m_pUI_leftButton->RightBottom().x, m_pUI_leftButton->RightBottom().y);
+	m_pUI_leftButton->SetText("<", rect, 50);
+
+	m_pUI_rightButton = new cButton();
+	m_pUI_rightButton->Setup(D3DXVECTOR3(VIEW_WIDTH * 0.0f, VIEW_HEIGHT * 0.67f, -0.3f), D3DXVECTOR3(VIEW_WIDTH * 0.0f, VIEW_HEIGHT * 0.82f, -0.3f),
+		D3DXVECTOR3(VIEW_WIDTH * 0.04f, VIEW_HEIGHT * 0.82f, -0.3f), D3DXVECTOR3(VIEW_WIDTH * 0.04f, VIEW_HEIGHT * 0.67f, -0.3f), D3DCOLOR_XRGB(175, 175, 175, 0.8f));
+	SetRect(&rect, m_pUI_rightButton->LeftTop().x + 10, m_pUI_rightButton->LeftTop().y + 28, m_pUI_rightButton->RightBottom().x, m_pUI_rightButton->RightBottom().y);
+	m_pUI_rightButton->SetText(">", rect, 50);
+
+	m_pSelectButton = new cButton();
+	m_pSelectButton->Setup(D3DXVECTOR3(VIEW_WIDTH * 0.17f, VIEW_HEIGHT * 0.29f, -0.3f), D3DXVECTOR3(VIEW_WIDTH * 0.17f, VIEW_HEIGHT * 0.35f, -0.3f),
+		D3DXVECTOR3(VIEW_WIDTH * 0.33f, VIEW_HEIGHT * 0.35f, -0.3f), D3DXVECTOR3(VIEW_WIDTH * 0.33f, VIEW_HEIGHT * 0.29f, -0.3f), D3DCOLOR_XRGB(175, 175, 175, 0.8f));
+	SetRect(&rect, m_pSelectButton->LeftTop().x + 40, m_pSelectButton->LeftTop().y + 5 , m_pSelectButton->RightBottom().x, m_pSelectButton->RightBottom().y);
+	m_pSelectButton->SetText("Select", rect, 40);
+
+	m_pBackButton = new cButton();
+	m_pBackButton->Setup(D3DXVECTOR3(VIEW_WIDTH * 0.10f, VIEW_HEIGHT * 0.29f, -0.3f), D3DXVECTOR3(VIEW_WIDTH * 0.10f, VIEW_HEIGHT * 0.35f, -0.3f),
+		D3DXVECTOR3(VIEW_WIDTH * 0.16f, VIEW_HEIGHT * 0.35f, -0.3f), D3DXVECTOR3(VIEW_WIDTH * 0.16f, VIEW_HEIGHT * 0.29f, -0.3f), D3DCOLOR_XRGB(175, 175, 175, 0.8f));
+	SetRect(&rect, m_pBackButton->LeftTop().x + 15, m_pBackButton->LeftTop().y, m_pBackButton->RightBottom().x, m_pBackButton->RightBottom().y);
+	m_pBackButton->SetText("←", rect, 50);
+
+}
+
+void cShopScene::SetMSGBox()
+{
+	m_pMSGBox = new cMSGBox;
+
+	m_pMSGBox->Setup(D3DXVECTOR2(150, 300), D3DXVECTOR2(500, 600), 40, D3DCOLOR_XRGB(255, 255, 255, 1));
+	m_pMSGBox->RegisterMSG(SKIN_BATMAN, "배트맨\n\n박쥐를 모습을 하고 있는\n다이아수저 케릭터\n부럽다...");
+	m_pMSGBox->RegisterMSG(SKIN_CAPTAIN, "캡틴아메리카\n\n양키양키양키\n근육질 양키 케릭터\n울랄라...");
+	m_pMSGBox->RegisterMSG(SKIN_IRON, "아이언맨\n\n쇠덩어리 두르고\n다이아수저 케릭터\n빛나는구나...");
+	m_pMSGBox->RegisterMSG(SKIN_SPIDER, "스파이더맨\n\n손에서 찌익 뿌린다\n찍찍찍\n엉금엉금");
+}
+
+void cShopScene::RenderMSG()
+{
+	m_pMSGBox->Render(m_nMySkinIndex);
 }

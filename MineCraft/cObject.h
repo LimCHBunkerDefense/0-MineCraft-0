@@ -18,5 +18,6 @@ public:
 
 	virtual void Setup() {};
 	virtual void Render();
+	vector<ST_PNT_VERTEX> GetVertex() { return m_vecVertex; }
 };
 

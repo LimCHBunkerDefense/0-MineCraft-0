@@ -112,6 +112,9 @@
     <ClCompile Include="cSoundManager.cpp">
       <Filter>07. cSoundManager</Filter>
     </ClCompile>
+    <ClCompile Include="cMSGBox.cpp">
+      <Filter>98. Utility\13. cMSGBox</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h" />
@@ -228,6 +231,9 @@
     </ClInclude>
     <ClInclude Include="cSoundManager.h">
       <Filter>07. cSoundManager</Filter>
+    </ClInclude>
+    <ClInclude Include="cMSGBox.h">
+      <Filter>98. Utility\13. cMSGBox</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -346,6 +352,9 @@
     </Filter>
     <Filter Include="07. cSoundManager">
       <UniqueIdentifier>{0e9c20c8-3e12-4d5c-b1ff-cb0e489713ac}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="98. Utility\13. cMSGBox">
+      <UniqueIdentifier>{13cf6f35-f555-42ea-8337-7af65aa03af9}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

@@ -35,6 +35,7 @@ class cPlayScene : public IScene
 	// << 
 	cButton*	m_pButton_Start;
 
+
 public:
 	cPlayScene();
 	~cPlayScene();
@@ -48,7 +49,6 @@ public:
 
 	void Set_Light();
 
-	void GravityUpdate(vector<ST_PNT_VERTEX> PNT);
 	void SetPlayerSkin();
 };
 
