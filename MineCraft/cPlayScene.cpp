@@ -116,7 +116,7 @@ void cPlayScene::OnDraw()
 	g_pD3DDevice->Clear(NULL,
 		NULL,
 		D3DCLEAR_TARGET | D3DCLEAR_ZBUFFER,
-		D3DCOLOR_XRGB(120, 164, 253),
+		D3DCOLOR_RGBA((int)SkyColor().r, (int)SkyColor().g, (int)SkyColor().b, (int)SkyColor().a),
 		1.0f, 0);
 
 	g_pD3DDevice->BeginScene();
@@ -214,4 +214,49 @@ void cPlayScene::SetCamera()
 	{
 
 	}
+}
+
+D3DXCOLOR& cPlayScene::SkyColor()
+{
+	if (m_pSun)
+	{
+		D3DXVECTOR2 vLeft = D3DXVECTOR2(-1, 0);
+		D3DXVECTOR2 vPosition = D3DXVECTOR2(m_pSun->GetPosition().x, m_pSun->GetPosition().y);
+		D3DXVec2Normalize(&vPosition, &vPosition);
+
+		float cosTheta = D3DXVec2Dot(&vLeft, &vPosition);
+		if (acosf(cosTheta) < D3DX_PI / 2.0f)
+		{
+			return D3DXCOLOR(120, 164, 253, 1.0f);
+		}
+		else if (acosf(cosTheta) > D3DX_PI / 2.0f && acosf(cosTheta) < (D3DX_PI / 2.0f + D3DX_PI / 4.0f))
+		{
+			return ColorLerp(D3DX_PI / 2.0f, D3DX_PI / 2.0 + D3DX_PI / 4.0f, acosf(cosTheta), (120, 164, 253, 1.0f), (0, 0, 255, 1.0f));
+		}
+		else if (acosf(cosTheta) > (D3DX_PI / 2.0f + D3DX_PI / 4.0f) && acosf(cosTheta) < D3DX_PI)
+		{
+			return D3DXCOLOR(0, 255, 255, 1.0f);
+		}
+		else
+
+		{
+			return D3DXCOLOR(120, 164, 253, 1.0f);
+		}
+	}
+	else
+	{
+		return D3DXCOLOR(0, 0, 255, 1.0f);
+	}
+}
+//D3DCOLOR_XRGB(120, 164, 253)
+
+D3DXCOLOR cPlayScene::ColorLerp(float startAngle, float endAngle, float currentAngle, D3DXCOLOR startColor, D3DXCOLOR endColor)
+{
+	float deltaAngle = (currentAngle - startAngle) / (endAngle - startAngle);
+	float deltaColorR = endColor.r - startColor.r;
+	float deltaColorG = endColor.g - startColor.g;
+	float deltaColorB = endColor.b - startColor.b;
+
+
+	return startColor + D3DXCOLOR(deltaAngle * deltaColorR, deltaAngle * deltaColorG, deltaAngle * deltaColorB, 1.0f);
 }
