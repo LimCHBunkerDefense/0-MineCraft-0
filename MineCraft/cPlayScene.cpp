@@ -10,6 +10,7 @@
 #include "cSurface.h"
 #include "cSun.h"
 #include "cMoon.h"
+#include "cAnimalMan.h"
 
 
 cPlayScene::cPlayScene() :
@@ -23,7 +24,11 @@ cPlayScene::cPlayScene() :
 	m_pSide2(NULL),
 	m_pSide3(NULL),
 	m_pSide4(NULL),
-	m_pPosToCreateTile(NULL)
+	m_pPosToCreateTile(NULL),
+	m_pAnimal(NULL),
+	m_pAnimal2(NULL),
+	m_pAnimal3(NULL),
+	m_pAnimal4(NULL)
 {
 }
 
@@ -41,6 +46,10 @@ cPlayScene::~cPlayScene()
 	SAFE_DELETE(m_pSide4);
 	SAFE_DELETE(m_pCamera);
 	SAFE_DELETE(m_pPosToCreateTile);
+	SAFE_DELETE(m_pAnimal);
+	SAFE_DELETE(m_pAnimal2);
+	SAFE_DELETE(m_pAnimal3);
+	SAFE_DELETE(m_pAnimal4);
 	g_pDeviceManager->Destroy();
 }
 
@@ -49,6 +58,21 @@ void cPlayScene::Setup()
 	m_pCubeMan = new cCubeMan;
 	m_pCubeMan->Setup();
 	
+	// >> : 동물
+	m_pAnimal = new cAnimalMan;
+	m_pAnimal2 = new cAnimalMan;
+	m_pAnimal3 = new cAnimalMan;
+	m_pAnimal4 = new cAnimalMan;
+	m_vecAnimal.push_back(m_pAnimal);
+	m_vecAnimal.push_back(m_pAnimal2);
+	m_vecAnimal.push_back(m_pAnimal3);
+	m_vecAnimal.push_back(m_pAnimal4);
+	for (int i = 0; i < m_vecAnimal.size(); i++)
+	{
+		m_vecAnimal[i]->Setup();
+	}
+
+	// << :
 	m_pCamera = new cCamera;
 	m_pCamera->Setup(&m_pCubeMan->GetPosition());
 
@@ -89,6 +113,13 @@ void cPlayScene::Update()
 		m_pCubeMan->Update();
 		m_pPosToCreateTile->UpdateLocation(m_pCubeMan->GetFrontPos());
 	}
+
+	// >> : 동물
+	for (int i = 0; i < m_vecAnimal.size(); i++)
+	{
+		m_vecAnimal[i]->Update();
+	}
+	// << :
 
 	if (m_pCamera) m_pCamera->Update();
 
@@ -139,6 +170,13 @@ void cPlayScene::Render()
 	// >> : 해와 달 Render
 	if (m_pSun)	m_pSun->Render();
 	if (m_pMoon) m_pMoon->Render();
+	// << :
+
+	// >> : 동물
+	for (int i = 0; i < m_vecAnimal.size(); i++)
+	{
+		m_vecAnimal[i]->Render();
+	}
 	// << :
 
 	g_ObjectManager->Render();

@@ -48,7 +48,7 @@ void cCharacter::Update()
 		m_isMoving = true;
 		m_vPosition = m_vPosition - (m_vDirection * 0.1f);
 	}
-
+	 
 	RECT rc;
 	GetClientRect(g_hWnd, &rc);
 
