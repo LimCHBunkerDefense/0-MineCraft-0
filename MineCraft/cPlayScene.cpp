@@ -1,4 +1,4 @@
-#include "stdafx.h"
+﻿#include "stdafx.h"
 #include "cPlayScene.h"
 #include "cObjectManager.h"
 #include "cDeviceManager.h"	
@@ -15,18 +15,23 @@
 #include "cMoon.h"
 
 
-cPlayScene::cPlayScene() :
-	m_pCubeMan(NULL),
-	m_pCamera(NULL),
-	m_pSun(NULL),
-	m_pMoon(NULL),
-	m_pTop(NULL),
-	m_pBottom(NULL),
-	m_pSide1(NULL),
-	m_pSide2(NULL),
-	m_pSide3(NULL),
-	m_pSide4(NULL),
-	m_pPosToCreateTile(NULL)
+cPlayScene::cPlayScene()
+	: m_pCubeMan(NULL)
+	, m_pCamera(NULL)
+	, m_pSun(NULL)
+	, m_pMoon(NULL)
+	, m_pTop(NULL)
+	, m_pBottom(NULL)
+	, m_pSide1(NULL)
+	, m_pSide2(NULL)
+	, m_pSide3(NULL)
+	, m_pSide4(NULL)
+	, m_pPosToCreateTile(NULL)
+	, m_pSprite(NULL)
+	, m_pTexture(NULL)
+	, m_pSelTexture(NULL)
+	, m_pTexturePos(0.0f,0.0f,0.0f)
+
 {
 	SOUND->LoadFile("PlayBGM", "Sound/Beginning_Beta.mp3", true);
 }
@@ -59,7 +64,7 @@ void cPlayScene::OnEnter()
 	m_pTop->Setup(D3DXVECTOR3(-WallLength, WallLength, WallLength), D3DXVECTOR3(-WallLength, WallLength, -WallLength), D3DXVECTOR3(WallLength, WallLength, -WallLength), D3DXVECTOR3(WallLength, WallLength, WallLength), TEXT("Image/Surface/skywall_top.png"), true);
 	if (m_pTop->GetIsLightOn()) { m_pTop->SetMaterial(D3DXVECTOR4(0.8f, 0.8f, 0.8f, 1.0f), D3DXVECTOR4(0.8f, 0.8f, 0.8f, 1.0f), D3DXVECTOR4(0.8f, 0.8f, 0.8f, 1.0f), D3DXVECTOR4(0.8f, 0.8f, 0.8f, 1.0f), 1.0f); }
 
-	//m_pTop->Setup(-WallLength, WallLength, WallLength, -WallLength, WallLength, -WallLength, WallLength, WallLength, -WallLength, WallLength, WallLength, WallLength, TEXT("Image/Surface/?????.png"));	// top�̹��� �ʿ�
+	//m_pTop->Setup(-WallLength, WallLength, WallLength, -WallLength, WallLength, -WallLength, WallLength, WallLength, -WallLength, WallLength, WallLength, WallLength, TEXT("Image/Surface/?????.png"));	// top이미지 필요
 	m_pBottom = new cSurface();
 	m_pBottom->Setup(D3DXVECTOR3(-WallLength, 0.0f, -WallLength), D3DXVECTOR3(-WallLength, 0.0f, WallLength), D3DXVECTOR3(WallLength, 0.0f, WallLength), D3DXVECTOR3(WallLength, 0.0f, -WallLength), TEXT("Image/Surface/ground.png"), true);
 	if (m_pBottom->GetIsLightOn()) { m_pTop->SetMaterial(D3DXVECTOR4(0.8f, 0.8f, 0.8f, 1.0f), D3DXVECTOR4(0.8f, 0.8f, 0.8f, 1.0f), D3DXVECTOR4(0.8f, 0.8f, 0.8f, 1.0f), D3DXVECTOR4(0.8f, 0.8f, 0.8f, 1.0f), 1.0f); }
@@ -103,6 +108,12 @@ void cPlayScene::OnEnter()
 			}
 		}
 	}
+
+	// << : Sprite 생성 및 텍스쳐 이미지 불러오기
+	D3DXCreateSprite(g_pD3DDevice, &m_pSprite);
+	D3DXCreateTextureFromFile(g_pD3DDevice, L"Image/UI/GUI_Skill_Bar.png", &m_pTexture);
+	D3DXCreateTextureFromFile(g_pD3DDevice, L"Image/UI/GUI_Skill_Bar_Sel.png", &m_pSelTexture);
+	// <<
 	//g_ObjectManager->CreateObject(D3DXVECTOR3(0.5f, 0.0f, 0.5f), OBJECT_DIRT);
 	if (SOUND->FindChannel("PlayBGM") == NULL) SOUND->Play("PlayBGM", 10.0f);
 }
@@ -144,6 +155,7 @@ void cPlayScene::OnUpdate()
 		time += 1;
 	}
 
+
 	g_ObjectManager->ClearNearVec();
 	//GravityUpdate(m_pBottom->GetVerTex());
 }
@@ -167,14 +179,24 @@ void cPlayScene::OnDraw()
 	if (m_pSide1) m_pSide1->Render();
 	if (m_pSide2) m_pSide2->Render();
 	if (m_pSide3) m_pSide3->Render();
-	if (m_pSide4) m_pSide4->Render();
-	if (m_pBottom) m_pBottom->Render();
+	if (m_pSide4) m_pSide4->Render();	
+	/*if (m_pBottom) m_pBottom->Render();*/
 
-	// >> : �ؿ� �� Render
+	// >> : 해와 달 Render
 	if (m_pSun)	m_pSun->Render();
 	else if (m_pMoon) m_pMoon->Render();
-	// << :
 	
+	if (m_pSprite)
+	{
+		m_pSprite->Begin(D3DXSPRITE_ALPHABLEND);
+		m_pSprite->Draw(m_pTexture, NULL, NULL, &D3DXVECTOR3(325.0f, 650.0f, 0.0f), D3DCOLOR_ARGB(255, 255, 255, 255));
+		UISkillbar();
+	
+		m_pSprite->End();
+	}
+
+	// << :
+
 	g_pD3DDevice->EndScene();
 
 	g_pD3DDevice->Present(NULL, NULL, NULL, NULL);
@@ -195,6 +217,10 @@ void cPlayScene::OnExit()
 	SAFE_DELETE(m_pMoon);
 	SAFE_DELETE(m_pCamera);
 	SAFE_DELETE(m_pPosToCreateTile);
+	
+	SAFE_RELEASE(m_pSprite);
+	SAFE_RELEASE(m_pTexture);
+	SAFE_RELEASE(m_pSelTexture);
 
 	SOUND->Stop("PlayBGM");
 }
@@ -255,5 +281,45 @@ void cPlayScene::SetPlayerSkin()
 	case SKIN_SPIDER:
 		m_pCubeMan->SetTexture(g_pTextureManager->GetTexture(SKIN_SPIDER));
 		break;
+	}
+}
+
+void cPlayScene::UISkillbar()
+{
+	if (INPUT->IsKeyPress(VK_1))
+	{
+		m_pSprite->Draw(m_pSelTexture, NULL, NULL, &D3DXVECTOR3(325.0f, 650.0f, 0.0f), D3DCOLOR_ARGB(255, 255, 255, 255));
+	}
+	else if (INPUT->IsKeyPress(VK_2))
+	{
+		m_pSprite->Draw(m_pSelTexture, NULL, NULL, &D3DXVECTOR3(380.0f, 650.0f, 0.0f), D3DCOLOR_ARGB(255, 255, 255, 255));
+	}
+	else if (INPUT->IsKeyPress(VK_3))
+	{
+		m_pSprite->Draw(m_pSelTexture, NULL, NULL, &D3DXVECTOR3(437.0f, 650.0f, 0.0f), D3DCOLOR_ARGB(255, 255, 255, 255));
+	}
+	else if (INPUT->IsKeyPress(VK_4))
+	{
+		m_pSprite->Draw(m_pSelTexture, NULL, NULL, &D3DXVECTOR3(494.0f, 650.0f, 0.0f), D3DCOLOR_ARGB(255, 255, 255, 255));
+	}
+	else if (INPUT->IsKeyPress(VK_5))
+	{
+		m_pSprite->Draw(m_pSelTexture, NULL, NULL, &D3DXVECTOR3(550.0f, 650.0f, 0.0f), D3DCOLOR_ARGB(255, 255, 255, 255));
+	}
+	else if (INPUT->IsKeyPress(VK_6))
+	{
+		m_pSprite->Draw(m_pSelTexture, NULL, NULL, &D3DXVECTOR3(605.0f, 650.0f, 0.0f), D3DCOLOR_ARGB(255, 255, 255, 255));
+	}
+	else if (INPUT->IsKeyPress(VK_7))
+	{
+		m_pSprite->Draw(m_pSelTexture, NULL, NULL, &D3DXVECTOR3(660.0f, 650.0f, 0.0f), D3DCOLOR_ARGB(255, 255, 255, 255));
+	}
+	else if (INPUT->IsKeyPress(VK_8))
+	{
+		m_pSprite->Draw(m_pSelTexture, NULL, NULL, &D3DXVECTOR3(717.0f, 650.0f, 0.0f), D3DCOLOR_ARGB(255, 255, 255, 255));
+	}
+	else if (INPUT->IsKeyPress(VK_9))
+	{
+		m_pSprite->Draw(m_pSelTexture, NULL, NULL, &D3DXVECTOR3(776.0f, 650.0f, 0.0f), D3DCOLOR_ARGB(255, 255, 255, 255));
 	}
 }
