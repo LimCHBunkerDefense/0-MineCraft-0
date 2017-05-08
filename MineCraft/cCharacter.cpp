@@ -182,19 +182,17 @@ void cCharacter::SetJumpingState(bool j)
 
 
 
-void cCharacter::GravityUpdate(vector<ST_PNT_VERTEX> PNT)
+void cCharacter::GravityUpdate(vector<ST_PNT_VERTEX> PNT,D3DXVECTOR3 intersectDir)
 {
-	D3DXVECTOR3	intersectDir = D3DXVECTOR3(0, -0.1, 0);
-
 	for (int k = 0; k < PNT.size(); k += 3)
 	{
 		if (D3DXIntersectTri(&PNT[k].p, &PNT[k + 1].p, &PNT[k + 2].p, &m_vPosition, &intersectDir, 0, 0, 0))
 		{
-			m_vPosition.y -= 0.01f;
+			
 		}
 		else if (m_vPosition.y - PNT[k].p.y>2)
 		{
-			SetJumpingState(false);
+			
 		}
 	}
 }

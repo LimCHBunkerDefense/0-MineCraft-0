@@ -48,7 +48,9 @@ public :
 	void SetAttackState(bool a);
 	void SetJumpingState(bool j);
 
-	void GravityUpdate(vector<ST_PNT_VERTEX> PNT);
+	void GravityUpdate(vector<ST_PNT_VERTEX> PNT, D3DXVECTOR3 intersectDir);
+
+
 
 	virtual D3DXVECTOR3& GetPrevPos() { return m_vPrevPos; }
 	virtual void SetPrevPos(D3DXVECTOR3 pos) { m_vPrevPos = pos; }
