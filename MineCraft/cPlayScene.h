@@ -55,9 +55,8 @@ public:
 	void WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam);
 
 	void Set_Light();
-	D3DXCOLOR& SkyColor();
+	D3DXCOLOR SkyColor();
 	D3DXCOLOR ColorLerp(float startAngle, float endAngle, float currentAngle, D3DXCOLOR startColor, D3DXCOLOR endColor);
-
 	void SetPlayerSkin();
 	void SetCamera();
 	void UISkillbar();

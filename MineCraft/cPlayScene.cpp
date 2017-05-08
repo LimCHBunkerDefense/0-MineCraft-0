@@ -150,6 +150,7 @@ void cPlayScene::OnUpdate()
 
 void cPlayScene::OnDraw()
 {
+	//D3DCOLOR_RGBA((int)SkyColor().r, (int)SkyColor().r,(int)SkyColor().r, (int)SkyColor().r);
 	g_pD3DDevice->Clear(NULL,
 		NULL,
 		D3DCLEAR_TARGET | D3DCLEAR_ZBUFFER,
@@ -158,16 +159,16 @@ void cPlayScene::OnDraw()
 
 	g_pD3DDevice->BeginScene();
 
-	//Set_Light();
+	// Set_Light();
 	
 	g_ObjectManager->Render(m_pCubeMan->GetPosition());
 	if (m_pCubeMan) m_pCubeMan->Render();
 	if (m_pPosToCreateTile) m_pPosToCreateTile->Render();
-	if (m_pTop) m_pTop->Render();
-	if (m_pSide1) m_pSide1->Render();
-	if (m_pSide2) m_pSide2->Render();
-	if (m_pSide3) m_pSide3->Render();
-	if (m_pSide4) m_pSide4->Render();	
+	// if (m_pTop) m_pTop->Render();
+	// if (m_pSide1) m_pSide1->Render();
+	// if (m_pSide2) m_pSide2->Render();
+	// if (m_pSide3) m_pSide3->Render();
+	// if (m_pSide4) m_pSide4->Render();	
 	/*if (m_pBottom) m_pBottom->Render();*/
 
 	// >> : 해와 달 Render
@@ -270,51 +271,6 @@ void cPlayScene::SetCamera()
 	if (INPUT->IsKeyDown('C')) m_pCamera->SetCamIndex();
 }
 
-D3DXCOLOR& cPlayScene::SkyColor()
-{
-	if (m_pSun)
-	{
-		D3DXVECTOR2 vLeft = D3DXVECTOR2(-1, 0);
-		D3DXVECTOR2 vPosition = D3DXVECTOR2(m_pSun->GetPosition().x, m_pSun->GetPosition().y);
-		D3DXVec2Normalize(&vPosition, &vPosition);
-
-		float cosTheta = D3DXVec2Dot(&vLeft, &vPosition);
-		if (acosf(cosTheta) < D3DX_PI / 2.0f)
-		{
-			return D3DXCOLOR(120, 164, 253, 1.0f);
-		}
-		else if (acosf(cosTheta) > D3DX_PI / 2.0f && acosf(cosTheta) < (D3DX_PI / 2.0f + D3DX_PI / 4.0f))
-		{
-			return ColorLerp(D3DX_PI / 2.0f, D3DX_PI / 2.0 + D3DX_PI / 4.0f, acosf(cosTheta), (120, 164, 253, 1.0f), (0, 0, 255, 1.0f));
-		}
-		else if (acosf(cosTheta) > (D3DX_PI / 2.0f + D3DX_PI / 4.0f) && acosf(cosTheta) < D3DX_PI)
-		{
-			return D3DXCOLOR(0, 255, 255, 1.0f);
-		}
-		else
-
-		{
-			return D3DXCOLOR(120, 164, 253, 1.0f);
-		}
-	}
-	else
-	{
-		return D3DXCOLOR(0, 0, 255, 1.0f);
-	}
-}
-//D3DCOLOR_XRGB(120, 164, 253)
-
-D3DXCOLOR cPlayScene::ColorLerp(float startAngle, float endAngle, float currentAngle, D3DXCOLOR startColor, D3DXCOLOR endColor)
-{
-	float deltaAngle = (currentAngle - startAngle) / (endAngle - startAngle);
-	float deltaColorR = endColor.r - startColor.r;
-	float deltaColorG = endColor.g - startColor.g;
-	float deltaColorB = endColor.b - startColor.b;
-
-
-	return startColor + D3DXCOLOR(deltaAngle * deltaColorR, deltaAngle * deltaColorG, deltaAngle * deltaColorB, 1.0f);
-}
-
 void cPlayScene::UISkillbar()
 {
 	if (INPUT->IsKeyPress(VK_1))
@@ -353,4 +309,45 @@ void cPlayScene::UISkillbar()
 	{
 		m_pSprite->Draw(m_pSelTexture, NULL, NULL, &D3DXVECTOR3(776.0f, 650.0f, 0.0f), D3DCOLOR_ARGB(255, 255, 255, 255));
 	}
+}
+
+D3DXCOLOR cPlayScene::SkyColor()
+{
+	if (m_pSun)
+	{
+		D3DXVECTOR2 vLeft = D3DXVECTOR2(-1, 0);
+		D3DXVECTOR2 vPosition = D3DXVECTOR2(m_pSun->GetPosition().x, m_pSun->GetPosition().y);
+		D3DXVec2Normalize(&vPosition, &vPosition);
+	
+		float cosTheta = D3DXVec2Dot(&vLeft, &vPosition);
+		if (acosf(cosTheta) < D3DX_PI / 2.0f)
+		{
+			return D3DXCOLOR(136, 206, 235, 1.0f);
+		}
+		else if (acosf(cosTheta) >= D3DX_PI / 2.0f && acosf(cosTheta) < (D3DX_PI / 2.0f + D3DX_PI / 4.0f))
+		{
+			return ColorLerp(D3DX_PI / 2.0f, D3DX_PI / 2.0 + D3DX_PI / 4.0f, acosf(cosTheta), D3DXCOLOR(136, 206, 235, 1.0f), D3DXCOLOR(253, 255, 49, 0.8f));
+		}
+		else if (acosf(cosTheta) >= (D3DX_PI / 2.0f + D3DX_PI / 4.0f))
+		{	
+			return ColorLerp(D3DX_PI / 2.0f, D3DX_PI / 2.0 + D3DX_PI / 4.0f, acosf(cosTheta), D3DXCOLOR(253, 255, 49, 0.8f), D3DXCOLOR(252, 163, 53, 0.8f));
+		}
+		
+	}
+	else if (m_pMoon)
+	{
+		return D3DXCOLOR(30, 73, 171, 1.0f);
+	}
+
+
+}
+
+D3DXCOLOR cPlayScene::ColorLerp(float startAngle, float endAngle, float currentAngle, D3DXCOLOR startColor, D3DXCOLOR endColor)
+{
+	float deltaAngle = (currentAngle - startAngle) / (endAngle - startAngle);
+	float deltaColorR = endColor.r - startColor.r;
+	float deltaColorG = endColor.g - startColor.g;
+	float deltaColorB = endColor.b - startColor.b;
+
+	return startColor + D3DXCOLOR(deltaAngle * deltaColorR, deltaAngle * deltaColorG, deltaAngle * deltaColorB, 1.0f);
 }
