@@ -32,15 +32,17 @@
 #pragma comment(lib, "d3d9.lib")
 #pragma comment(lib, "d3dx9.lib")
 
-
-
 //>> namesapce setting
 using namespace std;
 //<< 
 
 //<<::
+// Mouse Whell
+#define VK_WHELLUP		120
+#define VK_WHELLDOWN	-120
+
 // <<: KEY 
-// Getkeysate "0x8000" >> "KF_UP"
+// Getkeysate "0x8000" == "KF_UP"
 #define VK_A			0x41
 #define VK_B			0x42
 #define VK_C			0x43
@@ -68,10 +70,6 @@ using namespace std;
 #define VK_Y			0x59
 #define VK_Z			0x5A
 
-
-// Mouse Whell
-#define VK_WHELLUP		120
-#define VK_WHELLDOWN	-120
 
 // NUM KEY
 #define VK_0		0x30

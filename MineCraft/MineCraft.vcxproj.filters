@@ -245,7 +245,6 @@
     </Image>
   </ItemGroup>
   <ItemGroup>
-    <Text Include="notice.txt" />
     <Text Include="ReadMe.txt">
       <Filter>99. etc</Filter>
     </Text>

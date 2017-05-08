@@ -25,14 +25,6 @@ class cPlayScene : public IScene
 	int			time;		// 해와 달 움직이는 시간
 	// << :
 
-	// >>  : 배경
-	cSurface*	m_pTop;
-	cSurface*	m_pBottom;
-	cSurface*	m_pSide1;
-	cSurface*	m_pSide2;
-	cSurface*	m_pSide3;
-	cSurface*	m_pSide4;
-	// << 
 	cButton*	m_pButton_Start;
 
 	// <<: 2D 텍스쳐출력
