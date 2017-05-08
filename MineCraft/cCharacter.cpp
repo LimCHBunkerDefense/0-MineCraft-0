@@ -36,19 +36,27 @@ void cCharacter::Setup()
 void cCharacter::Update()
 {
 	GravityUpdate();
-	if (m_tag == CHARACTER_PLAYER && !m_isMouseOn)
+	if (m_tag == CHARACTER_PLAYER)
 	{
 		m_isMoving = false;
 
-		if (INPUT->IsKeyPress(VK_A))
+		if (!m_isMouseOn)
 		{
-			m_isMoving = true;
-			m_fRotY -= 0.1f;
+			if (INPUT->IsKeyPress(VK_A))
+			{
+				m_isMoving = true;
+				m_fRotY -= 0.1f;
+			}
+			if (INPUT->IsKeyPress(VK_D))
+			{
+				m_isMoving = true;
+				m_fRotY += 0.1f;
+			}
 		}
-		if (INPUT->IsKeyPress(VK_D))
+		else if(m_isMouseOn)
 		{
-			m_isMoving = true;
-			m_fRotY += 0.1f;
+			POINT deltaPos = INPUT->GetMouseDelta();
+			m_fRotY += deltaPos.x * 0.01f;
 		}
 
 		if (INPUT->IsKeyPress(VK_W))
@@ -259,4 +267,9 @@ void cCharacter::FallUpdate()
 
 
 
+}
+
+void cCharacter::SetMouseOn()
+{
+	m_isMouseOn = !m_isMouseOn;
 }

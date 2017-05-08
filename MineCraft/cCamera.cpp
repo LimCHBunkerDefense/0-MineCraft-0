@@ -70,8 +70,8 @@ void cCamera::Update2(D3DXVECTOR3 dir)
 	GetClientRect(g_hWnd, &rc);
 
 	D3DXMATRIXA16 matR, matRX, matRY;
-	D3DXMatrixRotationX(&matRX, m_vCamRotAngle.x);
 	D3DXMatrixRotationY(&matRY, m_vCamRotAngle.y);
+	D3DXMatrixRotationX(&matRX, m_vCamRotAngle.x);
 
 	matR = matRX * matRY;
 
@@ -80,11 +80,12 @@ void cCamera::Update2(D3DXVECTOR3 dir)
 		m_vEye = *m_pvTarget + D3DXVECTOR3(0, 1, 0);
 		D3DXVec3TransformCoord(&m_vEye, &m_vEye, &matR);
 
-		m_vLookAt = *m_pvTarget + D3DXVECTOR3(0, 1, 0) + dir;
+		m_vLookAt = *m_pvTarget + D3DXVECTOR3(0, 1, 0) + dir * 3;
 
 		//if (m_vEye.y > 0.5f) m_vEye = m_vEye + *m_pvTarget;
 		//else m_vEye.y = 0.5f;
 	}
+
 
 	D3DXMATRIXA16 matView;
 	D3DXMatrixLookAtLH(&matView, &m_vEye, &m_vLookAt, &m_vUp);
@@ -115,16 +116,11 @@ void cCamera::WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 			if (m_vCamRotAngle.x > D3DX_PI / 2.0f - 0.0001f)
 				m_vCamRotAngle.x = D3DX_PI / 2.0f - 0.0001f;
 		}
-		//else if (m_cameraIndex == CAMERA_2)
-		//{
-		//	POINT deltaMousePos = INPUT->GetMouseDelta();
-		//	m_vCamRotAngle.y += (deltaMousePos.x / 100.f);
-		//	m_vCamRotAngle.x += (deltaMousePos.y / 100.f);
-		//	if (m_vCamRotAngle.x < -D3DX_PI / 2.0f + 0.0001f)
-		//		m_vCamRotAngle.x = -D3DX_PI / 2.0f + 0.0001f;
-		//	if (m_vCamRotAngle.x > D3DX_PI / 2.0f - 0.0001f)
-		//		m_vCamRotAngle.x = D3DX_PI / 2.0f - 0.0001f;
-		//}
+		else if (m_cameraIndex == CAMERA_2)
+		{
+			POINT deltaMousePos = INPUT->GetMouseDelta();
+			//m_vCamRotAngle.x += (deltaMousePos.y / 100.f);
+		}
 		break;
 
 	case WM_MOUSEWHEEL:
@@ -167,6 +163,7 @@ void cCamera::SetCamIndex()
 
 	m_vCamRotAngle = D3DXVECTOR3(0, 0, 0);
 	m_fCameraDistance = (5.0f);
+	m_vUp = D3DXVECTOR3(0, 1, 0);
 }
 
 int cCamera::GetCamIndex()
