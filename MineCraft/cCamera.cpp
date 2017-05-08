@@ -161,9 +161,9 @@ void cCamera::SetPosition()
 	g_pD3DDevice->SetTransform(D3DTS_VIEW, &matView);
 }
 
-void cCamera::SetCamIndex(int index)
+void cCamera::SetCamIndex()
 {
-	m_cameraIndex = index;
+	m_cameraIndex = m_cameraIndex * -1;
 
 	m_vCamRotAngle = D3DXVECTOR3(0, 0, 0);
 	m_fCameraDistance = (5.0f);

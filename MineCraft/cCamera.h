@@ -32,7 +32,7 @@ public :
 	void WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam); 
 
 	void SetPosition();
-	void SetCamIndex(int index);
+	void SetCamIndex();
 	int GetCamIndex();
 
 };

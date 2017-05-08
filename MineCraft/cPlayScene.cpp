@@ -213,10 +213,7 @@ void cPlayScene::SetPlayerSkin()
 
 void cPlayScene::SetCamera()
 {
-	if (INPUT->IsKeyDown('C'))
-	{
-
-	}
+	if (INPUT->IsKeyDown('C')) m_pCamera->SetCamIndex();
 }
 
 D3DXCOLOR& cPlayScene::SkyColor()
