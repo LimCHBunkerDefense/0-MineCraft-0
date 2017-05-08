@@ -95,7 +95,7 @@ void cSun::Set_Light()
 	stLight_Dir.Specular = D3DXCOLOR(0.9f, 0.9f, 0.9f, 1.0f);
 	D3DXVECTOR3 vDir = -m_vPosition;
 	D3DXVec3Normalize(&vDir, &vDir);
-	stLight_Dir.Direction = vDir;
+	stLight_Dir.Direction = vDir;   
 
 	g_pD3DDevice->SetLight(0, &stLight_Pnt);
 	g_pD3DDevice->SetLight(1, &stLight_Dir);
