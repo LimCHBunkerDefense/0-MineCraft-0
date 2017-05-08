@@ -25,7 +25,6 @@ class cPlayScene : public IScene
 	int			time;		// 해와 달 움직이는 시간
 	// << :
 
-	cButton*	m_pButton_Start;
 
 
 public:

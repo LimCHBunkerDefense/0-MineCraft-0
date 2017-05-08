@@ -18,7 +18,8 @@ cCharacter::cCharacter()
 	m_tag(CHARACTER_PLAYER),
 	m_currentObjName(OBJECT_NONE),
 	m_jumpingHeight(1.5f),
-	m_currentHeight(0.0f)
+	m_currentHeight(0.0f),
+	m_isMouseOn(false)
 {
 	D3DXMatrixIdentity(&m_matWorld);
 }
@@ -35,7 +36,7 @@ void cCharacter::Setup()
 void cCharacter::Update()
 {
 	GravityUpdate();
-	if (m_tag == CHARACTER_PLAYER)
+	if (m_tag == CHARACTER_PLAYER && !m_isMouseOn)
 	{
 		m_isMoving = false;
 
@@ -151,7 +152,7 @@ D3DXVECTOR3& cCharacter::GetFrontPos()
 
 D3DXVECTOR3 & cCharacter::GetDirection()
 {
-	return m_vDirection;
+	return m_vDirection; 
 }
 
 void cCharacter::SetScale(float scale)
