@@ -168,7 +168,7 @@ void cPlayScene::OnDraw()
 	if (m_pSide2) m_pSide2->Render();
 	if (m_pSide3) m_pSide3->Render();
 	if (m_pSide4) m_pSide4->Render();
-	if (m_pBottom) m_pBottom->Render();
+	// if (m_pBottom) m_pBottom->Render();
 
 	// >> : ÇØ¿Í ´Ş Render
 	if (m_pSun)	m_pSun->Render();
