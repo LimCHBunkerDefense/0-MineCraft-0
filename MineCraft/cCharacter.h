@@ -57,5 +57,7 @@ public :
 	void CollidChecker(int root);
 	void FallUpdate();
 
+	void SetMouseOn();
+
 };
 

@@ -28,7 +28,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v141</PlatformToolset>
+    <PlatformToolset>v140</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
@@ -71,8 +71,8 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>C:\Program Files %28x86%29\Microsoft DirectX SDK %28June 2010%29\Include;$(IncludePath)</IncludePath>
-    <LibraryPath>C:\Program Files %28x86%29\Microsoft DirectX SDK %28June 2010%29\Lib\x86;$(LibraryPath)</LibraryPath>
+    <IncludePath>D:\Program Files %28x86%29\Microsoft DirectX SDK %28June 2010%29\Include;$(IncludePath)</IncludePath>
+    <LibraryPath>D:\Program Files %28x86%29\Microsoft DirectX SDK %28June 2010%29\Lib\x86;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
@@ -148,10 +148,20 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <Text Include="notice.txt" />
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="cAnimal.h" />
+    <ClInclude Include="cAnimalBody.h" />
+    <ClInclude Include="cAnimalHead.h" />
+    <ClInclude Include="cAnimalLeftArm.h" />
+    <ClInclude Include="cAnimalLeftLeg.h" />
+    <ClInclude Include="cAnimalMan.h" />
+    <ClInclude Include="cAnimalNode.h" />
+    <ClInclude Include="cAnimalNose.h" />
+    <ClInclude Include="cAnimalPNT.h" />
+    <ClInclude Include="cAnimalRightArm.h" />
+    <ClInclude Include="cAnimalRightLeg.h" />
     <ClInclude Include="cBody.h" />
     <ClInclude Include="cButton.h" />
     <ClInclude Include="cCamera.h" />
@@ -194,6 +204,17 @@
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="cAnimal.cpp" />
+    <ClCompile Include="cAnimalBody.cpp" />
+    <ClCompile Include="cAnimalHead.cpp" />
+    <ClCompile Include="cAnimalLeftArm.cpp" />
+    <ClCompile Include="cAnimalLeftLeg.cpp" />
+    <ClCompile Include="cAnimalMan.cpp" />
+    <ClCompile Include="cAnimalNode.cpp" />
+    <ClCompile Include="cAnimalNose.cpp" />
+    <ClCompile Include="cAnimalPNT.cpp" />
+    <ClCompile Include="cAnimalRightArm.cpp" />
+    <ClCompile Include="cAnimalRightLeg.cpp" />
     <ClCompile Include="cBody.cpp" />
     <ClCompile Include="cButton.cpp" />
     <ClCompile Include="cCamera.cpp" />
