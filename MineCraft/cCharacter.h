@@ -13,12 +13,13 @@ public:
 
 protected :
 	float	m_fRotY; 
-	D3DXVECTOR3		m_vDirection; 
+	D3DXVECTOR3		m_vDirection;  
 	D3DXVECTOR3		m_vPosition; 
 	D3DXVECTOR3		m_vFrontPos;
 	D3DXMATRIXA16	m_matWorld; 
 
 	bool			m_isMoving;
+	bool			m_isMouseOn;
 
 	float			m_fScale;
 	CHARACTER_TAG	m_tag;

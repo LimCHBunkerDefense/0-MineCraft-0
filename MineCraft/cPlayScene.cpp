@@ -63,6 +63,23 @@ void cPlayScene::OnEnter()
 	Set_Light();
 	if (g_ObjectManager->GetVecObject().empty())
 	{
+		float x = -100.0f;
+		float z = -100.0f;
+		for (int i = 0; i < 40000; i++)
+		{
+			D3DXVECTOR3 pos = D3DXVECTOR3(x, -1.0f, z);
+			g_ObjectManager->CreateObject(pos, OBJECT_DIRT);
+			x += 1.0f;
+			if (x >= 100.0f)
+			{
+				z += 1.0f;
+				x = -100.0f;
+			}
+		}
+	}
+	g_ObjectManager->CreateObject(D3DXVECTOR3(0.5f, 0.0f, 0.5f), OBJECT_DIRT);
+	if (g_ObjectManager->GetVecObject().empty())
+	{
 		float x = -500.0f;
 		float z = -500.0f;
 		for (int i = 0; i < 1000000; i++)
@@ -98,33 +115,35 @@ void cPlayScene::OnUpdate()
 		m_pPosToCreateTile->UpdateLocation(m_pCubeMan->GetFrontPos());
 	}
 	
-
-	if (m_pCamera) m_pCamera->Update();
-
+	
+	if (m_pCamera)
 	{
-		if (time / 10 == 1 || time == 0)
-		{
-			if (m_pSun)		m_pSun->Update();
-			if (m_pSun && m_pSun->GetPosition().y < 0)
-			{
-				SAFE_DELETE(m_pSun);
-				m_pMoon = new cMoon;
-				m_pMoon->Setup();
-			}
-
-			if (m_pMoon) m_pMoon->Update();
-			if (m_pMoon && m_pMoon->GetPosition().y < 0)
-			{
-				SAFE_DELETE(m_pMoon);
-				m_pSun = new cSun;
-				m_pSun->Setup();
-			}
-			time = 0;
-		}
-		time += 1;
+		SetCamera();
+		if (m_pCamera->GetCamIndex() == CAMERA_1) m_pCamera->Update();
+		else if (m_pCamera->GetCamIndex() == CAMERA_2) m_pCamera->Update2(m_pCubeMan->GetDirection());
 	}
+	
+	if (time / 10 == 1 || time == 0)
+	{
+		if (m_pSun)		m_pSun->Update();
+		if (m_pSun && m_pSun->GetPosition().y < 0)
+		{
+			SAFE_DELETE(m_pSun);
+			m_pMoon = new cMoon;
+			m_pMoon->Setup();
+		}
 
-
+		if (m_pMoon) m_pMoon->Update();
+		if (m_pMoon && m_pMoon->GetPosition().y < 0)
+		{
+			SAFE_DELETE(m_pMoon);
+			m_pSun = new cSun;
+			m_pSun->Setup();
+		}
+		time = 0;
+	}
+	time += 1;
+	
 	g_ObjectManager->ClearNearVec();
 	//GravityUpdate(m_pBottom->GetVerTex());
 }
@@ -248,10 +267,7 @@ void cPlayScene::SetPlayerSkin()
 
 void cPlayScene::SetCamera()
 {
-	if (INPUT->IsKeyDown('-'))
-	{
-
-	}
+	if (INPUT->IsKeyDown('C')) m_pCamera->SetCamIndex();
 }
 
 D3DXCOLOR& cPlayScene::SkyColor()
