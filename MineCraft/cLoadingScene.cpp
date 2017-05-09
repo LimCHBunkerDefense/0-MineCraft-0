@@ -7,10 +7,6 @@
 
 cLoadingScene::cLoadingScene()
 	: m_pBg(NULL)
-	, m_pGageBar(NULL)
-	, m_pGage(NULL)
-	//, m_pGage2(NULL)
-	//, m_pGage3(NULL)
 	,m_point(0.0f, VIEW_HEIGHT * 0.5f, 0.0f)
 	, m_pCamera(NULL)
 {
@@ -19,7 +15,9 @@ cLoadingScene::cLoadingScene()
 
 cLoadingScene::~cLoadingScene()
 {
-	
+	SAFE_DELETE(m_pBg);
+	SAFE_DELETE(m_pBg);
+	SAFE_DELETE(m_pCamera);
 }
 
 
@@ -33,25 +31,6 @@ void cLoadingScene::OnEnter()
 	m_pBg->Setup(D3DXVECTOR3(-VIEW_WIDTH * 0.5F, 0.0F, 0.0F), D3DXVECTOR3(-VIEW_WIDTH * 0.5F, VIEW_HEIGHT, 0.0F),
 		D3DXVECTOR3(VIEW_WIDTH * 0.5F, VIEW_HEIGHT, 0.0F), D3DXVECTOR3(VIEW_WIDTH * 0.5F, 0.0F, 0.0F), TEXT("Image/LoadingScene/bg.png"), false);
 	
-	m_pGage = new cSurface();
-	m_pGage->Setup(D3DXVECTOR3(-VIEW_WIDTH * 0.3F, VIEW_HEIGHT * 0.8f, -0.1f), D3DXVECTOR3(-VIEW_WIDTH * 0.3F, VIEW_HEIGHT * 0.9f, -0.1f),
-		D3DXVECTOR3(-150.0F, VIEW_HEIGHT * 0.9f, -0.1f), D3DXVECTOR3(-150.0F, VIEW_HEIGHT * 0.8f, -0.1f), TEXT("Image/LoadingScene/loading_Gage.png"), false);
-	m_pGage->IMG_SetScale(0.5F);
-
-	/*m_pGage2 = new cSurface();
-	m_pGage2->Setup(D3DXVECTOR3(-VIEW_WIDTH * 0.3F, VIEW_HEIGHT * 0.8f, -0.1f), D3DXVECTOR3(-VIEW_WIDTH * 0.3F, VIEW_HEIGHT * 0.9f, -0.1f),
-		D3DXVECTOR3(-100.0F, VIEW_HEIGHT * 0.9f, -0.1f), D3DXVECTOR3(-100.0F, VIEW_HEIGHT * 0.8f, -0.1f), TEXT("Image/LoadingScene/loading_Gage.png"), false);
-	m_pGage2->IMG_SetScale(0.5F);
-
-	m_pGage3 = new cSurface();
-	m_pGage3->Setup(D3DXVECTOR3(-VIEW_WIDTH * 0.3F, VIEW_HEIGHT * 0.8f, -0.1f), D3DXVECTOR3(-VIEW_WIDTH * 0.3F, VIEW_HEIGHT * 0.9f, -0.1f),
-		D3DXVECTOR3(50.0F, VIEW_HEIGHT * 0.9f, -0.1f), D3DXVECTOR3(50.0F, VIEW_HEIGHT * 0.8f, -0.1f), TEXT("Image/LoadingScene/loading_Gage.png"), false);
-	m_pGage3->IMG_SetScale(0.5F);*/
-
-	m_pGageBar = new cSurface();
-	m_pGageBar->Setup(D3DXVECTOR3(-VIEW_WIDTH * 0.3F, VIEW_HEIGHT * 0.8f, -0.1f), D3DXVECTOR3(-VIEW_WIDTH * 0.3F, VIEW_HEIGHT * 0.9f, -0.1f),
-		D3DXVECTOR3(VIEW_WIDTH * 0.3F, VIEW_HEIGHT * 0.9f, -0.1f), D3DXVECTOR3(VIEW_WIDTH * 0.3F, VIEW_HEIGHT * 0.8f, -0.1f), TEXT("Image/LoadingScene/loading_bar.png"), false);
-	m_pGageBar->IMG_SetScale(0.5F);
 }
 
 void cLoadingScene::OnUpdate()
@@ -64,7 +43,7 @@ void cLoadingScene::OnDraw()
 	g_pD3DDevice->Clear(NULL,
 		NULL,
 		D3DCLEAR_TARGET | D3DCLEAR_ZBUFFER,
-		D3DCOLOR_XRGB(47, 121, 112),
+		D3DCOLOR_XRGB(0, 0, 0),
 		1.0f, 0);
 
 	g_pD3DDevice->BeginScene();
@@ -77,9 +56,8 @@ void cLoadingScene::OnDraw()
 
 void cLoadingScene::OnExit()
 {
-	Sleep(1000);
 	SCENE->ChangeScene(SCENE_TITLE);
-
+	Sleep(1000);
 }
 
 void cLoadingScene::WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)

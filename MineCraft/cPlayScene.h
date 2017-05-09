@@ -10,6 +10,7 @@ class cSurface;
 class cSun;
 class cMoon;
 class cButton;
+class cAnimal;
 
 #define WallLength	500.0f
 
@@ -25,15 +26,23 @@ class cPlayScene : public IScene
 	int			time;		// 해와 달 움직이는 시간
 	// << :
 
-	// >>  : 배경
-	cSurface*	m_pTop;
-	cSurface*	m_pBottom;
-	cSurface*	m_pSide1;
-	cSurface*	m_pSide2;
-	cSurface*	m_pSide3;
-	cSurface*	m_pSide4;
-	// << 
 	cButton*	m_pButton_Start;
+
+	// <<: 2D 텍스쳐출력
+	LPD3DXSPRITE m_pSprite;
+	LPDIRECT3DTEXTURE9 m_pTexture;
+	LPDIRECT3DTEXTURE9 m_pSelTexture;
+	D3DXVECTOR3 m_pTexturePos;
+
+	// >>
+
+	// << : 동물
+	cAnimal*	m_pAnimal;
+	cAnimal*	m_pAnimal2;
+	cAnimal*	m_pAnimal3;
+	cAnimal*	m_pAnimal4;
+	std::vector<cAnimal*> m_vecAnimal;
+	// >> :
 
 public:
 	cPlayScene();
@@ -47,7 +56,10 @@ public:
 	void WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam);
 
 	void Set_Light();
-
+	D3DXCOLOR SkyColor();
+	D3DXCOLOR ColorLerp(float startAngle, float endAngle, float currentAngle, D3DXCOLOR startColor, D3DXCOLOR endColor);
 	void SetPlayerSkin();
+	void SetCamera();
+	void UISkillbar();
 };
 

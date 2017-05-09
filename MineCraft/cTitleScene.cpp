@@ -101,7 +101,7 @@ void cTitleScene::OnDraw()
 	m_pButton_Shop->Render();
 
 	//도움말버튼
-	m_pButton_Help->Render();
+	//m_pButton_Help->Render();
 
 	g_pD3DDevice->EndScene();
 	
