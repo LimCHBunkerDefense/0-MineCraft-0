@@ -36,6 +36,9 @@ class cPlayScene : public IScene
 	cButton*	m_pButton_Start;
 
 
+	LPD3DXSPRITE m_pSprite;
+	LPDIRECT3DTEXTURE9 m_pTexture;
+
 public:
 	cPlayScene();
 	~cPlayScene();
