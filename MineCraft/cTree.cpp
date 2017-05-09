@@ -1,5 +1,7 @@
 #include "stdafx.h"
 #include "cTextureManager.h"
+#include "cObject.h"
+#include "cObjectManager.h"
 #include "cTree.h"
 
 
@@ -28,7 +30,7 @@ cTree::~cTree()
 
 void cTree::Setup()
 {
-
+	vector<cObject*>& pObject = g_ObjectManager->GetVecObject();
 	for (int i = 1; i < 4; i++)
 	{
 		D3DXVECTOR3 tempPos = m_vLocalPos;
@@ -36,6 +38,7 @@ void cTree::Setup()
 		cTree* pTree = new cTree(tempPos);
 		pTree->SetName(OBJECT_WOOD);
 		g_pTextureManager->SetNormal(OBJECT_WOOD, pTree->GetVectex());
+		
 		m_vecTree.push_back(pTree);
 	}
 	D3DXVECTOR3 tempPos = m_vecTree[0]->GetPosition();
@@ -58,6 +61,11 @@ void cTree::Setup()
 	{
 		m_vecTree[i]->SetName(OBJECT_LEAF);
 		g_pTextureManager->SetNormal(OBJECT_LEAF, m_vecTree[i]->GetVectex());
+	}
+
+	for (int i = 0; i < m_vecTree.size(); i++)
+	{
+		pObject.push_back(m_vecTree[i]);
 	}
 }
 
