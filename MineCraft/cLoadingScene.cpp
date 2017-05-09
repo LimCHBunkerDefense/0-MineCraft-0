@@ -5,6 +5,8 @@
 #include "cCamera.h"
 
 
+#define DEFAULT_IMG_
+
 cLoadingScene::cLoadingScene()
 	: /*m_pBg(NULL)
 	,m_point(0.0f, VIEW_HEIGHT * 0.5f, 0.0f)
@@ -56,9 +58,10 @@ void cLoadingScene::OnDraw()
 
 	g_pD3DDevice->BeginScene();
 	m_BgSprite->Begin(D3DXSPRITE_ALPHABLEND);
-	m_BgSprite->Draw(m_pBgTexture, NULL, NULL, &D3DXVECTOR3(0.0f, 0.0f, 0.0f), D3DCOLOR_ARGB(255, 255, 255, 255));
 	D3DXMATRIXA16 matS;
-	D3DXMatrixScaling(&matS, 0.2f, 0.2f, 0.0f);
+	D3DXMatrixScaling(&matS, 0.55f, 0.73f, 0.0f);
+	m_BgSprite->SetTransform(&matS);
+	m_BgSprite->Draw(m_pBgTexture, NULL, NULL, &D3DXVECTOR3(0.0f, 0.0f, 0.0f), D3DCOLOR_ARGB(255, 255, 255, 255));
 	m_BgSprite->End();
 	//m_pBg->Render();
 	g_pD3DDevice->EndScene();

@@ -281,6 +281,8 @@ void cPlayScene::SetCamera()
 
 void cPlayScene::UISkillbar()
 {
+	SAFE_RELEASE(m_pSelTexture);
+
 	if (INPUT->IsKeyPress(VK_1))
 	{
 		D3DXCreateTextureFromFile(g_pD3DDevice, L"Image/UI/GUI_Skill_Bar_Sel01.png", &m_pSelTexture);
