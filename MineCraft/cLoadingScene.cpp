@@ -6,31 +6,39 @@
 
 
 cLoadingScene::cLoadingScene()
-	: m_pBg(NULL)
+	: /*m_pBg(NULL)
 	,m_point(0.0f, VIEW_HEIGHT * 0.5f, 0.0f)
-	, m_pCamera(NULL)
+	, m_pCamera(NULL)*/
+	m_BgSprite(NULL)
+	, m_pBgTexture(NULL)
 {
 }
 
 
 cLoadingScene::~cLoadingScene()
 {
-	SAFE_DELETE(m_pBg);
-	SAFE_DELETE(m_pBg);
-	SAFE_DELETE(m_pCamera);
+	//SAFE_DELETE(m_pBg);
+	//SAFE_DELETE(m_pBg);
+	//SAFE_DELETE(m_pCamera);
+	SAFE_DELETE(m_BgSprite);
+	SAFE_DELETE(m_pBgTexture);
 }
 
 
 void cLoadingScene::OnEnter()
 {
-	m_pCamera = new cCamera();
-	m_pCamera->Setup(&m_point);
-	m_pCamera->SetPosition();
 
-	m_pBg = new cSurface();
-	m_pBg->Setup(D3DXVECTOR3(-VIEW_WIDTH * 0.5F, 0.0F, 0.0F), D3DXVECTOR3(-VIEW_WIDTH * 0.5F, VIEW_HEIGHT, 0.0F),
-		D3DXVECTOR3(VIEW_WIDTH * 0.5F, VIEW_HEIGHT, 0.0F), D3DXVECTOR3(VIEW_WIDTH * 0.5F, 0.0F, 0.0F), TEXT("Image/LoadingScene/bg.png"), false);
-	
+	D3DXCreateSprite(g_pD3DDevice, &m_BgSprite);
+	D3DXCreateTextureFromFile(g_pD3DDevice, L"Image/LoadingScene/bg.png", &m_pBgTexture);
+
+	//m_pCamera = new cCamera();
+	//m_pCamera->Setup(&m_point);
+	//m_pCamera->SetPosition();
+
+	//m_pBg = new cSurface();
+	//m_pBg->Setup(D3DXVECTOR3(-VIEW_WIDTH * 0.5F, 0.0F, 0.0F), D3DXVECTOR3(-VIEW_WIDTH * 0.5F, VIEW_HEIGHT, 0.0F),
+	//	D3DXVECTOR3(VIEW_WIDTH * 0.5F, VIEW_HEIGHT, 0.0F), D3DXVECTOR3(VIEW_WIDTH * 0.5F, 0.0F, 0.0F), TEXT("Image/LoadingScene/bg.png"), false);
+	//
 }
 
 void cLoadingScene::OnUpdate()
@@ -47,7 +55,12 @@ void cLoadingScene::OnDraw()
 		1.0f, 0);
 
 	g_pD3DDevice->BeginScene();
-	m_pBg->Render();
+	m_BgSprite->Begin(D3DXSPRITE_ALPHABLEND);
+	m_BgSprite->Draw(m_pBgTexture, NULL, NULL, &D3DXVECTOR3(0.0f, 0.0f, 0.0f), D3DCOLOR_ARGB(255, 255, 255, 255));
+	D3DXMATRIXA16 matS;
+	D3DXMatrixScaling(&matS, 0.2f, 0.2f, 0.0f);
+	m_BgSprite->End();
+	//m_pBg->Render();
 	g_pD3DDevice->EndScene();
 
 	g_pD3DDevice->Present(NULL, NULL, NULL, NULL);
