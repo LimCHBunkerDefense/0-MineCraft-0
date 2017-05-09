@@ -179,18 +179,17 @@ void cPlayScene::OnDraw()
 	g_ObjectManager->Render(m_pCubeMan->GetPosition());
 	if (m_pCubeMan) m_pCubeMan->Render();
 	if (m_pPosToCreateTile) m_pPosToCreateTile->Render();
-	/*if (m_pTop) m_pTop->Render();
-	if (m_pSide1) m_pSide1->Render();
-	if (m_pSide2) m_pSide2->Render();
-	if (m_pSide3) m_pSide3->Render();
-	if (m_pSide4) m_pSide4->Render();*/
-	//if (m_pBottom) m_pBottom->Render();
 
 	// >> : 해와 달 Render
 	if (m_pSun)	m_pSun->Render();
 	else if (m_pMoon) m_pMoon->Render();
 	// << :
-
+	// << : UI Render
+	m_pSprite->Begin(D3DXSPRITE_ALPHABLEND);
+	m_pSprite->Draw(m_pTexture, NULL, NULL, &D3DXVECTOR3(325.0f, 650.0f, 0.0f), D3DCOLOR_ARGB(255, 255, 255, 255));
+	UISkillbar();
+	m_pSprite->End();
+	// >>
 	//g_ObjectManager->Render();
 	g_pD3DDevice->EndScene();
 
