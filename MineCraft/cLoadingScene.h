@@ -11,7 +11,8 @@ class cLoadingScene : public IScene
 	D3DXVECTOR3 m_point;
 	cCamera*	m_pCamera;
 
-
+	LPD3DXSPRITE m_BgSprite;
+	LPDIRECT3DTEXTURE9 m_pBgTexture;
 
 public:
 	cLoadingScene();
