@@ -49,5 +49,5 @@ void cMainGame::Render()
 
 void cMainGame::WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
 {
-	SCENE->WndProc(hwnd, message, wParam, lParam);
+	SCENE->WndProc(hwnd, message, wParam, lParam);  
 }

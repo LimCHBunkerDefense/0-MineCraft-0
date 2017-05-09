@@ -18,7 +18,8 @@ cCharacter::cCharacter()
 	m_tag(CHARACTER_PLAYER),
 	m_currentObjName(OBJECT_NONE),
 	m_jumpingHeight(1.5f),
-	m_currentHeight(0.0f)
+	m_currentHeight(0.0f),
+	m_isMouseOn(false)
 {
 	D3DXMatrixIdentity(&m_matWorld);
 }
@@ -39,15 +40,23 @@ void cCharacter::Update()
 	{
 		m_isMoving = false;
 
-		if (INPUT->IsKeyPress(VK_A))
+		if (!m_isMouseOn)
 		{
-			m_isMoving = true;
-			m_fRotY -= 0.1f;
+			if (INPUT->IsKeyPress(VK_A))
+			{
+				m_isMoving = true;
+				m_fRotY -= 0.1f;
+			}
+			if (INPUT->IsKeyPress(VK_D))
+			{
+				m_isMoving = true;
+				m_fRotY += 0.1f;
+			}
 		}
-		if (INPUT->IsKeyPress(VK_D))
+		else if(m_isMouseOn)
 		{
-			m_isMoving = true;
-			m_fRotY += 0.1f;
+			POINT deltaPos = INPUT->GetMouseDelta();
+			m_fRotY += deltaPos.x * 0.01f;
 		}
 
 		if (INPUT->IsKeyPress(VK_W))
@@ -67,13 +76,13 @@ void cCharacter::Update()
 
 	if (m_tag == CHARACTER_PLAYER)
 	{
-		if (INPUT->IsKeyPress('1'))m_currentObjName = OBJECT_DIRT;
-		if (INPUT->IsKeyPress('2'))m_currentObjName = OBJECT_STONE;
-		if (INPUT->IsKeyPress('3'))m_currentObjName = OBJECT_BOARD;
-		if (INPUT->IsKeyPress('4'))m_currentObjName = OBJECT_STONEBRICK;
-		if (INPUT->IsKeyPress('5'))m_currentObjName = OBJECT_WOOD;
+		if (INPUT->IsKeyPress(VK_1))m_currentObjName = OBJECT_DIRT;
+		if (INPUT->IsKeyPress(VK_2))m_currentObjName = OBJECT_STONE;
+		if (INPUT->IsKeyPress(VK_3))m_currentObjName = OBJECT_BOARD;
+		if (INPUT->IsKeyPress(VK_4))m_currentObjName = OBJECT_STONEBRICK;
+		if (INPUT->IsKeyPress(VK_5))m_currentObjName = OBJECT_WOOD;
 
-		if (INPUT->IsKeyPress('E') && m_currentObjName != OBJECT_NONE&&g_ObjectManager->IsObjectHere(m_vFrontPos))
+		if (INPUT->IsKeyPress(VK_E) && m_currentObjName != OBJECT_NONE&&g_ObjectManager->IsObjectHere(m_vFrontPos))
 			if (INPUT->IsKeyPress(VK_E))
 			{
 				m_isAttack = true;
@@ -151,7 +160,7 @@ D3DXVECTOR3& cCharacter::GetFrontPos()
 
 D3DXVECTOR3 & cCharacter::GetDirection()
 {
-	return m_vDirection;
+	return m_vDirection; 
 }
 
 void cCharacter::SetScale(float scale)
@@ -258,4 +267,9 @@ void cCharacter::FallUpdate()
 
 
 
+}
+
+void cCharacter::SetMouseOn()
+{
+	m_isMouseOn = !m_isMouseOn;
 }
