@@ -15,6 +15,8 @@
 #include "cMoon.h"
 #include "cAnimalMan.h"
 
+// x , y , z
+#define DEFAULT_TAXTURE_POS 325.0f, 650.0f, 0.0f
 
 cPlayScene::cPlayScene()
 	: m_pCubeMan(NULL)
@@ -94,7 +96,7 @@ void cPlayScene::OnEnter()
 	// << : Sprite 생성 및 텍스쳐 이미지 불러오기
 	D3DXCreateSprite(g_pD3DDevice, &m_pSprite);
 	D3DXCreateTextureFromFile(g_pD3DDevice, L"Image/UI/GUI_Skill_Bar.png", &m_pTexture);
-	D3DXCreateTextureFromFile(g_pD3DDevice, L"Image/UI/GUI_Skill_Bar_Sel.png", &m_pSelTexture);
+	//D3DXCreateTextureFromFile(g_pD3DDevice, L"Image/UI/GUI_Skill_Bar.png", &m_pSelTexture);
 	// <<
 	//g_ObjectManager->CreateObject(D3DXVECTOR3(0.5f, 0.0f, 0.5f), OBJECT_DIRT);
 	if (SOUND->FindChannel("PlayBGM") == NULL) SOUND->Play("PlayBGM", 10.0f);
@@ -172,20 +174,13 @@ void cPlayScene::OnDraw()
 	// << :
 	// << : UI Render
 	m_pSprite->Begin(D3DXSPRITE_ALPHABLEND);
-	m_pSprite->Draw(m_pTexture, NULL, NULL, &D3DXVECTOR3(325.0f, 650.0f, 0.0f), D3DCOLOR_ARGB(255, 255, 255, 255));
+	m_pSprite->Draw(m_pTexture, NULL, NULL, &D3DXVECTOR3(DEFAULT_TAXTURE_POS), D3DCOLOR_ARGB(255, 255, 255, 255));
 	UISkillbar();
-	if (INPUT->IsKeyPress(VK_1) ||
-		INPUT->IsKeyPress(VK_2) ||
-		INPUT->IsKeyPress(VK_3) ||
-		INPUT->IsKeyPress(VK_4) ||
-		INPUT->IsKeyPress(VK_5) ||
-		INPUT->IsKeyPress(VK_6) ||
-		INPUT->IsKeyPress(VK_7) ||
-		INPUT->IsKeyPress(VK_8) ||
-		INPUT->IsKeyPress(VK_9))
+	if (m_pCubeMan->GetCurrentObjState() != OBJECT_NONE)
 	{
 		m_pSprite->Draw(m_pSelTexture, NULL, NULL, &m_pTexturePos, D3DCOLOR_ARGB(255, 255, 255, 255));
 	}
+
 	m_pSprite->End();
 	// >>
 	//g_ObjectManager->Render();
@@ -280,66 +275,58 @@ void cPlayScene::SetCamera()
 
 void cPlayScene::UISkillbar()
 {
-	SAFE_RELEASE(m_pSelTexture);
-
 	if (INPUT->IsKeyPress(VK_1))
 	{
-		m_pSelTexture->Release();
 		D3DXCreateTextureFromFile(g_pD3DDevice, L"Image/UI/GUI_Skill_Bar_Sel01.png", &m_pSelTexture);
-		m_pTexturePos = D3DXVECTOR3(325.0f, 650.0f, 0.0f);
+		m_pTexturePos = D3DXVECTOR3(DEFAULT_TAXTURE_POS);
 	}
 
 	else if (INPUT->IsKeyPress(VK_2))
 	{
-		m_pSelTexture->Release();
 		D3DXCreateTextureFromFile(g_pD3DDevice, L"Image/UI/GUI_Skill_Bar_Sel02.png", &m_pSelTexture);
 		m_pTexturePos = D3DXVECTOR3(380.0f, 650.0f, 0.0f);
 	}
 
 	else if (INPUT->IsKeyPress(VK_3))
 	{
-		m_pSelTexture->Release();
 		D3DXCreateTextureFromFile(g_pD3DDevice, L"Image/UI/GUI_Skill_Bar_Sel03.png", &m_pSelTexture);
 		m_pTexturePos = D3DXVECTOR3(437.0f, 650.0f, 0.0f);
 	}
 
 	else if (INPUT->IsKeyPress(VK_4))
 	{
-		m_pSelTexture->Release();
 		D3DXCreateTextureFromFile(g_pD3DDevice, L"Image/UI/GUI_Skill_Bar_Sel04.png", &m_pSelTexture);
 		m_pTexturePos = D3DXVECTOR3(494.0f, 650.0f, 0.0f);
 	}
 
 	else if (INPUT->IsKeyPress(VK_5))
 	{
-		m_pSelTexture->Release();
 		D3DXCreateTextureFromFile(g_pD3DDevice, L"Image/UI/GUI_Skill_Bar_Sel05.png", &m_pSelTexture);
 		m_pTexturePos = D3DXVECTOR3(550.0f, 650.0f, 0.0f);
 	}
 
 	else if (INPUT->IsKeyPress(VK_6))
 	{
+		D3DXCreateTextureFromFile(g_pD3DDevice, L"Image/UI/GUI_Skill_Bar_Sel.png", &m_pSelTexture);
 		m_pTexturePos = D3DXVECTOR3(605.0f, 650.0f, 0.0f);
 	}
 
 	else if (INPUT->IsKeyPress(VK_7))
 	{
+		D3DXCreateTextureFromFile(g_pD3DDevice, L"Image/UI/GUI_Skill_Bar_Sel.png", &m_pSelTexture);
 		m_pTexturePos = D3DXVECTOR3(660.0f, 650.0f, 0.0f);
 	}
 
 	else if (INPUT->IsKeyPress(VK_8))
 	{
+		D3DXCreateTextureFromFile(g_pD3DDevice, L"Image/UI/GUI_Skill_Bar_Sel.png", &m_pSelTexture);
 		m_pTexturePos = D3DXVECTOR3(717.0f, 650.0f, 0.0f);
 	}
 
 	else if (INPUT->IsKeyPress(VK_9))
 	{
-		m_pTexturePos = D3DXVECTOR3(774.0f, 650.0f, 0.0f);
-	}
-
-	else
-	{
 		D3DXCreateTextureFromFile(g_pD3DDevice, L"Image/UI/GUI_Skill_Bar_Sel.png", &m_pSelTexture);
+		m_pTexturePos = D3DXVECTOR3(774.0f, 650.0f, 0.0f);
 	}
 }
 

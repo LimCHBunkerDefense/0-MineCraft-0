@@ -4,8 +4,8 @@
 #include "cInputManager.h"
 #include "cCamera.h"
 
-
-#define DEFAULT_IMG_
+// x , y , z
+#define DEFAULT_IMG_SCALE 0.55f, 0.73f, 0.0f
 
 cLoadingScene::cLoadingScene()
 	: /*m_pBg(NULL)
@@ -59,7 +59,7 @@ void cLoadingScene::OnDraw()
 	g_pD3DDevice->BeginScene();
 	m_BgSprite->Begin(D3DXSPRITE_ALPHABLEND);
 	D3DXMATRIXA16 matS;
-	D3DXMatrixScaling(&matS, 0.55f, 0.73f, 0.0f);
+	D3DXMatrixScaling(&matS, DEFAULT_IMG_SCALE);
 	m_BgSprite->SetTransform(&matS);
 	m_BgSprite->Draw(m_pBgTexture, NULL, NULL, &D3DXVECTOR3(0.0f, 0.0f, 0.0f), D3DCOLOR_ARGB(255, 255, 255, 255));
 	m_BgSprite->End();

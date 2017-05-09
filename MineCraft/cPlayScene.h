@@ -28,6 +28,7 @@ class cPlayScene : public IScene
 
 	cButton*	m_pButton_Start;
 
+
 	// <<: 2D 텍스쳐출력
 	LPD3DXSPRITE m_pSprite;
 	LPDIRECT3DTEXTURE9 m_pTexture;

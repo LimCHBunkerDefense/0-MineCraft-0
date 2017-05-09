@@ -38,5 +38,7 @@ public :
 
 	void MovePosition();
 
+	OBJECT_NAME GetCurrentObjState() { return m_currentObjName; }
+
 };
 

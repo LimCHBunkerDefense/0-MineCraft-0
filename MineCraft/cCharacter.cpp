@@ -58,12 +58,12 @@ void cCharacter::Update()
 	if (m_tag == CHARACTER_PLAYER)
 	{
 		if (INPUT->IsKeyPress(VK_1))m_currentObjName = OBJECT_DIRT;
-		else if (INPUT->IsKeyPress(VK_2))m_currentObjName = OBJECT_STONE;
-		else if (INPUT->IsKeyPress(VK_3))m_currentObjName = OBJECT_BOARD;
-		else if (INPUT->IsKeyPress(VK_4))m_currentObjName = OBJECT_STONEBRICK;
-		else if (INPUT->IsKeyPress(VK_5))m_currentObjName = OBJECT_WOOD;
-		//else { m_currentObjName = OBJECT_NONE; }
-
+		if (INPUT->IsKeyPress(VK_2))m_currentObjName = OBJECT_STONE;
+		if (INPUT->IsKeyPress(VK_3))m_currentObjName = OBJECT_BOARD;
+		if (INPUT->IsKeyPress(VK_4))m_currentObjName = OBJECT_STONEBRICK;
+		if (INPUT->IsKeyPress(VK_5))m_currentObjName = OBJECT_WOOD;
+		if (INPUT->IsKeyDown(VK_TAB))m_currentObjName = OBJECT_NONE;
+	
 		if (INPUT->IsKeyPress(VK_E) && m_currentObjName != OBJECT_NONE&&g_ObjectManager->IsObjectHere(m_vFrontPos))
 			if (INPUT->IsKeyPress(VK_E))
 			{
