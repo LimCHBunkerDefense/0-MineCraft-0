@@ -104,7 +104,6 @@ void cPlayScene::OnEnter()
 void cPlayScene::OnUpdate()
 {
 	if (INPUT->IsKeyDown(VK_BACK)) SCENE->ChangeScene(SCENE_TITLE);
-	
 	g_ObjectManager->UpdateVector(m_pCubeMan->GetPosition());
 	if (m_pCubeMan)
 	{
@@ -162,7 +161,7 @@ void cPlayScene::OnDraw()
 	g_pD3DDevice->BeginScene();
 
 	// Set_Light();
-	
+
 	g_ObjectManager->Render(m_pCubeMan->GetPosition());
 	if (m_pCubeMan) m_pCubeMan->Render();
 	if (m_pPosToCreateTile) m_pPosToCreateTile->Render();
@@ -203,7 +202,7 @@ void cPlayScene::OnExit()
 	SAFE_DELETE(m_pMoon);
 	SAFE_DELETE(m_pCamera);
 	SAFE_DELETE(m_pPosToCreateTile);
-	
+
 	SAFE_RELEASE(m_pSprite);
 	SAFE_RELEASE(m_pTexture);
 	SAFE_RELEASE(m_pSelTexture);
@@ -283,39 +282,44 @@ void cPlayScene::UISkillbar()
 {
 	if (INPUT->IsKeyPress(VK_1))
 	{
+		m_pSelTexture->Release();
 		D3DXCreateTextureFromFile(g_pD3DDevice, L"Image/UI/GUI_Skill_Bar_Sel01.png", &m_pSelTexture);
 		m_pTexturePos = D3DXVECTOR3(325.0f, 650.0f, 0.0f);
 	}
-	
+
 	else if (INPUT->IsKeyPress(VK_2))
 	{
+		m_pSelTexture->Release();
 		D3DXCreateTextureFromFile(g_pD3DDevice, L"Image/UI/GUI_Skill_Bar_Sel02.png", &m_pSelTexture);
 		m_pTexturePos = D3DXVECTOR3(380.0f, 650.0f, 0.0f);
 	}
-	
+
 	else if (INPUT->IsKeyPress(VK_3))
 	{
+		m_pSelTexture->Release();
 		D3DXCreateTextureFromFile(g_pD3DDevice, L"Image/UI/GUI_Skill_Bar_Sel03.png", &m_pSelTexture);
 		m_pTexturePos = D3DXVECTOR3(437.0f, 650.0f, 0.0f);
 	}
 
 	else if (INPUT->IsKeyPress(VK_4))
 	{
+		m_pSelTexture->Release();
 		D3DXCreateTextureFromFile(g_pD3DDevice, L"Image/UI/GUI_Skill_Bar_Sel04.png", &m_pSelTexture);
 		m_pTexturePos = D3DXVECTOR3(494.0f, 650.0f, 0.0f);
 	}
-	
+
 	else if (INPUT->IsKeyPress(VK_5))
 	{
+		m_pSelTexture->Release();
 		D3DXCreateTextureFromFile(g_pD3DDevice, L"Image/UI/GUI_Skill_Bar_Sel05.png", &m_pSelTexture);
 		m_pTexturePos = D3DXVECTOR3(550.0f, 650.0f, 0.0f);
 	}
-	
+
 	else if (INPUT->IsKeyPress(VK_6))
 	{
 		m_pTexturePos = D3DXVECTOR3(605.0f, 650.0f, 0.0f);
 	}
-	
+
 	else if (INPUT->IsKeyPress(VK_7))
 	{
 		m_pTexturePos = D3DXVECTOR3(660.0f, 650.0f, 0.0f);
@@ -325,7 +329,7 @@ void cPlayScene::UISkillbar()
 	{
 		m_pTexturePos = D3DXVECTOR3(717.0f, 650.0f, 0.0f);
 	}
-	
+
 	else if (INPUT->IsKeyPress(VK_9))
 	{
 		m_pTexturePos = D3DXVECTOR3(774.0f, 650.0f, 0.0f);
@@ -344,7 +348,7 @@ D3DXCOLOR cPlayScene::SkyColor()
 		D3DXVECTOR2 vLeft = D3DXVECTOR2(-1, 0);
 		D3DXVECTOR2 vPosition = D3DXVECTOR2(m_pSun->GetPosition().x, m_pSun->GetPosition().y);
 		D3DXVec2Normalize(&vPosition, &vPosition);
-	
+
 		float cosTheta = D3DXVec2Dot(&vLeft, &vPosition);
 		if (acosf(cosTheta) < D3DX_PI / 2.0f)
 		{
@@ -355,10 +359,10 @@ D3DXCOLOR cPlayScene::SkyColor()
 			return ColorLerp(D3DX_PI / 2.0f, D3DX_PI / 2.0 + D3DX_PI / 4.0f, acosf(cosTheta), D3DXCOLOR(136, 206, 235, 1.0f), D3DXCOLOR(253, 255, 49, 0.8f));
 		}
 		else if (acosf(cosTheta) >= (D3DX_PI / 2.0f + D3DX_PI / 4.0f))
-		{	
+		{
 			return ColorLerp(D3DX_PI / 2.0f, D3DX_PI / 2.0 + D3DX_PI / 4.0f, acosf(cosTheta), D3DXCOLOR(253, 255, 49, 0.8f), D3DXCOLOR(252, 163, 53, 0.8f));
 		}
-		
+
 	}
 	else if (m_pMoon)
 	{

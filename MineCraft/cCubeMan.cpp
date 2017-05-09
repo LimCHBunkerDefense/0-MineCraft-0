@@ -185,7 +185,41 @@ void cCubeMan::JumpState()
 	m_isJumping = true;
 	MovePosition();
 
-	if (m_jumpingHeight >= m_currentHeight)
+	bool isUpCollid = false;
+
+	//하늘방향 충돌체크
+	{
+
+
+		D3DXVECTOR3	intersectDir = D3DXVECTOR3(0, 1, 0);
+
+		vector<cObject*> vecObject = g_ObjectManager->GetNearPlayerVecObject();
+
+
+		float u, v;
+		float dist;
+
+
+		for (vector<cObject*>::iterator it = vecObject.begin(); it != vecObject.end(); it++)
+		{
+			D3DXVECTOR3 rayPos = m_vPosition;
+			if ((*it)->GetPosition().y >= (this->GetPosition().y + 1.0f))
+			{
+				vector<ST_PNT_VERTEX> pPNT = (*it)->GetVectex();
+				for (int k = 0; k < 2; k++)
+				{
+					if (D3DXIntersectTri(&pPNT[30 + (k * 3)].p, &pPNT[31 + (k * 3)].p, &pPNT[32 + (k * 3)].p, &rayPos, &intersectDir, &u, &v, &dist))
+					{
+						if (dist <= 1.4f)isUpCollid = true;
+					}
+				}
+			}
+		}
+	}
+
+
+
+	if (m_jumpingHeight >= m_currentHeight&&isUpCollid == false)
 	{
 		m_vPosition.y += 0.1f;
 		m_currentHeight += 0.1;
@@ -209,11 +243,10 @@ void cCubeMan::GravityUpdate()
 	float dist;
 	float tempDist = 0.0f;
 	m_isFall = false;
-	rayPos.y = 500.0f;
+	rayPos.y += 2.0f;
 
 	for (vector<cObject*>::iterator it = vecObject.begin(); it != vecObject.end(); it++)
 	{
-
 		vector<ST_PNT_VERTEX> pPNT = (*it)->GetVectex();
 		for (int k = 0; k < 2; k++)
 		{
@@ -233,22 +266,30 @@ void cCubeMan::GravityUpdate()
 	}
 	/*if (m_isFall == false)
 	{
-		m_vPosition.y = tempDist;
+	m_vPosition.y = tempDist;
 	}*/
 
 }
 
 void cCubeMan::MovePosition()
 {
-	if (INPUT->IsKeyPress(VK_A))
+	if (!m_isMouseOn)
 	{
-		m_isMoving = true;
-		m_fRotY -= 0.1f;
+		if (INPUT->IsKeyPress(VK_A))
+		{
+			m_isMoving = true;
+			m_fRotY -= 0.1f;
+		}
+		if (INPUT->IsKeyPress(VK_D))
+		{
+			m_isMoving = true;
+			m_fRotY += 0.1f;
+		}
 	}
-	if (INPUT->IsKeyPress(VK_D))
+	else if (m_isMouseOn)
 	{
-		m_isMoving = true;
-		m_fRotY += 0.1f;
+		POINT deltaPos = INPUT->GetMouseDelta();
+		m_fRotY += deltaPos.x * 0.01f;
 	}
 
 	if (INPUT->IsKeyPress(VK_W))

@@ -39,24 +39,7 @@ void cCharacter::Update()
 	//{
 	//	m_isMoving = false;
 
-		if (!m_isMouseOn)
-		{
-			if (INPUT->IsKeyPress(VK_A))
-			{
-				m_isMoving = true;
-				m_fRotY -= 0.1f;
-			}
-			if (INPUT->IsKeyPress(VK_D))
-			{
-				m_isMoving = true;
-				m_fRotY += 0.1f;
-			}
-		}
-		else if(m_isMouseOn)
-		{
-			POINT deltaPos = INPUT->GetMouseDelta();
-			m_fRotY += deltaPos.x * 0.01f;
-		}
+		
 
 	//	if (INPUT->IsKeyPress(VK_W))
 	//	{
@@ -79,7 +62,7 @@ void cCharacter::Update()
 		else if (INPUT->IsKeyPress(VK_3))m_currentObjName = OBJECT_BOARD;
 		else if (INPUT->IsKeyPress(VK_4))m_currentObjName = OBJECT_STONEBRICK;
 		else if (INPUT->IsKeyPress(VK_5))m_currentObjName = OBJECT_WOOD;
-		else { m_currentObjName = OBJECT_NONE; }
+		//else { m_currentObjName = OBJECT_NONE; }
 
 		if (INPUT->IsKeyPress(VK_E) && m_currentObjName != OBJECT_NONE&&g_ObjectManager->IsObjectHere(m_vFrontPos))
 			if (INPUT->IsKeyPress(VK_E))
