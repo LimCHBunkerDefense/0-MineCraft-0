@@ -29,6 +29,7 @@ void cSun::Setup()
 	float x = -300;
 	float y = pow(x, 2) * -(1.0f / 300.0f) + 300;
 
+
 	m_vPosition.x = x;
 	m_vPosition.y = y;
 	m_vPosition.z = 400.0f;
@@ -40,7 +41,7 @@ void cSun::Update()
 {
 	cCubePNT::Update();
 
-	m_vPosition.x += 0.05f;
+	m_vPosition.x += 10.0f;
 	m_vPosition.y = pow(m_vPosition.x, 2) * -(1.0f / 300.0f) + 300;
 	
 	D3DXMATRIXA16 matS, matT;

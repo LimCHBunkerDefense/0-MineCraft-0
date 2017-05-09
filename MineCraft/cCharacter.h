@@ -52,7 +52,6 @@ public :
 	void SetAttackState(bool a);
 	void SetJumpingState(bool j);
 	bool GetJumpingState() { return m_isJumping; }
-	void GravityUpdate();
 	void CollidChecker(int root);
 	void FallUpdate();
 
