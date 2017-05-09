@@ -21,12 +21,6 @@ cPlayScene::cPlayScene() :
 	m_pCamera(NULL),
 	m_pSun(NULL),
 	m_pMoon(NULL),
-	m_pTop(NULL),
-	m_pBottom(NULL),
-	m_pSide1(NULL),
-	m_pSide2(NULL),
-	m_pSide3(NULL),
-	m_pSide4(NULL),
 	m_pPosToCreateTile(NULL)
 {
 	SOUND->LoadFile("PlayBGM", "Sound/Beginning_Beta.mp3", true);
@@ -141,30 +135,32 @@ void cPlayScene::OnUpdate()
 	if (m_pCamera) m_pCamera->Update();
 	{
 
-	{
-		if (time / 10 == 1 || time == 0)
 		{
-			if (m_pSun)		m_pSun->Update();
-			if (m_pSun && m_pSun->GetPosition().y < 0)
+			if (time / 10 == 1 || time == 0)
 			{
-				SAFE_DELETE(m_pSun);
-				m_pMoon = new cMoon;
-				m_pMoon->Setup();
-			}
+				if (m_pSun)		m_pSun->Update();
+				if (m_pSun && m_pSun->GetPosition().y < 0)
+				{
+					SAFE_DELETE(m_pSun);
+					m_pMoon = new cMoon;
+					m_pMoon->Setup();
+				}
 
-		if (m_pMoon) m_pMoon->Update();
-		if (m_pMoon && m_pMoon->GetPosition().y < 0)
-		{
-			SAFE_DELETE(m_pMoon);
-			m_pSun = new cSun;
-			m_pSun->Setup();
+				if (m_pMoon) m_pMoon->Update();
+				if (m_pMoon && m_pMoon->GetPosition().y < 0)
+				{
+					SAFE_DELETE(m_pMoon);
+					m_pSun = new cSun;
+					m_pSun->Setup();
+				}
+				time = 0;
+			}
+			time += 1;
+
+			g_ObjectManager->ClearNearVec();
+			//GravityUpdate(m_pBottom->GetVerTex());
 		}
-		time = 0;
 	}
-	time += 1;
-	
-	g_ObjectManager->ClearNearVec();
-	//GravityUpdate(m_pBottom->GetVerTex());
 }
 
 void cPlayScene::OnDraw()

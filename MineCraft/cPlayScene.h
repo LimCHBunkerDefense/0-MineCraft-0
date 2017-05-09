@@ -44,9 +44,6 @@ class cPlayScene : public IScene
 	std::vector<cAnimal*> m_vecAnimal;
 	// >> :
 
-	LPD3DXSPRITE m_pSprite;
-	LPDIRECT3DTEXTURE9 m_pTexture;
-
 public:
 	cPlayScene();
 	~cPlayScene();
