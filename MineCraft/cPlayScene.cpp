@@ -16,17 +16,17 @@
 
 
 cPlayScene::cPlayScene() :
-	m_pCubeMan(NULL),
-	m_pCamera(NULL),
-	m_pSun(NULL),
-	m_pMoon(NULL),
-	m_pTop(NULL),
-	m_pBottom(NULL),
-	m_pSide1(NULL),
-	m_pSide2(NULL),
-	m_pSide3(NULL),
-	m_pSide4(NULL),
-	m_pPosToCreateTile(NULL)
+	m_pCubeMan(NULL)
+	, m_pCamera(NULL)
+	, m_pSun(NULL)
+	, m_pMoon(NULL)
+	, m_pTop(NULL)
+	, m_pBottom(NULL)
+	, m_pSide1(NULL)
+	, m_pSide2(NULL)
+	, m_pSide3(NULL)
+	, m_pSide4(NULL)
+	, m_pPosToCreateTile(NULL)
 {
 	SOUND->LoadFile("PlayBGM", "Sound/Beginning_Beta.mp3", true);
 }
@@ -120,8 +120,8 @@ void cPlayScene::OnUpdate()
 	
 
 	if (m_pCamera) m_pCamera->Update();
-
 	{
+
 		if (time / 10 == 1 || time == 0)
 		{
 			if (m_pSun)		m_pSun->Update();
@@ -163,16 +163,20 @@ void cPlayScene::OnDraw()
 	g_ObjectManager->Render(m_pCubeMan->GetPosition());
 	if (m_pCubeMan) m_pCubeMan->Render();
 	if (m_pPosToCreateTile) m_pPosToCreateTile->Render();
-	/*if (m_pTop) m_pTop->Render();
-	if (m_pSide1) m_pSide1->Render();
-	if (m_pSide2) m_pSide2->Render();
-	if (m_pSide3) m_pSide3->Render();
-	if (m_pSide4) m_pSide4->Render();*/
+
+	//if (m_pTop) m_pTop->Render();
+	//if (m_pSide1) m_pSide1->Render();
+	//if (m_pSide2) m_pSide2->Render();
+	//if (m_pSide3) m_pSide3->Render();
+	//if (m_pSide4) m_pSide4->Render();
 	//if (m_pBottom) m_pBottom->Render();
 
 	// >> : ÇØ¿Í ´Ş Render
 	if (m_pSun)	m_pSun->Render();
 	else if (m_pMoon) m_pMoon->Render();
+
+
+
 	// << :
 	
 	g_pD3DDevice->EndScene();
