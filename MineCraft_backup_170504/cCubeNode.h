@@ -1,0 +1,40 @@
+#pragma once
+#include "cCubePNT.h"
+
+class cCubeNode : public cCubePNT
+{
+public:
+	cCubeNode();
+	
+protected :
+	D3DXVECTOR3		m_vLocalPos; 
+	D3DXMATRIXA16	m_matLocalTM; 
+	D3DXMATRIXA16	m_matWorldTM;
+	std::vector<cCubeNode*> m_vecChild; 
+
+	SYNTHESIZE(D3DXMATRIXA16*, m_pParentWorldTM, ParentWorldTM);
+	SYNTHESIZE(float, m_fRotDeltaX, RotDeltaX);
+	SYNTHESIZE(float, m_fRotX, RotX);
+	SYNTHESIZE(float, m_fRotY, RotY);
+
+	float			m_fScale;
+
+	float		m_fAttackRotX;
+	float		m_fAttackDir;
+public :
+	virtual ~cCubeNode();
+
+	virtual void AddChild(cCubeNode* pChild); 
+	virtual void RotateRotX();
+	virtual void SetDefaultRotX();
+	virtual void Destroy();
+	virtual void AttackMotion();
+	virtual void EndAttack();
+	virtual void Setup() override;
+	virtual void Update() override;
+	virtual void Render() override;
+
+	virtual void SetScale(float scale);
+	virtual void RotateHead(float angleX, float angleY);
+};
+

@@ -4,58 +4,43 @@
 #include "cInputManager.h"
 #include "cCamera.h"
 
+// x , y , z
+#define DEFAULT_IMG_SCALE 0.55f, 0.73f, 0.0f
 
 cLoadingScene::cLoadingScene()
-	: m_pBg(NULL)
-	, m_pGageBar(NULL)
-	, m_pGage(NULL)
-	//, m_pGage2(NULL)
-	//, m_pGage3(NULL)
+	: /*m_pBg(NULL)
 	,m_point(0.0f, VIEW_HEIGHT * 0.5f, 0.0f)
-	, m_pCamera(NULL)
+	, m_pCamera(NULL)*/
+	m_BgSprite(NULL)
+	, m_pBgTexture(NULL)
 {
 }
 
 
 cLoadingScene::~cLoadingScene()
 {
-	SAFE_DELETE(m_pBg);
-	SAFE_DELETE(m_pGageBar);
-	SAFE_DELETE(m_pGage);
-	SAFE_DELETE(m_pBg);
-	SAFE_DELETE(m_pCamera);
+	//SAFE_DELETE(m_pBg);
+	//SAFE_DELETE(m_pBg);
+	//SAFE_DELETE(m_pCamera);
+	SAFE_DELETE(m_BgSprite);
+	SAFE_DELETE(m_pBgTexture);
 }
 
 
 void cLoadingScene::OnEnter()
 {
-	m_pCamera = new cCamera();
-	m_pCamera->Setup(&m_point);
-	m_pCamera->SetPosition();
 
-	m_pBg = new cSurface();
-	m_pBg->Setup(D3DXVECTOR3(-VIEW_WIDTH * 0.5F, 0.0F, 0.0F), D3DXVECTOR3(-VIEW_WIDTH * 0.5F, VIEW_HEIGHT, 0.0F),
-		D3DXVECTOR3(VIEW_WIDTH * 0.5F, VIEW_HEIGHT, 0.0F), D3DXVECTOR3(VIEW_WIDTH * 0.5F, 0.0F, 0.0F), TEXT("Image/LoadingScene/bg.png"), false);
-	
-	m_pGage = new cSurface();
-	m_pGage->Setup(D3DXVECTOR3(-VIEW_WIDTH * 0.3F, VIEW_HEIGHT * 0.8f, -0.1f), D3DXVECTOR3(-VIEW_WIDTH * 0.3F, VIEW_HEIGHT * 0.9f, -0.1f),
-		D3DXVECTOR3(-150.0F, VIEW_HEIGHT * 0.9f, -0.1f), D3DXVECTOR3(-150.0F, VIEW_HEIGHT * 0.8f, -0.1f), TEXT("Image/LoadingScene/loading_Gage.png"), false);
-	m_pGage->IMG_SetScale(0.5F);
+	D3DXCreateSprite(g_pD3DDevice, &m_BgSprite);
+	D3DXCreateTextureFromFile(g_pD3DDevice, L"Image/LoadingScene/bg.png", &m_pBgTexture);
 
-	/*m_pGage2 = new cSurface();
-	m_pGage2->Setup(D3DXVECTOR3(-VIEW_WIDTH * 0.3F, VIEW_HEIGHT * 0.8f, -0.1f), D3DXVECTOR3(-VIEW_WIDTH * 0.3F, VIEW_HEIGHT * 0.9f, -0.1f),
-		D3DXVECTOR3(-100.0F, VIEW_HEIGHT * 0.9f, -0.1f), D3DXVECTOR3(-100.0F, VIEW_HEIGHT * 0.8f, -0.1f), TEXT("Image/LoadingScene/loading_Gage.png"), false);
-	m_pGage2->IMG_SetScale(0.5F);
+	//m_pCamera = new cCamera();
+	//m_pCamera->Setup(&m_point);
+	//m_pCamera->SetPosition();
 
-	m_pGage3 = new cSurface();
-	m_pGage3->Setup(D3DXVECTOR3(-VIEW_WIDTH * 0.3F, VIEW_HEIGHT * 0.8f, -0.1f), D3DXVECTOR3(-VIEW_WIDTH * 0.3F, VIEW_HEIGHT * 0.9f, -0.1f),
-		D3DXVECTOR3(50.0F, VIEW_HEIGHT * 0.9f, -0.1f), D3DXVECTOR3(50.0F, VIEW_HEIGHT * 0.8f, -0.1f), TEXT("Image/LoadingScene/loading_Gage.png"), false);
-	m_pGage3->IMG_SetScale(0.5F);*/
-
-	m_pGageBar = new cSurface();
-	m_pGageBar->Setup(D3DXVECTOR3(-VIEW_WIDTH * 0.3F, VIEW_HEIGHT * 0.8f, -0.1f), D3DXVECTOR3(-VIEW_WIDTH * 0.3F, VIEW_HEIGHT * 0.9f, -0.1f),
-		D3DXVECTOR3(VIEW_WIDTH * 0.3F, VIEW_HEIGHT * 0.9f, -0.1f), D3DXVECTOR3(VIEW_WIDTH * 0.3F, VIEW_HEIGHT * 0.8f, -0.1f), TEXT("Image/LoadingScene/loading_bar.png"), false);
-	m_pGageBar->IMG_SetScale(0.5F);
+	//m_pBg = new cSurface();
+	//m_pBg->Setup(D3DXVECTOR3(-VIEW_WIDTH * 0.5F, 0.0F, 0.0F), D3DXVECTOR3(-VIEW_WIDTH * 0.5F, VIEW_HEIGHT, 0.0F),
+	//	D3DXVECTOR3(VIEW_WIDTH * 0.5F, VIEW_HEIGHT, 0.0F), D3DXVECTOR3(VIEW_WIDTH * 0.5F, 0.0F, 0.0F), TEXT("Image/LoadingScene/bg.png"), false);
+	//
 }
 
 void cLoadingScene::OnUpdate()
@@ -68,11 +53,17 @@ void cLoadingScene::OnDraw()
 	g_pD3DDevice->Clear(NULL,
 		NULL,
 		D3DCLEAR_TARGET | D3DCLEAR_ZBUFFER,
-		D3DCOLOR_XRGB(47, 121, 112),
+		D3DCOLOR_XRGB(0, 0, 0),
 		1.0f, 0);
 
 	g_pD3DDevice->BeginScene();
-	m_pBg->Render();
+	m_BgSprite->Begin(D3DXSPRITE_ALPHABLEND);
+	D3DXMATRIXA16 matS;
+	D3DXMatrixScaling(&matS, DEFAULT_IMG_SCALE);
+	m_BgSprite->SetTransform(&matS);
+	m_BgSprite->Draw(m_pBgTexture, NULL, NULL, &D3DXVECTOR3(0.0f, 0.0f, 0.0f), D3DCOLOR_ARGB(255, 255, 255, 255));
+	m_BgSprite->End();
+	//m_pBg->Render();
 	g_pD3DDevice->EndScene();
 
 	g_pD3DDevice->Present(NULL, NULL, NULL, NULL);
@@ -81,9 +72,8 @@ void cLoadingScene::OnDraw()
 
 void cLoadingScene::OnExit()
 {
-	Sleep(1000);
 	SCENE->ChangeScene(SCENE_TITLE);
-
+	Sleep(1000);
 }
 
 void cLoadingScene::WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)

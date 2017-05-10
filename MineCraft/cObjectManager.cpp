@@ -50,13 +50,11 @@ void cObjectManager::CreateObject(D3DXVECTOR3 targetPos, OBJECT_NAME name)
 		cObject* pObject = NULL;
 		switch (name)
 		{
-		//case OBJECT_DIRT: pObject = new cObject(targetPos); break;
 		case OBJECT_WOOD:  pObject = new cTree(targetPos);  break;
 		default :pObject = new cObject(targetPos); break;
 		}
 		if (pObject != NULL) 
 		{
-			//m_vecObject.resize(m_vecObject.size() + 1);
 			pObject->SetName(name);
 			g_pTextureManager->SetNormal(pObject->GetName(), pObject->GetVectex());
 			pObject->Setup();
@@ -66,10 +64,11 @@ void cObjectManager::CreateObject(D3DXVECTOR3 targetPos, OBJECT_NAME name)
 
 bool cObjectManager::IsObjectHere(D3DXVECTOR3 targetPos)
 {
-	for (vector<cObject*>::iterator it = m_vecObject.begin(); it != m_vecObject.end(); it++)
+	for (vector<cObject*>::iterator it = m_nearPlayerObject.begin(); it != m_nearPlayerObject.end(); it++)
 	{
-	if ((*it)->GetPosition() == targetPos)return false;
+	if ((*it)->GetPosition() == targetPos)return false;	
 	}
+	
 	return true;
 }
 

@@ -1,4 +1,4 @@
-#include "stdafx.h"
+﻿#include "stdafx.h"
 #include "cPlayScene.h"
 #include "cObjectManager.h"
 #include "cDeviceManager.h"	
@@ -13,20 +13,23 @@
 #include "cSurface.h"
 #include "cSun.h"
 #include "cMoon.h"
+#include "cAnimalMan.h"
 
+// x , y , z
+#define DEFAULT_TAXTURE_POS 325.0f, 650.0f, 0.0f
 
-cPlayScene::cPlayScene() :
-	m_pCubeMan(NULL),
-	m_pCamera(NULL),
-	m_pSun(NULL),
-	m_pMoon(NULL),
-	m_pTop(NULL),
-	m_pBottom(NULL),
-	m_pSide1(NULL),
-	m_pSide2(NULL),
-	m_pSide3(NULL),
-	m_pSide4(NULL),
-	m_pPosToCreateTile(NULL)
+cPlayScene::cPlayScene()
+	: m_pCubeMan(NULL)
+	, m_pCamera(NULL)
+	, m_pSun(NULL)
+	, m_pMoon(NULL)
+	, m_pPosToCreateTile(NULL)
+	, time(NULL)
+	, m_pButton_Start(NULL)
+	, m_pSprite(NULL)
+	, m_pTexture(NULL)
+	, m_pSelTexture(NULL)
+	, m_pTexturePos(325.0f, 650.0f, 0.0f)
 {
 	SOUND->LoadFile("PlayBGM", "Sound/Beginning_Beta.mp3", true);
 }
@@ -55,54 +58,46 @@ void cPlayScene::OnEnter()
 	m_pPosToCreateTile = new cSurface();
 	m_pPosToCreateTile->Setup(D3DXVECTOR3(-1.0f, 0.0f, -1.0f), D3DXVECTOR3(-1.0f, 0.0f, 1.0f), D3DXVECTOR3(1.0f, 0.0f, 1.0f), D3DXVECTOR3(1.0f, 0.0f, -1.0f), TEXT("Image/Surface/yellow.png"), false);
 
-	m_pTop = new cSurface();
-	m_pTop->Setup(D3DXVECTOR3(-WallLength, WallLength, WallLength), D3DXVECTOR3(-WallLength, WallLength, -WallLength), D3DXVECTOR3(WallLength, WallLength, -WallLength), D3DXVECTOR3(WallLength, WallLength, WallLength), TEXT("Image/Surface/skywall_top.png"), true);
-	if (m_pTop->GetIsLightOn()) { m_pTop->SetMaterial(D3DXVECTOR4(0.8f, 0.8f, 0.8f, 1.0f), D3DXVECTOR4(0.8f, 0.8f, 0.8f, 1.0f), D3DXVECTOR4(0.8f, 0.8f, 0.8f, 1.0f), D3DXVECTOR4(0.8f, 0.8f, 0.8f, 1.0f), 1.0f); }
-
-	//m_pTop->Setup(-WallLength, WallLength, WallLength, -WallLength, WallLength, -WallLength, WallLength, WallLength, -WallLength, WallLength, WallLength, WallLength, TEXT("Image/Surface/?????.png"));	// top�̹��� �ʿ�
-	m_pBottom = new cSurface();
-	m_pBottom->Setup(D3DXVECTOR3(-WallLength, 0.0f, -WallLength), D3DXVECTOR3(-WallLength, 0.0f, WallLength), D3DXVECTOR3(WallLength, 0.0f, WallLength), D3DXVECTOR3(WallLength, 0.0f, -WallLength), TEXT("Image/Surface/ground.png"), true);
-	if (m_pBottom->GetIsLightOn()) { m_pTop->SetMaterial(D3DXVECTOR4(0.8f, 0.8f, 0.8f, 1.0f), D3DXVECTOR4(0.8f, 0.8f, 0.8f, 1.0f), D3DXVECTOR4(0.8f, 0.8f, 0.8f, 1.0f), D3DXVECTOR4(0.8f, 0.8f, 0.8f, 1.0f), 1.0f); }
-
-	m_pSide1 = new cSurface();
-	m_pSide1->Setup(D3DXVECTOR3(-WallLength, 0.0f, WallLength), D3DXVECTOR3(-WallLength, WallLength, WallLength), D3DXVECTOR3(WallLength, WallLength, WallLength), D3DXVECTOR3(WallLength, 0.0f, WallLength), TEXT("Image/Surface/skywall.png"), true);
-	m_pSide1->SetIsLightOn(false);
-	if (m_pSide1->GetIsLightOn()) { m_pTop->SetMaterial(D3DXVECTOR4(0.0f, 1.0f, 1.0f, 1.0f), D3DXVECTOR4(0.0f, 1.0f, 1.0f, 1.0f), D3DXVECTOR4(0.0f, 1.0f, 1.0f, 1.0f), D3DXVECTOR4(0.8f, 0.8f, 0.8f, 1.0f), 1.0f); }
-	m_pSide1->SetMaterial(D3DXVECTOR4(0.8f, 0.8f, 0.8f, 1.0f), D3DXVECTOR4(0.8f, 0.8f, 0.8f, 1.0f), D3DXVECTOR4(0.8f, 0.8f, 0.8f, 1.0f), D3DXVECTOR4(0.8f, 0.8f, 0.8f, 1.0f));
-
-	m_pSide2 = new cSurface();
-	m_pSide2->Setup(D3DXVECTOR3(-WallLength, 0.0f, -WallLength), D3DXVECTOR3(-WallLength, WallLength, -WallLength), D3DXVECTOR3(-WallLength, WallLength, WallLength), D3DXVECTOR3(-WallLength, 0.0f, WallLength), TEXT("Image/Surface/skywall2.png"), true);
-	m_pSide2->SetIsLightOn(false);
-	if (m_pSide2->GetIsLightOn()) { m_pTop->SetMaterial(D3DXVECTOR4(0.8f, 0.8f, 0.8f, 1.0f), D3DXVECTOR4(0.8f, 0.8f, 0.8f, 1.0f), D3DXVECTOR4(0.8f, 0.8f, 0.8f, 1.0f), D3DXVECTOR4(0.8f, 0.8f, 0.8f, 1.0f), 1.0f); }
-	m_pSide2->SetMaterial(D3DXVECTOR4(0.8f, 0.8f, 0.8f, 1.0f), D3DXVECTOR4(0.8f, 0.8f, 0.8f, 1.0f), D3DXVECTOR4(0.8f, 0.8f, 0.8f, 1.0f), D3DXVECTOR4(0.8f, 0.8f, 0.8f, 1.0f));
-
-	m_pSide3 = new cSurface();
-	m_pSide3->Setup(D3DXVECTOR3(WallLength, 0.0f, -WallLength), D3DXVECTOR3(WallLength, WallLength, -WallLength), D3DXVECTOR3(-WallLength, WallLength, -WallLength), D3DXVECTOR3(-WallLength, 0.0f, -WallLength), TEXT("Image/Surface/skywall.png"), true);
-	if (m_pSide3->GetIsLightOn()) { m_pTop->SetMaterial(D3DXVECTOR4(0.8f, 0.8f, 0.8f, 1.0f), D3DXVECTOR4(0.8f, 0.8f, 0.8f, 1.0f), D3DXVECTOR4(0.8f, 0.8f, 0.8f, 1.0f), D3DXVECTOR4(0.8f, 0.8f, 0.8f, 1.0f), 1.0f); }
-	m_pSide3->SetMaterial(D3DXVECTOR4(0.8f, 0.8f, 0.8f, 1.0f), D3DXVECTOR4(0.8f, 0.8f, 0.8f, 1.0f), D3DXVECTOR4(0.8f, 0.8f, 0.8f, 1.0f), D3DXVECTOR4(0.8f, 0.8f, 0.8f, 1.0f));
-
-	m_pSide4 = new cSurface();
-	m_pSide4->Setup(D3DXVECTOR3(WallLength, 0.0f, WallLength), D3DXVECTOR3(WallLength, WallLength, WallLength), D3DXVECTOR3(WallLength, WallLength, -WallLength), D3DXVECTOR3(WallLength, 0.0f, -WallLength), TEXT("Image/Surface/skywall2.png"), true);
-	if (m_pSide4->GetIsLightOn()) { m_pTop->SetMaterial(D3DXVECTOR4(0.8f, 0.8f, 0.8f, 1.0f), D3DXVECTOR4(0.8f, 0.8f, 0.8f, 1.0f), D3DXVECTOR4(0.8f, 0.8f, 0.8f, 1.0f), D3DXVECTOR4(0.8f, 0.8f, 0.8f, 1.0f), 1.0f); }
-	m_pSide4->SetMaterial(D3DXVECTOR4(0.8f, 0.8f, 0.8f, 1.0f), D3DXVECTOR4(0.8f, 0.8f, 0.8f, 1.0f), D3DXVECTOR4(0.8f, 0.8f, 0.8f, 1.0f), D3DXVECTOR4(0.8f, 0.8f, 0.8f, 1.0f));
-
 	Set_Light();
 	if (g_ObjectManager->GetVecObject().empty())
 	{
-		float x = -500.0f;
-		float z = -500.0f;
-		for (int i = 0; i < 1000000; i++)
+		float x = -100.0f;
+		float z = -100.0f;
+		for (int i = 0; i < 40000; i++)
 		{
 			D3DXVECTOR3 pos = D3DXVECTOR3(x, -1.0f, z);
 			g_ObjectManager->CreateObject(pos, OBJECT_DIRT);
 			x += 1.0f;
-			if (x >= 500.0f)
+			if (x >= 100.0f)
 			{
 				z += 1.0f;
-				x = -500.0f;
+				x = -100.0f;
 			}
 		}
 	}
+	g_ObjectManager->CreateObject(D3DXVECTOR3(0.5f, 0.0f, 0.5f), OBJECT_DIRT);
+	//if (g_ObjectManager->GetVecObject().empty())
+	//{
+	//	float x = -500.0f;
+	//	float z = -500.0f;
+	//	for (int i = 0; i < 1000000; i++)
+	//	{
+	//		D3DXVECTOR3 pos = D3DXVECTOR3(x, -1.0f, z);
+	//		g_ObjectManager->CreateObject(pos, OBJECT_DIRT);
+	//		x += 1.0f;
+	//		if (x >= 500.0f)
+	//		{
+	//			z += 1.0f;
+	//			x = -500.0f;
+	//		}
+	//	}
+	//}
+
+	// << : Sprite 생성 및 텍스쳐 이미지 불러오기
+	D3DXCreateSprite(g_pD3DDevice, &m_pSprite);
+	D3DXCreateTextureFromFile(g_pD3DDevice, L"Image/UI/GUI_Skill_Bar.png", &m_pTexture);
+	//D3DXCreateTextureFromFile(g_pD3DDevice, L"Image/UI/GUI_Skill_Bar.png", &m_pSelTexture);
+	// <<
 	//g_ObjectManager->CreateObject(D3DXVECTOR3(0.5f, 0.0f, 0.5f), OBJECT_DIRT);
 	if (SOUND->FindChannel("PlayBGM") == NULL) SOUND->Play("PlayBGM", 10.0f);
 }
@@ -117,64 +112,78 @@ void cPlayScene::OnUpdate()
 		m_pCubeMan->Update();
 		m_pPosToCreateTile->UpdateLocation(m_pCubeMan->GetFrontPos());
 	}
-	
+
+	// >> : 동물
+	for (int i = 0; i < m_vecAnimal.size(); i++)
+	{
+		m_vecAnimal[i]->Update();
+	}
+	// << :
 
 	if (m_pCamera) m_pCamera->Update();
-
 	{
-		if (time / 10 == 1 || time == 0)
+
 		{
-			if (m_pSun)		m_pSun->Update();
-			if (m_pSun && m_pSun->GetPosition().y < 0)
+			if (time / 10 == 1 || time == 0)
 			{
-				SAFE_DELETE(m_pSun);
-				m_pMoon = new cMoon;
-				m_pMoon->Setup();
-			}
+				if (m_pSun)		m_pSun->Update();
+				if (m_pSun && m_pSun->GetPosition().y < 0)
+				{
+					SAFE_DELETE(m_pSun);
+					m_pMoon = new cMoon;
+					m_pMoon->Setup();
+				}
 
-			if (m_pMoon) m_pMoon->Update();
-			if (m_pMoon && m_pMoon->GetPosition().y < 0)
-			{
-				SAFE_DELETE(m_pMoon);
-				m_pSun = new cSun;
-				m_pSun->Setup();
+				if (m_pMoon) m_pMoon->Update();
+				if (m_pMoon && m_pMoon->GetPosition().y < 0)
+				{
+					SAFE_DELETE(m_pMoon);
+					m_pSun = new cSun;
+					m_pSun->Setup();
+				}
+				time = 0;
 			}
-			time = 0;
+			time += 1;
+
+			g_ObjectManager->ClearNearVec();
+			//GravityUpdate(m_pBottom->GetVerTex());
 		}
-		time += 1;
 	}
-
-	g_ObjectManager->ClearNearVec();
-	//GravityUpdate(m_pBottom->GetVerTex());
 }
 
 void cPlayScene::OnDraw()
 {
+	//D3DCOLOR_RGBA((int)SkyColor().r, (int)SkyColor().r,(int)SkyColor().r, (int)SkyColor().r);
 	g_pD3DDevice->Clear(NULL,
 		NULL,
 		D3DCLEAR_TARGET | D3DCLEAR_ZBUFFER,
-		D3DCOLOR_XRGB(120, 164, 253),
+		D3DCOLOR_RGBA((int)SkyColor().r, (int)SkyColor().g, (int)SkyColor().b, (int)SkyColor().a),
 		1.0f, 0);
 
 	g_pD3DDevice->BeginScene();
 
-	//Set_Light();
-	
+	// Set_Light();
+
 	g_ObjectManager->Render(m_pCubeMan->GetPosition());
 	if (m_pCubeMan) m_pCubeMan->Render();
 	if (m_pPosToCreateTile) m_pPosToCreateTile->Render();
-	/*if (m_pTop) m_pTop->Render();
-	if (m_pSide1) m_pSide1->Render();
-	if (m_pSide2) m_pSide2->Render();
-	if (m_pSide3) m_pSide3->Render();
-	if (m_pSide4) m_pSide4->Render();*/
-	//if (m_pBottom) m_pBottom->Render();
 
-	// >> : �ؿ� �� Render
+	// >> : 해와 달 Render
 	if (m_pSun)	m_pSun->Render();
 	else if (m_pMoon) m_pMoon->Render();
 	// << :
-	
+	// << : UI Render
+	m_pSprite->Begin(D3DXSPRITE_ALPHABLEND);
+	m_pSprite->Draw(m_pTexture, NULL, NULL, &D3DXVECTOR3(DEFAULT_TAXTURE_POS), D3DCOLOR_ARGB(255, 255, 255, 255));
+	UISkillbar();
+	if (m_pCubeMan->GetCurrentObjState() != OBJECT_NONE)
+	{
+		m_pSprite->Draw(m_pSelTexture, NULL, NULL, &m_pTexturePos, D3DCOLOR_ARGB(255, 255, 255, 255));
+	}
+
+	m_pSprite->End();
+	// >>
+	//g_ObjectManager->Render();
 	g_pD3DDevice->EndScene();
 
 	g_pD3DDevice->Present(NULL, NULL, NULL, NULL);
@@ -182,19 +191,16 @@ void cPlayScene::OnDraw()
 
 void cPlayScene::OnExit()
 {
-	SAFE_DELETE(m_pTop);
-	SAFE_DELETE(m_pBottom);
-	SAFE_DELETE(m_pSide1);
-	SAFE_DELETE(m_pSide2);
-	SAFE_DELETE(m_pSide3);
-	SAFE_DELETE(m_pSide4);
-
 	m_pCubeMan->SetTexture(NULL);
 	SAFE_DELETE(m_pCubeMan);
 	SAFE_DELETE(m_pSun);
 	SAFE_DELETE(m_pMoon);
 	SAFE_DELETE(m_pCamera);
 	SAFE_DELETE(m_pPosToCreateTile);
+
+	SAFE_RELEASE(m_pSprite);
+	SAFE_RELEASE(m_pTexture);
+	SAFE_RELEASE(m_pSelTexture);
 
 	SOUND->Stop("PlayBGM");
 }
@@ -256,4 +262,111 @@ void cPlayScene::SetPlayerSkin()
 		m_pCubeMan->SetTexture(g_pTextureManager->GetTexture(SKIN_SPIDER));
 		break;
 	}
+}
+
+void cPlayScene::SetCamera()
+{
+	if (INPUT->IsKeyDown('C'))
+	{
+		m_pCamera->SetCamIndex();
+		m_pCubeMan->SetMouseOn();
+	}
+}
+
+void cPlayScene::UISkillbar()
+{
+	if (INPUT->IsKeyPress(VK_1))
+	{
+		D3DXCreateTextureFromFile(g_pD3DDevice, L"Image/UI/GUI_Skill_Bar_Sel01.png", &m_pSelTexture);
+		m_pTexturePos = D3DXVECTOR3(DEFAULT_TAXTURE_POS);
+	}
+
+	else if (INPUT->IsKeyPress(VK_2))
+	{
+		D3DXCreateTextureFromFile(g_pD3DDevice, L"Image/UI/GUI_Skill_Bar_Sel02.png", &m_pSelTexture);
+		m_pTexturePos = D3DXVECTOR3(380.0f, 650.0f, 0.0f);
+	}
+
+	else if (INPUT->IsKeyPress(VK_3))
+	{
+		D3DXCreateTextureFromFile(g_pD3DDevice, L"Image/UI/GUI_Skill_Bar_Sel03.png", &m_pSelTexture);
+		m_pTexturePos = D3DXVECTOR3(437.0f, 650.0f, 0.0f);
+	}
+
+	else if (INPUT->IsKeyPress(VK_4))
+	{
+		D3DXCreateTextureFromFile(g_pD3DDevice, L"Image/UI/GUI_Skill_Bar_Sel04.png", &m_pSelTexture);
+		m_pTexturePos = D3DXVECTOR3(494.0f, 650.0f, 0.0f);
+	}
+
+	else if (INPUT->IsKeyPress(VK_5))
+	{
+		D3DXCreateTextureFromFile(g_pD3DDevice, L"Image/UI/GUI_Skill_Bar_Sel05.png", &m_pSelTexture);
+		m_pTexturePos = D3DXVECTOR3(550.0f, 650.0f, 0.0f);
+	}
+
+	else if (INPUT->IsKeyPress(VK_6))
+	{
+		D3DXCreateTextureFromFile(g_pD3DDevice, L"Image/UI/GUI_Skill_Bar_Sel.png", &m_pSelTexture);
+		m_pTexturePos = D3DXVECTOR3(605.0f, 650.0f, 0.0f);
+	}
+
+	else if (INPUT->IsKeyPress(VK_7))
+	{
+		D3DXCreateTextureFromFile(g_pD3DDevice, L"Image/UI/GUI_Skill_Bar_Sel.png", &m_pSelTexture);
+		m_pTexturePos = D3DXVECTOR3(660.0f, 650.0f, 0.0f);
+	}
+
+	else if (INPUT->IsKeyPress(VK_8))
+	{
+		D3DXCreateTextureFromFile(g_pD3DDevice, L"Image/UI/GUI_Skill_Bar_Sel.png", &m_pSelTexture);
+		m_pTexturePos = D3DXVECTOR3(717.0f, 650.0f, 0.0f);
+	}
+
+	else if (INPUT->IsKeyPress(VK_9))
+	{
+		D3DXCreateTextureFromFile(g_pD3DDevice, L"Image/UI/GUI_Skill_Bar_Sel.png", &m_pSelTexture);
+		m_pTexturePos = D3DXVECTOR3(774.0f, 650.0f, 0.0f);
+	}
+}
+
+D3DXCOLOR cPlayScene::SkyColor()
+{
+	if (m_pSun)
+	{
+		D3DXVECTOR2 vLeft = D3DXVECTOR2(-1, 0);
+		D3DXVECTOR2 vPosition = D3DXVECTOR2(m_pSun->GetPosition().x, m_pSun->GetPosition().y);
+		D3DXVec2Normalize(&vPosition, &vPosition);
+
+		float cosTheta = D3DXVec2Dot(&vLeft, &vPosition);
+		if (acosf(cosTheta) < D3DX_PI / 2.0f)
+		{
+			return D3DXCOLOR(136, 206, 235, 1.0f);
+		}
+		else if (acosf(cosTheta) >= D3DX_PI / 2.0f && acosf(cosTheta) < (D3DX_PI / 2.0f + D3DX_PI / 4.0f))
+		{
+			return ColorLerp(D3DX_PI / 2.0f, D3DX_PI / 2.0 + D3DX_PI / 4.0f, acosf(cosTheta), D3DXCOLOR(136, 206, 235, 1.0f), D3DXCOLOR(253, 255, 49, 0.8f));
+		}
+		else if (acosf(cosTheta) >= (D3DX_PI / 2.0f + D3DX_PI / 4.0f))
+		{
+			return ColorLerp(D3DX_PI / 2.0f, D3DX_PI / 2.0 + D3DX_PI / 4.0f, acosf(cosTheta), D3DXCOLOR(253, 255, 49, 0.8f), D3DXCOLOR(252, 163, 53, 0.8f));
+		}
+
+	}
+	else if (m_pMoon)
+	{
+		return D3DXCOLOR(30, 73, 171, 1.0f);
+	}
+
+
+}
+
+D3DXCOLOR cPlayScene::ColorLerp(float startAngle, float endAngle, float currentAngle, D3DXCOLOR startColor, D3DXCOLOR endColor)
+{
+	float deltaAngle = (currentAngle - startAngle) / (endAngle - startAngle);
+	float deltaColorR = endColor.r - startColor.r;
+	float deltaColorG = endColor.g - startColor.g;
+	float deltaColorB = endColor.b - startColor.b;
+
+	return startColor + D3DXCOLOR(deltaAngle * deltaColorR, deltaAngle * deltaColorG, deltaAngle * deltaColorB, 1.0f);
 }

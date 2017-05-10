@@ -18,7 +18,8 @@ cCharacter::cCharacter()
 	m_tag(CHARACTER_PLAYER),
 	m_currentObjName(OBJECT_NONE),
 	m_jumpingHeight(1.5f),
-	m_currentHeight(0.0f)
+	m_currentHeight(0.0f),
+	m_isMouseOn(false)
 {
 	D3DXMatrixIdentity(&m_matWorld);
 }
@@ -34,50 +35,43 @@ void cCharacter::Setup()
 }
 void cCharacter::Update()
 {
-	GravityUpdate();
-	if (m_tag == CHARACTER_PLAYER)
-	{
-		m_isMoving = false;
+	//if (m_tag == CHARACTER_PLAYER)
+	//{
+	//	m_isMoving = false;
 
-		if (INPUT->IsKeyPress(VK_A))
-		{
-			m_isMoving = true;
-			m_fRotY -= 0.1f;
-		}
-		if (INPUT->IsKeyPress(VK_D))
-		{
-			m_isMoving = true;
-			m_fRotY += 0.1f;
-		}
+		
 
-		if (INPUT->IsKeyPress(VK_W))
-		{
-			m_isMoving = true;
-			CollidChecker(1);
-			//m_vPosition = m_vPosition + (m_vDirection * 0.1f);
-		}
-		if (INPUT->IsKeyPress(VK_S))
-		{
-			m_isMoving = true;
-			CollidChecker(-1);
-			//m_vPosition = m_vPosition - (m_vDirection * 0.1f);
-		}
-
-	}
+	//	if (INPUT->IsKeyPress(VK_W))
+	//	{
+	//		m_isMoving = true;
+	//		CollidChecker(1);
+	//		//m_vPosition = m_vPosition + (m_vDirection * 0.1f);
+	//	}
+	//	if (INPUT->IsKeyPress(VK_S))
+	//	{
+	//		m_isMoving = true;
+	//		CollidChecker(-1);
+	//		//m_vPosition = m_vPosition - (m_vDirection * 0.1f);
+	//	}
+	//}
 
 	if (m_tag == CHARACTER_PLAYER)
 	{
-		if (INPUT->IsKeyPress('1'))m_currentObjName = OBJECT_DIRT;
-		if (INPUT->IsKeyPress('2'))m_currentObjName = OBJECT_STONE;
-		if (INPUT->IsKeyPress('3'))m_currentObjName = OBJECT_BOARD;
-		if (INPUT->IsKeyPress('4'))m_currentObjName = OBJECT_STONEBRICK;
-		if (INPUT->IsKeyPress('5'))m_currentObjName = OBJECT_WOOD;
-
-		if (INPUT->IsKeyPress('E') && m_currentObjName != OBJECT_NONE&&g_ObjectManager->IsObjectHere(m_vFrontPos))
+		if (INPUT->IsKeyPress(VK_1))m_currentObjName = OBJECT_DIRT;
+		if (INPUT->IsKeyPress(VK_2))m_currentObjName = OBJECT_STONE;
+		if (INPUT->IsKeyPress(VK_3))m_currentObjName = OBJECT_BOARD;
+		if (INPUT->IsKeyPress(VK_4))m_currentObjName = OBJECT_STONEBRICK;
+		if (INPUT->IsKeyPress(VK_5))m_currentObjName = OBJECT_WOOD;
+		if (INPUT->IsKeyDown(VK_TAB))m_currentObjName = OBJECT_NONE;
+	
+		if (INPUT->IsKeyPress(VK_E) && m_currentObjName != OBJECT_NONE&&g_ObjectManager->IsObjectHere(m_vFrontPos))
 			if (INPUT->IsKeyPress(VK_E))
 			{
 				m_isAttack = true;
-				g_ObjectManager->CreateObject(m_vFrontPos, m_currentObjName);
+				if (!(m_vPosition.x - 0.7f < m_vFrontPos.x&&m_vFrontPos.x < m_vPosition.x + 0.7f && m_vPosition.z - 0.7f < m_vFrontPos.z&&m_vFrontPos.z < m_vPosition.z + 0.7f)|| !(m_vPosition.y - 0.8f < m_vFrontPos.y&&m_vFrontPos.y < m_vPosition.y + 0.8f))
+				{
+					g_ObjectManager->CreateObject(m_vFrontPos, m_currentObjName);
+				}
 			}
 		if (INPUT->IsKeyUp(VK_E))
 		{
@@ -113,20 +107,20 @@ void cCharacter::Update()
 	D3DXMatrixTranslation(&matT, m_vPosition.x, m_vPosition.y, m_vPosition.z);
 	m_matWorld = matR * matT;
 
-	if (INPUT->IsKeyDown(' ') && !m_isJumping && m_tag == CHARACTER_PLAYER)m_isJumping = true;
+	//if (INPUT->IsKeyDown(' ') && !m_isJumping && m_tag == CHARACTER_PLAYER)m_isJumping = true;
 
-	if (m_isJumping)
-	{
-		if (m_jumpingHeight >= m_currentHeight)
-		{
-			//m_vPosition.y += 0.25f;
-			m_currentHeight += 0.1;
-		}
-	}
-	if (m_jumpingHeight <= m_currentHeight)
-	{
-		m_isJumping = false;
-	}
+	//if (m_isJumping)
+	//{
+	//	if (m_jumpingHeight >= m_currentHeight)
+	//	{
+	//		//m_vPosition.y += 0.25f;
+	//		m_currentHeight += 0.1;
+	//	}
+	//}
+	//if (m_jumpingHeight <= m_currentHeight)
+	//{
+	//	m_isJumping = false;
+	//}
 }
 void cCharacter::Render()
 {
@@ -151,7 +145,7 @@ D3DXVECTOR3& cCharacter::GetFrontPos()
 
 D3DXVECTOR3 & cCharacter::GetDirection()
 {
-	return m_vDirection;
+	return m_vDirection; 
 }
 
 void cCharacter::SetScale(float scale)
@@ -177,47 +171,6 @@ void cCharacter::SetAttackState(bool a)
 void cCharacter::SetJumpingState(bool j)
 {
 	m_isJumping = j;
-}
-
-void cCharacter::GravityUpdate()
-{
-
-	D3DXVECTOR3	intersectDir = D3DXVECTOR3(0, -1, 0);
-
-	vector<cObject*> vecObject = g_ObjectManager->GetNearPlayerVecObject();
-
-
-	for (vector<cObject*>::iterator it = vecObject.begin(); it != vecObject.end(); it++)
-	{
-		D3DXVECTOR3 pos = m_vPosition;
-
-		D3DXVECTOR3 rayPos = m_vPosition;
-		float u, v;
-		float dist;
-		rayPos.y = 500.0f;
-
-		vector<ST_PNT_VERTEX> pPNT = (*it)->GetVectex();
-		for (int k = 0; k < 2; k++)
-		{
-			if (D3DXIntersectTri(&pPNT[24 + (k * 3)].p, &pPNT[25 + (k * 3)].p, &pPNT[26 + (k * 3)].p, &rayPos, &intersectDir, &u, &v, &dist))
-			{
-				if (rayPos.y - dist < m_vPosition.y)m_isFall = true;
-				if (m_isJumping == false && m_isFall==true) { m_currentHeight = m_vPosition.y - (rayPos.y - dist);  }
-				if (m_isJumping == false)
-				{
-					m_currentHeight -= 0.1f;
-					if (m_currentHeight <= 0.0f)
-					{
-						m_currentHeight = 0.0f;
-						m_isFall = false;
-					}
-				}
-				
-				m_vPosition.y = rayPos.y - dist + m_currentHeight; //점프 버그있음 수정해야함
-				
-			}
-		}
-	}
 }
 
 void cCharacter::CollidChecker(int root)
@@ -258,4 +211,9 @@ void cCharacter::FallUpdate()
 
 
 
+}
+
+void cCharacter::SetMouseOn()
+{
+	m_isMouseOn = !m_isMouseOn;
 }

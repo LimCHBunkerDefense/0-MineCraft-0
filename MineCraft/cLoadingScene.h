@@ -7,16 +7,12 @@ class cCamera;
 
 class cLoadingScene : public IScene
 {
-	cSurface*	m_pBg;
-	cSurface*	m_pGageBar;
-	cSurface*	m_pGage;
-	//cSurface*	m_pGage2;
-	//cSurface*	m_pGage3;
+	//cSurface*	m_pBg;
+	//D3DXVECTOR3 m_point;
+	//cCamera*	m_pCamera;
 
-	D3DXVECTOR3 m_point;
-	cCamera*	m_pCamera;
-
-
+	LPD3DXSPRITE m_BgSprite;
+	LPDIRECT3DTEXTURE9 m_pBgTexture;
 
 public:
 	cLoadingScene();
