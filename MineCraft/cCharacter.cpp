@@ -254,7 +254,7 @@ void cCharacter::CollidChecker(int root)
 
 void cCharacter::FallUpdate()
 {
-
+	
 
 
 
