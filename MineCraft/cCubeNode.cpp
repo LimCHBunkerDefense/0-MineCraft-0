@@ -139,11 +139,22 @@ void cCubeNode::RotateHead(float angleX, float angleY)
 {
 	if (m_vecChild.size() == 0)
 	{
-		D3DXMATRIXA16 matRX, matRY, matR, mat;
+		D3DXMATRIXA16 matRX, matRY, matR, mat, matT;
+		//D3DXMatrixTranslation(&matT, 0, -1.4, 0);
+		//
+		//for (size_t i = 0; i < m_vecVertex.size(); i++)
+		//{
+		//	D3DXVec3TransformCoord(&m_vecVertex[i].p,
+		//		&m_vecVertex[i].p,
+		//		&matT);
+		//}
+		//
+		//D3DXMatrixIdentity(&matT);
+		//D3DXMatrixTranslation(&matT, 0, 1.4, 0);
 		D3DXMatrixRotationX(&matRX, angleX - m_fRotX);
 		D3DXMatrixRotationY(&matRY, angleY - m_fRotY);
 		matR = matRX * matRY;
-		mat = matR;
+		mat = matR;//  *matT;
 
 		for (size_t i = 0; i < m_vecVertex.size(); i++)
 		{
@@ -152,7 +163,7 @@ void cCubeNode::RotateHead(float angleX, float angleY)
 				&mat);
 		}
 	}
-
+	
 	else
 	{
 		m_vecChild[0]->RotateHead(angleX, angleY);

@@ -54,7 +54,7 @@ void cShopScene::OnUpdate()
 	{
 		m_pMyMan->Update();
 		D3DXVECTOR2 mousePos = D3DXVECTOR2(INPUT->GetMousePos().x, INPUT->GetMousePos().y);
-		m_pMyMan->LookAt(mousePos);
+		//m_pMyMan->LookAt(mousePos);
 	}
 
 	UpdateExampleMan();					// 예시 케릭터 위에 커서가 가면, 예시 케릭터가 Y축으로 회전하도록.
@@ -166,7 +166,7 @@ void cShopScene::SetupExampleMan()
 	m_pMyMan->Setup();
 	m_pMyMan->SetTexture(g_pTextureManager->GetTexture(SCENE->GetSkinIndex()));
 	m_pMyMan->SetRotY(D3DX_PI);
-	m_pMyMan->SetPosition(VIEW_WIDTH * 0.22f, VIEW_HEIGHT * 0.45f, -0.3f);
+	m_pMyMan->SetPosition(VIEW_WIDTH * 0.205f, VIEW_HEIGHT * 0.45f, -70.0f);
 	m_pMyMan->SetTag(CHARACTER_MY);
 }
 

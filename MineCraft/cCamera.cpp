@@ -71,9 +71,9 @@ void cCamera::Update2(D3DXVECTOR3 dir)
 
 	D3DXMATRIXA16 matR, matRX, matRY;
 	D3DXMatrixRotationY(&matRY, m_vCamRotAngle.y);
-	D3DXMatrixRotationX(&matRX, m_vCamRotAngle.x);
+	//D3DXMatrixRotationX(&matRX, m_vCamRotAngle.x);
 
-	matR = matRX * matRY;
+	matR = matRY;
 
 	if (m_pvTarget)
 	{
@@ -119,7 +119,8 @@ void cCamera::WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 		else if (m_cameraIndex == CAMERA_2)
 		{
 			POINT deltaMousePos = INPUT->GetMouseDelta();
-			//m_vCamRotAngle.x += (deltaMousePos.y / 100.f);
+			m_vCamRotAngle.x += (deltaMousePos.y / 100.f);
+			m_vCamRotAngle.y += (deltaMousePos.x / 100.f);
 		}
 		break;
 
