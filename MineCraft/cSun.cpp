@@ -41,7 +41,7 @@ void cSun::Update()
 
 	cCubePNT::Update();
 
-	m_vPosition.x += 10.0f;
+	m_vPosition.x += 1.0f;
 	m_vPosition.y = pow(m_vPosition.x, 2) * -(1.0f / 300.0f) + 300;
 	
 	D3DXMATRIXA16 matS, matT;
@@ -91,9 +91,9 @@ void cSun::Set_Light()
 	ZeroMemory(&stLight_Dir, sizeof(D3DLIGHT9));
 
 	stLight_Dir.Type = D3DLIGHT_DIRECTIONAL;
-	stLight_Dir.Ambient = D3DXCOLOR(0.9f, 0.9f, 0.9f, 1.0f);
+	stLight_Dir.Ambient = D3DXCOLOR(0.0f, 0.0f, 0.0f, 1.0f);
 	stLight_Dir.Diffuse = D3DXCOLOR(1.0f, 1.0f, 1.0f, 1.0f);
-	stLight_Dir.Specular = D3DXCOLOR(0.9f, 0.9f, 0.9f, 1.0f);
+	// stLight_Dir.Specular = D3DXCOLOR(0.9f, 0.9f, 0.9f, 1.0f);
 	D3DXVECTOR3 vDir = -m_vPosition;
 	D3DXVec3Normalize(&vDir, &vDir);
 	stLight_Dir.Direction = vDir;   
