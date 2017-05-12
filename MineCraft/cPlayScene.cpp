@@ -120,35 +120,46 @@ void cPlayScene::OnUpdate()
 	}
 	// << :
 
-	if (m_pCamera) m_pCamera->Update();
+	if (time / 10 == 1 || time == 0)
 	{
-
+		if (m_pSun)		m_pSun->Update();
+		if (m_pSun && m_pSun->GetPosition().y < 0)
 		{
-			if (time / 10 == 1 || time == 0)
-			{
-				if (m_pSun)		m_pSun->Update();
-				if (m_pSun && m_pSun->GetPosition().y < 0)
-				{
-					SAFE_DELETE(m_pSun);
-					m_pMoon = new cMoon;
-					m_pMoon->Setup();
-				}
+			SAFE_DELETE(m_pSun);
+			m_pMoon = new cMoon;
+			m_pMoon->Setup();
+		}
 
-				if (m_pMoon) m_pMoon->Update();
-				if (m_pMoon && m_pMoon->GetPosition().y < 0)
-				{
-					SAFE_DELETE(m_pMoon);
-					m_pSun = new cSun;
-					m_pSun->Setup();
-				}
-				time = 0;
-			}
-			time += 1;
+		if (m_pMoon) m_pMoon->Update();
+		if (m_pMoon && m_pMoon->GetPosition().y < 0)
+		{
+			SAFE_DELETE(m_pMoon);
+			m_pSun = new cSun;
+			m_pSun->Setup();
+		}
+		time = 0;
+	}
+	time += 1;
 
-			g_ObjectManager->ClearNearVec();
-			//GravityUpdate(m_pBottom->GetVerTex());
+	g_ObjectManager->ClearNearVec();
+	//GravityUpdate(m_pBottom->GetVerTex());
+
+
+	// >> 카메라 시작
+	if (m_pCamera) 
+	{
+		SetCamera();
+		switch (m_pCamera->GetCamIndex())
+		{
+		case CAMERA_1:
+			m_pCamera->Update();
+			break;
+		case CAMERA_2:
+			m_pCamera->Update2(m_pCubeMan->GetDirection());
+			break;
 		}
 	}
+	// << 카메라 끝
 }
 
 void cPlayScene::OnDraw()

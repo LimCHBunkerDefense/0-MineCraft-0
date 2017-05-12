@@ -106,7 +106,7 @@ void cCharacter::Update()
 	D3DXVec3TransformNormal(&m_vDirection, &m_vDirection, &matR);
 	D3DXMatrixTranslation(&matT, m_vPosition.x, m_vPosition.y, m_vPosition.z);
 	m_matWorld = matR * matT;
-
+	 
 	//if (INPUT->IsKeyDown(' ') && !m_isJumping && m_tag == CHARACTER_PLAYER)m_isJumping = true;
 
 	//if (m_isJumping)
