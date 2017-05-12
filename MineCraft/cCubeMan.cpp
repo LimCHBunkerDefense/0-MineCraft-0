@@ -73,19 +73,18 @@ void cCubeMan::Setup()
 
 void cCubeMan::Update()
 {
-	GravityUpdate();
-
-
-	switch (m_currentState)
+	if (m_tag == CHARACTER_PLAYER)
 	{
-	case IDLE_STATE: IdleState(); break;
-	case MOVE_STATE: MoveState(); break;
-	case JUMP_STATE: JumpState(); break;
+		GravityUpdate();
+
+
+		switch (m_currentState)
+		{
+		case IDLE_STATE: IdleState(); break;
+		case MOVE_STATE: MoveState(); break;
+		case JUMP_STATE: JumpState(); break;
+		}		
 	}
-
-
-
-
 	cCharacter::Update();
 
 	if (m_pRoot)
@@ -96,7 +95,6 @@ void cCubeMan::Update()
 		if (!m_isAttack) m_pRoot->EndAttack();
 		m_pRoot->Update();
 	}
-
 }
 
 void cCubeMan::Render()
