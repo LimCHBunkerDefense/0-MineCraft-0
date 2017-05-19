@@ -366,7 +366,7 @@ D3DXCOLOR cPlayScene::SkyColor()
 	}
 	else if (m_pMoon)
 	{
-		return D3DXCOLOR(30, 73, 171, 1.0f);
+		return D3DXCOLOR(0, 43, 121, 1.0f);
 	}
 
 
