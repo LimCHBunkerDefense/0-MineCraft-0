@@ -229,7 +229,7 @@ void cShopScene::UpdateExampleSkin()
 	if (m_pUI_rightButton->IsClicked())
 	{
 		m_nExampleSkinIndex++;
-		if (m_nExampleSkinIndex > SKIN_CAPTAIN) m_nExampleSkinIndex = SKIN_CAPTAIN;
+		if (m_nExampleSkinIndex > SKIN_ROBOCOP) m_nExampleSkinIndex = SKIN_ROBOCOP;
 	}
 
 	switch (m_nExampleSkinIndex)
@@ -245,11 +245,26 @@ void cShopScene::UpdateExampleSkin()
 		m_pExampleMan03->SetTexture(g_pTextureManager->GetTexture(SKIN_SPIDER));
 		break;
 	case SKIN_IRON:
+		m_pExampleMan01->SetTexture(g_pTextureManager->GetTexture(SKIN_IRON));
+		m_pExampleMan02->SetTexture(g_pTextureManager->GetTexture(SKIN_SPIDER));
+		m_pExampleMan03->SetTexture(g_pTextureManager->GetTexture(SKIN_ELMO));
 		break;
 	case SKIN_SPIDER:
+		m_pExampleMan01->SetTexture(g_pTextureManager->GetTexture(SKIN_SPIDER));
+		m_pExampleMan02->SetTexture(g_pTextureManager->GetTexture(SKIN_ELMO));
+		m_pExampleMan03->SetTexture(g_pTextureManager->GetTexture(SKIN_ROBOCOP));
 	 	break;
+	case SKIN_ELMO:
+		m_pExampleMan01->SetTexture(g_pTextureManager->GetTexture(SKIN_ELMO));
+		m_pExampleMan02->SetTexture(g_pTextureManager->GetTexture(SKIN_ROBOCOP));
+		m_pExampleMan03->SetTexture(g_pTextureManager->GetTexture(SKIN_PENGUIN));
+		break;
+	case SKIN_ROBOCOP:
+		m_pExampleMan01->SetTexture(g_pTextureManager->GetTexture(SKIN_ROBOCOP));
+		m_pExampleMan02->SetTexture(g_pTextureManager->GetTexture(SKIN_PENGUIN));
+		m_pExampleMan03->SetTexture(g_pTextureManager->GetTexture(SKIN_WOMAN));
+		break;
 	}
-
 	if (INPUT->IsMouseDown(MOUSE_LEFT))
 	{
 		if (INPUT->IsCollided(D3DXVECTOR2(230, 130), D3DXVECTOR2(290, 260)))
@@ -334,6 +349,10 @@ void cShopScene::SetMSGBox()
 	m_pMSGBox->RegisterMSG(SKIN_CAPTAIN, "캡틴아메리카\n\n양키양키양키\n근육질 양키 케릭터\n울랄라...");
 	m_pMSGBox->RegisterMSG(SKIN_IRON, "아이언맨\n\n쇠덩어리 두르고\n다이아수저 케릭터\n빛나는구나...");
 	m_pMSGBox->RegisterMSG(SKIN_SPIDER, "스파이더맨\n\n손에서 찌익 뿌린다\n찍찍찍\n엉금엉금");
+	m_pMSGBox->RegisterMSG(SKIN_ELMO, "엘모\n\n애기들이 좋아하는 빨강색 인형\n서양의 뽀로로이다\n얘는 고양이인가...");
+	m_pMSGBox->RegisterMSG(SKIN_ROBOCOP, "로보캅\n\n이잉 치킨~ 이잉 치킨\n마이 네임 이즈 로보캅\n언제적이지 영화야?ㅋㅋ");
+	m_pMSGBox->RegisterMSG(SKIN_PENGUIN, "펭귄\n\n음마마마 귀엽네\n남쪽나라 가면 볼수있는데\n오늘은 여기가 남쪽나라군!");
+	m_pMSGBox->RegisterMSG(SKIN_WOMAN, "여자케릭\n\n네모네모해서 잘모르지만\n그래도 여자라능\n쇽쇽쇽");
 }
 
 void cShopScene::RenderMSG()

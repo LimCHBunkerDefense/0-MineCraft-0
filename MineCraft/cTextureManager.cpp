@@ -10,6 +10,10 @@ cTextureManager::cTextureManager()
 	D3DXCreateTextureFromFile(g_pD3DDevice, TEXT("image/Skin/CaptainAmerica.png"), &m_mapSkin[SKIN_CAPTAIN]);
 	D3DXCreateTextureFromFile(g_pD3DDevice, TEXT("image/Skin/Ironman.png"), &m_mapSkin[SKIN_IRON]);
 	D3DXCreateTextureFromFile(g_pD3DDevice, TEXT("image/Skin/Spiderman.png"), &m_mapSkin[SKIN_SPIDER]);
+	D3DXCreateTextureFromFile(g_pD3DDevice, TEXT("image/Skin/Elmo.png"), &m_mapSkin[SKIN_ELMO]);
+	D3DXCreateTextureFromFile(g_pD3DDevice, TEXT("image/Skin/Robocop.png"), &m_mapSkin[SKIN_ROBOCOP]);
+	D3DXCreateTextureFromFile(g_pD3DDevice, TEXT("image/Skin/penguin.png"), &m_mapSkin[SKIN_PENGUIN]);
+	D3DXCreateTextureFromFile(g_pD3DDevice, TEXT("image/Skin/Woman.png"), &m_mapSkin[SKIN_WOMAN]);
 	SetupIndex();
 }
 

@@ -58,6 +58,19 @@ void cPlayScene::OnEnter()
 	m_pPosToCreateTile = new cSurface();
 	m_pPosToCreateTile->Setup(D3DXVECTOR3(-1.0f, 0.0f, -1.0f), D3DXVECTOR3(-1.0f, 0.0f, 1.0f), D3DXVECTOR3(1.0f, 0.0f, 1.0f), D3DXVECTOR3(1.0f, 0.0f, -1.0f), TEXT("Image/Surface/yellow.png"), false);
 
+	m_pAnimal = new cAnimalMan();
+	m_pAnimal2 = new cAnimalMan();
+	m_pAnimal3 = new cAnimalMan();
+	m_pAnimal4 = new cAnimalMan();
+	m_pAnimal->Setup();
+	m_pAnimal4->Setup();
+	m_pAnimal2->Setup();
+	m_pAnimal3->Setup();
+	m_vecAnimal.push_back(m_pAnimal);
+	m_vecAnimal.push_back(m_pAnimal2);
+	m_vecAnimal.push_back(m_pAnimal3);
+	m_vecAnimal.push_back(m_pAnimal4);
+
 	Set_Light();
 	if (g_ObjectManager->GetVecObject().empty())
 	{
@@ -176,6 +189,12 @@ void cPlayScene::OnDraw()
 	// Set_Light();
 
 	g_ObjectManager->Render(m_pCubeMan->GetPosition());
+
+	for (int i = 0; i < m_vecAnimal.size(); i++)
+	{
+		m_vecAnimal[i]->Render();
+	}
+
 	if (m_pCubeMan) m_pCubeMan->Render();
 	if (m_pPosToCreateTile) m_pPosToCreateTile->Render();
 
@@ -212,6 +231,11 @@ void cPlayScene::OnExit()
 	SAFE_RELEASE(m_pSprite);
 	SAFE_RELEASE(m_pTexture);
 	SAFE_RELEASE(m_pSelTexture);
+
+	SAFE_DELETE(m_pAnimal);
+	SAFE_DELETE(m_pAnimal2);
+	SAFE_DELETE(m_pAnimal3);
+	SAFE_DELETE(m_pAnimal4);
 
 	SOUND->Stop("PlayBGM");
 }
@@ -271,6 +295,18 @@ void cPlayScene::SetPlayerSkin()
 		break;
 	case SKIN_SPIDER:
 		m_pCubeMan->SetTexture(g_pTextureManager->GetTexture(SKIN_SPIDER));
+		break;
+	case SKIN_ELMO:
+		m_pCubeMan->SetTexture(g_pTextureManager->GetTexture(SKIN_ELMO));
+		break;
+	case SKIN_ROBOCOP:
+		m_pCubeMan->SetTexture(g_pTextureManager->GetTexture(SKIN_ROBOCOP));
+		break;
+	case SKIN_PENGUIN:
+		m_pCubeMan->SetTexture(g_pTextureManager->GetTexture(SKIN_PENGUIN));
+		break;
+	case SKIN_WOMAN:
+		m_pCubeMan->SetTexture(g_pTextureManager->GetTexture(SKIN_WOMAN));
 		break;
 	}
 }

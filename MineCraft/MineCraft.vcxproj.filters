@@ -116,37 +116,37 @@
       <Filter>98. Utility\13. cMSGBox</Filter>
     </ClCompile>
     <ClCompile Include="cAnimal.cpp">
-      <Filter>cAnimal</Filter>
+      <Filter>11. cAnimal</Filter>
     </ClCompile>
     <ClCompile Include="cAnimalBody.cpp">
-      <Filter>cAnimal</Filter>
+      <Filter>11. cAnimal</Filter>
     </ClCompile>
     <ClCompile Include="cAnimalHead.cpp">
-      <Filter>cAnimal</Filter>
+      <Filter>11. cAnimal</Filter>
     </ClCompile>
     <ClCompile Include="cAnimalLeftArm.cpp">
-      <Filter>cAnimal</Filter>
+      <Filter>11. cAnimal</Filter>
     </ClCompile>
     <ClCompile Include="cAnimalLeftLeg.cpp">
-      <Filter>cAnimal</Filter>
+      <Filter>11. cAnimal</Filter>
     </ClCompile>
     <ClCompile Include="cAnimalMan.cpp">
-      <Filter>cAnimal</Filter>
+      <Filter>11. cAnimal</Filter>
     </ClCompile>
     <ClCompile Include="cAnimalNode.cpp">
-      <Filter>cAnimal</Filter>
+      <Filter>11. cAnimal</Filter>
     </ClCompile>
     <ClCompile Include="cAnimalNose.cpp">
-      <Filter>cAnimal</Filter>
+      <Filter>11. cAnimal</Filter>
     </ClCompile>
     <ClCompile Include="cAnimalPNT.cpp">
-      <Filter>cAnimal</Filter>
+      <Filter>11. cAnimal</Filter>
     </ClCompile>
     <ClCompile Include="cAnimalRightArm.cpp">
-      <Filter>cAnimal</Filter>
+      <Filter>11. cAnimal</Filter>
     </ClCompile>
     <ClCompile Include="cAnimalRightLeg.cpp">
-      <Filter>cAnimal</Filter>
+      <Filter>11. cAnimal</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -269,37 +269,37 @@
       <Filter>98. Utility\13. cMSGBox</Filter>
     </ClInclude>
     <ClInclude Include="cAnimal.h">
-      <Filter>cAnimal</Filter>
+      <Filter>11. cAnimal</Filter>
     </ClInclude>
     <ClInclude Include="cAnimalBody.h">
-      <Filter>cAnimal</Filter>
+      <Filter>11. cAnimal</Filter>
     </ClInclude>
     <ClInclude Include="cAnimalHead.h">
-      <Filter>cAnimal</Filter>
+      <Filter>11. cAnimal</Filter>
     </ClInclude>
     <ClInclude Include="cAnimalLeftArm.h">
-      <Filter>cAnimal</Filter>
+      <Filter>11. cAnimal</Filter>
     </ClInclude>
     <ClInclude Include="cAnimalLeftLeg.h">
-      <Filter>cAnimal</Filter>
+      <Filter>11. cAnimal</Filter>
     </ClInclude>
     <ClInclude Include="cAnimalMan.h">
-      <Filter>cAnimal</Filter>
+      <Filter>11. cAnimal</Filter>
     </ClInclude>
     <ClInclude Include="cAnimalNode.h">
-      <Filter>cAnimal</Filter>
+      <Filter>11. cAnimal</Filter>
     </ClInclude>
     <ClInclude Include="cAnimalNose.h">
-      <Filter>cAnimal</Filter>
+      <Filter>11. cAnimal</Filter>
     </ClInclude>
     <ClInclude Include="cAnimalPNT.h">
-      <Filter>cAnimal</Filter>
+      <Filter>11. cAnimal</Filter>
     </ClInclude>
     <ClInclude Include="cAnimalRightArm.h">
-      <Filter>cAnimal</Filter>
+      <Filter>11. cAnimal</Filter>
     </ClInclude>
     <ClInclude Include="cAnimalRightLeg.h">
-      <Filter>cAnimal</Filter>
+      <Filter>11. cAnimal</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -421,7 +421,7 @@
     <Filter Include="98. Utility\13. cMSGBox">
       <UniqueIdentifier>{13cf6f35-f555-42ea-8337-7af65aa03af9}</UniqueIdentifier>
     </Filter>
-    <Filter Include="cAnimal">
+    <Filter Include="11. cAnimal">
       <UniqueIdentifier>{ed9dc933-f7be-49fc-aa58-8eac69d1b967}</UniqueIdentifier>
     </Filter>
   </ItemGroup>

@@ -202,7 +202,7 @@ void cCharacter::CollidChecker(int root)
 
 		}
 	}
-	if (isWayBlocked == false)m_vPosition = m_vPosition + root*(m_vDirection * 0.1f);
+	if (isWayBlocked == false)m_vPosition = m_vPosition + root*(m_vDirection * 0.05f);
 }
 
 void cCharacter::FallUpdate()

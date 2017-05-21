@@ -27,8 +27,8 @@ cAnimal::~cAnimal()
 
 void cAnimal::Setup()
 {
-	int x = rand() % 200 - 100;
-	int z = rand() % 200 - 100;
+	int x = rand() % 20 - 10;
+	int z = rand() % 20 - 10;
 	m_vPosition = D3DXVECTOR3(x, 0, z);
 	
 	nRandCount = rand() % 230 + 300;
@@ -40,7 +40,7 @@ void cAnimal::Update()
 	
 	if (IsMove)
 	{
-		m_vPosition = m_vPosition - m_vDirection * 0.05f;
+		m_vPosition = m_vPosition - m_vDirection * 0.01f;
 		nMoveCount++;
 		if (nMoveCount - nRandCount == 0)
 		{
